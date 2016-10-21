@@ -1,0 +1,6 @@
+framework module Pods_SwimpyNew {
+  umbrella header "Pods-SwimpyNew-umbrella.h"
+
+  export *
+  module * { export * }
+}
