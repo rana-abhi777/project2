@@ -11,9 +11,6 @@ import XLPagerTabStrip
 
 class CategoriesViewController: UIViewController , IndicatorInfoProvider {
     
-    
-
-
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()

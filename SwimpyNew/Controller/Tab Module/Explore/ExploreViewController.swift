@@ -18,7 +18,6 @@ class ExploreViewController: ButtonBarPagerTabStripViewController {
     //MARK:- override functions
     override func viewDidLoad() {
         pageVCSetup()
-      ApiManager().showLoader()
         super.viewDidLoad()
     }
     

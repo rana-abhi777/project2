@@ -19,6 +19,7 @@ class AddressDetailsViewController: UIViewController {
     @IBOutlet weak var txtAddressLine2: UITextField!
     @IBOutlet weak var txtAddressLine1: UITextField!
     @IBOutlet weak var txtFullname: UITextField!
+    
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()

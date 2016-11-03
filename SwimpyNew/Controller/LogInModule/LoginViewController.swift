@@ -30,12 +30,6 @@ class LoginViewController: BaseViewController {
     //MARK: override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        blackBorderRadiusToButton(btnLook: btnSignin)
-        blackBorderRadiusToButton(btnLook: btnSignup)
-        blackBorderRadiusToButton(btnLook: btnSubmit)
-        viewSignup.layer.cornerRadius = 8.0
-        viewSignin.layer.cornerRadius = 8.0
-        viewForgotPassword.layer.cornerRadius = 8.0
         viewSignin.isHidden = true
         viewSignup.isHidden = true
         viewForgotPassword.isHidden = true

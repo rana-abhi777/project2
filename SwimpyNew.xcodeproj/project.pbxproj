@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		200C14351DB9F42B0000FE42 /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C14341DB9F42B0000FE42 /* SweetAlert.swift */; };
+		203F333C1DBB27E900B875B1 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333B1DBB27E900B875B1 /* CustomView.swift */; };
+		203F333E1DBB28B100B875B1 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333D1DBB28B100B875B1 /* CustomButton.swift */; };
+		203F33401DBB28C600B875B1 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333F1DBB28C600B875B1 /* CustomImageView.swift */; };
+		203F33421DBB67FC00B875B1 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F33411DBB67FC00B875B1 /* FacebookManager.swift */; };
 		209E4FF91DB8E89200F25CEC /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E4FF81DB8E89200F25CEC /* ApiManager.swift */; };
 		20BB0E371DB87C4D008CE2A1 /* ApiEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB0E361DB87C4D008CE2A1 /* ApiEnumeration.swift */; };
 		20BB0E391DB881E2008CE2A1 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB0E381DB881E2008CE2A1 /* HttpManager.swift */; };
@@ -95,6 +99,10 @@
 /* Begin PBXFileReference section */
 		0C8B693B57873063CDDD3FB4 /* Pods-SwimpyNew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwimpyNew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwimpyNew/Pods-SwimpyNew.debug.xcconfig"; sourceTree = "<group>"; };
 		200C14341DB9F42B0000FE42 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
+		203F333B1DBB27E900B875B1 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		203F333D1DBB28B100B875B1 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		203F333F1DBB28C600B875B1 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		203F33411DBB67FC00B875B1 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		209E4FF81DB8E89200F25CEC /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		20BB0E361DB87C4D008CE2A1 /* ApiEnumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEnumeration.swift; sourceTree = "<group>"; };
 		20BB0E381DB881E2008CE2A1 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
@@ -389,6 +397,9 @@
 			isa = PBXGroup;
 			children = (
 				20D948A01DB7589C007A4D07 /* LoadingOverlay.swift */,
+				203F333B1DBB27E900B875B1 /* CustomView.swift */,
+				203F333D1DBB28B100B875B1 /* CustomButton.swift */,
+				203F333F1DBB28C600B875B1 /* CustomImageView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -422,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				20BB0E381DB881E2008CE2A1 /* HttpManager.swift */,
+				203F33411DBB67FC00B875B1 /* FacebookManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -688,6 +700,7 @@
 				20D948E51DB7589C007A4D07 /* InboxViewController.swift in Sources */,
 				20D948E71DB7589C007A4D07 /* ProfileActivityViewController.swift in Sources */,
 				20D9491F1DB7589C007A4D07 /* UserFunctions.swift in Sources */,
+				203F333C1DBB27E900B875B1 /* CustomView.swift in Sources */,
 				20BB0E391DB881E2008CE2A1 /* HttpManager.swift in Sources */,
 				20D948E81DB7589C007A4D07 /* ProfileItemViewController.swift in Sources */,
 				20D948EA1DB7589C007A4D07 /* ProfileViewController.swift in Sources */,
@@ -695,10 +708,12 @@
 				20D948E11DB7589C007A4D07 /* GlobalActivityViewController.swift in Sources */,
 				20D948EB1DB7589C007A4D07 /* AddressDetailsViewController.swift in Sources */,
 				20D948DE1DB7589C007A4D07 /* SearchStoreViewController.swift in Sources */,
+				203F33401DBB28C600B875B1 /* CustomImageView.swift in Sources */,
 				20D948EC1DB7589C007A4D07 /* CartViewController.swift in Sources */,
 				20D948F71DB7589C007A4D07 /* DataSourceTableView.swift in Sources */,
 				20D949201DB7589C007A4D07 /* ValidateData.swift in Sources */,
 				20D948E91DB7589C007A4D07 /* ProfileStoreViewController.swift in Sources */,
+				203F333E1DBB28B100B875B1 /* CustomButton.swift in Sources */,
 				20D948DA1DB7589C007A4D07 /* BaseViewController.swift in Sources */,
 				20D948DD1DB7589C007A4D07 /* SearchPeopleViewController.swift in Sources */,
 				20D948D31DB7589C007A4D07 /* AppDelegate.swift in Sources */,
@@ -711,6 +726,7 @@
 				20D948F51DB7589C007A4D07 /* TabBarController.swift in Sources */,
 				20D948E61DB7589C007A4D07 /* MessageViewController.swift in Sources */,
 				20BB0E371DB87C4D008CE2A1 /* ApiEnumeration.swift in Sources */,
+				203F33421DBB67FC00B875B1 /* FacebookManager.swift in Sources */,
 				20D948D91DB7589C007A4D07 /* Storyboard.swift in Sources */,
 				20D948F91DB7589C007A4D07 /* CallApi.swift in Sources */,
 				20D948DB1DB7589C007A4D07 /* LoginViewController.swift in Sources */,

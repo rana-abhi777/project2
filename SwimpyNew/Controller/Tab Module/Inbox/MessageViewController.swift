@@ -16,7 +16,6 @@ class MessageViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        blackBorderRadiusToButton(btnLook: btnSend)
     }
 
     override func didReceiveMemoryWarning() {

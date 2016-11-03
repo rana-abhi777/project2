@@ -10,11 +10,7 @@ import UIKit
 import XLPagerTabStrip
 
 class SaleViewController: UIViewController ,IndicatorInfoProvider {
-    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Sale")
-    }
-
-
+ 
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +19,9 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-//    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-//        return IndicatorInfo(title: "Sale")
-//    }
-    
+    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Sale")
+    }
 
 
 }

@@ -8,19 +8,19 @@
 import Alamofire
 import SwiftyJSON
 import Foundation
-import NVActivityIndicatorView
+//import NVActivityIndicatorView
 
 class ApiManager {
     
     
-    func getDataOfURL(withApi : API, failure: (NSError) ->(), success:@escaping (AnyObject?)->(), method:String,loader : Bool = true){
+    func getDataOfURL(withApi : API, failure: (NSError) ->(), success: @escaping (AnyObject?)->(), method:String,loader : Bool = true){
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
             UserFunctions.showAlert(message: "Your internet connection seems to be offline")
             return
         }
         
         if loader == true {
-            showLoader()
+//            showLoader()
         }
         
         
@@ -52,24 +52,24 @@ class ApiManager {
             }, method: method)
     }
     
-    func showLoader() {
-        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: UIScreen.main.bounds.width/2,y: UIScreen.main.bounds.height/2,width: 40,height: 40), type: .ballPulseSync, color: UIColor.black, padding: 4)
-
-        UserFunctions.sharedInstance()?.window?.rootViewController?.view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-//        UserFunctions.sharedInstance()?.window?.rootViewController?.startAnimating(CGSize(width: 40,height: 40), message: "Loading..", type: .lineScalePulseOut, color: UIColor.white)
-    }
+//    func showLoader() {
+//        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: UIScreen.main.bounds.width/2,y: UIScreen.main.bounds.height/2,width: 40,height: 40), type: .ballPulseSync, color: UIColor.black, padding: 4)
+//
+//        UserFunctions.sharedInstance()?.window?.rootViewController?.view.addSubview(activityIndicator)
+//        activityIndicator.startAnimating()
+////        UserFunctions.sharedInstance()?.window?.rootViewController?.startAnimating(CGSize(width: 40,height: 40), message: "Loading..", type: .lineScalePulseOut, color: UIColor.white)
+//    }
     
-    func hideLoader(){
-//        activityIndicator.removeFromSuperview()
-//        UserFunctions.sharedInstance()?.window?.rootViewController?.view.removeFromSuperview()
-//        activityIndicator.stopAnimating()
-        UserFunctions.sharedInstance()?.window?.rootViewController?.stopAnimating()
-    }
+//    func hideLoader(){
+////        activityIndicator.removeFromSuperview()
+////        UserFunctions.sharedInstance()?.window?.rootViewController?.view.removeFromSuperview()
+////        activityIndicator.stopAnimating()
+//        UserFunctions.sharedInstance()?.window?.rootViewController?.stopAnimating()
+//    }
 
-    
-}
-
-extension UIViewController : NVActivityIndicatorViewable {
     
 }
+
+//extension UIViewController : NVActivityIndicatorViewable {
+//    
+//}

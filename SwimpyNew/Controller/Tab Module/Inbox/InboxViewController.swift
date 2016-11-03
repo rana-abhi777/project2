@@ -9,13 +9,12 @@
 import UIKit
 
 class InboxViewController: UIViewController {
-
+    
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarItem.selectedImage = UIImage(asset: .Ic_inbox_on)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -26,5 +25,5 @@ class InboxViewController: UIViewController {
         let VC = StoryboardScene.Main.SearchViewControllerScene.viewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
-   
+    
 }

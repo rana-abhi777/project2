@@ -20,9 +20,6 @@ class ShopViewController: ButtonBarPagerTabStripViewController {
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        ApiManager().hideLoader()
-//        var settingsItem = self.tabBar.items?[1] as UITabBarItem
-//        settingsItem.selectedImage = UIImage(named: "home-selected")
         pageVCSetup()
     }
     

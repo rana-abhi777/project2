@@ -24,10 +24,6 @@ class ProfileViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pageVCSetup()
-        btnSettings.layer.borderWidth = 1.0
-        btnSettings.layer.borderColor = UIColor.black.cgColor
-        btnSettings.layer.cornerRadius = 4.0
-
     }
     
     override func didReceiveMemoryWarning() {
