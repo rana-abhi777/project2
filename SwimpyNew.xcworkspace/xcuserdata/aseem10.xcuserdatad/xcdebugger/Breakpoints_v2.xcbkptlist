@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
             endingLineNumber = "174"
-            landmarkName = "btnActionSigninPopup(_:)"
+            landmarkName = "btnActionSkip(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
