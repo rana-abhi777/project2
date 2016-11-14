@@ -14,7 +14,8 @@ pod 'IQKeyboardManager'
 pod 'NVActivityIndicatorView'
 pod 'SZTextView'
 pod 'XLPagerTabStrip'
-
+pod 'Fusuma', '~> 1.0.0'
+pod 'RMMapper'
 end
 
 post_install do |installer|

@@ -22,20 +22,26 @@ class ApiManager {
         if loader == true {
 //            showLoader()
         }
-        
-        
-        HttpManager.callApiWithParameters(api: withApi, success: {[unowned self] (response) in
+        HttpManager.callApiWithParameters(api: withApi, success: {(response) in
             guard let temp = response else { return }
             let data = JSON(temp)
             print(response)
-            if(data["success"].intValue == 1){
+            if(data["statusCode"].intValue >= 200 && data["statusCode"].intValue <= 299 ){
                 var singleUserArray : AnyObject?
                 switch(withApi){
                 case .Signup(_) :
                     print(data)
-                    
-                case .Login(_) : break
-                    
+                    let user = User(arrResult: data["data"])
+                    singleUserArray = user
+                    MMUserManager.shared.loggedInUser = singleUserArray as? User
+                case .Login(_) :
+                    print(data)
+                    let user = User(arrResult: data)
+                    singleUserArray = user
+                    MMUserManager.shared.loggedInUser = singleUserArray as? User
+                case .ForgotPassword(_) :
+                    print(data)
+//                    singleUserArray = data as? AnyObject
                 default:
                     print("API which is hit is not present in Api Collection")
                 }
@@ -52,6 +58,42 @@ class ApiManager {
             }, method: method)
     }
     
+    func getDataOfURL(withApi : API, failure: (NSError) ->(), success: @escaping (AnyObject?)->(), method:String,loader : Bool = true,image : UIImage?){
+        if !Alamofire.NetworkReachabilityManager()!.isReachable {
+            UserFunctions.showAlert(message: "Your internet connection seems to be offline")
+            return
+        }
+        
+        if loader == true {
+            //            showLoader()
+        }
+        
+        
+        HttpManager.callApiWithParameters(api: withApi,image : image, success: {[unowned self] (response) in
+            guard let temp = response else { return }
+            let data = JSON(temp)
+            print(response)
+            if(data["success"].intValue == 1){
+                var singleUserArray : AnyObject?
+                switch(withApi){
+                case .Signup(_) :
+                    print(data)
+                    
+                default:
+                    print("API which is hit is not present in Api Collection")
+                }
+                //                self.hideLoader()
+                success(singleUserArray)
+            }
+            else{
+                //                self.hideLoader()
+                UserFunctions.showAlert(message: data["message"].stringValue)
+            }
+            
+            }, failure: { (error) in
+                UserFunctions.showAlert(message: "something went wrong")
+            }, method: method)
+    }
 //    func showLoader() {
 //        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: UIScreen.main.bounds.width/2,y: UIScreen.main.bounds.height/2,width: 40,height: 40), type: .ballPulseSync, color: UIColor.black, padding: 4)
 //

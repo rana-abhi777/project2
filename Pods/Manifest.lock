@@ -12,8 +12,10 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.16.1):
     - FBSDKCoreKit
+  - Fusuma (1.0.0)
   - IQKeyboardManager (4.0.6)
   - NVActivityIndicatorView (3.0)
+  - RMMapper (1.1.5)
   - SwiftyJSON (3.1.1)
   - SZTextView (1.2.2)
   - XLPagerTabStrip (6.0.0)
@@ -30,8 +32,10 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - Fusuma (~> 1.0.0)
   - IQKeyboardManager
   - NVActivityIndicatorView
+  - RMMapper
   - SwiftyJSON
   - SZTextView
   - XLPagerTabStrip
@@ -43,8 +47,10 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 7a6baaed4a2b2a244ba253346713bdbc74df135b
   FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
   FBSDKShareKit: 53af0239b5bd2ebf191f32f75991245a208cc982
+  Fusuma: c95c1c999c765f5dc907670be569157372ff33c4
   IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
   NVActivityIndicatorView: 81953b5e65093ba79edf4fe7268e002039ca5268
+  RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b

@@ -7,7 +7,7 @@
 //
 import UIKit
 //import  NVActivityIndicatorView
-//import Fusuma
+import Fusuma
 
 class BaseViewController: UIViewController {
     
@@ -15,8 +15,8 @@ class BaseViewController: UIViewController {
     let overlayObj = LoadingOverlay()
     var selectedImage : UIImage?
     var btnOutlet : UIButton!
-//    let viewLoader = NVActivityIndicatorView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-//  
+    //    let viewLoader = NVActivityIndicatorView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+    //
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -39,48 +39,61 @@ class BaseViewController: UIViewController {
         btn.layer.masksToBounds = false
         
     }
-//    func callFusumaImagePiucker(btnOutlet : UIButton!){
-//        self.btnOutlet = btnOutlet
-//        let fusuma = FusumaViewController()
-//        //        fusuma.fusumaCropImage = true
-//        fusuma.hasVideo = false
-//        fusuma.delegate = self
-//        self.presentViewController(fusuma, animated: true, completion: nil)
-//    }
+    func callFusumaImagePiucker(btnOutlet : UIButton!){
+        self.btnOutlet = btnOutlet
+        let fusuma = FusumaViewController()
+        //        fusuma.fusumaCropImage = true
+        fusuma.hasVideo = false
+        fusuma.delegate = self
+        self.present(fusuma, animated: true, completion: nil)
+    }
     func blackBorderRadiusToButton(btnLook : UIButton!) {
         btnLook.layer.borderWidth = 1.0
         btnLook.layer.borderColor = UIColor.black.cgColor
         btnLook.layer.cornerRadius = 4.0
     }
-//    func showLoader() {
-//        viewLoader.color = UIColor.red
-//        viewLoader.startAnimating()
-//        UserFunctions.sharedInstance()?.window?.rootViewController?.view.addSubview(viewLoader)
-//    }
-//    func hideLoader() {
-//        UserFunctions.sharedInstance()?.window?.rootViewController?.viewLoader.re
-//    }
+    //    func showLoader() {
+    //        viewLoader.color = UIColor.red
+    //        viewLoader.startAnimating()
+    //        UserFunctions.sharedInstance()?.window?.rootViewController?.view.addSubview(viewLoader)
+    //    }
+    //    func hideLoader() {
+    //        UserFunctions.sharedInstance()?.window?.rootViewController?.viewLoader.re
+    //    }
 }
-//extension BaseViewController : FusumaDelegate{
-//    //MARK::- Fusuma delegates
-//    
-//    func fusumaImageSelected(image: UIImage)  {
-//        selectedImage = image
-//        btnOutlet.setImage(selectedImage ?? UIImage(), forState: .Normal)
-//        print("Image selected")
-//    }
-//    
-//    // Return the image but called after is dismissed.
-//    func fusumaDismissedWithImage(image: UIImage) {
-//        
-//        print("Called just after FusumaViewController is dismissed.")
-//    }
-//    
-//    // When camera roll is not authorized, this method is called.
-//    func fusumaCameraRollUnauthorized() {
-//        
-//        print("Camera roll unauthorized")
-//    }
-//    func fusumaVideoCompleted(withFileURL fileURL: NSURL) {
-//    }
-//}
+extension BaseViewController : FusumaDelegate{
+    public func fusumaImageSelected(_ image: UIImage) {
+        selectedImage = image
+        btnOutlet.setImage(selectedImage ?? UIImage(), for: .normal)
+        print("Image selected")
+        
+    }
+    
+    public func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        //
+    }
+    
+    
+    
+    //MARK::- Fusuma delegates
+    
+    
+    //    func fusumaImageSelected(_ image: UIImage)  {
+    //        selectedImage = image
+    //        btnOutlet.setImage(selectedImage ?? UIImage(), for: .normal)
+    //        print("Image selected")
+    //    }
+    
+    // Return the image but called after is dismissed.
+    func fusumaDismissedWithImage(image: UIImage) {
+        
+        print("Called just after FusumaViewController is dismissed.")
+    }
+    
+    // When camera roll is not authorized, this method is called.
+    func fusumaCameraRollUnauthorized() {
+        
+        print("Camera roll unauthorized")
+    }
+    
+}

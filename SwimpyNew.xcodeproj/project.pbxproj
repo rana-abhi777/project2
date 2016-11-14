@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200652521DCC4EF40042554D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200652511DCC4EF40042554D /* User.swift */; };
 		200C14351DB9F42B0000FE42 /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C14341DB9F42B0000FE42 /* SweetAlert.swift */; };
 		203F333C1DBB27E900B875B1 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333B1DBB27E900B875B1 /* CustomView.swift */; };
 		203F333E1DBB28B100B875B1 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333D1DBB28B100B875B1 /* CustomButton.swift */; };
 		203F33401DBB28C600B875B1 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333F1DBB28C600B875B1 /* CustomImageView.swift */; };
 		203F33421DBB67FC00B875B1 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F33411DBB67FC00B875B1 /* FacebookManager.swift */; };
+		209CCCF31DD050B00061EFCF /* MMUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209CCCF21DD050B00061EFCF /* MMUserManager.swift */; };
 		209E4FF91DB8E89200F25CEC /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E4FF81DB8E89200F25CEC /* ApiManager.swift */; };
 		20BB0E371DB87C4D008CE2A1 /* ApiEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB0E361DB87C4D008CE2A1 /* ApiEnumeration.swift */; };
 		20BB0E391DB881E2008CE2A1 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB0E381DB881E2008CE2A1 /* HttpManager.swift */; };
@@ -98,11 +100,14 @@
 
 /* Begin PBXFileReference section */
 		0C8B693B57873063CDDD3FB4 /* Pods-SwimpyNew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwimpyNew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwimpyNew/Pods-SwimpyNew.debug.xcconfig"; sourceTree = "<group>"; };
+		200652511DCC4EF40042554D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		200A9C361DD978880021B907 /* SwimpyNew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwimpyNew.entitlements; sourceTree = "<group>"; };
 		200C14341DB9F42B0000FE42 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
 		203F333B1DBB27E900B875B1 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		203F333D1DBB28B100B875B1 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		203F333F1DBB28C600B875B1 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		203F33411DBB67FC00B875B1 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
+		209CCCF21DD050B00061EFCF /* MMUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMUserManager.swift; sourceTree = "<group>"; };
 		209E4FF81DB8E89200F25CEC /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		20BB0E361DB87C4D008CE2A1 /* ApiEnumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEnumeration.swift; sourceTree = "<group>"; };
 		20BB0E381DB881E2008CE2A1 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
@@ -202,6 +207,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		200652501DCC4EDF0042554D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				200652511DCC4EF40042554D /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		200C14331DB9F41D0000FE42 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +244,8 @@
 		20D9485B1DB755EF007A4D07 /* SwimpyNew */ = {
 			isa = PBXGroup;
 			children = (
+				200A9C361DD978880021B907 /* SwimpyNew.entitlements */,
+				200652501DCC4EDF0042554D /* Model */,
 				200C14331DB9F41D0000FE42 /* Library */,
 				20D9486E1DB7589C007A4D07 /* App delegate */,
 				20D948701DB7589C007A4D07 /* Cells */,
@@ -432,6 +447,7 @@
 		20D948A71DB7589C007A4D07 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				209CCCF21DD050B00061EFCF /* MMUserManager.swift */,
 				20BB0E381DB881E2008CE2A1 /* HttpManager.swift */,
 				203F33411DBB67FC00B875B1 /* FacebookManager.swift */,
 			);
@@ -560,6 +576,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3BJ9Q6FDV9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -703,7 +724,9 @@
 				203F333C1DBB27E900B875B1 /* CustomView.swift in Sources */,
 				20BB0E391DB881E2008CE2A1 /* HttpManager.swift in Sources */,
 				20D948E81DB7589C007A4D07 /* ProfileItemViewController.swift in Sources */,
+				200652521DCC4EF40042554D /* User.swift in Sources */,
 				20D948EA1DB7589C007A4D07 /* ProfileViewController.swift in Sources */,
+				209CCCF31DD050B00061EFCF /* MMUserManager.swift in Sources */,
 				20D948DC1DB7589C007A4D07 /* SearchItemViewController.swift in Sources */,
 				20D948E11DB7589C007A4D07 /* GlobalActivityViewController.swift in Sources */,
 				20D948EB1DB7589C007A4D07 /* AddressDetailsViewController.swift in Sources */,
@@ -853,11 +876,14 @@
 			baseConfigurationReference = 0C8B693B57873063CDDD3FB4 /* Pods-SwimpyNew.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				DEVELOPMENT_TEAM = 3BJ9Q6FDV9;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.SwimpyNew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -867,11 +893,14 @@
 			baseConfigurationReference = A793CBFA0933BEC7B3C72718 /* Pods-SwimpyNew.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				DEVELOPMENT_TEAM = 3BJ9Q6FDV9;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.SwimpyNew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

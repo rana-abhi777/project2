@@ -42,8 +42,10 @@ func logInWithFb(viewcontroller : UIViewController) {
     let loginView : FBSDKLoginManager = FBSDKLoginManager()
     loginView.logOut()
     loginView.loginBehavior = FBSDKLoginBehavior.browser
-    loginView.logIn(withPublishPermissions: ["public_profile","user_friends","email"], from: viewcontroller) { (result , error) in
-        print(result?.grantedPermissions.contains("email"))
+//    loginView.per
+    loginView.logIn(withReadPermissions: ["public_profile","user_friends","email"], from: viewcontroller) { (result , error) in
+        print("error :\(error)")
+//        print(result?.grantedPermissions.contains("email"))
         guard ((error) != nil) else {
             if (result?.isCancelled)! {
                 //redirect to log in screen
