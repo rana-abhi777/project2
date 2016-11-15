@@ -2,6 +2,7 @@
  platform :ios, ‘9.0’
 # Uncomment this line if you're using Swift
  use_frameworks!
+source "https://github.com/CocoaPods/Old-Specs"
 
 target 'SwimpyNew' do
 pod 'Alamofire', '~> 4.0'
@@ -16,6 +17,7 @@ pod 'SZTextView'
 pod 'XLPagerTabStrip'
 pod 'Fusuma', '~> 1.0.0'
 pod 'RMMapper'
+pod 'Google/SignIn'
 end
 
 post_install do |installer|

@@ -24,6 +24,8 @@ enum API {
     case Signup(OptionalDictionary)
     case Login(OptionalDictionary)
     case ForgotPassword(OptionalDictionary)
+    case LoginViaFacebook(OptionalDictionary)
+    case LoginViaGoogle(OptionalDictionary)
 }
 
 
@@ -31,6 +33,8 @@ enum APIParameters {
     case Login(email : String? , password : String?)
     case Signup(fullname : String?,email : String? , password : String?)
     case ForgotPassword(email : String?)
+    case LoginViaFacebook(facebookId : String?, name : String?, facebookImageUrl : String?)
+    case LoginViaGoogle(googleId : String?,name : String? , googleImageUrl : String?)
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
         case .Signup(let fullname, let email,let password) :
@@ -39,6 +43,10 @@ enum APIParameters {
             return ["email" : (email ?? "") as AnyObject, "password" : (password ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject]
         case .ForgotPassword(let email):
             return ["email" : (email ?? "") as AnyObject]
+        case .LoginViaFacebook(let fbId, let name , let imgUrl):
+            return ["facebookId" : (fbId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "facebookImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
+        case .LoginViaGoogle(let googleId , let name, let imgUrl) :
+              return ["googleId" : (googleId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "googleImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
         default:
             return ["" : "" as AnyObject]
         }
@@ -51,6 +59,8 @@ extension API : Router {
         case .Signup(let params) : return params
         case .Login(let parameters) : return parameters
         case .ForgotPassword(let params) : return params
+        case .LoginViaFacebook(let parameters) : return parameters
+        case .LoginViaGoogle(let parameters) : return parameters
         }
     }
 
@@ -59,6 +69,8 @@ extension API : Router {
         case .Signup(_) : return "register"
         case .Login(_) : return "login"
         case .ForgotPassword(_) : return "forgotPassword"
+        case .LoginViaFacebook(_) : return "loginViaFacebook"
+        case .LoginViaGoogle(_) : return "loginViaGoogle"
         }
     }
 

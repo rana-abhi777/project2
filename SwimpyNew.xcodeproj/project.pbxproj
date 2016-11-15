@@ -13,6 +13,7 @@
 		203F333E1DBB28B100B875B1 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333D1DBB28B100B875B1 /* CustomButton.swift */; };
 		203F33401DBB28C600B875B1 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333F1DBB28C600B875B1 /* CustomImageView.swift */; };
 		203F33421DBB67FC00B875B1 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F33411DBB67FC00B875B1 /* FacebookManager.swift */; };
+		207732011DDB2FB600FEE9DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 207732001DDB2FB600FEE9DA /* GoogleService-Info.plist */; };
 		209CCCF31DD050B00061EFCF /* MMUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209CCCF21DD050B00061EFCF /* MMUserManager.swift */; };
 		209E4FF91DB8E89200F25CEC /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E4FF81DB8E89200F25CEC /* ApiManager.swift */; };
 		20BB0E371DB87C4D008CE2A1 /* ApiEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB0E361DB87C4D008CE2A1 /* ApiEnumeration.swift */; };
@@ -107,6 +108,8 @@
 		203F333D1DBB28B100B875B1 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		203F333F1DBB28C600B875B1 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		203F33411DBB67FC00B875B1 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
+		207731FB1DDAF53000FEE9DA /* SwimpyNew-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwimpyNew-Bridging-Header.h"; sourceTree = "<group>"; };
+		207732001DDB2FB600FEE9DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		209CCCF21DD050B00061EFCF /* MMUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMUserManager.swift; sourceTree = "<group>"; };
 		209E4FF81DB8E89200F25CEC /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		20BB0E361DB87C4D008CE2A1 /* ApiEnumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEnumeration.swift; sourceTree = "<group>"; };
@@ -223,6 +226,14 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		207731FA1DDAF51300FEE9DA /* BridgingHeader */ = {
+			isa = PBXGroup;
+			children = (
+				207731FB1DDAF53000FEE9DA /* SwimpyNew-Bridging-Header.h */,
+			);
+			path = BridgingHeader;
+			sourceTree = "<group>";
+		};
 		20D948501DB755EF007A4D07 = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +255,7 @@
 		20D9485B1DB755EF007A4D07 /* SwimpyNew */ = {
 			isa = PBXGroup;
 			children = (
+				207731FA1DDAF51300FEE9DA /* BridgingHeader */,
 				200A9C361DD978880021B907 /* SwimpyNew.entitlements */,
 				200652501DCC4EDF0042554D /* Model */,
 				200C14331DB9F41D0000FE42 /* Library */,
@@ -261,6 +273,7 @@
 				20D948631DB755EF007A4D07 /* Assets.xcassets */,
 				20D948651DB755EF007A4D07 /* LaunchScreen.storyboard */,
 				20D948681DB755EF007A4D07 /* Info.plist */,
+				207732001DDB2FB600FEE9DA /* GoogleService-Info.plist */,
 			);
 			path = SwimpyNew;
 			sourceTree = "<group>";
@@ -574,7 +587,8 @@
 				TargetAttributes = {
 					20D948581DB755EF007A4D07 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 3BJ9Q6FDV9;
+						DevelopmentTeam = Y4523532TR;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -624,6 +638,7 @@
 				20D949081DB7589C007A4D07 /* BryantPro-MediumAlternate.otf in Resources */,
 				20D949151DB7589C007A4D07 /* Gotham-Light.otf in Resources */,
 				20D9491A1DB7589C007A4D07 /* Gotham-ThinItalic.otf in Resources */,
+				207732011DDB2FB600FEE9DA /* GoogleService-Info.plist in Resources */,
 				20D949021DB7589C007A4D07 /* BryantPro-BoldAlternate.otf in Resources */,
 				20D949141DB7589C007A4D07 /* Gotham-BookItalic.otf in Resources */,
 				20D949001DB7589C007A4D07 /* bryant-6.png in Resources */,
@@ -876,14 +891,18 @@
 			baseConfigurationReference = 0C8B693B57873063CDDD3FB4 /* Pods-SwimpyNew.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
-				DEVELOPMENT_TEAM = 3BJ9Q6FDV9;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = Y4523532TR;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.SwimpyNew;
+				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1c88734b-71f6-4d82-aaf9-d86ac59110ac";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -893,14 +912,18 @@
 			baseConfigurationReference = A793CBFA0933BEC7B3C72718 /* Pods-SwimpyNew.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
-				DEVELOPMENT_TEAM = 3BJ9Q6FDV9;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = Y4523532TR;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.SwimpyNew;
+				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1c88734b-71f6-4d82-aaf9-d86ac59110ac";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

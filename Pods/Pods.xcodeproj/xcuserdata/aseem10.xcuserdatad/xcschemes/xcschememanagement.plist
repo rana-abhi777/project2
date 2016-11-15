@@ -34,6 +34,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GTMOAuth2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -92,17 +107,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05229CF91DF27B58DBD8E2DB1F734BCC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>070374204E491EF7E794313D14C6950B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1DD7F8558A133415B153093ED29E076C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,27 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30EB96E16C23D3584B2926F279C44D15</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>37C76CD246D637B8E4C586284A0D96B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F14DC37FB732E472E2AC21075E0E083</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>46D933281972401298E3D12D7C3A6B89</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5BE6425E91D3DBEE0B864A5763CDAC05</key>
+		<key>520AE40F22CA5FF4E72E934B38CC98C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,6 +137,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6C93DE13A9E39F5C57B693BE90DBB2D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71569D5C05DD5C69967BE349D6FB94C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7380ABD049E12DCFEC9B9E1D2D52C627</key>
 		<dict>
 			<key>primary</key>
@@ -157,7 +157,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93AFA6B17353AD15177890CE41E391DA</key>
+		<key>7D04535608058A2FABC0D16935868FB9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>88D720CA867EA85CEC74E19A9E257807</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>95B83DADB6682D0B4116CDFC0BA8F27B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,12 +177,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D57531C7D8332E2A69DBD3E9B50B53F9</key>
+		<key>B2CFDA096F669BE825D06AE79B92549D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD01354A20D0101F2E0356206EF56E73</key>
+		<key>D468777BEC2DE5127A16239373FFD11F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DA8B8CAB8F8A1333E6367C3B97BBA007</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E64077EF7ED878775C924E24ADC427FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9733877FFA1AB8281088A944DEEA35D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FCC8F96C9111B0E3205721475FE9B732</key>
 		<dict>
 			<key>primary</key>
 			<true/>

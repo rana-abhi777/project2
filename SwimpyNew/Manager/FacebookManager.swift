@@ -18,7 +18,7 @@ func returnUserdata() {
         guard ((error) != nil)
             else{
                 guard let result = result as? NSDictionary else { return }
-                guard let strPictureURL: String = (((result.object(forKey : "picture") as AnyObject).object(forKey : "data") as AnyObject).object(forKey : "url") as? String) else { return }
+                guard let strPictureURL: String = (((result.object(forKey : "picture") as? NSDictionary)?.object(forKey : "data") as? NSDictionary)?.object(forKey : "url") as? String) else { return }
                 let accessToken = FBSDKAccessToken.current().tokenString
                 guard let fb_id = result.value(forKey: "id") as? String else { return }
                 guard let uname = result.value(forKey: "name") as? String else { return }
@@ -26,14 +26,17 @@ func returnUserdata() {
                 guard let lastname = result.value(forKey: "last_name") as? String else { return }
                 var email = result.value(forKey: "email") as? String
                 if email ==  nil {
-                    email = fb_id + "@facebook.com"
+                    email = fb_id
                 }
                 let parameters = ["username" : uname,"firstname" :  firstname, "lastname" : lastname, "fb_id" : fb_id,"email" : email,"pic" : strPictureURL,"access_token" : accessToken ]
                 print(parameters)
-                //                    guard let data = NSData.init(contentsOfURL: NSURL(string: strPictureURL) ?? NSURL()) else { return }
-                //                    guard let img = UIImage(data: data) else { return }
+            
+                ApiManager().getDataOfURL(withApi: API.LoginViaFacebook(APIParameters.LoginViaFacebook(facebookId: email, name: uname, facebookImageUrl: strPictureURL).formatParameters()), failure: { (err) in
+                    print(err)
+                    }, success: { (model) in
+                        print(model)
+                    }, method: "POST", loader: true)
                 
-                //                    self.hitFbLoginApi(parameters)
                 return
         }})
 }
@@ -44,8 +47,6 @@ func logInWithFb(viewcontroller : UIViewController) {
     loginView.loginBehavior = FBSDKLoginBehavior.browser
 //    loginView.per
     loginView.logIn(withReadPermissions: ["public_profile","user_friends","email"], from: viewcontroller) { (result , error) in
-        print("error :\(error)")
-//        print(result?.grantedPermissions.contains("email"))
         guard ((error) != nil) else {
             if (result?.isCancelled)! {
                 //redirect to log in screen

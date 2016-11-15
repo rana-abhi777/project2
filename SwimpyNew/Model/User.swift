@@ -20,7 +20,7 @@ class User: NSObject {
     var profilePicURLThumbnail : String?
     var profilePicURLOriginal : String?
     
-    //    MARK:- initializer
+    //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
         email = arrResult["email"].stringValue
@@ -32,7 +32,6 @@ class User: NSObject {
         let profilePicDict = arrResult["profilePicURL"].dictionaryValue
         profilePicURLThumbnail = profilePicDict["thumbnail"]?.stringValue
         profilePicURLOriginal = profilePicDict["original"]?.stringValue
-        
     }
     
     override init() {

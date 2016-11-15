@@ -41,7 +41,16 @@ class ApiManager {
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
                 case .ForgotPassword(_) :
                     print(data)
-//                    singleUserArray = data as? AnyObject
+                case .LoginViaFacebook(_) :
+                    print(data)
+                    let user = User(arrResult: data["data"])
+                    singleUserArray = user
+                    MMUserManager.shared.loggedInUser = singleUserArray as? User
+                case .LoginViaGoogle(_) :
+                    print(data)
+                    let user = User(arrResult: data["data"])
+                    singleUserArray = user
+                    MMUserManager.shared.loggedInUser = singleUserArray as? User
                 default:
                     print("API which is hit is not present in Api Collection")
                 }
@@ -69,7 +78,7 @@ class ApiManager {
         }
         
         
-        HttpManager.callApiWithParameters(api: withApi,image : image, success: {[unowned self] (response) in
+        HttpManager.callApiWithParameters(api: withApi,image : image, success: { (response) in
             guard let temp = response else { return }
             let data = JSON(temp)
             print(response)

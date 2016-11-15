@@ -16,7 +16,6 @@ class BaseViewController: UIViewController {
     var selectedImage : UIImage?
     var btnOutlet : UIButton!
     //    let viewLoader = NVActivityIndicatorView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-    //
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -77,15 +76,9 @@ extension BaseViewController : FusumaDelegate{
     
     //MARK::- Fusuma delegates
     
-    
-    //    func fusumaImageSelected(_ image: UIImage)  {
-    //        selectedImage = image
-    //        btnOutlet.setImage(selectedImage ?? UIImage(), for: .normal)
-    //        print("Image selected")
-    //    }
-    
     // Return the image but called after is dismissed.
-    func fusumaDismissedWithImage(image: UIImage) {
+    
+    func fusumaDismissedWithImage(_ image: UIImage) {
         
         print("Called just after FusumaViewController is dismissed.")
     }
