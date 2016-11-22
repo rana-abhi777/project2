@@ -13,7 +13,9 @@ import FBSDKLoginKit
 
 func returnUserdata() {
     var Requset : FBSDKGraphRequest
+    
     Requset = FBSDKGraphRequest (graphPath:"me", parameters: ["fields":"email,name,picture.type(large),first_name,last_name"], httpMethod:"GET")
+    
     Requset.start(completionHandler: {  ( connection, result, error) -> Void in
         guard ((error) != nil)
             else{

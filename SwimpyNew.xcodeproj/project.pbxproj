@@ -16,6 +16,7 @@
 		207732011DDB2FB600FEE9DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 207732001DDB2FB600FEE9DA /* GoogleService-Info.plist */; };
 		209CCCF31DD050B00061EFCF /* MMUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209CCCF21DD050B00061EFCF /* MMUserManager.swift */; };
 		209E4FF91DB8E89200F25CEC /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E4FF81DB8E89200F25CEC /* ApiManager.swift */; };
+		20A368EA1DE30DAD00B72A40 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A368E91DE30DAC00B72A40 /* Category.swift */; };
 		20BB0E371DB87C4D008CE2A1 /* ApiEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB0E361DB87C4D008CE2A1 /* ApiEnumeration.swift */; };
 		20BB0E391DB881E2008CE2A1 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB0E381DB881E2008CE2A1 /* HttpManager.swift */; };
 		20D948621DB755EF007A4D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20D948601DB755EF007A4D07 /* Main.storyboard */; };
@@ -57,7 +58,6 @@
 		20D948F51DB7589C007A4D07 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9489E1DB7589C007A4D07 /* TabBarController.swift */; };
 		20D948F61DB7589C007A4D07 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D948A01DB7589C007A4D07 /* LoadingOverlay.swift */; };
 		20D948F71DB7589C007A4D07 /* DataSourceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D948A31DB7589C007A4D07 /* DataSourceTableView.swift */; };
-		20D948F91DB7589C007A4D07 /* CallApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D948A61DB7589C007A4D07 /* CallApi.swift */; };
 		20D948FB1DB7589C007A4D07 /* bryant-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 20D948AB1DB7589C007A4D07 /* bryant-1.jpg */; };
 		20D948FC1DB7589C007A4D07 /* bryant-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 20D948AC1DB7589C007A4D07 /* bryant-2.jpg */; };
 		20D948FD1DB7589C007A4D07 /* bryant-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 20D948AD1DB7589C007A4D07 /* bryant-3.jpg */; };
@@ -112,6 +112,7 @@
 		207732001DDB2FB600FEE9DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		209CCCF21DD050B00061EFCF /* MMUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMUserManager.swift; sourceTree = "<group>"; };
 		209E4FF81DB8E89200F25CEC /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		20A368E91DE30DAC00B72A40 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		20BB0E361DB87C4D008CE2A1 /* ApiEnumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEnumeration.swift; sourceTree = "<group>"; };
 		20BB0E381DB881E2008CE2A1 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		20D948591DB755EF007A4D07 /* SwimpyNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwimpyNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +156,6 @@
 		20D9489E1DB7589C007A4D07 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		20D948A01DB7589C007A4D07 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		20D948A31DB7589C007A4D07 /* DataSourceTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceTableView.swift; sourceTree = "<group>"; };
-		20D948A61DB7589C007A4D07 /* CallApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallApi.swift; sourceTree = "<group>"; };
 		20D948AB1DB7589C007A4D07 /* bryant-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bryant-1.jpg"; sourceTree = "<group>"; };
 		20D948AC1DB7589C007A4D07 /* bryant-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bryant-2.jpg"; sourceTree = "<group>"; };
 		20D948AD1DB7589C007A4D07 /* bryant-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bryant-3.jpg"; sourceTree = "<group>"; };
@@ -214,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				200652511DCC4EF40042554D /* User.swift */,
+				20A368E91DE30DAC00B72A40 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,7 +452,6 @@
 		20D948A41DB7589C007A4D07 /* Facade */ = {
 			isa = PBXGroup;
 			children = (
-				20D948A61DB7589C007A4D07 /* CallApi.swift */,
 				209E4FF81DB8E89200F25CEC /* ApiManager.swift */,
 			);
 			path = Facade;
@@ -725,6 +725,7 @@
 				20D948EF1DB7589C007A4D07 /* NewViewController.swift in Sources */,
 				20D948E21DB7589C007A4D07 /* DealsViewController.swift in Sources */,
 				20D948F21DB7589C007A4D07 /* ShopViewController.swift in Sources */,
+				20A368EA1DE30DAD00B72A40 /* Category.swift in Sources */,
 				20D948D81DB7589C007A4D07 /* Keys.swift in Sources */,
 				20D948E01DB7589C007A4D07 /* ActivityViewController.swift in Sources */,
 				20D948ED1DB7589C007A4D07 /* CategoriesViewController.swift in Sources */,
@@ -766,7 +767,6 @@
 				20BB0E371DB87C4D008CE2A1 /* ApiEnumeration.swift in Sources */,
 				203F33421DBB67FC00B875B1 /* FacebookManager.swift in Sources */,
 				20D948D91DB7589C007A4D07 /* Storyboard.swift in Sources */,
-				20D948F91DB7589C007A4D07 /* CallApi.swift in Sources */,
 				20D948DB1DB7589C007A4D07 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

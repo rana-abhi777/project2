@@ -16,7 +16,7 @@ protocol Router {
 }
 
 enum APIConstant : String {
-    case baseURL = "http://192.168.100.125:4001/api/users/"
+    case baseURL = "http://192.168.100.125:4001/"
     
 }
 
@@ -26,6 +26,7 @@ enum API {
     case ForgotPassword(OptionalDictionary)
     case LoginViaFacebook(OptionalDictionary)
     case LoginViaGoogle(OptionalDictionary)
+    case GetCategory(OptionalDictionary)
 }
 
 
@@ -35,6 +36,9 @@ enum APIParameters {
     case ForgotPassword(email : String?)
     case LoginViaFacebook(facebookId : String?, name : String?, facebookImageUrl : String?)
     case LoginViaGoogle(googleId : String?,name : String? , googleImageUrl : String?)
+    case GetCategory()
+    
+    
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
         case .Signup(let fullname, let email,let password) :
@@ -61,16 +65,18 @@ extension API : Router {
         case .ForgotPassword(let params) : return params
         case .LoginViaFacebook(let parameters) : return parameters
         case .LoginViaGoogle(let parameters) : return parameters
+        case .GetCategory(let parameters) : return parameters
         }
     }
 
     internal var route: String {
         switch self {
-        case .Signup(_) : return "register"
-        case .Login(_) : return "login"
-        case .ForgotPassword(_) : return "forgotPassword"
-        case .LoginViaFacebook(_) : return "loginViaFacebook"
-        case .LoginViaGoogle(_) : return "loginViaGoogle"
+        case .Signup(_) : return "api/users/register"
+        case .Login(_) : return "api/users/login"
+        case .ForgotPassword(_) : return "api/users/forgotPassword"
+        case .LoginViaFacebook(_) : return "api/users/loginViaFacebook"
+        case .LoginViaGoogle(_) : return "api/users/loginViaGoogle"
+        case .GetCategory(_) : return "admin/getCategory"
         }
     }
 

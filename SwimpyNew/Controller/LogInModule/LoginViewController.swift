@@ -30,6 +30,11 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     //MARK: override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        if MMUserManager.shared.loggedInUser?.accessToken  != nil {
+            let VC = StoryboardScene.Main.instantiateTabBarController()
+            self.navigationController?.pushViewController(VC, animated: true)
+        }
+//        if MMUserManager.sharedInstance.lo
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().clientID = "631877456020-bsavm2p985ialf5ga8jihj671rsood5d.apps.googleusercontent.com"
@@ -118,6 +123,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                  print(err)
                 }, success: { (model) in
                     print(model)
+                    let VC = StoryboardScene.Main.instantiateTabBarController()
+                    self.navigationController?.pushViewController(VC, animated: true)
                 }, method: "POST", loader: true)
         }
     }

@@ -5,7 +5,7 @@
 source "https://github.com/CocoaPods/Old-Specs"
 
 target 'SwimpyNew' do
-pod 'Alamofire', '~> 4.0'
+pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'YYWebImage'
 pod 'FBSDKCoreKit'

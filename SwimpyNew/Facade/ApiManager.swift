@@ -36,7 +36,7 @@ class ApiManager {
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
                 case .Login(_) :
                     print(data)
-                    let user = User(arrResult: data)
+                    let user = User(arrResult: data["data"])
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
                 case .ForgotPassword(_) :
@@ -51,6 +51,9 @@ class ApiManager {
                     let user = User(arrResult: data["data"])
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
+                case .GetCategory(_) :
+                    print(data)
+                    let category = Category(arrResult: data["data"])
                 default:
                     print("API which is hit is not present in Api Collection")
                 }

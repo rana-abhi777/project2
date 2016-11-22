@@ -16,6 +16,14 @@ typealias HttpManagerFailure = (String) -> ()
 
 
 class HttpManager {
+    
+    static func getHeader() -> [String : String] {
+        let header  = [ "authorization" : "bearer " + (MMUserManager.shared.loggedInUser?.accessToken ?? ""), "Content-Type" : "application/x-www-form-urlencoded"]
+        return header
+    }
+    
+    
+    
     static func callApiWithParameters( api:API, success:@escaping HttpManagerSuccess, failure: @escaping HttpManagerFailure, method: String){
         
         let parameters = api.parameters
@@ -24,17 +32,37 @@ class HttpManager {
         switch method {
             
         case "POST" :
-          
-            Alamofire.request(fullPath,method : .post, parameters: parameters, encoding: URLEncoding.default).responseJSON {
-                response in switch response.result{
+            
+            //            Alamofire.request(fullPath, method: .post, parameters: parameters, encoding: URLEncoding.JSON, headers: getHeader()).responseJSON {
+            //                response in switch response.result{
+            //                case .success(let data):
+            //                    success(data as AnyObject?)
+            //                case .failure(let error):
+            //                    failure(error.localizedDescription)
+            //                }
+            //
+            //            }
+
+            Alamofire.request(fullPath, method: .post, parameters: parameters, encoding: JSONEncoding.default,headers: getHeader() ).responseJSON { response in // 1
+                switch response.result {
+                    
                 case .success(let data):
                     success(data as AnyObject?)
                 case .failure(let error):
                     failure(error.localizedDescription)
+                    
                 }
                 
             }
-            
+//            Alamofire.request(fullPath,method : .post, parameters: parameters, encoding: URLEncoding.default).responseJSON {
+//                response in switch response.result{
+//                case .success(let data):
+//                    success(data as AnyObject?)
+//                case .failure(let error):
+//                    failure(error.localizedDescription)
+//                }
+//                
+//            }
         case "GET" :
             Alamofire.request(fullPath).responseJSON { response
                 in switch response.result{
