@@ -54,234 +54,252 @@ struct StoryboardScene {
       return vc
     }
 
-    case ActivityViewControllerScene = "ActivityViewController"
+    case activityViewControllerScene = "ActivityViewController"
     static func instantiateActivityViewController() -> ActivityViewController {
-      guard let vc = StoryboardScene.Main.ActivityViewControllerScene.viewController() as? ActivityViewController
+      guard let vc = StoryboardScene.Main.activityViewControllerScene.viewController() as? ActivityViewController
       else {
         fatalError("ViewController 'ActivityViewController' is not of the expected class ActivityViewController.")
       }
       return vc
     }
 
-    case AddressDetailsViewControllerScene = "AddressDetailsViewController"
+    case addressDetailsViewControllerScene = "AddressDetailsViewController"
     static func instantiateAddressDetailsViewController() -> AddressDetailsViewController {
-      guard let vc = StoryboardScene.Main.AddressDetailsViewControllerScene.viewController() as? AddressDetailsViewController
+      guard let vc = StoryboardScene.Main.addressDetailsViewControllerScene.viewController() as? AddressDetailsViewController
       else {
         fatalError("ViewController 'AddressDetailsViewController' is not of the expected class AddressDetailsViewController.")
       }
       return vc
     }
 
-    case CartViewControllerScene = "CartViewController"
+    case cartViewControllerScene = "CartViewController"
     static func instantiateCartViewController() -> CartViewController {
-      guard let vc = StoryboardScene.Main.CartViewControllerScene.viewController() as? CartViewController
+      guard let vc = StoryboardScene.Main.cartViewControllerScene.viewController() as? CartViewController
       else {
         fatalError("ViewController 'CartViewController' is not of the expected class CartViewController.")
       }
       return vc
     }
 
-    case CategoriesViewControllerScene = "CategoriesViewController"
+    case categoriesViewControllerScene = "CategoriesViewController"
     static func instantiateCategoriesViewController() -> CategoriesViewController {
-      guard let vc = StoryboardScene.Main.CategoriesViewControllerScene.viewController() as? CategoriesViewController
+      guard let vc = StoryboardScene.Main.categoriesViewControllerScene.viewController() as? CategoriesViewController
       else {
         fatalError("ViewController 'CategoriesViewController' is not of the expected class CategoriesViewController.")
       }
       return vc
     }
 
-    case DealsViewControllerScene = "DealsViewController"
+    case categoryProductsViewControllerScene = "CategoryProductsViewController"
+    static func instantiateCategoryProductsViewController() -> CategoryProductsViewController {
+      guard let vc = StoryboardScene.Main.categoryProductsViewControllerScene.viewController() as? CategoryProductsViewController
+      else {
+        fatalError("ViewController 'CategoryProductsViewController' is not of the expected class CategoryProductsViewController.")
+      }
+      return vc
+    }
+
+    case dealsViewControllerScene = "DealsViewController"
     static func instantiateDealsViewController() -> DealsViewController {
-      guard let vc = StoryboardScene.Main.DealsViewControllerScene.viewController() as? DealsViewController
+      guard let vc = StoryboardScene.Main.dealsViewControllerScene.viewController() as? DealsViewController
       else {
         fatalError("ViewController 'DealsViewController' is not of the expected class DealsViewController.")
       }
       return vc
     }
 
-    case ExploreViewControllerScene = "ExploreViewController"
+    case exploreViewControllerScene = "ExploreViewController"
     static func instantiateExploreViewController() -> ExploreViewController {
-      guard let vc = StoryboardScene.Main.ExploreViewControllerScene.viewController() as? ExploreViewController
+      guard let vc = StoryboardScene.Main.exploreViewControllerScene.viewController() as? ExploreViewController
       else {
         fatalError("ViewController 'ExploreViewController' is not of the expected class ExploreViewController.")
       }
       return vc
     }
 
-    case FeaturedViewControllerScene = "FeaturedViewController"
+    case featuredViewControllerScene = "FeaturedViewController"
     static func instantiateFeaturedViewController() -> FeaturedViewController {
-      guard let vc = StoryboardScene.Main.FeaturedViewControllerScene.viewController() as? FeaturedViewController
+      guard let vc = StoryboardScene.Main.featuredViewControllerScene.viewController() as? FeaturedViewController
       else {
         fatalError("ViewController 'FeaturedViewController' is not of the expected class FeaturedViewController.")
       }
       return vc
     }
 
-    case FilterViewControllerScene = "FilterViewController"
+    case filterViewControllerScene = "FilterViewController"
     static func instantiateFilterViewController() -> FilterViewController {
-      guard let vc = StoryboardScene.Main.FilterViewControllerScene.viewController() as? FilterViewController
+      guard let vc = StoryboardScene.Main.filterViewControllerScene.viewController() as? FilterViewController
       else {
         fatalError("ViewController 'FilterViewController' is not of the expected class FilterViewController.")
       }
       return vc
     }
 
-    case GlobalActivityViewControllerScene = "GlobalActivityViewController"
+    case globalActivityViewControllerScene = "GlobalActivityViewController"
     static func instantiateGlobalActivityViewController() -> GlobalActivityViewController {
-      guard let vc = StoryboardScene.Main.GlobalActivityViewControllerScene.viewController() as? GlobalActivityViewController
+      guard let vc = StoryboardScene.Main.globalActivityViewControllerScene.viewController() as? GlobalActivityViewController
       else {
         fatalError("ViewController 'GlobalActivityViewController' is not of the expected class GlobalActivityViewController.")
       }
       return vc
     }
 
-    case InboxViewControllerScene = "InboxViewController"
+    case inboxViewControllerScene = "InboxViewController"
     static func instantiateInboxViewController() -> InboxViewController {
-      guard let vc = StoryboardScene.Main.InboxViewControllerScene.viewController() as? InboxViewController
+      guard let vc = StoryboardScene.Main.inboxViewControllerScene.viewController() as? InboxViewController
       else {
         fatalError("ViewController 'InboxViewController' is not of the expected class InboxViewController.")
       }
       return vc
     }
 
-    case LoginViewControllerScene = "LoginViewController"
+    case loginViewControllerScene = "LoginViewController"
     static func instantiateLoginViewController() -> LoginViewController {
-      guard let vc = StoryboardScene.Main.LoginViewControllerScene.viewController() as? LoginViewController
+      guard let vc = StoryboardScene.Main.loginViewControllerScene.viewController() as? LoginViewController
       else {
         fatalError("ViewController 'LoginViewController' is not of the expected class LoginViewController.")
       }
       return vc
     }
 
-    case NewViewControllerScene = "NewViewController"
+    case messageViewControllerScene = "MessageViewController"
+    static func instantiateMessageViewController() -> MessageViewController {
+      guard let vc = StoryboardScene.Main.messageViewControllerScene.viewController() as? MessageViewController
+      else {
+        fatalError("ViewController 'MessageViewController' is not of the expected class MessageViewController.")
+      }
+      return vc
+    }
+
+    case newViewControllerScene = "NewViewController"
     static func instantiateNewViewController() -> NewViewController {
-      guard let vc = StoryboardScene.Main.NewViewControllerScene.viewController() as? NewViewController
+      guard let vc = StoryboardScene.Main.newViewControllerScene.viewController() as? NewViewController
       else {
         fatalError("ViewController 'NewViewController' is not of the expected class NewViewController.")
       }
       return vc
     }
 
-    case PopularViewControllerScene = "PopularViewController"
+    case popularViewControllerScene = "PopularViewController"
     static func instantiatePopularViewController() -> PopularViewController {
-      guard let vc = StoryboardScene.Main.PopularViewControllerScene.viewController() as? PopularViewController
+      guard let vc = StoryboardScene.Main.popularViewControllerScene.viewController() as? PopularViewController
       else {
         fatalError("ViewController 'PopularViewController' is not of the expected class PopularViewController.")
       }
       return vc
     }
 
-    case ProfileActivityViewControllerScene = "ProfileActivityViewController"
+    case profileActivityViewControllerScene = "ProfileActivityViewController"
     static func instantiateProfileActivityViewController() -> ProfileActivityViewController {
-      guard let vc = StoryboardScene.Main.ProfileActivityViewControllerScene.viewController() as? ProfileActivityViewController
+      guard let vc = StoryboardScene.Main.profileActivityViewControllerScene.viewController() as? ProfileActivityViewController
       else {
         fatalError("ViewController 'ProfileActivityViewController' is not of the expected class ProfileActivityViewController.")
       }
       return vc
     }
 
-    case ProfileItemViewControllerScene = "ProfileItemViewController"
+    case profileItemViewControllerScene = "ProfileItemViewController"
     static func instantiateProfileItemViewController() -> ProfileItemViewController {
-      guard let vc = StoryboardScene.Main.ProfileItemViewControllerScene.viewController() as? ProfileItemViewController
+      guard let vc = StoryboardScene.Main.profileItemViewControllerScene.viewController() as? ProfileItemViewController
       else {
         fatalError("ViewController 'ProfileItemViewController' is not of the expected class ProfileItemViewController.")
       }
       return vc
     }
 
-    case ProfileStoreViewControllerScene = "ProfileStoreViewController"
+    case profileStoreViewControllerScene = "ProfileStoreViewController"
     static func instantiateProfileStoreViewController() -> ProfileStoreViewController {
-      guard let vc = StoryboardScene.Main.ProfileStoreViewControllerScene.viewController() as? ProfileStoreViewController
+      guard let vc = StoryboardScene.Main.profileStoreViewControllerScene.viewController() as? ProfileStoreViewController
       else {
         fatalError("ViewController 'ProfileStoreViewController' is not of the expected class ProfileStoreViewController.")
       }
       return vc
     }
 
-    case ProfileViewControllerScene = "ProfileViewController"
+    case profileViewControllerScene = "ProfileViewController"
     static func instantiateProfileViewController() -> ProfileViewController {
-      guard let vc = StoryboardScene.Main.ProfileViewControllerScene.viewController() as? ProfileViewController
+      guard let vc = StoryboardScene.Main.profileViewControllerScene.viewController() as? ProfileViewController
       else {
         fatalError("ViewController 'ProfileViewController' is not of the expected class ProfileViewController.")
       }
       return vc
     }
 
-    case SaleViewControllerScene = "SaleViewController"
+    case saleViewControllerScene = "SaleViewController"
     static func instantiateSaleViewController() -> SaleViewController {
-      guard let vc = StoryboardScene.Main.SaleViewControllerScene.viewController() as? SaleViewController
+      guard let vc = StoryboardScene.Main.saleViewControllerScene.viewController() as? SaleViewController
       else {
         fatalError("ViewController 'SaleViewController' is not of the expected class SaleViewController.")
       }
       return vc
     }
 
-    case SearchItemViewControllerScene = "SearchItemViewController"
+    case searchItemViewControllerScene = "SearchItemViewController"
     static func instantiateSearchItemViewController() -> SearchItemViewController {
-      guard let vc = StoryboardScene.Main.SearchItemViewControllerScene.viewController() as? SearchItemViewController
+      guard let vc = StoryboardScene.Main.searchItemViewControllerScene.viewController() as? SearchItemViewController
       else {
         fatalError("ViewController 'SearchItemViewController' is not of the expected class SearchItemViewController.")
       }
       return vc
     }
 
-    case SearchPeopleViewControllerScene = "SearchPeopleViewController"
+    case searchPeopleViewControllerScene = "SearchPeopleViewController"
     static func instantiateSearchPeopleViewController() -> SearchPeopleViewController {
-      guard let vc = StoryboardScene.Main.SearchPeopleViewControllerScene.viewController() as? SearchPeopleViewController
+      guard let vc = StoryboardScene.Main.searchPeopleViewControllerScene.viewController() as? SearchPeopleViewController
       else {
         fatalError("ViewController 'SearchPeopleViewController' is not of the expected class SearchPeopleViewController.")
       }
       return vc
     }
 
-    case SearchStoreViewControllerScene = "SearchStoreViewController"
+    case searchStoreViewControllerScene = "SearchStoreViewController"
     static func instantiateSearchStoreViewController() -> SearchStoreViewController {
-      guard let vc = StoryboardScene.Main.SearchStoreViewControllerScene.viewController() as? SearchStoreViewController
+      guard let vc = StoryboardScene.Main.searchStoreViewControllerScene.viewController() as? SearchStoreViewController
       else {
         fatalError("ViewController 'SearchStoreViewController' is not of the expected class SearchStoreViewController.")
       }
       return vc
     }
 
-    case SearchViewControllerScene = "SearchViewController"
+    case searchViewControllerScene = "SearchViewController"
     static func instantiateSearchViewController() -> SearchViewController {
-      guard let vc = StoryboardScene.Main.SearchViewControllerScene.viewController() as? SearchViewController
+      guard let vc = StoryboardScene.Main.searchViewControllerScene.viewController() as? SearchViewController
       else {
         fatalError("ViewController 'SearchViewController' is not of the expected class SearchViewController.")
       }
       return vc
     }
 
-    case ShopViewControllerScene = "ShopViewController"
+    case shopViewControllerScene = "ShopViewController"
     static func instantiateShopViewController() -> ShopViewController {
-      guard let vc = StoryboardScene.Main.ShopViewControllerScene.viewController() as? ShopViewController
+      guard let vc = StoryboardScene.Main.shopViewControllerScene.viewController() as? ShopViewController
       else {
         fatalError("ViewController 'ShopViewController' is not of the expected class ShopViewController.")
       }
       return vc
     }
 
-    case SortViewControllerScene = "SortViewController"
+    case sortViewControllerScene = "SortViewController"
     static func instantiateSortViewController() -> SortViewController {
-      guard let vc = StoryboardScene.Main.SortViewControllerScene.viewController() as? SortViewController
+      guard let vc = StoryboardScene.Main.sortViewControllerScene.viewController() as? SortViewController
       else {
         fatalError("ViewController 'SortViewController' is not of the expected class SortViewController.")
       }
       return vc
     }
 
-    case StoreProfileViewControllerScene = "StoreProfileViewController"
+    case storeProfileViewControllerScene = "StoreProfileViewController"
     static func instantiateStoreProfileViewController() -> StoreProfileViewController {
-      guard let vc = StoryboardScene.Main.StoreProfileViewControllerScene.viewController() as? StoreProfileViewController
+      guard let vc = StoryboardScene.Main.storeProfileViewControllerScene.viewController() as? StoreProfileViewController
       else {
         fatalError("ViewController 'StoreProfileViewController' is not of the expected class StoreProfileViewController.")
       }
       return vc
     }
 
-    case TabBarControllerScene = "TabBarController"
+    case tabBarControllerScene = "TabBarController"
     static func instantiateTabBarController() -> TabBarController {
-      guard let vc = StoryboardScene.Main.TabBarControllerScene.viewController() as? TabBarController
+      guard let vc = StoryboardScene.Main.tabBarControllerScene.viewController() as? TabBarController
       else {
         fatalError("ViewController 'TabBarController' is not of the expected class TabBarController.")
       }

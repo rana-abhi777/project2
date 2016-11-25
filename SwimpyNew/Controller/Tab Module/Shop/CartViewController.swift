@@ -10,16 +10,19 @@ import UIKit
 
 class CartViewController: UIViewController {
     
+    //MARK:- outlets
     @IBOutlet weak var tableViewCart: UITableView!
+    
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
- 
+    
+    //MARK:- button actions
     @IBAction func btnActionBack(sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)
     }

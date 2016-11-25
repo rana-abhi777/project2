@@ -9,22 +9,19 @@
 import UIKit
 import XLPagerTabStrip
 
-class ProfileStoreViewController: UIViewController ,IndicatorInfoProvider {
-    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Store")
-
-    }
-
+class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
 
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    //MARK:- IndicatorInfoProvider delegate
+    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Store")
+    }
 
 }

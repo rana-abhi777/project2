@@ -11,7 +11,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDelegate{
- 
+    
     //MARK: outlets
     @IBOutlet weak var viewForgotPassword: UIView!
     @IBOutlet weak var btnSignin: UIButton!
@@ -32,15 +32,18 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         super.viewDidLoad()
         if MMUserManager.shared.loggedInUser?.accessToken  != nil {
             let VC = StoryboardScene.Main.instantiateTabBarController()
-            self.navigationController?.pushViewController(VC, animated: true)
+            self.navigationController?.pushViewController(VC, animated: false)
         }
-//        if MMUserManager.sharedInstance.lo
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().clientID = "631877456020-bsavm2p985ialf5ga8jihj671rsood5d.apps.googleusercontent.com"
         viewSignin.isHidden = true
         viewSignup.isHidden = true
         viewForgotPassword.isHidden = true
+        btnSignin.isExclusiveTouch = true
+        btnSignup.isExclusiveTouch = true
+        btnSubmit.isExclusiveTouch = true
+        btnProfilePic.isExclusiveTouch = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,7 +67,6 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         }
     }
     
-
     func showAndHideView(viewManipulated : UIView) {
         if viewManipulated.isHidden {
             overlayObj.showOverlay(view : self.view)
@@ -84,9 +86,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             UserFunctions.showAlert(message: "Please Enter Valid Email")
             indicator = false
         }
-        let trimmedPassword = ValidateData().checkFieldsForEnteredInputValidation(whichTextField: txtSigninPassword, whichTextView: nil, whichLabel: nil, whichString: nil)
-        
-        if trimmedPassword?.length == 0 {
+        let trimmedPassword = ValidateData().trimmedString(string: txtSigninPassword.text ?? "")
+        if trimmedPassword.characters.count == 0 {
             UserFunctions.showAlert(message: "Enter password")
             indicator = false
         }
@@ -94,8 +95,9 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     }
     func validateSignup() -> Bool {
         var indicator = true
-        let trimmedFullname = ValidateData().checkFieldsForEnteredInputValidation(whichTextField: txtFullname, whichTextView: nil, whichLabel: nil, whichString: nil)
-        if trimmedFullname?.length == 0 {
+        let trimmedFullname = ValidateData().trimmedString(string: txtFullname.text ?? "")
+
+        if trimmedFullname.characters.count == 0 {
             UserFunctions.showAlert(message: "Enter your fullname")
             indicator = false
         }
@@ -104,23 +106,25 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             UserFunctions.showAlert(message: "Please Enter Valid Email")
             indicator = false
         }
-        let trimmedPassword = ValidateData().checkFieldsForEnteredInputValidation(whichTextField: txtSignupPassword, whichTextView: nil, whichLabel: nil, whichString: nil)
-        if trimmedPassword?.length == 0 {
+        let trimmedPassword = ValidateData().trimmedString(string: txtSignupPassword.text ?? "")
+        if trimmedPassword.characters.count == 0 {
             UserFunctions.showAlert(message: "Enter password")
             indicator = false
         }
         return indicator
     }
-
-
+    
+    
+    
     //MARK:- button action
     @IBAction func btnActionCloseForgotPassword(sender: AnyObject) {
         showAndHideView(viewManipulated: viewForgotPassword)
     }
+    
     @IBAction func btnSigninAction(sender: AnyObject) {
         if validateSignin() {
             ApiManager().getDataOfURL(withApi: API.Login(APIParameters.Login(email: txtSigninEmail.text, password: txtSigninPassword.text).formatParameters()), failure: { (err) in
-                 print(err)
+                print(err)
                 }, success: { (model) in
                     print(model)
                     let VC = StoryboardScene.Main.instantiateTabBarController()
@@ -140,7 +144,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             }, success: { (model) in
                 print(model)
             }, method: "POST", loader: true)
-
+        
     }
     @IBAction func btnActionCloseSignin(sender: AnyObject) {
         showAndHideView(viewManipulated : viewSignin)
@@ -156,16 +160,16 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                     print(model)
                 }, method: "POST", loader: true)
         }
-
+        
         //, image: btnProfilePic.image(for: .normal)
     }
     @IBAction func btnActionProfilePic(sender: AnyObject) {
         callFusumaImagePiucker(btnOutlet: btnProfilePic)
     }
     @IBAction func btnActionSigninPopup(_ sender: AnyObject) {
-         showAndHideView(viewManipulated : viewSignin)
+        showAndHideView(viewManipulated : viewSignin)
     }
-      @IBAction func btnActionSkip(sender: AnyObject) {
+    @IBAction func btnActionSkip(sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateTabBarController()
         self.navigationController?.pushViewController(VC, animated: true)
     }

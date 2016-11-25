@@ -10,7 +10,10 @@ import UIKit
 
 class ExploreCollectionViewCell: UICollectionViewCell {
     
+    //MARK:- Outlet
     @IBOutlet weak var btnExploreCategory: UIButton!
+    
+    //MARK:-  Button actions
     @IBAction func btnActionExploreCategory(sender: AnyObject) {
     }
-   }
+}

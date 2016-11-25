@@ -32,7 +32,7 @@ func returnUserdata() {
                 }
                 let parameters = ["username" : uname,"firstname" :  firstname, "lastname" : lastname, "fb_id" : fb_id,"email" : email,"pic" : strPictureURL,"access_token" : accessToken ]
                 print(parameters)
-            
+                
                 ApiManager().getDataOfURL(withApi: API.LoginViaFacebook(APIParameters.LoginViaFacebook(facebookId: email, name: uname, facebookImageUrl: strPictureURL).formatParameters()), failure: { (err) in
                     print(err)
                     }, success: { (model) in
@@ -47,13 +47,10 @@ func logInWithFb(viewcontroller : UIViewController) {
     let loginView : FBSDKLoginManager = FBSDKLoginManager()
     loginView.logOut()
     loginView.loginBehavior = FBSDKLoginBehavior.browser
-//    loginView.per
     loginView.logIn(withReadPermissions: ["public_profile","user_friends","email"], from: viewcontroller) { (result , error) in
         guard ((error) != nil) else {
             if (result?.isCancelled)! {
-                //redirect to log in screen
             }
-                
             else {
                 returnUserdata()
             }

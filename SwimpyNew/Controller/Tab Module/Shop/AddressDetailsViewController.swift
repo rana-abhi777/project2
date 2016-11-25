@@ -29,6 +29,8 @@ class AddressDetailsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
+    //MARK:- button actions
     @IBAction func btnActionMarkAsDefault(sender: AnyObject) {
         //ic_check_small
     }

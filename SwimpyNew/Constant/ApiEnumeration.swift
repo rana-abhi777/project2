@@ -27,6 +27,7 @@ enum API {
     case LoginViaFacebook(OptionalDictionary)
     case LoginViaGoogle(OptionalDictionary)
     case GetCategory(OptionalDictionary)
+    case GetCategoryResults(OptionalDictionary)
 }
 
 
@@ -37,6 +38,7 @@ enum APIParameters {
     case LoginViaFacebook(facebookId : String?, name : String?, facebookImageUrl : String?)
     case LoginViaGoogle(googleId : String?,name : String? , googleImageUrl : String?)
     case GetCategory()
+    case GetCategoryResults(categoryId : String?)
     
     
     func formatParameters() -> [String : AnyObject]? {
@@ -51,6 +53,8 @@ enum APIParameters {
             return ["facebookId" : (fbId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "facebookImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
         case .LoginViaGoogle(let googleId , let name, let imgUrl) :
               return ["googleId" : (googleId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "googleImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
+        case .GetCategoryResults(let categoryId) :
+            return ["categoryId" : (categoryId ?? "") as AnyObject]
         default:
             return ["" : "" as AnyObject]
         }
@@ -65,7 +69,8 @@ extension API : Router {
         case .ForgotPassword(let params) : return params
         case .LoginViaFacebook(let parameters) : return parameters
         case .LoginViaGoogle(let parameters) : return parameters
-        case .GetCategory(let parameters) : return parameters
+        case .GetCategory(let _) : return nil
+        case .GetCategoryResults(let parameters) :  return parameters
         }
     }
 
@@ -77,6 +82,7 @@ extension API : Router {
         case .LoginViaFacebook(_) : return "api/users/loginViaFacebook"
         case .LoginViaGoogle(_) : return "api/users/loginViaGoogle"
         case .GetCategory(_) : return "admin/getCategory"
+        case .GetCategoryResults(_) : return "product/getCatagoryProduct"
         }
     }
 

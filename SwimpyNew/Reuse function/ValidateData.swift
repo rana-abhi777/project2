@@ -9,13 +9,19 @@
 import UIKit
 
 class ValidateData: NSObject {
+    
+    func trimmedString(string:String)->String{
+        let newString = string.trimmingCharacters(in: NSCharacterSet.whitespaces)
+        string.characters
+        return newString
+    }
 
     func checkFieldsForEnteredInputValidation(whichTextField: UITextField?, whichTextView: UITextView?, whichLabel: UILabel?, whichString: String?) -> NSString?{
       
         var rawStringForAll: String!
         var trimmedStringToCheck = NSString()
         
-        let whiteSpace = NSCharacterSet.whitespacesAndNewlines as NSCharacterSet
+        _ = NSCharacterSet.whitespacesAndNewlines as NSCharacterSet
         
         if (whichLabel != nil && whichTextView != nil && whichTextField != nil && whichString != nil) || (whichTextField != nil && whichTextView != nil) || (whichTextField != nil && whichLabel != nil) || (whichTextField != nil && whichString != nil) || (whichTextView != nil && whichLabel != nil) || (whichTextView != nil && whichString != nil) || (whichLabel != nil && whichString != nil){
            
@@ -26,25 +32,21 @@ class ValidateData: NSObject {
             if whichTextField != nil {
              
                 rawStringForAll = whichTextField?.text!
-//                trimmedStringToCheck = rawStringForAll.stringByTrimmingCharactersInSet(whiteSpace)
                 trimmedStringToCheck = rawStringForAll.trimmingCharacters(in: .whitespaces) as NSString
             }
             else if whichTextView != nil {
                
                 rawStringForAll = whichTextView?.text!
-//                trimmedStringToCheck = rawStringForAll.stringByTrimmingCharactersInSet(whiteSpace)
                 trimmedStringToCheck = rawStringForAll.trimmingCharacters(in: .whitespaces) as NSString
             }
             else if whichLabel != nil {
                
                 rawStringForAll = whichLabel?.text!
-//                trimmedStringToCheck = rawStringForAll.stringByTrimmingCharactersInSet(whiteSpace)
                 trimmedStringToCheck = rawStringForAll.trimmingCharacters(in: .whitespaces) as NSString
             }
             else if whichString != nil {
                
                 rawStringForAll = whichString
-//                trimmedStringToCheck = rawStringForAll.stringByTrimmingCharactersInSet(whiteSpace)
                 trimmedStringToCheck = rawStringForAll.trimmingCharacters(in: .whitespaces) as NSString
             }
             

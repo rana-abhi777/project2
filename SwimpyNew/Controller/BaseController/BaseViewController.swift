@@ -11,11 +11,11 @@ import Fusuma
 
 class BaseViewController: UIViewController {
     
-    //MARK:- outlet
+    //MARK:- VARIABLE
     let overlayObj = LoadingOverlay()
     var selectedImage : UIImage?
     var btnOutlet : UIButton!
-    //    let viewLoader = NVActivityIndicatorView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+    let viewLoader = UIActivityIndicatorView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -41,7 +41,6 @@ class BaseViewController: UIViewController {
     func callFusumaImagePiucker(btnOutlet : UIButton!){
         self.btnOutlet = btnOutlet
         let fusuma = FusumaViewController()
-        //        fusuma.fusumaCropImage = true
         fusuma.hasVideo = false
         fusuma.delegate = self
         self.present(fusuma, animated: true, completion: nil)
@@ -51,41 +50,41 @@ class BaseViewController: UIViewController {
         btnLook.layer.borderColor = UIColor.black.cgColor
         btnLook.layer.cornerRadius = 4.0
     }
-    //    func showLoader() {
-    //        viewLoader.color = UIColor.red
-    //        viewLoader.startAnimating()
-    //        UserFunctions.sharedInstance()?.window?.rootViewController?.view.addSubview(viewLoader)
-    //    }
-    //    func hideLoader() {
-    //        UserFunctions.sharedInstance()?.window?.rootViewController?.viewLoader.re
-    //    }
+    func showLoader() {
+        viewLoader.color = UIColor.red
+        viewLoader.startAnimating()
+        UserFunctions.sharedInstance().window?.rootViewController?.view.addSubview(viewLoader)
+    }
+    func hideLoader() {
+        UserFunctions.sharedInstance().window?.rootViewController?.view.removeFromSuperview()
+    }
+   
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
 }
+
+//MARK::- Fusuma delegates
+
 extension BaseViewController : FusumaDelegate{
+    
     public func fusumaImageSelected(_ image: UIImage) {
         selectedImage = image
         btnOutlet.setImage(selectedImage ?? UIImage(), for: .normal)
-        print("Image selected")
-        
     }
     
     public func fusumaVideoCompleted(withFileURL fileURL: URL) {
-        //
     }
     
-    
-    
-    //MARK::- Fusuma delegates
-    
-    // Return the image but called after is dismissed.
-    
     func fusumaDismissedWithImage(_ image: UIImage) {
-        
         print("Called just after FusumaViewController is dismissed.")
     }
     
-    // When camera roll is not authorized, this method is called.
     func fusumaCameraRollUnauthorized() {
-        
         print("Camera roll unauthorized")
     }
     

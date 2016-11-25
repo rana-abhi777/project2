@@ -21,8 +21,9 @@ class InboxViewController: UIViewController {
     //MARK:- button actions
     @IBAction func btnActionCart(sender: AnyObject) {
     }
+    
     @IBAction func btnSearchAction(sender: AnyObject) {
-        let VC = StoryboardScene.Main.SearchViewControllerScene.viewController()
+        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
     

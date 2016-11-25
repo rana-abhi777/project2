@@ -9,12 +9,8 @@
 import UIKit
 import XLPagerTabStrip
 
-class ProfileActivityViewController: UIViewController , IndicatorInfoProvider {
-    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Activity")
-    }
-
-
+class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider {
+   
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,4 +20,9 @@ class ProfileActivityViewController: UIViewController , IndicatorInfoProvider {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK:- IndicatorInfoProvider delegate
+    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Activity")
+    }
+
 }

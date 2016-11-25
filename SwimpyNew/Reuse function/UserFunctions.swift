@@ -4,9 +4,9 @@
 //
 //  Created by Aseem 10 on 02/08/16.
 //  Copyright © 2016 Aseem 10. All rights reserved.
-//
+
 import UIKit
-//import NVActivityIndicatorView
+import NVActivityIndicatorView
 
 class UserFunctions: NSObject {
    static func timeInHoursAndMins(hrs : Int , mins : Int) -> String {
@@ -31,8 +31,8 @@ class UserFunctions: NSObject {
            
         }
     }
-    static func sharedInstance() -> AppDelegate? {
-           return UIApplication.shared.delegate as? AppDelegate
+    static func sharedInstance() -> AppDelegate {
+           return UIApplication.shared.delegate as! AppDelegate
         
     }
     
@@ -40,7 +40,7 @@ class UserFunctions: NSObject {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         
-        sharedInstance()?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     static func showAlert(title : String = "Oops" ,message : String,success: @escaping () -> ()) {
@@ -50,16 +50,9 @@ class UserFunctions: NSObject {
             success()
         }))
         
-        sharedInstance()?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
-//    static func showLoader() {
-//        sharedInstance()?.window?.rootViewController?.startAnimating(CGSize(width: 40,height: 40), message: "Loading...", type: .lineSpinFadeLoader, color: UIColor.white, padding: 0.0, displayTimeThreshold: 1, minimumDisplayTime: 1)
-////        sharedInstance()?.window?.rootViewController?.startAnimating(CGSize(width: 40,height: 40), message: "Loading...", type: .LineSpinFadeLoader , color: UIColor.whiteColor())
-//    }
-//    static func hideLoader() {
-//        NSActit
-//        sharedInstance()?.window?.rootViewController?.stopAnimating()
-//    }
+    
     static func uniq<S : Sequence, T : Hashable>(source: S) -> [T] where S.Iterator.Element == T {
         var buffer = [T]()
         var added = Set<T>()
@@ -73,6 +66,6 @@ class UserFunctions: NSObject {
     }
     
 }
-//extension UIViewController : NVActivityIndicatorViewable {
-//    
-//}
+extension UIViewController : NVActivityIndicatorViewable {
+    
+}

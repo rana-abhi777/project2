@@ -9,10 +9,10 @@
 import UIKit
 import XLPagerTabStrip
 
-class ExploreViewController: ButtonBarPagerTabStripViewController {
+class ExploreViewController: BasePageViewController {
     
     //MARK:- variables
-    let dealsVC = StoryboardScene.Main.DealsViewControllerScene.viewController()
+    let dealsVC = StoryboardScene.Main.dealsViewControllerScene.viewController()
     let featureVC = StoryboardScene.Main.instantiateFeaturedViewController()
     
     //MARK:- override functions
@@ -24,27 +24,9 @@ class ExploreViewController: ButtonBarPagerTabStripViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    //MARK:- functions
-    func pageVCSetup() {
-        settings.style.buttonBarHeight = 40.0
-        settings.style.buttonBarItemFont = UIFont(name: "BryantPro-Bold", size: 14.0)!
-        settings.style.selectedBarHeight  = 2.0
-        
-        settings.style.selectedBarBackgroundColor = UIColor.black
-//        settings.style.buttonBarBackgroundColor = UIColor.white
-        settings.style.buttonBarItemTitleColor = UIColor.gray
-        settings.style.buttonBarItemBackgroundColor = UIColor.white
-        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
-        changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
-            guard changeCurrentIndex == true else { return }
-            
-            oldCell?.label.textColor = UIColor.gray
-            newCell?.label.textColor = UIColor.black
     
-        }
-        
-    }
-    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+    //MARK:- functions
+   override func getViewControllers() -> [UIViewController] {
         return [featureVC,dealsVC]
     }
 
@@ -54,7 +36,7 @@ class ExploreViewController: ButtonBarPagerTabStripViewController {
     @IBAction func btnActionCart(sender: AnyObject) {
     }
     @IBAction func btnSearchAction(sender: AnyObject) {
-        let VC = StoryboardScene.Main.SearchViewControllerScene.viewController()
+        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
     

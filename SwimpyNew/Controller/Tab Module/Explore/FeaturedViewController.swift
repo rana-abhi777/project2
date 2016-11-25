@@ -9,12 +9,8 @@
 import UIKit
 import XLPagerTabStrip
 
-class FeaturedViewController: UIViewController, IndicatorInfoProvider {
-    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Featured")
-    }
-
-    
+class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
+   
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,5 +20,8 @@ class FeaturedViewController: UIViewController, IndicatorInfoProvider {
         super.didReceiveMemoryWarning()
     }
     
-       
+    //MARK:- IndicatorInfoProvider delegate
+    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Featured")
+    }
 }

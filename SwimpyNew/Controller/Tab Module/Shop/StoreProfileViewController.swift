@@ -19,7 +19,7 @@ class StoreProfileViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    //MARK:- button actions
     @IBAction func btnActionFollowStore(sender: AnyObject) {
     }
     @IBAction func btnActionMessage(sender: AnyObject) {

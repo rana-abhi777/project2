@@ -10,21 +10,22 @@ import UIKit
 import XLPagerTabStrip
 
 class GlobalActivityViewController: UIViewController,IndicatorInfoProvider {
-    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Global")
-    }
-
-
+    
+    //MARK:- outlets
     @IBOutlet weak var tableViewGlobalActivity: UITableView!
+    
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-      
-
-
+    
+    //MARK:- indicator info provider delegate
+    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Global")
+    }
+    
+    
 }

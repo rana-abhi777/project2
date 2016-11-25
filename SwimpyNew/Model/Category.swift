@@ -10,31 +10,39 @@ import UIKit
 import SwiftyJSON
 
 class Category: NSObject {
-    var email : String?
-    var accessToken : String?
     var id : String?
-    var wislist : [String]?
+    var createrID : String?
+    var describe : String?
+    var order : String?
+//    var categoryImage : [String]?
+    var timestamp : String?
+    var is_deleted : Bool?
     var name : String?
-    var deviceToken : String?
-    var profilePicURLThumbnail : String?
-    var profilePicURLOriginal : String?
+    
     
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
-        email = arrResult["email"].stringValue
-        accessToken = arrResult["accessToken"].stringValue
         id = arrResult["_id"].stringValue
-        wislist = []
+        createrID = arrResult["createrID"].stringValue
+        describe = arrResult["description"].stringValue
+        order = arrResult["order"].stringValue
+        timestamp = arrResult["timestamp"].stringValue
+        is_deleted = arrResult["is_deleted"].boolValue
         name = arrResult["name"].stringValue
-        deviceToken = arrResult["deviceToken"].stringValue
-        let profilePicDict = arrResult["profilePicURL"].dictionaryValue
-        profilePicURLThumbnail = profilePicDict["thumbnail"]?.stringValue
-        profilePicURLOriginal = profilePicDict["original"]?.stringValue
+        
     }
     
     override init() {
         super.init()
     }
-
+    static func changeDictToModelArray (jsoon1 : JSON ) -> [Category] {
+        var tempArr : [Category] = []
+        for arrResult in jsoon1["data"].arrayValue
+        {
+            let categoryObj = Category(arrResult: arrResult)
+            tempArr.append(categoryObj)
+        }
+        return tempArr
+    }
 }

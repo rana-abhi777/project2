@@ -8,7 +8,7 @@
 import Alamofire
 import SwiftyJSON
 import Foundation
-//import NVActivityIndicatorView
+import NVActivityIndicatorView
 
 class ApiManager {
     
@@ -20,7 +20,7 @@ class ApiManager {
         }
         
         if loader == true {
-//            showLoader()
+            ApiManager.showLoader()
         }
         HttpManager.callApiWithParameters(api: withApi, success: {(response) in
             guard let temp = response else { return }
@@ -28,44 +28,38 @@ class ApiManager {
             print(response)
             if(data["statusCode"].intValue >= 200 && data["statusCode"].intValue <= 299 ){
                 var singleUserArray : AnyObject?
+                print(data)
                 switch(withApi){
-                case .Signup(_) :
-                    print(data)
+                    
+                case .Signup(_) , .Login(_), .LoginViaFacebook(_), .LoginViaGoogle(_):
                     let user = User(arrResult: data["data"])
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
-                case .Login(_) :
-                    print(data)
-                    let user = User(arrResult: data["data"])
-                    singleUserArray = user
-                    MMUserManager.shared.loggedInUser = singleUserArray as? User
+                    
                 case .ForgotPassword(_) :
-                    print(data)
-                case .LoginViaFacebook(_) :
-                    print(data)
-                    let user = User(arrResult: data["data"])
-                    singleUserArray = user
-                    MMUserManager.shared.loggedInUser = singleUserArray as? User
-                case .LoginViaGoogle(_) :
-                    print(data)
-                    let user = User(arrResult: data["data"])
-                    singleUserArray = user
-                    MMUserManager.shared.loggedInUser = singleUserArray as? User
+                    break
+                    
                 case .GetCategory(_) :
-                    print(data)
-                    let category = Category(arrResult: data["data"])
+                    let category = Category.changeDictToModelArray(jsoon1: data)
+                    singleUserArray = category as AnyObject?
+                    
+                case .GetCategoryResults(_) :
+                    let category = Products.changeDictToModelArray(jsoon1: data)
+                    singleUserArray = category as AnyObject?
+                    
                 default:
                     print("API which is hit is not present in Api Collection")
                 }
-//                self.hideLoader()
+                ApiManager.hideLoader()
                 success(singleUserArray)
             }
             else{
-//                self.hideLoader()
+                ApiManager.hideLoader()
                 UserFunctions.showAlert(message: data["message"].stringValue)
             }
             
             }, failure: { (error) in
+                ApiManager.hideLoader()
                 UserFunctions.showAlert(message: "something went wrong")
             }, method: method)
     }
@@ -77,9 +71,8 @@ class ApiManager {
         }
         
         if loader == true {
-            //            showLoader()
+            ApiManager.showLoader()
         }
-        
         
         HttpManager.callApiWithParameters(api: withApi,image : image, success: { (response) in
             guard let temp = response else { return }
@@ -94,11 +87,11 @@ class ApiManager {
                 default:
                     print("API which is hit is not present in Api Collection")
                 }
-                //                self.hideLoader()
+                ApiManager.hideLoader()
                 success(singleUserArray)
             }
             else{
-                //                self.hideLoader()
+                ApiManager.hideLoader()
                 UserFunctions.showAlert(message: data["message"].stringValue)
             }
             
@@ -106,24 +99,17 @@ class ApiManager {
                 UserFunctions.showAlert(message: "something went wrong")
             }, method: method)
     }
-//    func showLoader() {
-//        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: UIScreen.main.bounds.width/2,y: UIScreen.main.bounds.height/2,width: 40,height: 40), type: .ballPulseSync, color: UIColor.black, padding: 4)
-//
-//        UserFunctions.sharedInstance()?.window?.rootViewController?.view.addSubview(activityIndicator)
-//        activityIndicator.startAnimating()
-////        UserFunctions.sharedInstance()?.window?.rootViewController?.startAnimating(CGSize(width: 40,height: 40), message: "Loading..", type: .lineScalePulseOut, color: UIColor.white)
-//    }
     
-//    func hideLoader(){
-////        activityIndicator.removeFromSuperview()
-////        UserFunctions.sharedInstance()?.window?.rootViewController?.view.removeFromSuperview()
-////        activityIndicator.stopAnimating()
-//        UserFunctions.sharedInstance()?.window?.rootViewController?.stopAnimating()
-//    }
-
+    
+    static func showLoader() {
+        UserFunctions.sharedInstance().window?.rootViewController?.startAnimating(CGSize(width: 40,height: 40), message: "Loading...", type: .lineSpinFadeLoader, color: UIColor.white, padding: 0.0, displayTimeThreshold: 1, minimumDisplayTime: 1)
+    }
+    
+    
+    static func hideLoader() {
+        UserFunctions.sharedInstance().window?.rootViewController?.stopAnimating()
+    }
     
 }
 
-//extension UIViewController : NVActivityIndicatorViewable {
-//    
-//}
+

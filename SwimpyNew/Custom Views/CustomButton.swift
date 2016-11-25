@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 @IBDesignable
 class CustomButton: UIButton {
     @IBInspectable var cornerRadius: CGFloat = 0 {
@@ -25,5 +26,5 @@ class CustomButton: UIButton {
             layer.borderColor = borderColor?.cgColor
         }
     }
-
-   }
+    
+}

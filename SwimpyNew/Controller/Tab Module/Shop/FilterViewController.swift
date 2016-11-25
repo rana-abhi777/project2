@@ -19,6 +19,7 @@ class FilterViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK:- button actions
     @IBAction func btnActionFollowStore(sender: AnyObject) {
     }
     @IBAction func btnActionMessage(sender: AnyObject) {

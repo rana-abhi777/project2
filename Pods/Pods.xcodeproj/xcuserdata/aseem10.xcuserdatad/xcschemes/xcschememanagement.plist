@@ -54,11 +54,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>NVActivityIndicatorView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-SwimpyNew.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -107,7 +102,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>070374204E491EF7E794313D14C6950B</key>
+		<key>04A6E789B19DB3DC26F0733CC14598BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>178DDE6021405547D691980F0A074EC2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>19D5E0BF1961DBF5451A06D775BF20EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,12 +127,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>520AE40F22CA5FF4E72E934B38CC98C1</key>
+		<key>585FB2826E89872D94CF64075485CD35</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>5D69761C2CD2A1E5C013537B29CAB4CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>605271E53F070642E632742C97780BA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,11 +152,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>71569D5C05DD5C69967BE349D6FB94C8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>7380ABD049E12DCFEC9B9E1D2D52C627</key>
 		<dict>
 			<key>primary</key>
@@ -157,17 +162,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7BAAAD251A6CB880947EAEE1FAD47460</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7D04535608058A2FABC0D16935868FB9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>88D720CA867EA85CEC74E19A9E257807</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>95B83DADB6682D0B4116CDFC0BA8F27B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -177,7 +177,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2CFDA096F669BE825D06AE79B92549D</key>
+		<key>B4F007B31C1014026893604349FBBCBA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C75523247676EE208650BCA9B4725A5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -187,22 +192,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA8B8CAB8F8A1333E6367C3B97BBA007</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E64077EF7ED878775C924E24ADC427FA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E9733877FFA1AB8281088A944DEEA35D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FCC8F96C9111B0E3205721475FE9B732</key>
+		<key>E08FC4A87E077C9D1474D2915E1669C5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

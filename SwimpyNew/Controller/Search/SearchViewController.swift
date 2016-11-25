@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class SearchViewController: ButtonBarPagerTabStripViewController {
+class SearchViewController: BasePageViewController {
     
     //MARK:- variable
     let searchItemVC = StoryboardScene.Main.instantiateSearchItemViewController()
@@ -26,28 +26,11 @@ class SearchViewController: ButtonBarPagerTabStripViewController {
         super.didReceiveMemoryWarning()
     }
     //MARK:- functions
-    func pageVCSetup() {
-        settings.style.buttonBarItemFont = UIFont(name: "BryantPro-Bold", size: 14.0)!
-        settings.style.selectedBarHeight  = 2.0
-        settings.style.selectedBarBackgroundColor = UIColor.black
-        settings.style.buttonBarBackgroundColor = UIColor.white
-        settings.style.buttonBarItemTitleColor = UIColor.gray
-        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
-        changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
-            guard changeCurrentIndex == true else { return }
-            
-            oldCell?.label.textColor = UIColor.gray
-            newCell?.label.textColor = UIColor.black
-            
-        }
-        
-    }
-    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+    override func getViewControllers() -> [UIViewController] {
         return [searchItemVC,searchStoreVC,searchPeopleVC]
     }
-//    override func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-//        return [searchItemVC,searchStoreVC,searchPeopleVC]
-//    }
+   
+
 
     
 

@@ -17,11 +17,13 @@ typealias HttpManagerFailure = (String) -> ()
 
 class HttpManager {
     
-    static func getHeader() -> [String : String] {
-        let header  = [ "authorization" : "bearer " + (MMUserManager.shared.loggedInUser?.accessToken ?? ""), "Content-Type" : "application/x-www-form-urlencoded"]
+    static func getHeader() -> [String : String]? {
+        guard let _ = MMUserManager.shared.loggedInUser?.accessToken  else {
+            return nil
+        }
+        let header  = [ "Authorization" : "bearer " + (MMUserManager.shared.loggedInUser?.accessToken ?? ""), "Content-Type" : "application/x-www-form-urlencoded"]
         return header
     }
-    
     
     
     static func callApiWithParameters( api:API, success:@escaping HttpManagerSuccess, failure: @escaping HttpManagerFailure, method: String){
@@ -32,59 +34,27 @@ class HttpManager {
         switch method {
             
         case "POST" :
-            
-            //            Alamofire.request(fullPath, method: .post, parameters: parameters, encoding: URLEncoding.JSON, headers: getHeader()).responseJSON {
-            //                response in switch response.result{
-            //                case .success(let data):
-            //                    success(data as AnyObject?)
-            //                case .failure(let error):
-            //                    failure(error.localizedDescription)
-            //                }
-            //
-            //            }
-
-            Alamofire.request(fullPath, method: .post, parameters: parameters, encoding: JSONEncoding.default,headers: getHeader() ).responseJSON { response in // 1
+            Alamofire.request(fullPath, method: .post, parameters: parameters, encoding: JSONEncoding.default,headers: getHeader()  ).responseJSON { response in // 1
                 switch response.result {
                     
                 case .success(let data):
                     success(data as AnyObject?)
                 case .failure(let error):
                     failure(error.localizedDescription)
-                    
                 }
-                
             }
-//            Alamofire.request(fullPath,method : .post, parameters: parameters, encoding: URLEncoding.default).responseJSON {
-//                response in switch response.result{
-//                case .success(let data):
-//                    success(data as AnyObject?)
-//                case .failure(let error):
-//                    failure(error.localizedDescription)
-//                }
-//                
-//            }
+            
         case "GET" :
-            Alamofire.request(fullPath).responseJSON { response
-                in switch response.result{
+            Alamofire.request(fullPath, method: .get, parameters: parameters, encoding: URLEncoding.default ,headers: getHeader()).responseJSON { response in
+                switch response.result {
                 case .success(let data):
                     success(data as AnyObject?)
                 case .failure(let error):
                     failure(error.localizedDescription)
+                    
                 }
             }
             
-        case "DELETE" : break
-            //            Alamofire.request(fullPath, .delete ,parameters: parameters , encoding: JSONEncoding.default, headers : nil ).responseJSON
-            //                {
-            //                    response in
-            //                    switch response.result
-            //                    {
-            //                    case .success(let data) :
-            //                        success(data)
-            //                    case .Failure(let error) :
-            //                        failure(error.localizedDescription)
-            //                    }
-        //            }
         default:
             break
         }
@@ -119,26 +89,6 @@ class HttpManager {
             
         }
         
-        //        Alamofire.upload(multipartFormData: { (multipartData) in
-        //
-        //
-        //            multipartFormData.append(imageData!, withName : "image", fileName: "file.png", mimeType: "image/png")
-        //
-        //            for (key, value) in parameters! {
-        //                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-        //            }
-        //            }, with: fullPath) { (result) in
-        //                switch result {
-        //                case .success(let upload, _, _):
-        //                    upload.responseJSON { response in
-        //
-        //                        success(response.result.value as AnyObject?)
-        //                    }
-        //                case .failure(let encodingError):
-        //                    print(encodingError.localizedDescription)
-        //                    failure(encodingError.localizedDescription)
-        //                }
-        //        }
     }
 }
 

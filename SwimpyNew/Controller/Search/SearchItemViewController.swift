@@ -10,19 +10,21 @@ import UIKit
 import XLPagerTabStrip
 
 class SearchItemViewController: UIViewController , IndicatorInfoProvider {
-   
-
+    
+    
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //MARK:- indicator info provider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Items")
     }
-
-
+    
+    
 }
