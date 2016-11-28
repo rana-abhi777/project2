@@ -16,8 +16,8 @@ protocol Router {
 }
 
 enum APIConstant : String {
-    case baseURL = "http://192.168.100.125:4001/"
-    
+    case baseURL = "http://130.211.244.184:4001/"
+//    http://192.168.100.125:4001/
 }
 
 enum API {

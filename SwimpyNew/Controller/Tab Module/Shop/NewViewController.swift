@@ -25,7 +25,4 @@ class NewViewController: UIViewController , IndicatorInfoProvider {
         return IndicatorInfo(title: "New")
     }
     
-    
-
-
 }

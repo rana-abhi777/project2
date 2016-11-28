@@ -18,7 +18,5 @@ class CategoryProductsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-
-
+  
 }

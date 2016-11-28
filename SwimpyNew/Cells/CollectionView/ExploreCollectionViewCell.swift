@@ -15,5 +15,6 @@ class ExploreCollectionViewCell: UICollectionViewCell {
     
     //MARK:-  Button actions
     @IBAction func btnActionExploreCategory(sender: AnyObject) {
+        
     }
 }

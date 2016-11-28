@@ -26,10 +26,10 @@ class ExploreViewController: BasePageViewController {
     }
     
     //MARK:- functions
-   override func getViewControllers() -> [UIViewController] {
+    override func getViewControllers() -> [UIViewController] {
         return [featureVC,dealsVC]
     }
-
+    
     
     //MARK:- button actions
     

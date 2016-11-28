@@ -17,6 +17,38 @@
             endingLineNumber = "77"
             landmarkName = "getDataOfURL(withApi:failure:success:method:loader:image:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwimpyNew.ApiManager.getDataOfURL (withApi : SwimpyNew.API, failure : (__ObjC.NSError) -&gt; (), success : (Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; (), method : Swift.String, loader : Swift.Bool, image : Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; ()"
+                  moduleName = "SwimpyNew"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aseem10/Desktop/swimpy%20git/social-comnerce/SwimpyNew/Facade/ApiManager.swift"
+                  timestampString = "502006000.769827"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwimpyNew.ApiManager.(getDataOfURL (withApi : SwimpyNew.API, failure : (__ObjC.NSError) -&gt; (), success : (Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; (), method : Swift.String, loader : Swift.Bool, image : Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "SwimpyNew"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aseem10/Desktop/swimpy%20git/social-comnerce/SwimpyNew/Facade/ApiManager.swift"
+                  timestampString = "502006000.77163"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -266,7 +298,7 @@
                   moduleName = "SwimpyNew"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aseem10/Desktop/swimpy%20git/social-comnerce/SwimpyNew/Controller/LogInModule/LoginViewController.swift"
-                  timestampString = "501774308.512529"
+                  timestampString = "502006001.051329"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "126"
@@ -281,7 +313,7 @@
                   moduleName = "SwimpyNew"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aseem10/Desktop/swimpy%20git/social-comnerce/SwimpyNew/Controller/LogInModule/LoginViewController.swift"
-                  timestampString = "501774308.514065"
+                  timestampString = "502006001.052819"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "127"
@@ -376,7 +408,7 @@
                   moduleName = "SwimpyNew"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aseem10/Desktop/swimpy%20git/social-comnerce/SwimpyNew/Controller/Tab%20Module/Shop/CategoriesViewController.swift"
-                  timestampString = "501774308.527109"
+                  timestampString = "502006001.068538"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -391,7 +423,7 @@
                   moduleName = "SwimpyNew"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aseem10/Desktop/swimpy%20git/social-comnerce/SwimpyNew/Controller/Tab%20Module/Shop/CategoriesViewController.swift"
-                  timestampString = "501774308.528644"
+                  timestampString = "502006001.070045"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -406,7 +438,7 @@
                   moduleName = "SwimpyNew"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aseem10/Desktop/swimpy%20git/social-comnerce/SwimpyNew/Controller/Tab%20Module/Shop/CategoriesViewController.swift"
-                  timestampString = "501774308.530175"
+                  timestampString = "502006001.071555"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
