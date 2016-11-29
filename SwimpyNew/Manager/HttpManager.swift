@@ -58,28 +58,31 @@ class HttpManager {
         default:
             break
         }
-        
     }
     
     static func callApiWithParameters( api:API,image : UIImage? , success:@escaping HttpManagerSuccess, failure: @escaping HttpManagerFailure, method: String){
-        let parameters = api.parameters
+        var imageData : Data?
+        var flagImage = true
+        guard let parameters = api.parameters else { return failure("Empty Parameters") }
         let fullPath = APIConstant.baseURL.rawValue + api.route
-        guard let ppic = image else { return }
-        let imageData = UIImageJPEGRepresentation(ppic, 0.6)
-        let URL = try! URLRequest(url: fullPath, method: .post, headers: nil)
+        if let ppic = image {
+            imageData = UIImageJPEGRepresentation(ppic,0.6)
+        }
+        else {
+            flagImage = false
+        }
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            multipartFormData.append(imageData!, withName : "image", fileName: "file.png", mimeType: "image/png")
-            
-            for (key, value) in parameters! {
-                multipartFormData.append(value.data, withName: key)
-                //                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+        Alamofire.upload(multipartFormData: {multipartFormData in
+            if flagImage {
+                multipartFormData.append(imageData!, withName : "profilePic", fileName: "file.png", mimeType: "image/png")
+            }
+            for (key, value) in parameters {
+                multipartFormData.append(value.data(using : String.Encoding.utf8.rawValue)!, withName: key)
             }
         }, to: fullPath) { (result) in
             switch result {
             case .success(let upload, _, _):
                 upload.responseJSON { response in
-                    
                     success(response.result.value as AnyObject?)
                 }
             case .failure(let encodingError):
@@ -88,8 +91,8 @@ class HttpManager {
             }
             
         }
-        
     }
+    
 }
 
 

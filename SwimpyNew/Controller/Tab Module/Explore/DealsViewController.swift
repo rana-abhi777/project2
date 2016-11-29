@@ -27,7 +27,6 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialize()
     }
    
     override func didReceiveMemoryWarning() {
@@ -36,7 +35,7 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
     
     //MARK:- functions
     func initialize() {
-        hitApiForCategory()
+//        hitApiForCategory()
     }
     
     func configureCollectionView(){
@@ -53,15 +52,6 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
     }
     
     
-    func hitApiForCategory() {
-        ApiManager().getDataOfURL(withApi: API.GetCategoryResults(APIParameters.GetCategoryResults(categoryId: categoryId).formatParameters()), failure: { (err) in
-            print(err)
-            }, success: {[unowned self] (model) in
-                self.arrProduct =  (model as? [Products]) ?? []
-                self.configureCollectionView()
-                print(model)
-            }, method: "GET", loader: true)
-    }
     
     //MARK:- indicator info provider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

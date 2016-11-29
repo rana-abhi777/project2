@@ -19,5 +19,5 @@ enum CellIdentifiers: String {
     
     case DealsCollectionViewCell = "DealsCollectionViewCell"
     case ExploreCollectionViewCell = "ExploreCollectionViewCell"
-    
+    case CategoryProductsCollectionViewCell = "CategoryProductsCollectionViewCell"
 }

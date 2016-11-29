@@ -1,0 +1,513 @@
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "0vA-ZC-Zpp"; */
+"0vA-ZC-Zpp.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "$249"; ObjectID = "1AA-1S-CcQ"; */
+"1AA-1S-CcQ.text" = "$249";
+
+/* Class = "UITextField"; placeholder = "Fullname"; ObjectID = "20h-nA-UlT"; */
+"20h-nA-UlT.placeholder" = "Fullname";
+
+/* Class = "UILabel"; text = "SWIMPY"; ObjectID = "22k-JF-TQQ"; */
+"22k-JF-TQQ.text" = "SWIMPY";
+
+/* Class = "UILabel"; text = "$ 190 USD"; ObjectID = "2CY-zS-Sko"; */
+"2CY-zS-Sko.text" = "$ 190 USD";
+
+/* Class = "UILabel"; text = "Grayton watches"; ObjectID = "2Nz-ia-PmF"; */
+"2Nz-ia-PmF.text" = "Grayton watches";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "2TW-n6-H3O"; */
+"2TW-n6-H3O.normalTitle" = "Message";
+
+/* Class = "UILabel"; text = "Mark as default address"; ObjectID = "2p7-U0-pgJ"; */
+"2p7-U0-pgJ.text" = "Mark as default address";
+
+/* Class = "UITextField"; placeholder = "Mobile Number"; ObjectID = "2vM-HO-W3o"; */
+"2vM-HO-W3o.placeholder" = "Mobile Number";
+
+/* Class = "UILabel"; text = "Sort"; ObjectID = "2xt-CO-f09"; */
+"2xt-CO-f09.text" = "Sort";
+
+/* Class = "UILabel"; text = "126 followers"; ObjectID = "33N-Hu-8xR"; */
+"33N-Hu-8xR.text" = "126 followers";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "3Fv-D1-VW2"; */
+"3Fv-D1-VW2.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "41I-0X-FL0"; */
+"41I-0X-FL0.text" = "Label";
+
+/* Class = "UILabel"; text = "$ 439 USD"; ObjectID = "4Ao-1d-BKJ"; */
+"4Ao-1d-BKJ.text" = "$ 439 USD";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4gE-a3-gDq"; */
+"4gE-a3-gDq.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Follow store"; ObjectID = "4sP-lS-yd6"; */
+"4sP-lS-yd6.normalTitle" = "Follow store";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "50f-0u-fIs"; */
+"50f-0u-fIs.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "5J6-Zq-5pj"; */
+"5J6-Zq-5pj.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "126 followers"; ObjectID = "5tg-f9-HCb"; */
+"5tg-f9-HCb.text" = "126 followers";
+
+/* Class = "UILabel"; text = "Color"; ObjectID = "6kx-b1-JAt"; */
+"6kx-b1-JAt.text" = "Color";
+
+/* Class = "UILabel"; text = "$249"; ObjectID = "7OX-8a-qta"; */
+"7OX-8a-qta.text" = "$249";
+
+/* Class = "UILabel"; text = "or"; ObjectID = "7eZ-X3-Nc3"; */
+"7eZ-X3-Nc3.text" = "or";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7jC-19-qV5"; */
+"7jC-19-qV5.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Apply"; ObjectID = "9Jo-o1-0fA"; */
+"9Jo-o1-0fA.normalTitle" = "Apply";
+
+/* Class = "UILabel"; text = "Iterate"; ObjectID = "Aaf-dm-UVy"; */
+"Aaf-dm-UVy.text" = "Iterate";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "AcT-D4-rYk"; */
+"AcT-D4-rYk.placeholder" = "Email address";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "Ama-q9-idn"; */
+"Ama-q9-idn.title" = "Item";
+
+/* Class = "UILabel"; text = "Notifications"; ObjectID = "Atv-wf-TCC"; */
+"Atv-wf-TCC.text" = "Notifications";
+
+/* Class = "UILabel"; text = "Grayton watches"; ObjectID = "BEv-UR-HcT"; */
+"BEv-UR-HcT.text" = "Grayton watches";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "BbY-ff-DHI"; */
+"BbY-ff-DHI.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "Sign in with google"; ObjectID = "DOW-uT-lIh"; */
+"DOW-uT-lIh.normalTitle" = "Sign in with google";
+
+/* Class = "UILabel"; text = "Sort"; ObjectID = "DYg-Gi-eFs"; */
+"DYg-Gi-eFs.text" = "Sort";
+
+/* Class = "UITabBarItem"; title = "Inbox"; ObjectID = "Di0-w4-IpX"; */
+"Di0-w4-IpX.title" = "Inbox";
+
+/* Class = "UITextField"; placeholder = "Zipcode"; ObjectID = "Dqa-fc-0n8"; */
+"Dqa-fc-0n8.placeholder" = "Zipcode";
+
+/* Class = "UILabel"; text = "4.5k followers"; ObjectID = "Dsn-2l-nZE"; */
+"Dsn-2l-nZE.text" = "4.5k followers";
+
+/* Class = "UILabel"; text = "$ 249"; ObjectID = "DzW-Wv-P9X"; */
+"DzW-Wv-P9X.text" = "$ 249";
+
+/* Class = "UILabel"; text = "Hat for winter inner isothermal padding  (Black)"; ObjectID = "ERw-m7-Nl5"; */
+"ERw-m7-Nl5.text" = "Hat for winter inner isothermal padding  (Black)";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "EeL-yc-80P"; */
+"EeL-yc-80P.text" = "Address";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Eq4-t9-XYC"; */
+"Eq4-t9-XYC.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Create account"; ObjectID = "Faq-bU-l1o"; */
+"Faq-bU-l1o.text" = "Create account";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "Fsi-yS-syP"; */
+"Fsi-yS-syP.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "G3E-gU-Mqd"; */
+"G3E-gU-Mqd.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Forgot password ?"; ObjectID = "Gqf-MS-ZDB"; */
+"Gqf-MS-ZDB.normalTitle" = "Forgot password ?";
+
+/* Class = "UIButton"; normalTitle = "Sign in using Email"; ObjectID = "GuF-yq-Fhv"; */
+"GuF-yq-Fhv.normalTitle" = "Sign in using Email";
+
+/* Class = "UITabBarItem"; title = "Explore"; ObjectID = "Guy-vL-Y4u"; */
+"Guy-vL-Y4u.title" = "Explore";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "Gzd-f2-KFP"; */
+"Gzd-f2-KFP.text" = "Total";
+
+/* Class = "UILabel"; text = "India"; ObjectID = "H14-18-MjK"; */
+"H14-18-MjK.text" = "India";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "HRo-sN-uCq"; */
+"HRo-sN-uCq.normalTitle" = "Send";
+
+/* Class = "UIButton"; normalTitle = "Buy"; ObjectID = "Ha0-Lj-HH0"; */
+"Ha0-Lj-HH0.normalTitle" = "Buy";
+
+/* Class = "UILabel"; text = "“Unseen things”"; ObjectID = "Hdg-Kk-JXN"; */
+"Hdg-Kk-JXN.text" = "“Unseen things”";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "J8T-iQ-jzq"; */
+"J8T-iQ-jzq.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "3k followers\n“your time is precious”"; ObjectID = "JJa-oE-JQ3"; */
+"JJa-oE-JQ3.text" = "3k followers\n“your time is precious”";
+
+/* Class = "UILabel"; text = "SWIMPY"; ObjectID = "JfV-Nv-vcf"; */
+"JfV-Nv-vcf.text" = "SWIMPY";
+
+/* Class = "UIButton"; normalTitle = "Add note to seller"; ObjectID = "Jnv-2h-rHe"; */
+"Jnv-2h-rHe.normalTitle" = "Add note to seller";
+
+/* Class = "UILabel"; text = "SWIMPY"; ObjectID = "JvY-hA-NYM"; */
+"JvY-hA-NYM.text" = "SWIMPY";
+
+/* Class = "UILabel"; text = "Newest"; ObjectID = "KMQ-xI-HeB"; */
+"KMQ-xI-HeB.text" = "Newest";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LEp-pK-feU"; */
+"LEp-pK-feU.text" = "Label";
+
+/* Class = "UILabel"; text = "$ 249 USD"; ObjectID = "LxQ-Oy-pdl"; */
+"LxQ-Oy-pdl.text" = "$ 249 USD";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "MKq-uj-EVV"; */
+"MKq-uj-EVV.text" = "Label";
+
+/* Class = "UILabel"; text = "12"; ObjectID = "Meb-2D-3Kl"; */
+"Meb-2D-3Kl.text" = "12";
+
+/* Class = "UITabBarItem"; title = "Shop"; ObjectID = "N2K-Rp-2Qh"; */
+"N2K-Rp-2Qh.title" = "Shop";
+
+/* Class = "UILabel"; text = "$249"; ObjectID = "N8k-dk-2De"; */
+"N8k-dk-2De.text" = "$249";
+
+/* Class = "UILabel"; text = "Winter Hat (cream)"; ObjectID = "Nig-wF-kI1"; */
+"Nig-wF-kI1.text" = "Winter Hat (cream)";
+
+/* Class = "UILabel"; text = "Sign in"; ObjectID = "Nrt-DZ-23x"; */
+"Nrt-DZ-23x.text" = "Sign in";
+
+/* Class = "UITextField"; placeholder = "Address line 1"; ObjectID = "OJC-qa-2qP"; */
+"OJC-qa-2qP.placeholder" = "Address line 1";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "OZv-yf-Bvz"; */
+"OZv-yf-Bvz.text" = "1";
+
+/* Class = "UILabel"; text = "A subscriber recently wrote to me: A friend of mine is on a fixed income and has maxed out his credit cards (nearing $10,000). He has started a new business, but currently has no customers or prospects. He is affirming that he is already successful and debt-free. What is the best way for him? Should he write checks to pay his bills as they arrive, even though the money may not be in his account at the moment? Wouldn’t these concrete actions demonstrate his faith?My Answer: Faith is a wonderful thing – and very necessary. There are, however, approaches that may look like faith but lead us in risky directions.\nPlease tell your friend that he needs to pay close attention to “real” actions and concentrate on learning to provide a service to other people that they want. (Note the emphasis is on what “they” want.) Paying bills with rubber checks isn’t an act of faith. It’s desperate gambling. I know from hard experience that it’s nearly impossible to get the right mindset for real faith or confidence when you’re circling the drain. Your friend needs to get his feet firmly under himself with real money — even if he has to go tend bar or wash dishes for the extra income for a bit. Honest, it’s no disgrace (unless he stays there).\n\nRemember that all faith needs feet. If you’re in an airplane on its way down in a power dive, you put on your parachute first. And THEN you do affirmations. The old biblical phrase “faith without works is dead” means just that – belief needs to be connected organically with action. Productive action. If it’s not, then it’s not true belief, it’s only an attempt to con yourself and the gods.\n\nToo many people hope that they can do affirmations or pray or ASSERT, and this will save them from having to make a decision and take action. But that’s not the way it works. Action and affirmations must be bonded together as a single unit and support each other like two legs. Neither faith nor action can stand alone.\n\nSo you might want to tell your friend that positive thinking is good (and absolutely necessary), but positive action is also an essential ingredient. Simply put, he’ll never pray himself up a hill. When he’s willing to take action, with all the stops out, his faith will bring the lucky breaks, the synchronicities, and the chance meetings with just the right people at the right times to help move him forward. But it’s the action that anchors all that potentiality into reality. ACTION. Otherwise, it’s all vapor. “Willing to take action with all the stops out” … some folks call that enthusiasm, others call it commitment. But it sure boosts the octane.\n\nIt’s often hard to get people to see that taking a detour on the way to their goals is not a “wrong turn.” It’s just another way of getting where they’re going. Whatever it takes. Just remember that you don’t have to give up on your dreams and goals when some little thing comes along (or not so little). The goal is what’s important, not every little step it takes to get there (as long as we remember to TAKE the steps). I’d guess that the old gremlin of impatience has killed more dreams than any other single influence. It’s so common to think, “If I’m not getting there RIGHT NOW, then that’s it; I’ll never make it.” It might help to think of your vision of your future as a very penetrating stare. It penetrates anything that may seem to block your path. As long as you keep seeing what’s in your future, you won’t become stalled by the stuff that crops up in front of you today. This may all sound trite, but it’s true, every bit of it. And I learned it all the absolutely hardest way. I lived through it over and over and over and…\n\nBut eventually, even a super-dense guy like me can learn, proving that anybody on earth can do it."; ObjectID = "P94-Gc-8bq"; */
+"P94-Gc-8bq.text" = "A subscriber recently wrote to me: A friend of mine is on a fixed income and has maxed out his credit cards (nearing $10,000). He has started a new business, but currently has no customers or prospects. He is affirming that he is already successful and debt-free. What is the best way for him? Should he write checks to pay his bills as they arrive, even though the money may not be in his account at the moment? Wouldn’t these concrete actions demonstrate his faith?My Answer: Faith is a wonderful thing – and very necessary. There are, however, approaches that may look like faith but lead us in risky directions.\nPlease tell your friend that he needs to pay close attention to “real” actions and concentrate on learning to provide a service to other people that they want. (Note the emphasis is on what “they” want.) Paying bills with rubber checks isn’t an act of faith. It’s desperate gambling. I know from hard experience that it’s nearly impossible to get the right mindset for real faith or confidence when you’re circling the drain. Your friend needs to get his feet firmly under himself with real money — even if he has to go tend bar or wash dishes for the extra income for a bit. Honest, it’s no disgrace (unless he stays there).\n\nRemember that all faith needs feet. If you’re in an airplane on its way down in a power dive, you put on your parachute first. And THEN you do affirmations. The old biblical phrase “faith without works is dead” means just that – belief needs to be connected organically with action. Productive action. If it’s not, then it’s not true belief, it’s only an attempt to con yourself and the gods.\n\nToo many people hope that they can do affirmations or pray or ASSERT, and this will save them from having to make a decision and take action. But that’s not the way it works. Action and affirmations must be bonded together as a single unit and support each other like two legs. Neither faith nor action can stand alone.\n\nSo you might want to tell your friend that positive thinking is good (and absolutely necessary), but positive action is also an essential ingredient. Simply put, he’ll never pray himself up a hill. When he’s willing to take action, with all the stops out, his faith will bring the lucky breaks, the synchronicities, and the chance meetings with just the right people at the right times to help move him forward. But it’s the action that anchors all that potentiality into reality. ACTION. Otherwise, it’s all vapor. “Willing to take action with all the stops out” … some folks call that enthusiasm, others call it commitment. But it sure boosts the octane.\n\nIt’s often hard to get people to see that taking a detour on the way to their goals is not a “wrong turn.” It’s just another way of getting where they’re going. Whatever it takes. Just remember that you don’t have to give up on your dreams and goals when some little thing comes along (or not so little). The goal is what’s important, not every little step it takes to get there (as long as we remember to TAKE the steps). I’d guess that the old gremlin of impatience has killed more dreams than any other single influence. It’s so common to think, “If I’m not getting there RIGHT NOW, then that’s it; I’ll never make it.” It might help to think of your vision of your future as a very penetrating stare. It penetrates anything that may seem to block your path. As long as you keep seeing what’s in your future, you won’t become stalled by the stuff that crops up in front of you today. This may all sound trite, but it’s true, every bit of it. And I learned it all the absolutely hardest way. I lived through it over and over and over and…\n\nBut eventually, even a super-dense guy like me can learn, proving that anybody on earth can do it.";
+
+/* Class = "UILabel"; text = "$249"; ObjectID = "PLu-cu-153"; */
+"PLu-cu-153.text" = "$249";
+
+/* Class = "UIButton"; normalTitle = "5600"; ObjectID = "PRk-uM-TbM"; */
+"PRk-uM-TbM.normalTitle" = "5600";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "PXi-3A-OH9"; */
+"PXi-3A-OH9.title" = "Item";
+
+/* Class = "UITextField"; placeholder = "Write a reply.."; ObjectID = "Pvz-1l-SsP"; */
+"Pvz-1l-SsP.placeholder" = "Write a reply..";
+
+/* Class = "UILabel"; text = "Winter Hat (cream)"; ObjectID = "QcC-Fk-uTr"; */
+"QcC-Fk-uTr.text" = "Winter Hat (cream)";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "R9E-1Z-Zpb"; */
+"R9E-1Z-Zpb.normalTitle" = "Edit";
+
+/* Class = "UIButton"; normalTitle = "Sign in with facebook"; ObjectID = "SG3-Ic-A3c"; */
+"SG3-Ic-A3c.normalTitle" = "Sign in with facebook";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Sc9-GO-QEV"; */
+"Sc9-GO-QEV.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Filter"; ObjectID = "T78-jP-cLX"; */
+"T78-jP-cLX.text" = "Filter";
+
+/* Class = "UILabel"; text = "Fabseason"; ObjectID = "TNN-Ki-EyR"; */
+"TNN-Ki-EyR.text" = "Fabseason";
+
+/* Class = "UILabel"; text = "Monika Mitruka"; ObjectID = "TsU-LG-bXy"; */
+"TsU-LG-bXy.text" = "Monika Mitruka";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "U5Q-MD-ALC"; */
+"U5Q-MD-ALC.normalTitle" = "Message";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "U9R-hj-VeO"; */
+"U9R-hj-VeO.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "UyN-DI-pHo"; */
+"UyN-DI-pHo.normalTitle" = "Follow";
+
+/* Class = "UILabel"; text = "$500"; ObjectID = "VCx-Qm-XUe"; */
+"VCx-Qm-XUe.text" = "$500";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "VqA-Eo-CUA"; */
+"VqA-Eo-CUA.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Price high to low"; ObjectID = "Vua-Zx-yVr"; */
+"Vua-Zx-yVr.text" = "Price high to low";
+
+/* Class = "UIButton"; normalTitle = "Checkout"; ObjectID = "WEE-wl-hMc"; */
+"WEE-wl-hMc.normalTitle" = "Checkout";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "WOM-hc-Hhg"; */
+"WOM-hc-Hhg.placeholder" = "Search";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "XDs-Hl-3mw"; */
+"XDs-Hl-3mw.text" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Xaj-Re-3CG"; */
+"Xaj-Re-3CG.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XnK-Th-X9y"; */
+"XnK-Th-X9y.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Sort"; ObjectID = "Xyc-Au-zEI"; */
+"Xyc-Au-zEI.text" = "Sort";
+
+/* Class = "UILabel"; text = "Winter Hat (cream)"; ObjectID = "YNV-EU-A0Z"; */
+"YNV-EU-A0Z.text" = "Winter Hat (cream)";
+
+/* Class = "UILabel"; text = "Any"; ObjectID = "YnK-YB-OP2"; */
+"YnK-YB-OP2.text" = "Any";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "Znm-x4-nDT"; */
+"Znm-x4-nDT.text" = "Price";
+
+/* Class = "UILabel"; text = "Items total"; ObjectID = "a90-oL-sLA"; */
+"a90-oL-sLA.text" = "Items total";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "aSH-kx-LrI"; */
+"aSH-kx-LrI.placeholder" = "Email address";
+
+/* Class = "UILabel"; text = "$249"; ObjectID = "aao-MU-t2s"; */
+"aao-MU-t2s.text" = "$249";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "abj-1s-2ha"; */
+"abj-1s-2ha.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "$249"; ObjectID = "acB-SK-9fW"; */
+"acB-SK-9fW.text" = "$249";
+
+/* Class = "UILabel"; text = "Ankit Guleria"; ObjectID = "cFe-1P-brZ"; */
+"cFe-1P-brZ.text" = "Ankit Guleria";
+
+/* Class = "UILabel"; text = "Winter Hat (cream)"; ObjectID = "cHF-Da-ksE"; */
+"cHF-Da-ksE.text" = "Winter Hat (cream)";
+
+/* Class = "UITextField"; placeholder = "Fullname"; ObjectID = "cQJ-7M-4xi"; */
+"cQJ-7M-4xi.placeholder" = "Fullname";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dUo-ZG-AQA"; */
+"dUo-ZG-AQA.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "$400"; ObjectID = "dWC-aK-XZv"; */
+"dWC-aK-XZv.text" = "$400";
+
+/* Class = "UILabel"; text = "“Unseen things”"; ObjectID = "de4-re-b4q"; */
+"de4-re-b4q.text" = "“Unseen things”";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "dgM-H4-GHz"; */
+"dgM-H4-GHz.placeholder" = "Email address";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dp2-Hn-9Cj"; */
+"dp2-Hn-9Cj.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Follow store"; ObjectID = "e1X-un-NPE"; */
+"e1X-un-NPE.normalTitle" = "Follow store";
+
+/* Class = "UIButton"; normalTitle = "Apply"; ObjectID = "eQJ-5E-FyH"; */
+"eQJ-5E-FyH.normalTitle" = "Apply";
+
+/* Class = "UILabel"; text = "Shipping"; ObjectID = "ekr-31-Ooz"; */
+"ekr-31-Ooz.text" = "Shipping";
+
+/* Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "eyF-lQ-gtB"; */
+"eyF-lQ-gtB.normalTitle" = "Sign in";
+
+/* Class = "UIButton"; normalTitle = "56"; ObjectID = "fR2-nB-Fg8"; */
+"fR2-nB-Fg8.normalTitle" = "56";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fVY-dS-1YK"; */
+"fVY-dS-1YK.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "fdb-SA-cgs"; */
+"fdb-SA-cgs.normalTitle" = "Message";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "g0A-nk-7dw"; */
+"g0A-nk-7dw.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Clear all"; ObjectID = "ge4-rA-lgO"; */
+"ge4-rA-lgO.normalTitle" = "Clear all";
+
+/* Class = "UILabel"; text = "Price Range"; ObjectID = "gjA-rt-IPy"; */
+"gjA-rt-IPy.text" = "Price Range";
+
+/* Class = "UILabel"; text = "Iterate"; ObjectID = "gjY-hR-Vyb"; */
+"gjY-hR-Vyb.text" = "Iterate";
+
+/* Class = "UILabel"; text = "Tax"; ObjectID = "gjz-51-WUR"; */
+"gjz-51-WUR.text" = "Tax";
+
+/* Class = "UILabel"; text = "“Unseen things”"; ObjectID = "hTK-pP-hto"; */
+"hTK-pP-hto.text" = "“Unseen things”";
+
+/* Class = "UILabel"; text = "4.5k followers"; ObjectID = "hiK-yK-7tY"; */
+"hiK-yK-7tY.text" = "4.5k followers";
+
+/* Class = "UILabel"; text = "Cart"; ObjectID = "hiW-Pj-BXp"; */
+"hiW-Pj-BXp.text" = "Cart";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "i25-NI-khl"; */
+"i25-NI-khl.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "SWIMPY"; ObjectID = "iJp-9M-DaM"; */
+"iJp-9M-DaM.text" = "SWIMPY";
+
+/* Class = "UILabel"; text = "Quantity"; ObjectID = "iqr-aa-nrq"; */
+"iqr-aa-nrq.text" = "Quantity";
+
+/* Class = "UILabel"; text = "Price low to high"; ObjectID = "jNM-XJ-jdx"; */
+"jNM-XJ-jdx.text" = "Price low to high";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "jSV-TR-f2V"; */
+"jSV-TR-f2V.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "To reset your password, enter your email address and we'll send you instaructions on how to reset your password"; ObjectID = "jjS-3S-tE5"; */
+"jjS-3S-tE5.text" = "To reset your password, enter your email address and we'll send you instaructions on how to reset your password";
+
+/* Class = "UILabel"; text = "$249"; ObjectID = "jzC-Wx-Mbu"; */
+"jzC-Wx-Mbu.text" = "$249";
+
+/* Class = "UIButton"; normalTitle = "Create account"; ObjectID = "kmq-Ke-lDz"; */
+"kmq-Ke-lDz.normalTitle" = "Create account";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "kxd-nY-Yta"; */
+"kxd-nY-Yta.title" = "Item";
+
+/* Class = "UITabBarItem"; title = "Activity"; ObjectID = "l1o-8D-hwP"; */
+"l1o-8D-hwP.title" = "Activity";
+
+/* Class = "UILabel"; text = "Discover and buy amazing things all in one place"; ObjectID = "lHQ-qB-C3N"; */
+"lHQ-qB-C3N.text" = "Discover and buy amazing things all in one place";
+
+/* Class = "UITextField"; placeholder = "State"; ObjectID = "lrX-jr-YWP"; */
+"lrX-jr-YWP.placeholder" = "State";
+
+/* Class = "UILabel"; text = "Popular"; ObjectID = "m6X-Ye-aEC"; */
+"m6X-Ye-aEC.text" = "Popular";
+
+/* Class = "UILabel"; text = "$ 0 USD"; ObjectID = "mLD-Qr-rvl"; */
+"mLD-Qr-rvl.text" = "$ 0 USD";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "miq-hs-ObO"; */
+"miq-hs-ObO.normalTitle" = "Follow";
+
+/* Class = "UITextField"; placeholder = "Address line 2"; ObjectID = "ml0-JS-jSu"; */
+"ml0-JS-jSu.placeholder" = "Address line 2";
+
+/* Class = "UIButton"; normalTitle = "600"; ObjectID = "msD-Nx-Mht"; */
+"msD-Nx-Mht.normalTitle" = "600";
+
+/* Class = "UILabel"; text = "Order from fab season"; ObjectID = "myj-w0-pIt"; */
+"myj-w0-pIt.text" = "Order from fab season";
+
+/* Class = "UIButton"; normalTitle = "Message"; ObjectID = "nk7-rS-SMU"; */
+"nk7-rS-SMU.normalTitle" = "Message";
+
+/* Class = "UILabel"; text = "SWIMPY"; ObjectID = "oL8-Hc-3KI"; */
+"oL8-Hc-3KI.text" = "SWIMPY";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "oN5-ND-VaJ"; */
+"oN5-ND-VaJ.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "3k followers\n“your time is precious”"; ObjectID = "pJd-Up-N4W"; */
+"pJd-Up-N4W.text" = "3k followers\n“your time is precious”";
+
+/* Class = "UIButton"; normalTitle = "Add coupon code"; ObjectID = "pLK-6X-NQM"; */
+"pLK-6X-NQM.normalTitle" = "Add coupon code";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "r6T-m6-8or"; */
+"r6T-m6-8or.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Follow store"; ObjectID = "rLG-9G-2Ej"; */
+"rLG-9G-2Ej.normalTitle" = "Follow store";
+
+/* Class = "UILabel"; text = "A subscriber recently wrote to me: A friend of mine is on a fixed income and has maxed out his credit cards (nearing $10,000). He has started a new business, but currently has no customers or prospects. He is affirming that he is already successful and debt-free. What is the best way for him? Should he write checks to pay his bills as they arrive, even though the money may not be in his account at the moment? Wouldn’t these concrete actions demonstrate his faith?My Answer: Faith is a wonderful thing – and very necessary. There are, however, approaches that may look like faith but lead us in risky directions.\nPlease tell your friend that he needs to pay close attention to “real” actions and concentrate on learning to provide a service to other people that they want. (Note the emphasis is on what “they” want.) Paying bills with rubber checks isn’t an act of faith. It’s desperate gambling. I know from hard experience that it’s nearly impossible to get the right mindset for real faith or confidence when you’re circling the drain. Your friend needs to get his feet firmly under himself with real money — even if he has to go tend bar or wash dishes for the extra income for a bit. Honest, it’s no disgrace (unless he stays there).\n\nRemember that all faith needs feet. If you’re in an airplane on its way down in a power dive, you put on your parachute first. And THEN you do affirmations. The old biblical phrase “faith without works is dead” means just that – belief needs to be connected organically with action. Productive action. If it’s not, then it’s not true belief, it’s only an attempt to con yourself and the gods.\n\nToo many people hope that they can do affirmations or pray or ASSERT, and this will save them from having to make a decision and take action. But that’s not the way it works. Action and affirmations must be bonded together as a single unit and support each other like two legs. Neither faith nor action can stand alone.\n\nSo you might want to tell your friend that positive thinking is good (and absolutely necessary), but positive action is also an essential ingredient. Simply put, he’ll never pray himself up a hill. When he’s willing to take action, with all the stops out, his faith will bring the lucky breaks, the synchronicities, and the chance meetings with just the right people at the right times to help move him forward. But it’s the action that anchors all that potentiality into reality. ACTION. Otherwise, it’s all vapor. “Willing to take action with all the stops out” … some folks call that enthusiasm, others call it commitment. But it sure boosts the octane.\n\nIt’s often hard to get people to see that taking a detour on the way to their goals is not a “wrong turn.” It’s just another way of getting where they’re going. Whatever it takes. Just remember that you don’t have to give up on your dreams and goals when some little thing comes along (or not so little). The goal is what’s important, not every little step it takes to get there (as long as we remember to TAKE the steps). I’d guess that the old gremlin of impatience has killed more dreams than any other single influence. It’s so common to think, “If I’m not getting there RIGHT NOW, then that’s it; I’ll never make it.” It might help to think of your vision of your future as a very penetrating stare. It penetrates anything that may seem to block your path. As long as you keep seeing what’s in your future, you won’t become stalled by the stuff that crops up in front of you today. This may all sound trite, but it’s true, every bit of it. And I learned it all the absolutely hardest way. I lived through it over and over and over and…\n\nBut eventually, even a super-dense guy like me can learn, proving that anybody on earth can do it."; ObjectID = "rUQ-PA-BD6"; */
+"rUQ-PA-BD6.text" = "A subscriber recently wrote to me: A friend of mine is on a fixed income and has maxed out his credit cards (nearing $10,000). He has started a new business, but currently has no customers or prospects. He is affirming that he is already successful and debt-free. What is the best way for him? Should he write checks to pay his bills as they arrive, even though the money may not be in his account at the moment? Wouldn’t these concrete actions demonstrate his faith?My Answer: Faith is a wonderful thing – and very necessary. There are, however, approaches that may look like faith but lead us in risky directions.\nPlease tell your friend that he needs to pay close attention to “real” actions and concentrate on learning to provide a service to other people that they want. (Note the emphasis is on what “they” want.) Paying bills with rubber checks isn’t an act of faith. It’s desperate gambling. I know from hard experience that it’s nearly impossible to get the right mindset for real faith or confidence when you’re circling the drain. Your friend needs to get his feet firmly under himself with real money — even if he has to go tend bar or wash dishes for the extra income for a bit. Honest, it’s no disgrace (unless he stays there).\n\nRemember that all faith needs feet. If you’re in an airplane on its way down in a power dive, you put on your parachute first. And THEN you do affirmations. The old biblical phrase “faith without works is dead” means just that – belief needs to be connected organically with action. Productive action. If it’s not, then it’s not true belief, it’s only an attempt to con yourself and the gods.\n\nToo many people hope that they can do affirmations or pray or ASSERT, and this will save them from having to make a decision and take action. But that’s not the way it works. Action and affirmations must be bonded together as a single unit and support each other like two legs. Neither faith nor action can stand alone.\n\nSo you might want to tell your friend that positive thinking is good (and absolutely necessary), but positive action is also an essential ingredient. Simply put, he’ll never pray himself up a hill. When he’s willing to take action, with all the stops out, his faith will bring the lucky breaks, the synchronicities, and the chance meetings with just the right people at the right times to help move him forward. But it’s the action that anchors all that potentiality into reality. ACTION. Otherwise, it’s all vapor. “Willing to take action with all the stops out” … some folks call that enthusiasm, others call it commitment. But it sure boosts the octane.\n\nIt’s often hard to get people to see that taking a detour on the way to their goals is not a “wrong turn.” It’s just another way of getting where they’re going. Whatever it takes. Just remember that you don’t have to give up on your dreams and goals when some little thing comes along (or not so little). The goal is what’s important, not every little step it takes to get there (as long as we remember to TAKE the steps). I’d guess that the old gremlin of impatience has killed more dreams than any other single influence. It’s so common to think, “If I’m not getting there RIGHT NOW, then that’s it; I’ll never make it.” It might help to think of your vision of your future as a very penetrating stare. It penetrates anything that may seem to block your path. As long as you keep seeing what’s in your future, you won’t become stalled by the stuff that crops up in front of you today. This may all sound trite, but it’s true, every bit of it. And I learned it all the absolutely hardest way. I lived through it over and over and over and…\n\nBut eventually, even a super-dense guy like me can learn, proving that anybody on earth can do it.";
+
+/* Class = "UILabel"; text = "Forgot Password"; ObjectID = "sBg-Yx-8rv"; */
+"sBg-Yx-8rv.text" = "Forgot Password";
+
+/* Class = "UILabel"; text = "$249"; ObjectID = "sUW-bT-51e"; */
+"sUW-bT-51e.text" = "$249";
+
+/* Class = "UILabel"; text = "Mark as gift"; ObjectID = "sen-8R-HkA"; */
+"sen-8R-HkA.text" = "Mark as gift";
+
+/* Class = "UILabel"; text = "Winter Hat (cream)"; ObjectID = "skc-KB-x90"; */
+"skc-KB-x90.text" = "Winter Hat (cream)";
+
+/* Class = "UILabel"; text = "Iterate"; ObjectID = "srT-t5-uAU"; */
+"srT-t5-uAU.text" = "Iterate";
+
+/* Class = "UILabel"; text = "Cart"; ObjectID = "tJv-td-NhA"; */
+"tJv-td-NhA.text" = "Cart";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tLS-El-0Ha"; */
+"tLS-El-0Ha.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Winter Hat (cream)"; ObjectID = "tQN-QT-nha"; */
+"tQN-QT-nha.text" = "Winter Hat (cream)";
+
+/* Class = "UILabel"; text = "Filter"; ObjectID = "uIj-mx-wUb"; */
+"uIj-mx-wUb.text" = "Filter";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uJQ-np-bbj"; */
+"uJQ-np-bbj.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "uSY-65-Mur"; */
+"uSY-65-Mur.normalTitle" = "Sign up";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "udm-Mp-hTq"; */
+"udm-Mp-hTq.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uhZ-bE-krb"; */
+"uhZ-bE-krb.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Profile"; ObjectID = "w2i-iC-dGJ"; */
+"w2i-iC-dGJ.title" = "Profile";
+
+/* Class = "UIButton"; normalTitle = "59"; ObjectID = "wfW-NH-N4c"; */
+"wfW-NH-N4c.normalTitle" = "59";
+
+/* Class = "UILabel"; text = "Filter"; ObjectID = "wyt-J7-cVp"; */
+"wyt-J7-cVp.text" = "Filter";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "xK1-ZR-QJ4"; */
+"xK1-ZR-QJ4.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "xcB-cO-QpM"; */
+"xcB-cO-QpM.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "$10"; ObjectID = "y37-Vu-PEX"; */
+"y37-Vu-PEX.text" = "$10";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "z47-ds-TZq"; */
+"z47-ds-TZq.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "Winter Hat (cream)"; ObjectID = "z6F-HJ-CGH"; */
+"z6F-HJ-CGH.text" = "Winter Hat (cream)";
+
+/* Class = "UIButton"; normalTitle = "Remove"; ObjectID = "zVj-z3-Mbc"; */
+"zVj-z3-Mbc.normalTitle" = "Remove";
+
+/* Class = "UITabBarItem"; title = "Shop"; ObjectID = "zYa-v6-9AL"; */
+"zYa-v6-9AL.title" = "Shop";
+
+/* Class = "UILabel"; text = "4.5k followers"; ObjectID = "zoF-EA-G9L"; */
+"zoF-EA-G9L.text" = "4.5k followers";

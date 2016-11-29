@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-SwimpyNew/Alamofire.framework"
   install_framework "Pods-SwimpyNew/Bolts.framework"
+  install_framework "Pods-SwimpyNew/DropDown.framework"
   install_framework "Pods-SwimpyNew/FBSDKCoreKit.framework"
   install_framework "Pods-SwimpyNew/FBSDKLoginKit.framework"
   install_framework "Pods-SwimpyNew/FBSDKShareKit.framework"
@@ -105,6 +106,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-SwimpyNew/Alamofire.framework"
   install_framework "Pods-SwimpyNew/Bolts.framework"
+  install_framework "Pods-SwimpyNew/DropDown.framework"
   install_framework "Pods-SwimpyNew/FBSDKCoreKit.framework"
   install_framework "Pods-SwimpyNew/FBSDKLoginKit.framework"
   install_framework "Pods-SwimpyNew/FBSDKShareKit.framework"

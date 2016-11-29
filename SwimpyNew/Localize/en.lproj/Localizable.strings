@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  SwimpyNew
+
+  Created by Aseem 10 on 11/28/16.
+  Copyright © 2016 Aseem 10. All rights reserved.
+*/
+
+"Enter password" = "Enter password";
+"Enter your fullname" = "Enter your fullname";
+"Please Enter Valid Email" = "Please Enter Valid Email";
+"something went wrong" = "something went wrong";
+"Your internet connection seems to be offline" = "Your internet connection seems to be offline";
+"API which is hit is not present in Api Collection" = "API which is hit is not present in Api Collection";

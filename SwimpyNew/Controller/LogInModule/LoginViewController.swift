@@ -50,6 +50,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         super.didReceiveMemoryWarning()
     }
     
+    
+    
     //MARK: FUNCTION
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
@@ -83,12 +85,12 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         var indicator = true
         let trimmedEmail = ValidateData().emailValidation(mailToCheck: txtSigninEmail.text!)
         if trimmedEmail == false {
-            UserFunctions.showAlert(message: "Please Enter Valid Email")
+            UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
             indicator = false
         }
         let trimmedPassword = ValidateData().trimmedString(string: txtSigninPassword.text ?? "")
         if trimmedPassword.characters.count == 0 {
-            UserFunctions.showAlert(message: "Enter password")
+            UserFunctions.showAlert(message: L10n.enterPassword.string)
             indicator = false
         }
         return indicator
@@ -96,19 +98,19 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     func validateSignup() -> Bool {
         var indicator = true
         let trimmedFullname = ValidateData().trimmedString(string: txtFullname.text ?? "")
-
+        
         if trimmedFullname.characters.count == 0 {
-            UserFunctions.showAlert(message: "Enter your fullname")
+            UserFunctions.showAlert(message: L10n.enterYourFullname.string)
             indicator = false
         }
         let trimmedEmail = ValidateData().emailValidation(mailToCheck: txtSignupEmail.text!)
         if trimmedEmail == false {
-            UserFunctions.showAlert(message: "Please Enter Valid Email")
+            UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
             indicator = false
         }
         let trimmedPassword = ValidateData().trimmedString(string: txtSignupPassword.text ?? "")
         if trimmedPassword.characters.count == 0 {
-            UserFunctions.showAlert(message: "Enter password")
+            UserFunctions.showAlert(message: L10n.enterPassword.string)
             indicator = false
         }
         return indicator
@@ -135,7 +137,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     @IBAction func btnActionForgotPasswordSubmit(sender: AnyObject) {
         let trimmedEmail = ValidateData().emailValidation(mailToCheck: txtEmailForgotPassword.text!)
         if trimmedEmail == false {
-            UserFunctions.showAlert(message: "Please Enter Valid Email")
+            UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
             return
         }
         //hitapi
@@ -157,11 +159,11 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             ApiManager().getDataOfURL(withApi: API.Signup(APIParameters.Signup(fullname: txtFullname.text, email: txtSignupEmail.text, password: txtSignupPassword.text).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
-                    print(model)
-                }, method: "POST", loader: true)
+                    let VC = StoryboardScene.Main.instantiateTabBarController()
+                    self.navigationController?.pushViewController(VC, animated: true)
+                }, method: "POST", loader: true, image: btnProfilePic.image(for: .normal))
         }
         
-        //, image: btnProfilePic.image(for: .normal)
     }
     @IBAction func btnActionProfilePic(sender: AnyObject) {
         callFusumaImagePiucker(btnOutlet: btnProfilePic)

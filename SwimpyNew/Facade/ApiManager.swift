@@ -15,7 +15,7 @@ class ApiManager {
     
     func getDataOfURL(withApi : API, failure: (NSError) ->(), success: @escaping (AnyObject?)->(), method:String,loader : Bool = true){
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
-            UserFunctions.showAlert(message: "Your internet connection seems to be offline")
+            UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
             return
         }
         
@@ -48,7 +48,7 @@ class ApiManager {
                     singleUserArray = category as AnyObject?
                     
                 default:
-                    print("API which is hit is not present in Api Collection")
+                    print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }
                 ApiManager.hideLoader()
                 success(singleUserArray)
@@ -60,13 +60,13 @@ class ApiManager {
             
             }, failure: { (error) in
                 ApiManager.hideLoader()
-                UserFunctions.showAlert(message: "something went wrong")
+                UserFunctions.showAlert(message: L10n.somethingWentWrong.string)
             }, method: method)
     }
     
     func getDataOfURL(withApi : API, failure: (NSError) ->(), success: @escaping (AnyObject?)->(), method:String,loader : Bool = true,image : UIImage?){
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
-            UserFunctions.showAlert(message: "Your internet connection seems to be offline")
+            UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
             return
         }
         
@@ -78,14 +78,16 @@ class ApiManager {
             guard let temp = response else { return }
             let data = JSON(temp)
             print(response)
-            if(data["success"].intValue == 1){
+           if(data["statusCode"].intValue >= 200 && data["statusCode"].intValue <= 299 ){
                 var singleUserArray : AnyObject?
                 switch(withApi){
                 case .Signup(_) :
-                    print(data)
+                    let user = User(arrResult: data["data"])
+                    singleUserArray = user
+                    MMUserManager.shared.loggedInUser = singleUserArray as? User
                     
                 default:
-                    print("API which is hit is not present in Api Collection")
+                    print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }
                 ApiManager.hideLoader()
                 success(singleUserArray)
@@ -96,7 +98,7 @@ class ApiManager {
             }
             
             }, failure: { (error) in
-                UserFunctions.showAlert(message: "something went wrong")
+                UserFunctions.showAlert(message: L10n.somethingWentWrong.string)
             }, method: method)
     }
     

@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DropDown.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FBSDKCoreKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -102,17 +107,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>04A6E789B19DB3DC26F0733CC14598BD</key>
+		<key>2A706E821CDFEE012F3DD3A6F4D89313</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>178DDE6021405547D691980F0A074EC2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>19D5E0BF1961DBF5451A06D775BF20EC</key>
+		<key>2D0741D269171DB3F5D032A373A99541</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,22 +122,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>37775ED4FD3C327C177D33CC77A95C27</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>37C76CD246D637B8E4C586284A0D96B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>585FB2826E89872D94CF64075485CD35</key>
+		<key>50E316395A4EB1D32E730F3BB12BA728</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>5D69761C2CD2A1E5C013537B29CAB4CF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>605271E53F070642E632742C97780BA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,11 +162,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7BAAAD251A6CB880947EAEE1FAD47460</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>7D04535608058A2FABC0D16935868FB9</key>
 		<dict>
 			<key>primary</key>
@@ -177,12 +172,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B4F007B31C1014026893604349FBBCBA</key>
+		<key>9F766ADB76A46AB732825D44C4BAAABF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C75523247676EE208650BCA9B4725A5F</key>
+		<key>BB2566BADC0B004566DC49EE73007FA2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BDFDFE9FB839A4F2795BC2BBD1612E47</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,7 +192,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E08FC4A87E077C9D1474D2915E1669C5</key>
+		<key>D708BE7C11214B53B0DCD8CE885DC299</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DD313FBA224AD3A915D0D15F4F3A9E77</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1172326E5569F2A339AEA991380704C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
