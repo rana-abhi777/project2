@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CategoryTableViewCell: UITableViewCell {
     
@@ -24,7 +25,18 @@ class CategoryTableViewCell: UITableViewCell {
     }
     //MARK:-   functions
     func configureCell(model : Category) {
-        lblCategoryName.text = model.name ?? ""
-        imgCategory.backgroundColor = UIColor.white
+        
+        lblCategoryName?.text = model.name ?? ""
+        guard let url = model.categoryImageOriginal   else { imgCategory.backgroundColor = UIColor.black
+            return }
+        imgCategory?.setImageWith(URL(string : url))
+//        imgCategory.kf.indicatorType = .activity
+        
+//        imgCategory.sd_setImage(with: URL(string : url))
+//        imgCategory.kf.setImage(with:  URL(string : url))
+//        imgCategory?.kf_showIndicatorWhenLoading = true
+//        imgCategory?.kf_setImageWithURL(NSURL(string: url))
+        
+        //        imgCategory.sd_setImage(with: URL(string : model.categoryImageOriginal ?? ""))
     }
 }

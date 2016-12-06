@@ -40,8 +40,8 @@ public enum SelectedBarAlignment {
 open class ButtonBarView: UICollectionView {
     
     open lazy var selectedBar: UIView = { [unowned self] in
-        print(self.frame.size.height)
-        print(CGFloat(self.selectedBarHeight))
+//        print(self.frame.size.height)
+//        print(CGFloat(self.selectedBarHeight))
         //self.frame.size.height
         //self.frame.size.height - CGFloat(self.selectedBarHeight)
         let bar  = UIView(frame: CGRect(x: 0, y: 40.0 - CGFloat(self.selectedBarHeight), width: 0, height: CGFloat(self.selectedBarHeight)))

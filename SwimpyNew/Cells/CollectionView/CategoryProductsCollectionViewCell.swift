@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CategoryProductsCollectionViewCell: UICollectionViewCell {
     
@@ -19,18 +20,30 @@ class CategoryProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgProduct: UIImageView!
     
     //MARK:-  function
+    
     func configureCell(model : Products) {
         lblProductName.text = model.productName ?? ""
-        lblPrice.text = "$" + (model.total_price ?? "0")
+        lblPrice.text = "$" + (model.base_price_unit ?? "0")
         btnNumberOfLikes.setTitle(model.totalLikes, for: .normal)
+        guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black
+            return }
+//        imgProduct.kf.indicatorType = .activity
+//        imgProduct.kf.setImage(with: URL(string : url))
+        imgProduct.sd_setImage(with: URL(string : url)) { (image, error, cache, url) in
+            print(image)
+        }
     }
     
-    //MARK:-  Button Action
-    @IBAction func btnActionLike(sender: AnyObject) {
+     //MARK:-  Button Action
+    @IBAction func btnActionLike(_ sender: AnyObject) {
     }
-    @IBAction func btnActionNoOfLike(sender: AnyObject) {
+   
+    
+    @IBAction func btnActionNoOfLike(_ sender: AnyObject) {
     }
-    @IBAction func btnActionShare(sender: AnyObject) {
+    
+    
+    @IBAction func btnActionShare(_ sender: AnyObject) {
     }
     
 }

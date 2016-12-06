@@ -57,7 +57,11 @@ PODS:
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
   - IQKeyboardManager (4.0.6)
+  - Kingfisher (3.2.0)
   - RMMapper (1.1.5)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - SwiftyJSON (3.1.1)
   - SZTextView (1.2.2)
   - XLPagerTabStrip (6.0.0)
@@ -78,7 +82,9 @@ DEPENDENCIES:
   - Fusuma (~> 1.0.0)
   - Google/SignIn
   - IQKeyboardManager
+  - Kingfisher
   - RMMapper
+  - SDWebImage
   - SwiftyJSON
   - SZTextView
   - XLPagerTabStrip
@@ -104,7 +110,9 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
+  Kingfisher: 50407d1d5dbc34965009d425a286342ff36a84ea
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b

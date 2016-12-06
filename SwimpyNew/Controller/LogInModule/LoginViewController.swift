@@ -26,6 +26,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     @IBOutlet weak var txtFullname: UITextField!
     @IBOutlet weak var viewSignup: UIView!
     @IBOutlet weak var viewSignin: UIView!
+    @IBOutlet weak var btnSkip: UIButton!
     
     //MARK: override functions
     override func viewDidLoad() {
@@ -34,6 +35,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             let VC = StoryboardScene.Main.instantiateTabBarController()
             self.navigationController?.pushViewController(VC, animated: false)
         }
+//        btnSkip.setAttributedTitle(attributedString(), for: .normal)
+        
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().clientID = "631877456020-bsavm2p985ialf5ga8jihj671rsood5d.apps.googleusercontent.com"
@@ -53,6 +56,14 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     
     
     //MARK: FUNCTION
+    func attributedString() -> NSAttributedString? {
+        let attributes = [
+            NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue
+        ]
+        let attributedString = NSAttributedString(string: "Skip", attributes: attributes)
+        return attributedString
+    }
+    
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
             var imageUrl  = ""
@@ -63,6 +74,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                 print(err)
                 }, success: { (model) in
                     print(model)
+                    let VC = StoryboardScene.Main.instantiateTabBarController()
+                    self.navigationController?.pushViewController(VC, animated: true)
                 }, method: "POST", loader: true)
         } else {
             print(error)
@@ -76,8 +89,9 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             view.bringSubview(toFront: viewManipulated)
         }
         else {
-            self.overlayObj.hideOverlayView()
+            overlayObj.hideOverlayView()
             viewManipulated.isHidden = true
+            view.endEditing(true)
             view.sendSubview(toBack: viewManipulated)
         }
     }
@@ -93,6 +107,10 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             UserFunctions.showAlert(message: L10n.enterPassword.string)
             indicator = false
         }
+        if trimmedPassword.characters.count < 6 {
+            UserFunctions.showAlert(message: L10n.passwordLengthShouldBeAtleast6Characters.string)
+            indicator = false
+        }
         return indicator
     }
     func validateSignup() -> Bool {
@@ -100,7 +118,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         let trimmedFullname = ValidateData().trimmedString(string: txtFullname.text ?? "")
         
         if trimmedFullname.characters.count == 0 {
-            UserFunctions.showAlert(message: L10n.enterYourFullname.string)
+            UserFunctions.showAlert(message: L10n.enterYourFullName.string)
             indicator = false
         }
         let trimmedEmail = ValidateData().emailValidation(mailToCheck: txtSignupEmail.text!)
@@ -111,6 +129,10 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         let trimmedPassword = ValidateData().trimmedString(string: txtSignupPassword.text ?? "")
         if trimmedPassword.characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterPassword.string)
+            indicator = false
+        }
+        if trimmedPassword.characters.count < 6 {
+            UserFunctions.showAlert(message: L10n.passwordLengthShouldBeAtleast6Characters.string)
             indicator = false
         }
         return indicator
@@ -170,6 +192,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     }
     @IBAction func btnActionSigninPopup(_ sender: AnyObject) {
         showAndHideView(viewManipulated : viewSignin)
+        txtSigninEmail.text = ""
+        txtSigninPassword.text = ""
     }
     @IBAction func btnActionSkip(sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateTabBarController()
@@ -182,6 +206,9 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     
     @IBAction func btnActionCreateAccount(sender: AnyObject) {
         showAndHideView(viewManipulated : viewSignup)
+        txtSignupEmail.text = ""
+        txtFullname.text = ""
+        txtSignupPassword.text = ""
     }
     @IBAction func btnActionLoginWithGoogle(sender: AnyObject) {
         GIDSignIn.sharedInstance().signIn()

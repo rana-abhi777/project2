@@ -10,9 +10,10 @@ import Foundation
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-
+var vc: UIViewController?
 func returnUserdata() {
     var Requset : FBSDKGraphRequest
+    
     
     Requset = FBSDKGraphRequest (graphPath:"me", parameters: ["fields":"email,name,picture.type(large),first_name,last_name"], httpMethod:"GET")
     
@@ -37,6 +38,9 @@ func returnUserdata() {
                     print(err)
                     }, success: { (model) in
                         print(model)
+                        guard let vcLogin = vc else { return }
+                        let newVC = StoryboardScene.Main.instantiateTabBarController()
+                        vcLogin.navigationController?.pushViewController(newVC, animated: true)
                     }, method: "POST", loader: true)
                 
                 return
@@ -44,6 +48,7 @@ func returnUserdata() {
 }
 
 func logInWithFb(viewcontroller : UIViewController) {
+    vc=viewcontroller
     let loginView : FBSDKLoginManager = FBSDKLoginManager()
     loginView.logOut()
     loginView.loginBehavior = FBSDKLoginBehavior.browser

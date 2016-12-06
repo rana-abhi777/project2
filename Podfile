@@ -18,6 +18,8 @@ pod 'Fusuma', '~> 1.0.0'
 pod 'RMMapper'
 pod 'Google/SignIn'
 pod 'DropDown'
+pod 'SDWebImage'
+pod 'Kingfisher'
 end
 
 post_install do |installer|

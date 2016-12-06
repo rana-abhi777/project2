@@ -8,7 +8,6 @@
 import Alamofire
 import SwiftyJSON
 import Foundation
-import NVActivityIndicatorView
 
 class ApiManager {
     

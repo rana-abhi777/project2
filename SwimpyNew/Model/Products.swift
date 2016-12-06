@@ -28,6 +28,8 @@ class Products: NSObject {
     var size : String?
     var base_price_unit : String?
     var totalLikes : String?
+    var productImageThumbnail : String?
+    var productImageOriginal : String?
 //    var Likes : 
     var productName : String?
     var subcategoryId : String?
@@ -58,6 +60,9 @@ class Products: NSObject {
         subcategoryId = arrResult["subcategoryId"].stringValue
         createrId = arrResult["createrId"].stringValue
         
+        let image = arrResult["defaultImage"].dictionaryValue
+        productImageOriginal = image["original"]?.stringValue 
+        productImageThumbnail = image["thumbnail"]?.stringValue
     }
     
     override init() {

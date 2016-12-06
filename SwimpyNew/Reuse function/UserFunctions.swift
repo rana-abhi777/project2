@@ -6,31 +6,9 @@
 //  Copyright © 2016 Aseem 10. All rights reserved.
 
 import UIKit
-import NVActivityIndicatorView
 
 class UserFunctions: NSObject {
-   static func timeInHoursAndMins(hrs : Int , mins : Int) -> String {
-        if hrs == 0 {
-            return "\(mins)" + " mins"
-        }
-        else if mins == 0 {
-            if hrs == 1 {
-                return "\(hrs)" + " hour"
-            }
-            else {
-                return "\(hrs)" + " hours"
-            }
-        }
-        else {
-            if hrs == 1 {
-                return "\(hrs)" + " hour and " + "\(mins)" + " mins"
-            }
-            else {
-                 return "\(hrs)" + " hours and " + "\(mins)" + " mins"
-            }
-           
-        }
-    }
+    
     static func sharedInstance() -> AppDelegate {
            return UIApplication.shared.delegate as! AppDelegate
         

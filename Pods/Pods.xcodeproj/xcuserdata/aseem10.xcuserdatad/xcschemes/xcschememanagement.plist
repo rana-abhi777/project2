@@ -59,12 +59,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SwimpyNew.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>RMMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -107,12 +117,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2A706E821CDFEE012F3DD3A6F4D89313</key>
+		<key>1974957549E22575849BA7BBE89C0151</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2D0741D269171DB3F5D032A373A99541</key>
+		<key>1ABF230E2CB720675527222C4909FE35</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1DE93A359FA21F91DFBE81309E851A4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,17 +137,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>37775ED4FD3C327C177D33CC77A95C27</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>37C76CD246D637B8E4C586284A0D96B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50E316395A4EB1D32E730F3BB12BA728</key>
+		<key>421AE23DE499C35FC6E3247C092EE51E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -143,6 +153,11 @@
 			<true/>
 		</dict>
 		<key>6A932845C7A5BE5374224A90EA874591</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6BBB403BDCEB9D22ED70551960B935BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,6 +182,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8377BC2014EA2C99B2057964261F4323</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92F98F689697CC4DBE77D1ADBB34E98C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
 		<dict>
 			<key>primary</key>
@@ -177,12 +202,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BB2566BADC0B004566DC49EE73007FA2</key>
+		<key>AE08BA408EEC22E5A62AF5FC8B16A232</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BDFDFE9FB839A4F2795BC2BBD1612E47</key>
+		<key>B8BB363139480AD1F9220BEED02C55E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9B5698C41C57844CDF3CCDD48F57BB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,17 +222,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D708BE7C11214B53B0DCD8CE885DC299</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DD313FBA224AD3A915D0D15F4F3A9E77</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E1172326E5569F2A339AEA991380704C</key>
+		<key>DB0E3753BDC445E58C5A902095FD2446</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -43,10 +43,12 @@ class CategoriesViewController: UIViewController , IndicatorInfoProvider {
     func configureTableView() {
         tableViewDataSource = TableViewCustomDatasource(items: arrCategoryData, height: 112, estimatedHeight: 112, tableView: tableViewCategory, cellIdentifier: CellIdentifiers.CategoryTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? CategoryTableViewCell
+            cell?.backgroundColor = UIColor.gray
             cell?.configureCell(model: (self.arrCategoryData[indexpath.row] ))
             }, aRowSelectedListener: {[unowned self] (indexPath) in
-                let vc = StoryboardScene.Main.instantiateDealsViewController()
+                let vc = StoryboardScene.Main.instantiateCategoryProductsViewController()
                 vc.categoryId = self.arrCategoryData[indexPath.row].id
+                vc.categoryName = self.arrCategoryData[indexPath.row].name ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
         })
         

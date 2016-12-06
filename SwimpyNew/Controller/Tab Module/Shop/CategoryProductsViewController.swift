@@ -10,7 +10,10 @@ import UIKit
 
 class CategoryProductsViewController: UIViewController {
     //MARK:- variables
+    
+    
     var categoryId : String?
+    var categoryName = ""
     var arrProduct : [Products] = []
     var collectionViewdataSource : CollectionViewDataSource?{
         didSet{
@@ -21,7 +24,8 @@ class CategoryProductsViewController: UIViewController {
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewCategoryProducts: UICollectionView!
-    
+    @IBOutlet weak var lblCategoryName: UILabel!
+    @IBOutlet weak var viewNoProducts: UIView!
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +38,7 @@ class CategoryProductsViewController: UIViewController {
     
     //MARK:- functions
     func initialize() {
+        lblCategoryName.text = categoryName
         hitApiForCategory()
     }
     
@@ -56,8 +61,21 @@ class CategoryProductsViewController: UIViewController {
             print(err)
             }, success: {[unowned self] (model) in
                 self.arrProduct =  (model as? [Products]) ?? []
-                self.configureCollectionView()
+                if self.arrProduct.count > 0 {
+                    self.configureCollectionView()
+                    self.view.bringSubview(toFront: self.collectionViewCategoryProducts)
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoProducts)
+                    
+                }
                 print(model)
             }, method: "GET", loader: true)
     }
+    
+    
+    @IBAction func btnActionBack(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }

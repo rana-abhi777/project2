@@ -35,7 +35,17 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
     
     //MARK:- functions
     func initialize() {
-//        hitApiForCategory()
+        hitApiForCategory()
+    }
+    
+    func hitApiForCategory() {
+        ApiManager().getDataOfURL(withApi: API.GetCategoryResults(APIParameters.GetCategoryResults(categoryId: categoryId).formatParameters()), failure: { (err) in
+            print(err)
+            }, success: {[unowned self] (model) in
+                self.arrProduct =  (model as? [Products]) ?? []
+                self.configureCollectionView()
+                print(model)
+            }, method: "GET", loader: true)
     }
     
     func configureCollectionView(){

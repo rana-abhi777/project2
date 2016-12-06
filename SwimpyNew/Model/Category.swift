@@ -14,7 +14,8 @@ class Category: NSObject {
     var createrID : String?
     var describe : String?
     var order : String?
-//    var categoryImage : [String]?
+    var categoryImageThumbnail : String?
+    var categoryImageOriginal : String?
     var timestamp : String?
     var is_deleted : Bool?
     var name : String?
@@ -30,6 +31,9 @@ class Category: NSObject {
         timestamp = arrResult["timestamp"].stringValue
         is_deleted = arrResult["is_deleted"].boolValue
         name = arrResult["name"].stringValue
+        let categoryImage = arrResult["categoryImage"].dictionaryValue
+        categoryImageThumbnail = categoryImage["thumbnail"]?.stringValue 
+        categoryImageOriginal = categoryImage["original"]?.stringValue
         
     }
     
