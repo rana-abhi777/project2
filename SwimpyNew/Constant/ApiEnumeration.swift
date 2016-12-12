@@ -16,8 +16,9 @@ protocol Router {
 }
 
 enum APIConstant : String {
-    case baseURL = "http://130.211.244.184:4001/"
-//    http://192.168.100.125:4001/
+
+    case baseURL = "http://130.211.244.184:4001/"   //live 
+//     case baseURL =   "http://192.168.100.125:4001/"
 }
 
 enum API {
@@ -28,6 +29,13 @@ enum API {
     case LoginViaGoogle(OptionalDictionary)
     case GetCategory(OptionalDictionary)
     case GetCategoryResults(OptionalDictionary)
+    case GetSaleProduct(OptionalDictionary)
+    
+    case LikeProduct(OptionalDictionary)
+    case DislikeProduct(OptionalDictionary)
+    
+    case GetPopularProduct(OptionalDictionary)
+    case GetGlobalActivity(OptionalDictionary)
 }
 
 
@@ -39,7 +47,11 @@ enum APIParameters {
     case LoginViaGoogle(googleId : String?,name : String? , googleImageUrl : String?)
     case GetCategory()
     case GetCategoryResults(categoryId : String?)
-    
+    case GetSaleProduct()
+    case LikeProduct(productId : String?)
+    case DislikeProduct(productId : String?)
+    case GetPopularProduct()
+    case GetGlobalActivity()
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
@@ -52,9 +64,14 @@ enum APIParameters {
         case .LoginViaFacebook(let fbId, let name , let imgUrl):
             return ["facebookId" : (fbId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "facebookImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
         case .LoginViaGoogle(let googleId , let name, let imgUrl) :
-              return ["googleId" : (googleId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "googleImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
+            return ["googleId" : (googleId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "googleImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
         case .GetCategoryResults(let categoryId) :
             return ["categoryId" : (categoryId ?? "") as AnyObject]
+            
+        case .LikeProduct(let productId) :
+            return["productId" : (productId ?? "") as AnyObject]
+        case .DislikeProduct(let productId) :
+            return["productId" : (productId ?? "") as AnyObject]
         default:
             return ["" : "" as AnyObject]
         }
@@ -71,9 +88,14 @@ extension API : Router {
         case .LoginViaGoogle(let parameters) : return parameters
         case .GetCategory(let _) : return nil
         case .GetCategoryResults(let parameters) :  return parameters
+        case .GetSaleProduct(let _) : return nil
+        case .LikeProduct(let parameters) : return parameters
+        case .DislikeProduct(let parameters) : return parameters
+        case .GetPopularProduct(let _) : return nil
+        case .GetGlobalActivity(let _) : return nil
         }
     }
-
+    
     internal var route: String {
         switch self {
         case .Signup(_) : return "api/users/register"
@@ -83,8 +105,13 @@ extension API : Router {
         case .LoginViaGoogle(_) : return "api/users/loginViaGoogle"
         case .GetCategory(_) : return "admin/getCategory"
         case .GetCategoryResults(_) : return "product/getCatagoryProduct"
+        case .GetSaleProduct(_) : return "product/getSaleProduct"
+        case .LikeProduct(_) : return "api/users/likeProduct"
+        case .DislikeProduct(_) : return "api/users/DislikeProduct"
+        case .GetPopularProduct(_) : return "product/getPopularProduct"
+        case .GetGlobalActivity(_) : return "api/users/getGlobalActivity"
         }
     }
-
+    
     
 }

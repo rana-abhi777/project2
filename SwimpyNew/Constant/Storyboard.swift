@@ -189,6 +189,15 @@ struct StoryboardScene {
       return vc
     }
 
+    case productDetailViewControllerScene = "ProductDetailViewController"
+    static func instantiateProductDetailViewController() -> ProductDetailViewController {
+      guard let vc = StoryboardScene.Main.productDetailViewControllerScene.viewController() as? ProductDetailViewController
+      else {
+        fatalError("ViewController 'ProductDetailViewController' is not of the expected class ProductDetailViewController.")
+      }
+      return vc
+    }
+
     case profileActivityViewControllerScene = "ProfileActivityViewController"
     static func instantiateProfileActivityViewController() -> ProfileActivityViewController {
       guard let vc = StoryboardScene.Main.profileActivityViewControllerScene.viewController() as? ProfileActivityViewController

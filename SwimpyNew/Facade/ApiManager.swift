@@ -30,7 +30,7 @@ class ApiManager {
                 print(data)
                 switch(withApi){
                     
-                case .Signup(_) , .Login(_), .LoginViaFacebook(_), .LoginViaGoogle(_):
+            case .Signup(_) , .Login(_), .LoginViaFacebook(_), .LoginViaGoogle(_):
                     let user = User(arrResult: data["data"])
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
@@ -42,10 +42,21 @@ class ApiManager {
                     let category = Category.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
                     
-                case .GetCategoryResults(_) :
+            case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_) :
                     let category = Products.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
                     
+                    //                case .GetSaleProduct(_) :
+                    //                    let category = Products.changeDictToModelArray(jsoon1: data)
+                //                    singleUserArray = category as AnyObject?
+                case .LikeProduct(_) :
+                    break
+                case .DislikeProduct(_) :
+                    break
+                case .GetGlobalActivity(_) :
+                    let category = GlobalActivity.changeDictToModelArray(jsoon1: data)
+                    singleUserArray = category as AnyObject?
+                    break
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }
@@ -77,7 +88,7 @@ class ApiManager {
             guard let temp = response else { return }
             let data = JSON(temp)
             print(response)
-           if(data["statusCode"].intValue >= 200 && data["statusCode"].intValue <= 299 ){
+            if(data["statusCode"].intValue >= 200 && data["statusCode"].intValue <= 299 ){
                 var singleUserArray : AnyObject?
                 switch(withApi){
                 case .Signup(_) :

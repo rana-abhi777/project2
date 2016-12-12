@@ -13,7 +13,7 @@ class CustomButton: UIButton {
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
-            layer.masksToBounds = cornerRadius > 0
+            layer.masksToBounds = true
         }
     }
     @IBInspectable var borderWidth: CGFloat = 0 {
@@ -27,17 +27,17 @@ class CustomButton: UIButton {
         }
     }
     
-    override func setTitle(_ title: String?, for state: UIControlState) {
-        super.setTitle(title, for: .normal)
-        self.setAttributedTitle(self.attributedString(), for: .normal)
-    }
-    
-    private func attributedString() -> NSAttributedString? {
-        let attributes = [
-                NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue
-        ]
-        let attributedString = NSAttributedString(string: self.currentTitle!, attributes: attributes)
-        return attributedString
-    }
+//    override func setTitle(_ title: String?, for state: UIControlState) {
+//        super.setTitle(title, for: .normal)
+//        self.setAttributedTitle(self.attributedString(), for: .normal)
+//    }
+//    
+//    private func attributedString() -> NSAttributedString? {
+//        let attributes = [
+//                NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue
+//        ]
+//        let attributedString = NSAttributedString(string: self.currentTitle!, attributes: attributes)
+//        return attributedString
+//    }
     
 }

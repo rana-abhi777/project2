@@ -1,19 +1,22 @@
 //
-//  Products.swift
+//  ProductDetail.swift
 //  SwimpyNew
 //
-//  Created by Aseem 10 on 11/24/16.
+//  Created by Aseem 10 on 12/8/16.
 //  Copyright © 2016 Aseem 10. All rights reserved.
 //
 
 import UIKit
 import SwiftyJSON
 
-class Products: NSObject {
+class ProductDetail: NSObject {
+    
     var id : String?
     var categoryId : String?
     var createrType : String?
     var order : String?
+    var imageThumbnail : String?
+    var imageOriginal : String?
     var flatValue : String?
     var percentage : String?
     var couponCode : String?
@@ -28,13 +31,10 @@ class Products: NSObject {
     var size : String?
     var base_price_unit : String?
     var totalLikes : String?
-    var productImageThumbnail : String?
-    var productImageOriginal : String?
-//    var Likes : 
+//    var Likes : []
     var productName : String?
     var subcategoryId : String?
     var createrId : String?
-    var hasLiked : Int = 0
     
     
     //MARK:- initializer
@@ -43,8 +43,10 @@ class Products: NSObject {
         id = arrResult["_id"].stringValue
         categoryId = arrResult["categoryId"].stringValue
         createrType = arrResult["createrType"].stringValue
-        
         order = arrResult["order"].stringValue
+        let defaultImage = arrResult["defaultImage"].dictionaryValue
+        imageThumbnail = defaultImage["thumbnail"]?.stringValue
+        imageOriginal = defaultImage["original"]?.stringValue
         flatValue = arrResult["flatValue"].stringValue
         percentage = arrResult["percentage"].stringValue
         couponCode = arrResult["couponCode"].stringValue
@@ -55,7 +57,6 @@ class Products: NSObject {
         location = arrResult["location"].stringValue
         shippingPrice = arrResult["shippingPrice"].stringValue
         isActive = arrResult["isActive"].stringValue
-        
         color = arrResult["color"].stringValue
         size = arrResult["size"].stringValue
         base_price_unit = arrResult["base_price_unit"].stringValue
@@ -63,23 +64,11 @@ class Products: NSObject {
         productName = arrResult["productName"].stringValue
         subcategoryId = arrResult["subcategoryId"].stringValue
         createrId = arrResult["createrId"].stringValue
-        
-        let image = arrResult["defaultImage"].dictionaryValue
-        productImageOriginal = image["original"]?.stringValue 
-        productImageThumbnail = image["thumbnail"]?.stringValue
-        hasLiked = arrResult["likesStatus"].intValue ?? 0
+
     }
     
     override init() {
         super.init()
     }
-    
-    static func changeDictToModelArray (jsoon1 : JSON ) -> [Products] {
-        var tempArr : [Products] = []
-        for arrResult in jsoon1["data"].arrayValue {
-            let categoryObj = Products(arrResult: arrResult)
-            tempArr.append(categoryObj)
-        }
-        return tempArr
-    }
+
 }
