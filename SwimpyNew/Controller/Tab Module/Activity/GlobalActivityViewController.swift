@@ -15,12 +15,17 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider {
     @IBOutlet weak var tableViewGlobalActivity: UITableView!
     
     //MARK:- variables
-    var arrCategoryData : [Category] = []
+    var arrActivityData : [GlobalActivity] = []
     var tableViewDataSource : TableViewCustomDatasource?
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         initialize()
     }
     override func didReceiveMemoryWarning() {
@@ -32,31 +37,30 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider {
     func initialize() {
         ApiManager().getDataOfURL(withApi: API.GetGlobalActivity(APIParameters.GetGlobalActivity().formatParameters()), failure: { (err) in
             print(err)
-            }, success: { (model) in
-                self.arrCategoryData = (model as? [GlobalActivity]) ?? []
-//                self.configureTableView()
+            }, success: {[unowned self] (model) in
+                self.arrActivityData = (model as? [GlobalActivity]) ?? []
+                self.configureTableView()
                 print(model)
-            }, method: "POST", loader: true)
+            }, method: "GET", loader: true)
         
     }
     
-//    func configureTableView() {
-//        tableViewDataSource = TableViewCustomDatasource(items: arrCategoryData, height: 112, estimatedHeight: 112, tableView: tableViewGlobalActivity, cellIdentifier: CellIdentifiers.CategoryTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
-//            let cell = cell as? CategoryTableViewCell
-//            cell?.backgroundColor = UIColor.gray
-//            cell?.configureCell(model: (self.arrCategoryData[indexpath.row] ))
-//            }, aRowSelectedListener: {[unowned self] (indexPath) in
+    func configureTableView() {
+        tableViewDataSource = TableViewCustomDatasource(items: arrActivityData, height: 89, estimatedHeight: 89, tableView: tableViewGlobalActivity, cellIdentifier: CellIdentifiers.GlobalActivityTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+            let cell = cell as? GlobalActivityTableViewCell
+            cell?.configureCell(model: (self.arrActivityData[indexpath.row] ))
+            }, aRowSelectedListener: {[unowned self] (indexPath) in
 //                let vc = StoryboardScene.Main.instantiateCategoryProductsViewController()
-//                vc.categoryId = self.arrCategoryData[indexPath.row].id
-//                vc.categoryName = self.arrCategoryData[indexPath.row].name ?? ""
+//                vc.categoryId = self.arrActivityData[indexPath.row].id
+//                vc.categoryName = self.arrActivityData[indexPath.row].name ?? ""
 //                self.navigationController?.pushViewController(vc, animated: true)
-//            })
-//        
-//        tableViewGlobalActivity.delegate = tableViewDataSource
-//        tableViewGlobalActivity.dataSource = tableViewDataSource
-//        tableViewGlobalActivity.reloadData()
-//    }
-//
+            })
+        
+        tableViewGlobalActivity.delegate = tableViewDataSource
+        tableViewGlobalActivity.dataSource = tableViewDataSource
+        tableViewGlobalActivity.reloadData()
+    }
+
     
     
     

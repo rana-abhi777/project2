@@ -27,6 +27,10 @@ class BaseViewController: UIViewController {
     
     //MARK: functions
     
+    func appendOptionalStrings(strings : [String?],separator : String) -> String{
+        return strings.flatMap{$0}.joined(separator: separator)
+    }
+    
     func callFusumaImagePiucker(btnOutlet : UIButton!){
         self.btnOutlet = btnOutlet
         let fusuma = FusumaViewController()

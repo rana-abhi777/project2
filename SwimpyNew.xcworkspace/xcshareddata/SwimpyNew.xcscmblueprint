@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D2CBF31FA56A641066B66DC091D3650CBE6F027D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C66AE5B4B7E647BE80BAA1C3C748896BF29C25BE" : 9223372036854775807,
+    "D2CBF31FA56A641066B66DC091D3650CBE6F027D" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BD894959-D9CC-4EA7-88B2-41D80DB135B6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C66AE5B4B7E647BE80BAA1C3C748896BF29C25BE" : "..\/..\/..\/..\/Users\/aseem10\/Desktop\/Glam360%20Swift2.0\/User\/july\/20%20July",
+    "D2CBF31FA56A641066B66DC091D3650CBE6F027D" : "social-comnerce\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwimpyNew",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwimpyNew.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/codebrew_ios\/glam360-user.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C66AE5B4B7E647BE80BAA1C3C748896BF29C25BE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/codebrew_ios\/social-comnerce.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D2CBF31FA56A641066B66DC091D3650CBE6F027D"
+    }
+  ]
+}

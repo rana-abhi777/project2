@@ -135,6 +135,15 @@ struct StoryboardScene {
       return vc
     }
 
+    case friendsViewControllerScene = "FriendsViewController"
+    static func instantiateFriendsViewController() -> FriendsViewController {
+      guard let vc = StoryboardScene.Main.friendsViewControllerScene.viewController() as? FriendsViewController
+      else {
+        fatalError("ViewController 'FriendsViewController' is not of the expected class FriendsViewController.")
+      }
+      return vc
+    }
+
     case globalActivityViewControllerScene = "GlobalActivityViewController"
     static func instantiateGlobalActivityViewController() -> GlobalActivityViewController {
       guard let vc = StoryboardScene.Main.globalActivityViewControllerScene.viewController() as? GlobalActivityViewController

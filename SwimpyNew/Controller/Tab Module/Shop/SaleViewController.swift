@@ -29,12 +29,17 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         initialize()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     
     //MARK:- FUNCTION
@@ -49,7 +54,16 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
             cell?.layer.borderWidth = 2.0
             cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
             cell?.configureCell(model: self.arrProduct[indexpath.row])
-            }, aRowSelectedListener: { (indexPath) in
+            }, aRowSelectedListener: {[unowned self] (indexPath) in
+                
+                let productId = self.arrProduct[indexPath.row].id ?? ""
+                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+                vc.productId = productId
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                
+                
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewSale.reloadData()

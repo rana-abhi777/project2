@@ -36,6 +36,10 @@ enum API {
     
     case GetPopularProduct(OptionalDictionary)
     case GetGlobalActivity(OptionalDictionary)
+    case ProductDetail(OptionalDictionary)
+    
+    case GetFeaturedProduct(OptionalDictionary)
+    
 }
 
 
@@ -52,11 +56,13 @@ enum APIParameters {
     case DislikeProduct(productId : String?)
     case GetPopularProduct()
     case GetGlobalActivity()
+    case ProductDetail(productId : String?)
+    case GetFeaturedProduct()
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
         case .Signup(let fullname, let email,let password) :
-            return ["name" : ("monika") as AnyObject, "email" : (email ?? "") as AnyObject , "password" : (password ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject]
+            return ["name" : (fullname ?? "") as AnyObject, "email" : (email ?? "") as AnyObject , "password" : (password ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject]
         case .Login(let email, let  password):
             return ["email" : (email ?? "") as AnyObject, "password" : (password ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject]
         case .ForgotPassword(let email):
@@ -72,6 +78,10 @@ enum APIParameters {
             return["productId" : (productId ?? "") as AnyObject]
         case .DislikeProduct(let productId) :
             return["productId" : (productId ?? "") as AnyObject]
+        case .ProductDetail(let productId) :
+            return ["productId" : (productId ?? "") as AnyObject]
+            
+            
         default:
             return ["" : "" as AnyObject]
         }
@@ -93,6 +103,8 @@ extension API : Router {
         case .DislikeProduct(let parameters) : return parameters
         case .GetPopularProduct(let _) : return nil
         case .GetGlobalActivity(let _) : return nil
+        case .ProductDetail(let parameters) : return parameters
+        case .GetFeaturedProduct(let _) : return nil
         }
     }
     
@@ -110,6 +122,8 @@ extension API : Router {
         case .DislikeProduct(_) : return "api/users/DislikeProduct"
         case .GetPopularProduct(_) : return "product/getPopularProduct"
         case .GetGlobalActivity(_) : return "api/users/getGlobalActivity"
+        case .ProductDetail(_) : return "product/getProductDetails"
+        case .GetFeaturedProduct(_) : return "product/getFeaturedProduct"
         }
     }
     

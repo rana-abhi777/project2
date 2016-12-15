@@ -29,8 +29,13 @@ class PopularViewController: UIViewController,IndicatorInfoProvider {
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         initialize()
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

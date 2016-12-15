@@ -17,11 +17,11 @@ typealias HttpManagerFailure = (String) -> ()
 
 class HttpManager {
     
-    static func getHeader() -> [String : String]? {
+    static func getHeader(contentType : Bool = false) -> [String : String]? {
         guard let _ = MMUserManager.shared.loggedInUser?.accessToken  else {
             return nil
         }
-        let header  = [ "Authorization" : "bearer " + (MMUserManager.shared.loggedInUser?.accessToken ?? ""), "Content-Type" : "application/x-www-form-urlencoded"]
+        var header  = [ "Authorization" : "bearer " + (MMUserManager.shared.loggedInUser?.accessToken ?? ""), "Content-Type" : "application/json"]
         return header
     }
     

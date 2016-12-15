@@ -18,6 +18,7 @@ class GlobalActivity: NSObject {
     var text : String?
     var time : String?
     
+    var idType : String?
     var itemId : String?
     var itemImgThumbnail : String?
     var itemImgOriginal : String?
@@ -28,6 +29,7 @@ class GlobalActivity: NSObject {
         super.init()
         let activeData = arrResult["activeData"].dictionaryValue
         let userData = activeData["userId"]?.dictionaryValue
+        idType = activeData["idType"]?.stringValue
         userId = userData?["_id"]?.stringValue
         userName = userData?["name"]?.stringValue
         let userImgData = userData?["profilePicURL"]?.dictionaryValue

@@ -28,7 +28,7 @@ class SaleCollectionViewCell: UICollectionViewCell {
     func configureCell(model : Products) {
         data = model
         lblProductName?.text = model.productName ?? ""
-        lblOriginalPrice?.text = "$" + (model.total_price ?? "0")
+        lblOriginalPrice?.text = "$" + (model.base_price_unit ?? "0")
         lblDiscountPrice?.text = "$" + (model.repost_price ?? "0")
         btnNumberOfLike?.setTitle(model.totalLikes ?? "", for: .normal)
         guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black

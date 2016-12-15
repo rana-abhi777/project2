@@ -13,7 +13,7 @@ class ActivityViewController: BasePageViewController {
  
     //MARK:- variables
     let globalVC = StoryboardScene.Main.instantiateGlobalActivityViewController()
-    let featureVC = StoryboardScene.Main.instantiateFeaturedViewController()
+    let friendsVC = StoryboardScene.Main.instantiateFriendsViewController()
 
     //MARK:- override functions
     override func viewDidLoad() {
@@ -24,10 +24,10 @@ class ActivityViewController: BasePageViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     //MARK:- functions
- 
     override func getViewControllers() -> [UIViewController] {
-        return [globalVC,featureVC]
+        return [globalVC,friendsVC]
     }
     
     //MARK:- button actions

@@ -16,13 +16,14 @@ class CustomButton: UIButton {
             layer.masksToBounds = true
         }
     }
-    @IBInspectable var borderWidth: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 1.0 {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
     @IBInspectable var borderColor: UIColor? {
         didSet {
+           
             layer.borderColor = borderColor?.cgColor
         }
     }

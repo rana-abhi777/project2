@@ -30,13 +30,6 @@ class CategoryTableViewCell: UITableViewCell {
         guard let url = model.categoryImageOriginal   else { imgCategory.backgroundColor = UIColor.black
             return }
         imgCategory?.setImageWith(URL(string : url))
-//        imgCategory.kf.indicatorType = .activity
-        
-//        imgCategory.sd_setImage(with: URL(string : url))
-//        imgCategory.kf.setImage(with:  URL(string : url))
-//        imgCategory?.kf_showIndicatorWhenLoading = true
-//        imgCategory?.kf_setImageWithURL(NSURL(string: url))
-        
-        //        imgCategory.sd_setImage(with: URL(string : model.categoryImageOriginal ?? ""))
+
     }
 }

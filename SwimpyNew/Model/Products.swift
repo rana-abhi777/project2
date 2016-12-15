@@ -35,6 +35,7 @@ class Products: NSObject {
     var subcategoryId : String?
     var createrId : String?
     var hasLiked : Int = 0
+    var share : String? 
     
     
     //MARK:- initializer
@@ -67,7 +68,8 @@ class Products: NSObject {
         let image = arrResult["defaultImage"].dictionaryValue
         productImageOriginal = image["original"]?.stringValue 
         productImageThumbnail = image["thumbnail"]?.stringValue
-        hasLiked = arrResult["likesStatus"].intValue ?? 0
+        hasLiked = arrResult["likesStatus"].intValue
+        share = arrResult["share"].stringValue
     }
     
     override init() {
