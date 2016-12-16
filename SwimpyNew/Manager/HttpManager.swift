@@ -21,7 +21,7 @@ class HttpManager {
         guard let _ = MMUserManager.shared.loggedInUser?.accessToken  else {
             return nil
         }
-        var header  = [ "Authorization" : "bearer " + (MMUserManager.shared.loggedInUser?.accessToken ?? ""), "Content-Type" : "application/json"]
+        let header  = [ "Authorization" : "bearer " + (MMUserManager.shared.loggedInUser?.accessToken ?? ""), "Content-Type" : "application/json"]
         return header
     }
     

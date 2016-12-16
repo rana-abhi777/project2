@@ -9,8 +9,12 @@
 import UIKit
 
 class ProductImagesCollectionViewCell: UICollectionViewCell {
+    
+    //MARK:- Outlets
     @IBOutlet weak var imgProduct: UIImageView!
     
+    
+    //MARK:-  function
     func configureCell(model: ProductOtherImage) {
         guard let url = model.productOtherImageImageOriginal else { imgProduct.backgroundColor = UIColor.gray
             return }

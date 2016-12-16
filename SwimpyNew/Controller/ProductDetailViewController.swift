@@ -17,7 +17,6 @@ class ProductDetailViewController: UIViewController {
     
     var productId : String = ""
     var productDetails : ProductDetail?
-//    var tableDataSource : tableDataSource?
     var arrOtherImages : [ProductOtherImage] = []
     var collectionViewdataSource : CollectionViewDataSource?{
         didSet{
@@ -78,6 +77,7 @@ class ProductDetailViewController: UIViewController {
         collectionViewProductImages.reloadData()
     }
 
+    //MARK:- button actions
     @IBAction func btnActionCart(_ sender: AnyObject) {
     }
     @IBAction func btnActionBack(_ sender: AnyObject) {

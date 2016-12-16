@@ -31,7 +31,7 @@ class ProductDetail: NSObject {
     var color : [String]?
     var base_price_unit : String?
     var totalLikes : Int?
-    //    var Likes : []
+    var arrLikeUser : [LikeUser]?
     var productName : String?
     var subcategoryId : String?
     var createrId : String?
@@ -43,9 +43,25 @@ class ProductDetail: NSObject {
     var describe : String?
     var likesStatus : Int?
     
+    
+    
+    var storeName : String?
+    var storeId : String?
+    var storeImgThumbnail : String?
+    var storeImgOriginal : String?
+    var numberOfFollwers : String?
+    
+    
+    var arrMoreFromStore : [MoreFromStore]?
+    
+    var arrRelatedProducts : [RelatedProducts]?
+    
     //MARK:- initializer
-    init(arrResult : JSON) {
+    init(response : JSON) {
         super.init()
+        
+        //product data
+        let arrResult = response["data"]
         id = arrResult["_id"].stringValue
         categoryId = arrResult["categoryId"].stringValue
         createrType = arrResult["createrType"].stringValue
@@ -83,6 +99,30 @@ class ProductDetail: NSObject {
         flatDiscount = arrResult["flatDiscount"].stringValue
         describe = arrResult["description"].stringValue
         likesStatus = arrResult["likesStatus"].intValue
+        
+        //seller data
+        
+        let sellerData = response["sellerData"].dictionaryValue
+        storeName = sellerData["storeName"]?.stringValue
+        storeId = sellerData["_id"]?.stringValue
+        let storeImage = sellerData["profilePicURL"]?.dictionaryValue
+        storeImgThumbnail = storeImage?["thumbnail"]?.stringValue
+        storeImgOriginal = storeImage?["original"]?.stringValue
+        numberOfFollwers = sellerData["totalFolllow"]?.stringValue ?? "0"
+        
+        //more from store
+        arrMoreFromStore = []
+        arrMoreFromStore = MoreFromStore.changeDictToModelArray(jsoon1: response)
+        
+        
+        //like users
+        arrLikeUser = []
+        arrLikeUser = LikeUser.changeDictToModelArray(jsoon1: response)
+        
+        //related products
+        arrRelatedProducts = []
+        arrRelatedProducts = RelatedProducts.changeDictToModelArray(jsoon1: response)
+        
     }
     
     override init() {

@@ -61,7 +61,7 @@ class ApiManager {
                     break
                     
                 case .ProductDetail(_) :
-                    let productDetail = ProductDetail(arrResult: data["data"])
+                    let productDetail = ProductDetail(response: data["data"])
                     singleUserArray = productDetail 
                     break
                

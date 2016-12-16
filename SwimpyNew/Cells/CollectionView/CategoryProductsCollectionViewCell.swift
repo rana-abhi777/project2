@@ -7,7 +7,10 @@
 //
 
 import UIKit
-import Kingfisher
+
+protocol CategoryProductsTask {
+    func updateLikeData(model : Products?, index : Int)
+}
 
 class CategoryProductsCollectionViewCell: UICollectionViewCell {
     
@@ -20,33 +23,46 @@ class CategoryProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgProduct: UIImageView!
     
     //MARK:-  variables
+    var delegate : CategoryProductsTask?
     var data : Products?
+    var index = 0
     
     //MARK:-  function
-    
-    func configureCell(model : Products) {
+    func configureCell(model : Products,row : Int) {
         data = model
+        index = row
         lblProductName.text = model.productName ?? ""
         lblPrice.text = "$" + (model.base_price_unit ?? "0")
         btnNumberOfLikes.setTitle(model.totalLikes, for: .normal)
         guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black
             return }
-        //        imgProduct.kf.indicatorType = .activity
-        //        imgProduct.kf.setImage(with: URL(string : url))
         imgProduct.sd_setImage(with: URL(string : url)) { (image, error, cache, url) in
             print(image)
         }
-        
+        if model.hasLiked == 0 {
+            btnLike.setImage(UIImage(asset: .icLike), for: .normal)
+        }
+        else {
+            btnLike.setImage(UIImage(asset: .icLikeOn), for: .normal)
+        }        
     }
     
     //MARK:-  Button Action
     @IBAction func btnActionLike(_ sender: AnyObject) {
-        if btnLike.image(for: .normal) == UIImage(asset: .icLike) {
+        if data?.hasLiked == 0 {
             ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: {[unowned self] (model) in
                     self.btnLike.setImage(UIImage(asset : .icLikeOn), for: .normal)
+                    print(self.data?.hasLiked)
+                    print(self.data?.totalLikes)
+                    print("\(Int(self.data?.totalLikes ?? "0") ?? 0)")
+                    let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) + 1
+                    self.data?.totalLikes = "\(likeCount)"
+                    self.data?.hasLiked = 1
+                    self.btnNumberOfLikes?.setTitle(self.data?.totalLikes, for: .normal)
                     print(model)
+                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
         else {
@@ -54,7 +70,14 @@ class CategoryProductsCollectionViewCell: UICollectionViewCell {
                 print(err)
                 }, success: {[unowned self] (model) in
                     self.btnLike.setImage(UIImage(asset : .icLike), for: .normal)
+                    print("\(Int(self.data?.totalLikes ?? "0") ?? 0)")
+                    let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) - 1
+                    self.data?.totalLikes = "\(likeCount)"
+                    self.btnNumberOfLikes?.setTitle(self.data?.totalLikes ?? "0", for: .normal)
+                    self.data?.hasLiked = 0
                     print(model)
+                    
+                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
     }

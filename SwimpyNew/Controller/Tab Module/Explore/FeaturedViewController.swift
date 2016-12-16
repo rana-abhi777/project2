@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
+class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedProductsTask {
     
     //MARK:- outlets
     @IBOutlet weak var tableViewFeaturedProducts: UITableView!
@@ -44,14 +44,23 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
     func configureTableView() {
         tableViewDataSource = TableViewCustomDatasource(items: arrFeaturedData, height: 616, estimatedHeight: 616, tableView: tableViewFeaturedProducts, cellIdentifier: CellIdentifiers.FeaturedTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? FeaturedTableViewCell
-            cell?.configureCell(model: self.arrFeaturedData[indexpath.row])
+            cell?.delegate = self
+            cell?.configureCell(model: self.arrFeaturedData[indexpath.row],row : indexpath.row)
             }, aRowSelectedListener: { (indexPath) in
-               
+                let productId = self.arrFeaturedData[indexPath.row].id ?? ""
+                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+                vc.productId = productId
+                self.navigationController?.pushViewController(vc, animated: true)
             })
         
         tableViewFeaturedProducts.delegate = tableViewDataSource
         tableViewFeaturedProducts.dataSource = tableViewDataSource
         tableViewFeaturedProducts.reloadData()
+    }
+    
+    func updateLikeData(model : Products?,index : Int) {
+        arrFeaturedData[index] = model ?? Products()
+        configureTableView()
     }
 
     //MARK:- IndicatorInfoProvider delegate

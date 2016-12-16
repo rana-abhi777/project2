@@ -1,43 +1,41 @@
-
 //
-//  SaleCollectionViewCell.swift
+//  RelatedProductsCollectionViewCell.swift
 //  SwimpyNew
 //
-//  Created by Aseem 10 on 12/8/16.
+//  Created by Aseem 10 on 12/16/16.
 //  Copyright © 2016 Aseem 10. All rights reserved.
 //
 
 import UIKit
 
-protocol SalesTask {
-    func updateLikeData(model : Products?, index : Int)
+protocol RelatedProductsTask {
+    func updateLikeData(model : RelatedProducts?, index : Int)
 }
 
 
-class SaleCollectionViewCell: UICollectionViewCell {
+class RelatedProductsCollectionViewCell: UICollectionViewCell {
     
-    //MARK:- Outlets
-    @IBOutlet weak var btnLike: UIButton!
-    @IBOutlet weak var btnNumberOfShare: UIButton!
-    @IBOutlet weak var btnNumberOfLike: UIButton!
-    @IBOutlet weak var lblOriginalPrice: UILabel!
-    @IBOutlet weak var lblDiscountPrice: UILabel!
+    //MARK:- outlets
     @IBOutlet weak var imgProduct: UIImageView!
     @IBOutlet weak var lblProductName: UILabel!
+    @IBOutlet weak var btnNumberOfLike: UIButton!
+    @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var btnNumberOfShare: UIButton!
+    @IBOutlet weak var btnLike: UIButton!
+    
     
     //MARK:- variables
-    var data : Products?
-    var delegate : SalesTask?
+    var data : RelatedProducts?
+    var delegate : RelatedProductsTask?
     var index = 0
     
     //MARK:-  function
     
-    func configureCell(model : Products,row : Int) {
+    func configureCell(model : RelatedProducts,row : Int) {
         data = model
         index = row
         lblProductName?.text = model.productName ?? ""
-        lblOriginalPrice?.text = "$" + (model.base_price_unit ?? "0")
-        lblDiscountPrice?.text = "$" + (model.repost_price ?? "0")
+        lblPrice?.text = "$" + (model.base_price_unit ?? "0")
         btnNumberOfLike?.setTitle(model.totalLikes ?? "", for: .normal)
         guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black
             return }
@@ -50,12 +48,14 @@ class SaleCollectionViewCell: UICollectionViewCell {
         else {
             btnLike.setImage(UIImage(asset: .icLikeOn), for: .normal)
         }
-
+        
     }
+
     
     
-    //MARK:- button actions
-    @IBAction func actionBtnLike(_ sender: AnyObject) {
+    //MARK:- button action
+    
+    @IBAction func btnActionLike(_ sender: AnyObject) {
         if data?.hasLiked == 0 {
             ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
@@ -67,9 +67,9 @@ class SaleCollectionViewCell: UICollectionViewCell {
                     let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) + 1
                     self.data?.totalLikes = "\(likeCount)"
                     self.data?.hasLiked = 1
-                     self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
+                    self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
                     print(model)
-                     self.delegate?.updateLikeData(model: self.data, index: self.index)
+                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
         else {
@@ -84,11 +84,8 @@ class SaleCollectionViewCell: UICollectionViewCell {
                     self.data?.hasLiked = 0
                     print(model)
                     
-                     self.delegate?.updateLikeData(model: self.data, index: self.index)
+                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
     }
-    
-    
-    
 }

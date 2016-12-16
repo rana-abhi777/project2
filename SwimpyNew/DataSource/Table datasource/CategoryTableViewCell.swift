@@ -23,9 +23,9 @@ class CategoryTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
     //MARK:-   functions
     func configureCell(model : Category) {
-        
         lblCategoryName?.text = model.name ?? ""
         guard let url = model.categoryImageOriginal   else { imgCategory.backgroundColor = UIColor.black
             return }

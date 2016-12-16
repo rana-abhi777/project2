@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class DealsViewController: BaseViewController,IndicatorInfoProvider {
+class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProductTask {
 
     //MARK:- variables
     var categoryId : String?
@@ -23,29 +23,21 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewDeals: UICollectionView!
+    @IBOutlet weak var viewNoProducts: UIView!
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialize()
     }
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    //MARK:- functions
+    //MARK:- FUNCTION
     func initialize() {
-        hitApiForCategory()
-    }
-    
-    func hitApiForCategory() {
-        ApiManager().getDataOfURL(withApi: API.GetCategoryResults(APIParameters.GetCategoryResults(categoryId: categoryId).formatParameters()), failure: { (err) in
-            print(err)
-            }, success: {[unowned self] (model) in
-                self.arrProduct =  (model as? [Products]) ?? []
-                self.configureCollectionView()
-                print(model)
-            }, method: "GET", loader: true)
+        hitApiForPopularProduct()
     }
     
     func configureCollectionView(){
@@ -54,13 +46,43 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
             cell?.layer.cornerRadius = 4.0
             cell?.layer.borderWidth = 2.0
             cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-            cell?.configureCell(model: self.arrProduct[indexpath.row])
+            cell?.delegate = self
+            cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
+            
             }, aRowSelectedListener: { (indexPath) in
+                
+                let productId = self.arrProduct[indexPath.row].id ?? ""
+                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+                vc.productId = productId
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewDeals.reloadData()
     }
     
+    
+    func hitApiForPopularProduct() {
+        ApiManager().getDataOfURL(withApi: API.GetPopularProduct(APIParameters.GetPopularProduct().formatParameters()), failure: { (err) in
+            print(err)
+            }, success: {[unowned self] (model) in
+                self.arrProduct =  (model as? [Products]) ?? []
+                if self.arrProduct.count > 0 {
+                    self.configureCollectionView()
+                    self.view.bringSubview(toFront: self.collectionViewDeals)
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoProducts)
+                    
+                }
+                print(model)
+            }, method: "GET", loader: true)
+    }
+    
+    func updateLikeData(model : Products?,index : Int) {
+        arrProduct[index] = model ?? Products()
+        configureCollectionView()
+    }
     
     
     //MARK:- indicator info provider delegate

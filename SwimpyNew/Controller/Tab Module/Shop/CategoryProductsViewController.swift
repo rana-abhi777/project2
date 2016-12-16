@@ -8,10 +8,9 @@
 
 import UIKit
 
-class CategoryProductsViewController: UIViewController {
+class CategoryProductsViewController: UIViewController, CategoryProductsTask {
+    
     //MARK:- variables
-    
-    
     var categoryId : String?
     var categoryName = ""
     var arrProduct : [Products] = []
@@ -34,7 +33,7 @@ class CategoryProductsViewController: UIViewController {
         super.viewWillAppear(true)
         initialize()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -51,8 +50,14 @@ class CategoryProductsViewController: UIViewController {
             cell?.layer.cornerRadius = 4.0
             cell?.layer.borderWidth = 2.0
             cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-            cell?.configureCell(model: self.arrProduct[indexpath.row])
+            cell?.delegate = self
+            cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
             }, aRowSelectedListener: { (indexPath) in
+                let productId = self.arrProduct[indexPath.row].id ?? ""
+                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+                vc.productId = productId
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewCategoryProducts.reloadData()
@@ -74,6 +79,11 @@ class CategoryProductsViewController: UIViewController {
                 }
                 print(model)
             }, method: "GET", loader: true)
+    }
+    
+    func updateLikeData(model : Products?,index : Int) {
+        arrProduct[index] = model ?? Products()
+        configureCollectionView()
     }
     
     

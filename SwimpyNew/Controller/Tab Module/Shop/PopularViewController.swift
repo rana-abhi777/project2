@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class PopularViewController: UIViewController,IndicatorInfoProvider {
+class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProductTask {
     
     //MARK:- OUTLET
     @IBOutlet weak var viewNoProduct: UIView!
@@ -52,8 +52,16 @@ class PopularViewController: UIViewController,IndicatorInfoProvider {
             cell?.layer.cornerRadius = 4.0
             cell?.layer.borderWidth = 2.0
             cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-            cell?.configureCell(model: self.arrProduct[indexpath.row])
+             cell?.delegate = self
+            cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
+           
             }, aRowSelectedListener: { (indexPath) in
+                
+                let productId = self.arrProduct[indexPath.row].id ?? ""
+                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+                vc.productId = productId
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewPopularProducts.reloadData()
@@ -77,7 +85,10 @@ class PopularViewController: UIViewController,IndicatorInfoProvider {
             }, method: "GET", loader: true)
     }
     
-    
+    func updateLikeData(model : Products?,index : Int) {
+        arrProduct[index] = model ?? Products()
+        configureCollectionView()
+    }
     
     //MARK:- indicator info provide delegate
     
