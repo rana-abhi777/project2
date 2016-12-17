@@ -28,6 +28,8 @@ class ProductDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var btnSelectSize: UIButton!
     @IBOutlet weak var btnSelectColor: UIButton!
     @IBOutlet weak var collectionViewLIkeUser: UICollectionView!
+    @IBOutlet weak var imgHeart: UIImageView!
+    @IBOutlet weak var constCollectionViewLikeUserWidth: NSLayoutConstraint!
     
     //MARK:- Variables
     let selectColorDropDown = DropDown()
@@ -88,16 +90,62 @@ class ProductDetailTableViewCell: UITableViewCell {
         imgShare.image = UIImage(asset: .icShare)
         if (model.arrLikeUser?.count ?? 0) > 0 {
             configureCollectionView()
+        }else {
+            lblLikes.isHidden = true
+            imgHeart.isHidden = true
         }
     }
     
     
     func configureCollectionView(){
-        guard let arrLike = data?.arrLikeUser else { return }
-        collectionViewdataSource = CollectionViewDataSource(items: arrLike, collectionView: collectionViewLIkeUser, cellIdentifier: CellIdentifiers.ProductLikeUserCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 33, cellWidth: 32 , cellSpacing: 0, configureCellBlock: { (cell, item, indexpath) in
+        let temp = data?.arrLikeUser ?? []
+        var arrLike : [LikeUser] = []
+        
+        for (index,item) in temp.enumerated() {
+            if index < 5 {
+                arrLike.append(item)
+                constCollectionViewLikeUserWidth.constant = CGFloat(arrLike.count * 26)
+                self.layoutIfNeeded()
+            }else {
+                break
+            }
+        }
+        
+        
+        switch temp.count {
+        case _ where temp.count > 5:
+            lblLikes.isHidden = false
+            lblLikes.text = "+ " + "\(temp.count - 5) " + "Others"
+            break
+        case _ where temp.count == 5 :
+            constCollectionViewLikeUserWidth.constant = 120.0
+            self.layoutIfNeeded()
+            break
+        case _ where temp.count == 1 :
+            constCollectionViewLikeUserWidth.constant = 40.0
+            self.layoutIfNeeded()
+            break
+        case _ where temp.count < 5 :
+            constCollectionViewLikeUserWidth.constant = CGFloat(arrLike.count * 26)
+            self.layoutIfNeeded()
+            break
+            
+        default:
+            break
+        }
+        
+        if arrLike.count <= 5 {
+            lblLikes.isHidden = false
+            if arrLike.count == 1 {
+                lblLikes.text =  "\(arrLike.count) " + "user"
+            }
+            else {
+                lblLikes.text =  "\(arrLike.count) " + "users"
+            }
+        }
+        
+        collectionViewdataSource = CollectionViewDataSource(items: arrLike, collectionView: collectionViewLIkeUser, cellIdentifier: CellIdentifiers.ProductLikeUserCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 35, cellWidth: 20 , cellSpacing: 0, configureCellBlock: { (cell, item, indexpath) in
             let cell = cell as? ProductLikeUserCollectionViewCell
-            cell?.layer.borderWidth = 1.0
-            cell?.layer.borderColor = UIColor.white.cgColor
             cell?.configureCell(model: arrLike[indexpath.row])
             }, aRowSelectedListener: { (indexPath) in
             }, scrollViewListener: { (UIScrollView) in

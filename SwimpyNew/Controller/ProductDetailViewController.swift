@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ProductDetailViewController: UIViewController {
+class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction {
     
-    
+    //MARK:- outlets
     @IBOutlet weak var collectionViewProductImages: UICollectionView!
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var tableViewProductDetail: UITableView!
     
+    //MARK:- variables
     var productId : String = ""
     var productDetails : ProductDetail?
     var arrOtherImages : [ProductOtherImage] = []
@@ -30,12 +31,12 @@ class ProductDetailViewController: UIViewController {
             tableViewProductDetail.delegate = tableDataSource
         }
     }
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -60,8 +61,10 @@ class ProductDetailViewController: UIViewController {
             }, method: "GET", loader: true)
     }
     
+    
+    //MARK:- configure tableview and collection view
     func configureTableView() {
-        tableDataSource = ProductDetailTableDataSource(tableView: tableViewProductDetail, datasource: productDetails ?? ProductDetail())
+        tableDataSource = ProductDetailTableDataSource(tableView: tableViewProductDetail, datasource: productDetails ?? ProductDetail(),vc: self)
         tableViewProductDetail.reloadData()
     }
     
@@ -71,12 +74,21 @@ class ProductDetailViewController: UIViewController {
             let cell = cell as? ProductImagesCollectionViewCell
             
             cell?.configureCell(model: self.arrOtherImages[indexpath.row])
-            }, aRowSelectedListener: {[unowned self] (indexPath) in
+            }, aRowSelectedListener: { (indexPath) in
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewProductImages.reloadData()
     }
-
+    
+    
+    //MARK:- delegate function
+    func redirectToProductDetail(productId : String) {
+        let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+        vc.productId = productId
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     //MARK:- button actions
     @IBAction func btnActionCart(_ sender: AnyObject) {
     }

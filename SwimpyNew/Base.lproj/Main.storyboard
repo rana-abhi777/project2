@@ -581,14 +581,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="615" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gZr-jm-9CC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="310" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gZr-jm-9CC">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeaturedTableViewCell" rowHeight="615" id="3Yk-tf-BYs" customClass="FeaturedTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="615"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeaturedTableViewCell" rowHeight="310" id="3Yk-tf-BYs" customClass="FeaturedTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="310"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Yk-tf-BYs" id="ro8-nZ-F9M">
-                                            <frame key="frameInset" width="375" height="614"/>
+                                            <frame key="frameInset" width="375" height="309"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iwt-jA-H2w">
@@ -709,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfg-Vd-gs6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="732"/>
+            <point key="canvasLocation" x="1045.5999999999999" y="731.78410794602701"/>
         </scene>
         <!--Explore-->
         <scene sceneID="9La-Vr-QJA">
@@ -992,7 +992,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-Nf-HTd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-Nf-HTd">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryTableViewCell" rowHeight="112" id="ZHB-3s-7fI" customClass="CategoryTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
@@ -1333,9 +1333,9 @@
                                                         <action selector="btnActionShare:" destination="WKt-ZQ-bim" eventType="touchUpInside" id="lUY-9s-VVk"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQH-O6-SAq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+48 Others" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQH-O6-SAq">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="2Ae-ED-shN"/>
+                                                        <constraint firstAttribute="width" constant="50" id="2Ae-ED-shN"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -1347,21 +1347,22 @@
                                                         <constraint firstAttribute="width" constant="120" id="LIh-hp-i3T"/>
                                                         <constraint firstAttribute="height" constant="40" id="P7Z-2A-t1l"/>
                                                     </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GaI-cL-gxd">
-                                                        <size key="itemSize" width="38" height="32"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="GaI-cL-gxd">
+                                                        <size key="itemSize" width="20" height="35"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductLikeUserCollectionViewCell" id="1w0-AD-Ae1" customClass="ProductLikeUserCollectionViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="4" width="38" height="32"/>
+                                                        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductLikeUserCollectionViewCell" id="1w0-AD-Ae1" customClass="ProductLikeUserCollectionViewCell" customModule="SwimpyNew" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="3" width="20" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="38" height="32"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="35"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="605-6R-0SM" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
+                                                                        <color key="backgroundColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="32" id="QSJ-yE-V9b"/>
                                                                             <constraint firstAttribute="width" constant="32" id="Rdr-cT-e0h"/>
@@ -1370,14 +1371,21 @@
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                                 <real key="value" value="16"/>
                                                                             </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                 </subviews>
                                                             </view>
                                                             <constraints>
-                                                                <constraint firstItem="605-6R-0SM" firstAttribute="centerY" secondItem="1w0-AD-Ae1" secondAttribute="centerY" id="hBi-Wp-9nS"/>
-                                                                <constraint firstItem="605-6R-0SM" firstAttribute="centerX" secondItem="1w0-AD-Ae1" secondAttribute="centerX" id="mky-pf-HFn"/>
+                                                                <constraint firstItem="605-6R-0SM" firstAttribute="centerY" secondItem="1w0-AD-Ae1" secondAttribute="centerY" constant="-0.5" id="hBi-Wp-9nS"/>
+                                                                <constraint firstItem="605-6R-0SM" firstAttribute="centerX" secondItem="1w0-AD-Ae1" secondAttribute="centerX" constant="6" id="mky-pf-HFn"/>
                                                             </constraints>
+                                                            <size key="customSize" width="20" height="35"/>
                                                             <connections>
                                                                 <outlet property="imgUser" destination="605-6R-0SM" id="KYD-kn-6wo"/>
                                                             </connections>
@@ -1526,9 +1534,16 @@ Ships easy to any country from…</string>
                                                         <action selector="btnActionSelectSize:" destination="WKt-ZQ-bim" eventType="touchUpInside" id="Do1-M5-ZmF"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_heart" translatesAutoresizingMaskIntoConstraints="NO" id="fGN-dm-6ZH">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="dxq-8c-n80"/>
+                                                        <constraint firstAttribute="width" constant="16" id="ve7-pT-m6J"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="h2L-Wr-ZLY" firstAttribute="leading" secondItem="liY-zL-Mss" secondAttribute="leading" id="0D0-Cg-uzc"/>
+                                                <constraint firstItem="2jU-bX-K0a" firstAttribute="leading" secondItem="fGN-dm-6ZH" secondAttribute="trailing" constant="8" id="0YY-hd-40R"/>
                                                 <constraint firstItem="liY-zL-Mss" firstAttribute="leading" secondItem="vm8-qg-thq" secondAttribute="trailing" constant="16" id="1ZI-7k-eqL"/>
                                                 <constraint firstItem="sZO-r6-ubw" firstAttribute="leading" secondItem="7UG-uc-e34" secondAttribute="trailing" constant="8" id="2Fo-V2-Xrq"/>
                                                 <constraint firstItem="oJp-vd-5u0" firstAttribute="top" secondItem="BJ8-7Q-gy9" secondAttribute="bottom" multiplier="1.02" constant="8" symbolic="YES" id="38t-ef-Vf1"/>
@@ -1548,11 +1563,12 @@ Ships easy to any country from…</string>
                                                 <constraint firstItem="wTD-Y0-y34" firstAttribute="centerX" secondItem="liY-zL-Mss" secondAttribute="centerX" id="DpW-4P-puk"/>
                                                 <constraint firstItem="Xd9-oM-Bqg" firstAttribute="leading" secondItem="HFD-Kn-qxy" secondAttribute="leading" constant="16" id="Dvc-gh-nwj"/>
                                                 <constraint firstItem="oJp-vd-5u0" firstAttribute="leading" secondItem="BJ8-7Q-gy9" secondAttribute="leading" id="Eva-AT-rL7"/>
+                                                <constraint firstItem="fGN-dm-6ZH" firstAttribute="centerY" secondItem="2jU-bX-K0a" secondAttribute="centerY" id="GdH-GD-oUK"/>
                                                 <constraint firstItem="Cww-qA-iE2" firstAttribute="leading" secondItem="HFD-Kn-qxy" secondAttribute="leading" id="ICr-FM-qpa"/>
                                                 <constraint firstItem="vK5-zy-5u6" firstAttribute="leading" secondItem="Xd9-oM-Bqg" secondAttribute="leading" id="Jcx-cp-3ef"/>
                                                 <constraint firstItem="liY-zL-Mss" firstAttribute="top" secondItem="2ii-ri-ecp" secondAttribute="top" constant="-4" id="KVy-3k-prx"/>
                                                 <constraint firstItem="9Dd-Lc-i4l" firstAttribute="top" secondItem="YMM-tY-Zwu" secondAttribute="top" id="M10-l3-3KY"/>
-                                                <constraint firstItem="2jU-bX-K0a" firstAttribute="top" secondItem="ZaL-p0-eQP" secondAttribute="top" id="MHQ-yq-L7R"/>
+                                                <constraint firstItem="2jU-bX-K0a" firstAttribute="top" secondItem="ZaL-p0-eQP" secondAttribute="top" constant="-8" id="MHQ-yq-L7R"/>
                                                 <constraint firstAttribute="trailing" secondItem="wT9-Wv-Pfz" secondAttribute="trailing" multiplier="1.02" constant="20" symbolic="YES" id="NGh-nT-66f"/>
                                                 <constraint firstAttribute="trailing" secondItem="liY-zL-Mss" secondAttribute="trailing" constant="8" id="NIh-vv-4HL"/>
                                                 <constraint firstItem="vm8-qg-thq" firstAttribute="height" secondItem="liY-zL-Mss" secondAttribute="height" id="Ns9-wo-FWJ"/>
@@ -1580,7 +1596,7 @@ Ships easy to any country from…</string>
                                                 <constraint firstAttribute="trailing" secondItem="vK5-zy-5u6" secondAttribute="trailing" constant="16" id="iJZ-Ks-K2k"/>
                                                 <constraint firstItem="oJp-vd-5u0" firstAttribute="trailing" secondItem="sZO-r6-ubw" secondAttribute="trailing" id="iqd-4Z-WT2"/>
                                                 <constraint firstItem="YMM-tY-Zwu" firstAttribute="leading" secondItem="HFD-Kn-qxy" secondAttribute="leading" constant="20" symbolic="YES" id="jbG-Ut-anD"/>
-                                                <constraint firstItem="TQH-O6-SAq" firstAttribute="leading" secondItem="2jU-bX-K0a" secondAttribute="trailing" constant="-4" id="ktd-3V-rvB"/>
+                                                <constraint firstItem="TQH-O6-SAq" firstAttribute="leading" secondItem="2jU-bX-K0a" secondAttribute="trailing" constant="-8" id="ktd-3V-rvB"/>
                                                 <constraint firstItem="2ii-ri-ecp" firstAttribute="leading" secondItem="Xd9-oM-Bqg" secondAttribute="trailing" constant="8" id="l2S-8h-b1Y"/>
                                                 <constraint firstItem="wT9-Wv-Pfz" firstAttribute="leading" secondItem="6Ss-SW-kRC" secondAttribute="trailing" constant="9" id="n3Q-GJ-bzF"/>
                                                 <constraint firstAttribute="trailing" secondItem="Vli-Tl-qT7" secondAttribute="trailing" constant="8" id="n3d-gw-OQ0"/>
@@ -1604,6 +1620,8 @@ Ships easy to any country from…</string>
                                             <outlet property="btnSelectColor" destination="Vli-Tl-qT7" id="p0c-E6-gHw"/>
                                             <outlet property="btnSelectSize" destination="0qu-L7-UhU" id="CKR-ke-Ouk"/>
                                             <outlet property="collectionViewLIkeUser" destination="2jU-bX-K0a" id="hIk-aP-7sW"/>
+                                            <outlet property="constCollectionViewLikeUserWidth" destination="LIh-hp-i3T" id="OYC-zG-Rrq"/>
+                                            <outlet property="imgHeart" destination="fGN-dm-6ZH" id="wC3-vr-uXe"/>
                                             <outlet property="imgLike" destination="liY-zL-Mss" id="o9h-yG-r9U"/>
                                             <outlet property="imgShare" destination="vm8-qg-thq" id="pVQ-II-AW0"/>
                                             <outlet property="imgStoreLogo" destination="Xd9-oM-Bqg" id="Jai-k7-KQL"/>
@@ -2838,7 +2856,7 @@ Ships easy to any country from…</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="127" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-gT-b8R">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="127" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-gT-b8R">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GlobalActivityTableViewCell" rowHeight="89" id="n5X-1y-0ic" customClass="GlobalActivityTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
@@ -4212,7 +4230,7 @@ Ships easy to any country from…</string>
                                     <constraint firstItem="W9d-MG-3zi" firstAttribute="centerX" secondItem="nrX-4p-dsA" secondAttribute="centerX" id="rVA-aB-UPm"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vLQ-3I-iCn">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vLQ-3I-iCn">
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="25s-ca-baH">
                                     <size key="itemSize" width="291" height="264"/>
@@ -4350,7 +4368,7 @@ Ships easy to any country from…</string>
                                     <constraint firstItem="KOg-uU-sU4" firstAttribute="centerX" secondItem="Tbz-ry-LtM" secondAttribute="centerX" id="Mey-yr-mPa"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="p03-xi-dP6">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="p03-xi-dP6">
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zl7-aq-Yd2">
                                     <size key="itemSize" width="359" height="268"/>
@@ -5969,6 +5987,7 @@ But eventually, even a super-dense guy like me can learn, proving that anybody o
         <image name="ic_explore" width="24" height="24"/>
         <image name="ic_explore_on" width="24" height="24"/>
         <image name="ic_facebook-icon" width="9" height="20"/>
+        <image name="ic_heart" width="16" height="16"/>
         <image name="ic_heart_grey" width="24" height="24"/>
         <image name="ic_img" width="360" height="640"/>
         <image name="ic_inbox" width="24" height="24"/>

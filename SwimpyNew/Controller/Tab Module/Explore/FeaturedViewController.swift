@@ -22,6 +22,10 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         initialize()
     }
     
@@ -42,7 +46,7 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     }
     
     func configureTableView() {
-        tableViewDataSource = TableViewCustomDatasource(items: arrFeaturedData, height: 616, estimatedHeight: 616, tableView: tableViewFeaturedProducts, cellIdentifier: CellIdentifiers.FeaturedTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+        tableViewDataSource = TableViewCustomDatasource(items: arrFeaturedData, height: 310, estimatedHeight: 310, tableView: tableViewFeaturedProducts, cellIdentifier: CellIdentifiers.FeaturedTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? FeaturedTableViewCell
             cell?.delegate = self
             cell?.configureCell(model: self.arrFeaturedData[indexpath.row],row : indexpath.row)

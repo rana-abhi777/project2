@@ -8,13 +8,18 @@
 
 import UIKit
 
+protocol RelatedProductsDelegateFunction {
+    func redirectToProductDetail(productId : String)
+}
+
 class RelatedProductsTableViewCell: UITableViewCell,RelatedProductsTask {
 
+    //MARK:- Outlets
     @IBOutlet weak var collectionViewRelatedProducts: UICollectionView!
-    
     
     //MARK:- VARIABLES
     var data : ProductDetail?
+    var delegate : RelatedProductsDelegateFunction?
     var arrRelatedProducts : [RelatedProducts]?
     var collectionViewdataSource : CollectionViewDataSource?{
         didSet{
@@ -23,7 +28,7 @@ class RelatedProductsTableViewCell: UITableViewCell,RelatedProductsTask {
         }
     }
     
-    
+    //MARK:- override functions
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -51,10 +56,13 @@ class RelatedProductsTableViewCell: UITableViewCell,RelatedProductsTask {
             cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
             cell?.configureCell(model: arrProducts[indexpath.row],row : indexpath.row)
             }, aRowSelectedListener: { (indexPath) in
+                let id = arrProducts[indexPath.row].id ?? ""
+                self.delegate?.redirectToProductDetail(productId: id)
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewRelatedProducts.reloadData()
     }
+    
     func updateLikeData(model : RelatedProducts?,index : Int) {
         arrRelatedProducts?[index] = model ?? RelatedProducts()
         configureCollectionView()

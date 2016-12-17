@@ -18,6 +18,10 @@ class ProductImagesCollectionViewCell: UICollectionViewCell {
     func configureCell(model: ProductOtherImage) {
         guard let url = model.productOtherImageImageOriginal else { imgProduct.backgroundColor = UIColor.gray
             return }
-        imgProduct?.sd_setImage(with: URL(string : url))
+        print(url)
+        imgProduct?.sd_setImage(with: URL(string : url)) { (image, error, cache, url) in
+            print(image)
+        }
+      //  imgProduct?.sd_setImage(with: URL(string : url))
     }
 }

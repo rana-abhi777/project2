@@ -85,6 +85,7 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
             }, method: "GET", loader: true)
     }
     
+    //MARK:- delegate function
     func updateLikeData(model : Products?,index : Int) {
         arrProduct[index] = model ?? Products()
         configureCollectionView()

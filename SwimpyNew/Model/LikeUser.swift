@@ -35,9 +35,11 @@ class LikeUser: NSObject {
     static func changeDictToModelArray (jsoon1 : JSON ) -> [LikeUser] {
         var tempArr : [LikeUser] = []
         for item in jsoon1["likedUser"].arrayValue {
-            let arrResult = item["likeBy"]
-            let userObj = LikeUser(arrResult: arrResult)
-            tempArr.append(userObj)
+            if item["is_delete"].intValue != 1 {
+                let arrResult = item["likeBy"]
+                let userObj = LikeUser(arrResult: arrResult)
+                tempArr.append(userObj)
+            }
         }
         return tempArr
     }

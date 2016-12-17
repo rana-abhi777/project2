@@ -14,11 +14,13 @@ class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewData
     
     var tableView:UITableView?
     var datasource : ProductDetail?
+    var vc : UIViewController?
     
     //MARK:- initializer
-    init(tableView: UITableView ,  datasource : ProductDetail) {
+    init(tableView: UITableView ,  datasource : ProductDetail, vc : UIViewController) {
         self.tableView = tableView
         self.datasource = datasource
+        self.vc = vc
     }
     override init() {
         super.init()
@@ -42,6 +44,7 @@ class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewData
                 return UITableViewCell()
             }
             cell.configureCell(model: datasource ?? ProductDetail())
+            cell.delegate = (vc as? ProductDetailViewController) ?? nil
             return cell
         }
         else {
@@ -49,6 +52,7 @@ class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewData
                 return UITableViewCell()
             }
             cell.configureCell(model: datasource ?? ProductDetail())
+            cell.delegate = (vc as? ProductDetailViewController) ?? nil
             return cell
         }
         

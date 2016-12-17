@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MoreProductsDelegateFunction {
+    func redirectToProductDetail(productId : String)
+}
+
 class MoreFromStoreTableViewCell: UITableViewCell {
     
     //MARK:- Outlets
@@ -26,7 +30,7 @@ class MoreFromStoreTableViewCell: UITableViewCell {
             collectionViewProducts.delegate = collectionViewdataSource
         }
     }
-    
+    var delegate : MoreProductsDelegateFunction?
     
     //MARK:- override functions
     override func awakeFromNib() {
@@ -52,10 +56,14 @@ class MoreFromStoreTableViewCell: UITableViewCell {
         guard let arrProducts = data?.arrMoreFromStore else { return }
         collectionViewdataSource = CollectionViewDataSource(items: arrProducts, collectionView: collectionViewProducts, cellIdentifier: CellIdentifiers.MoreProductsCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 80, cellWidth: 80 , cellSpacing: 8, configureCellBlock: { (cell, item, indexpath) in
             let cell = cell as? MoreProductsCollectionViewCell
-            cell?.layer.borderWidth = 1.0
-            cell?.layer.borderColor = UIColor.white.cgColor
+            
+            cell?.layer.cornerRadius = 4.0
+            cell?.layer.borderWidth = 2.0
+            cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
             cell?.configureCell(model: arrProducts[indexpath.row])
             }, aRowSelectedListener: { (indexPath) in
+                let id = arrProducts[indexPath.row].id ?? ""
+                self.delegate?.redirectToProductDetail(productId: id)
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewProducts.reloadData()
