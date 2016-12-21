@@ -36,10 +36,14 @@ enum API {
     
     case GetPopularProduct(OptionalDictionary)
     case GetGlobalActivity(OptionalDictionary)
+    case GetUserActivity(OptionalDictionary)
+    
     case ProductDetail(OptionalDictionary)
     
     case GetFeaturedProduct(OptionalDictionary)
-    
+    case FollowStore(OptionalDictionary)
+    case UnfollowStore(OptionalDictionary)
+    case GetUserDetail(OptionalDictionary)
 }
 
 
@@ -50,14 +54,18 @@ enum APIParameters {
     case LoginViaFacebook(facebookId : String?, name : String?, facebookImageUrl : String?)
     case LoginViaGoogle(googleId : String?,name : String? , googleImageUrl : String?)
     case GetCategory()
-    case GetCategoryResults(categoryId : String?)
-    case GetSaleProduct()
+    case GetCategoryResults(categoryId : String?,pageNo : String?)
+    case GetSaleProduct(pageNo : String?)
     case LikeProduct(productId : String?)
     case DislikeProduct(productId : String?)
-    case GetPopularProduct()
+    case GetPopularProduct(pageNo : String? )
     case GetGlobalActivity()
+    case GetUserActivity()
     case ProductDetail(productId : String?)
-    case GetFeaturedProduct()
+    case GetFeaturedProduct(pageNo : String? )
+    case FollowStore(sellerId : String?)
+    case UnfollowStore(sellerId : String?)
+    case GetUserDetail(userId : String?)
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
@@ -71,8 +79,8 @@ enum APIParameters {
             return ["facebookId" : (fbId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "facebookImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
         case .LoginViaGoogle(let googleId , let name, let imgUrl) :
             return ["googleId" : (googleId ?? "") as AnyObject , "name" : (name ?? "") as AnyObject, "googleImageUrl" : (imgUrl  ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "language" : "EN" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject , "flushPreviousSessions" :  true as AnyObject]
-        case .GetCategoryResults(let categoryId) :
-            return ["categoryId" : (categoryId ?? "") as AnyObject]
+        case .GetCategoryResults(let categoryId, let pageNo) :
+            return ["categoryId" : (categoryId ?? "") as AnyObject, "pageNo" : (pageNo ?? "") as AnyObject]
             
         case .LikeProduct(let productId) :
             return["productId" : (productId ?? "") as AnyObject]
@@ -80,7 +88,20 @@ enum APIParameters {
             return["productId" : (productId ?? "") as AnyObject]
         case .ProductDetail(let productId) :
             return ["productId" : (productId ?? "") as AnyObject]
+        case .FollowStore(let sellerId) :
+            return["sellerId" : (sellerId ?? "") as AnyObject]
+        case .UnfollowStore(let sellerId) :
+            return["sellerId" : (sellerId ?? "") as AnyObject]
+        case .GetUserDetail(let userId) :
+            return["userId" : (userId ?? "") as AnyObject]
             
+        case .GetFeaturedProduct(let pageNo) :
+            return["pageNo" : (pageNo ?? "") as AnyObject]
+        case .GetSaleProduct(let pageNo) :
+            return["pageNo" : (pageNo ?? "") as AnyObject]
+        
+        case .GetPopularProduct(let pageNo) :
+            return["pageNo" : (pageNo ?? "") as AnyObject]
             
         default:
             return ["" : "" as AnyObject]
@@ -96,15 +117,19 @@ extension API : Router {
         case .ForgotPassword(let params) : return params
         case .LoginViaFacebook(let parameters) : return parameters
         case .LoginViaGoogle(let parameters) : return parameters
-        case .GetCategory(let _) : return nil
+        case .GetCategory( _) : return nil
         case .GetCategoryResults(let parameters) :  return parameters
-        case .GetSaleProduct(let _) : return nil
+        case .GetSaleProduct( _) : return nil
         case .LikeProduct(let parameters) : return parameters
         case .DislikeProduct(let parameters) : return parameters
-        case .GetPopularProduct(let _) : return nil
-        case .GetGlobalActivity(let _) : return nil
+        case .GetPopularProduct( _) : return nil
+        case .GetGlobalActivity(_) : return nil
         case .ProductDetail(let parameters) : return parameters
-        case .GetFeaturedProduct(let _) : return nil
+        case .GetFeaturedProduct( _) : return nil
+        case .FollowStore(let parameters) : return parameters
+        case .UnfollowStore(let parameters) : return parameters
+        case .GetUserDetail(let parameters) : return parameters
+        case .GetUserActivity(_) : return nil
         }
     }
     
@@ -124,6 +149,10 @@ extension API : Router {
         case .GetGlobalActivity(_) : return "api/users/getGlobalActivity"
         case .ProductDetail(_) : return "product/getProductDetails"
         case .GetFeaturedProduct(_) : return "product/getFeaturedProduct"
+        case .FollowStore(_) : return "api/users/followStores"
+        case .UnfollowStore(_) : return "api/users/unfollowStores"
+        case .GetUserDetail(_) : return "api/users/getUserDetails"
+        case .GetUserActivity(_) : return "api/users/getUserActivity"
         }
     }
     

@@ -22,9 +22,9 @@ class CollectionViewDataSource: NSObject {
     var scrollViewListener : ScrollViewScrolled?
     var configureCellBlock : ListCellConfigureBlock?
     var aRowSelectedListener : DidSelectedRow?
+    var willDisplayCell : WillDisplayCell?
     
-    init (items : Array<AnyObject>?  , collectionView : UICollectionView? , cellIdentifier : String? , headerIdentifier : String? , cellHeight : CGFloat , cellWidth : CGFloat  ,cellSpacing : CGFloat , configureCellBlock : ListCellConfigureBlock?  , aRowSelectedListener : DidSelectedRow? , scrollViewListener : ScrollViewScrolled?
-        )  {
+    init (items : Array<AnyObject>?  , collectionView : UICollectionView? , cellIdentifier : String? , headerIdentifier : String? , cellHeight : CGFloat , cellWidth : CGFloat  ,cellSpacing : CGFloat , configureCellBlock : ListCellConfigureBlock?  , aRowSelectedListener : DidSelectedRow? ,willDisplayCell : WillDisplayCell?, scrollViewListener : ScrollViewScrolled?)  {
         
         self.collectionView = collectionView
         
@@ -37,7 +37,7 @@ class CollectionViewDataSource: NSObject {
         self.configureCellBlock = configureCellBlock
         self.aRowSelectedListener = aRowSelectedListener
         self.scrollViewListener = scrollViewListener
-        
+        self.willDisplayCell = willDisplayCell
     }
     
     override init() {
@@ -64,7 +64,11 @@ extension CollectionViewDataSource : UICollectionViewDelegate , UICollectionView
         
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let block = self.willDisplayCell{
+            block(indexPath as IndexPath)
+        }
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

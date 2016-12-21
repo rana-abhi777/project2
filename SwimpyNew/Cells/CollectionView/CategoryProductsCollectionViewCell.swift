@@ -60,7 +60,9 @@ class CategoryProductsCollectionViewCell: UICollectionViewCell {
             ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: {[unowned self] (model) in
-                    
+//                    let likeCount = model as? String
+//                    self.data?.totalLikes = likeCount
+//                     self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
         else {
@@ -70,10 +72,12 @@ class CategoryProductsCollectionViewCell: UICollectionViewCell {
             self.btnNumberOfLikes?.setTitle(self.data?.totalLikes ?? "0", for: .normal)
             self.data?.hasLiked = 0
             self.delegate?.updateLikeData(model: self.data, index: self.index)
-            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
+            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: {[unowned self] (model) in
-                   
+//                    let likeCount = model as? String
+//                    self.data?.totalLikes = likeCount
+//                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
     }

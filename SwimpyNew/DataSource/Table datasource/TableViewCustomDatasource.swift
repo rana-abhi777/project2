@@ -11,6 +11,7 @@ import UIKit
 typealias  ListCellConfigureBlock = (_ cell : AnyObject , _ item : AnyObject , _ indexpath: IndexPath) -> ()
 typealias  DidSelectedRow = (_ indexPath : IndexPath) -> ()
 typealias ViewForHeaderInSection = (_ section : Int) -> UIView?
+typealias WillDisplayCell = (_ indexPath : IndexPath) -> ()
 
 class TableViewCustomDatasource: NSObject {
     

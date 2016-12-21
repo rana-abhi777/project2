@@ -30,7 +30,7 @@ class ApiManager {
                 print(data)
                 switch(withApi){
                     
-            case .Signup(_) , .Login(_), .LoginViaFacebook(_), .LoginViaGoogle(_):
+                case .Signup(_) , .Login(_), .LoginViaFacebook(_), .LoginViaGoogle(_):
                     let user = User(arrResult: data["data"])
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
@@ -42,33 +42,42 @@ class ApiManager {
                     let category = Category.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
                     
-            case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) :
+                case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) :
                     let category = Products.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
                     
                 case .LikeProduct(_) :
-                     let likeData = data["data"].dictionaryValue
-                      
-//                     let str : String = likeData["likes"]?.stringValue ?? ""
-//                    singleUserArray = str as? AnyObject?
+                    let likeData = data["data"].dictionaryValue
+                    let likeCount : String = likeData["likes"]?.stringValue ?? ""
+                    singleUserArray = likeCount as AnyObject?
                     break
                     
                 case .DislikeProduct(_) :
-                   let likeData = data["data"].dictionaryValue
-//                   let str = likeData["likes"]?.stringValue
-//                    singleUserArray = str as? AnyObject?
+                    let likeData = data["data"].dictionaryValue
+                    let likeCount = likeData["likes"]?.stringValue
+                    singleUserArray = likeCount as AnyObject?
                     break
                     
-                case .GetGlobalActivity(_) :
+                case .GetGlobalActivity(_) , .GetUserActivity(_) :
                     let category = GlobalActivity.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
                     break
                     
                 case .ProductDetail(_) :
                     let productDetail = ProductDetail(response: data["data"])
-                    singleUserArray = productDetail 
+                    singleUserArray = productDetail
                     break
-               
+                case .FollowStore(_) :
+                    print(data)
+                    break
+                case .UnfollowStore(_) :
+                    print(data)
+                    break
+                case .GetUserDetail(_) :
+                    let userDetail = UserDetails(arrResult: data["data"])
+                    singleUserArray = userDetail
+                    print(data)
+                    break
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }

@@ -30,7 +30,7 @@ class ProductDetail: NSObject {
     var isActive : String?
     var color : [String]?
     var base_price_unit : String?
-    var totalLikes : Int?
+    var totalLikes : String?
     var arrLikeUser : [LikeUser]?
     var productName : String?
     var subcategoryId : String?
@@ -43,6 +43,7 @@ class ProductDetail: NSObject {
     var describe : String?
     var likesStatus : Int?
     
+    var hasFollowed : Int?
     
     
     var storeName : String?
@@ -91,7 +92,7 @@ class ProductDetail: NSObject {
         featured = arrResult["featured"].stringValue
         base_price_unit = arrResult["base_price_unit"].stringValue
         share = arrResult["share"].intValue
-        totalLikes = arrResult["totalLikes"].intValue
+        totalLikes = arrResult["totalLikes"].stringValue
         productName = arrResult["productName"].stringValue
         subcategoryId = arrResult["subcategoryId"].stringValue
         createrId = arrResult["createrId"].stringValue
@@ -99,6 +100,8 @@ class ProductDetail: NSObject {
         flatDiscount = arrResult["flatDiscount"].stringValue
         describe = arrResult["description"].stringValue
         likesStatus = arrResult["likesStatus"].intValue
+        hasFollowed = arrResult["followStatus"].intValue
+        
         
         //seller data
         
@@ -108,7 +111,7 @@ class ProductDetail: NSObject {
         let storeImage = sellerData["profilePicURL"]?.dictionaryValue
         storeImgThumbnail = storeImage?["thumbnail"]?.stringValue
         storeImgOriginal = storeImage?["original"]?.stringValue
-        numberOfFollwers = sellerData["totalFolllow"]?.stringValue ?? "0"
+        numberOfFollwers = sellerData["totalFollow"]?.stringValue
         
         //more from store
         arrMoreFromStore = []

@@ -10,6 +10,7 @@ import UIKit
 
 protocol MoreProductsDelegateFunction {
     func redirectToProductDetail(productId : String)
+    func updateFollowingData(data : ProductDetail?)
 }
 
 class MoreFromStoreTableViewCell: UITableViewCell {
@@ -19,7 +20,7 @@ class MoreFromStoreTableViewCell: UITableViewCell {
     @IBOutlet weak var lblStoreName: UILabel!
     @IBOutlet weak var collectionViewProducts: UICollectionView!
     @IBOutlet weak var lblNumberOfFollowers: UILabel!
-    
+    @IBOutlet weak var btnFollow: CustomButton!
     
     
     //MARK:- VARIABLES
@@ -50,6 +51,12 @@ class MoreFromStoreTableViewCell: UITableViewCell {
         if (model.arrMoreFromStore?.count ?? 0) > 0 {
             configureCollectionView()
         }
+        if model.hasFollowed == 1 {
+            btnFollow.setTitle("Following", for: .normal)
+        }
+        else {
+            btnFollow.setTitle("Follow", for: .normal)
+        }
     }
     
     func configureCollectionView(){
@@ -64,6 +71,9 @@ class MoreFromStoreTableViewCell: UITableViewCell {
             }, aRowSelectedListener: { (indexPath) in
                 let id = arrProducts[indexPath.row].id ?? ""
                 self.delegate?.redirectToProductDetail(productId: id)
+            }, willDisplayCell: {[unowned self] (indexPath) in
+                
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewProducts.reloadData()
@@ -71,6 +81,41 @@ class MoreFromStoreTableViewCell: UITableViewCell {
     
     //MARK:- button actions
     @IBAction func btnActionFollow(_ sender: AnyObject) {
+        if data?.hasFollowed == 0 {
+//            self.imgLike.image = UIImage(asset : .icLikeOn)
+            
+            let followingCount = (Int(self.data?.numberOfFollwers ?? "0") ?? 0) + 1
+            self.data?.numberOfFollwers = "\(followingCount)"
+            self.data?.hasFollowed = 1
+            lblNumberOfFollowers?.text = self.data?.numberOfFollwers
+         
+            
+            self.delegate?.updateFollowingData(data: self.data)
+            ApiManager().getDataOfURL(withApi: API.FollowStore(APIParameters.FollowStore(sellerId: data?.storeId).formatParameters()), failure: { (err) in
+                print(err)
+                }, success: {[unowned self] (model) in
+                    print(model)
+                    
+                }, method: "PUT", loader: false)
+        }
+        else {
+//            self.imgLike.image = UIImage(asset : .icLike)
+            
+             let followingCount = (Int(self.data?.numberOfFollwers ?? "1") ?? 1) - 1
+            self.data?.numberOfFollwers = "\(followingCount)"
+            lblNumberOfFollowers?.text = self.data?.numberOfFollwers
+            
+            self.data?.hasFollowed = 0
+            
+            self.delegate?.updateFollowingData(data : self.data)
+            ApiManager().getDataOfURL(withApi: API.UnfollowStore(APIParameters.UnfollowStore(sellerId: data?.storeId).formatParameters()), failure: { (err) in
+                print(err)
+                }, success: {[unowned self] (model) in
+                    print(model)
+                    
+                }, method: "PUT", loader: false)
+
+        }
     }
     
 }

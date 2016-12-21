@@ -23,7 +23,7 @@ class BasePageViewController: ButtonBarPagerTabStripViewController {
     func pageVCSetup() {
         settings.style.buttonBarHeight = 40.0
         settings.style.buttonBarItemFont = UIFont(name: "BryantPro-Bold", size: 14.0)!
-        settings.style.selectedBarHeight  = 2.0
+        settings.style.selectedBarHeight  = 4.0
         settings.style.selectedBarBackgroundColor = UIColor.black
         settings.style.buttonBarItemTitleColor = UIColor.gray
         settings.style.buttonBarItemBackgroundColor = UIColor.white

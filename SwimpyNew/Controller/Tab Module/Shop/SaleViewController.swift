@@ -62,6 +62,9 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
                 vc.productId = productId
                 self.navigationController?.pushViewController(vc, animated: true)
                 
+            }, willDisplayCell: {[unowned self] (indexPath) in
+            
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewSale.reloadData()

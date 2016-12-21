@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class GlobalActivityViewController: UIViewController,IndicatorInfoProvider {
+class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,GlobalActivityTask {
     
     //MARK:- outlets
     @IBOutlet weak var tableViewGlobalActivity: UITableView!
@@ -48,22 +48,35 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider {
     func configureTableView() {
         tableViewDataSource = TableViewCustomDatasource(items: arrActivityData, height: 89, estimatedHeight: 89, tableView: tableViewGlobalActivity, cellIdentifier: CellIdentifiers.GlobalActivityTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? GlobalActivityTableViewCell
-            cell?.configureCell(model: (self.arrActivityData[indexpath.row] ))
-            }, aRowSelectedListener: {[unowned self] (indexPath) in
-//                let vc = StoryboardScene.Main.instantiateCategoryProductsViewController()
-//                vc.categoryId = self.arrActivityData[indexPath.row].id
-//                vc.categoryName = self.arrActivityData[indexPath.row].name ?? ""
-//                self.navigationController?.pushViewController(vc, animated: true)
+            cell?.configureCell(model: self.arrActivityData[indexpath.row],index : indexpath.row )
+            }, aRowSelectedListener: { (indexPath) in
             })
         
         tableViewGlobalActivity.delegate = tableViewDataSource
         tableViewGlobalActivity.dataSource = tableViewDataSource
         tableViewGlobalActivity.reloadData()
     }
-
     
-    
-    
+    //MARK:- global activity delegate
+    func redirectToItemScreen(idType : String, itemID : String) {
+        switch idType {
+        case "PRODUCT" :
+            let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+            vc.productId = itemID
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        case "CUSTOMER":
+            print("customer page not ready")
+            break
+        case "SELLER" :
+            print("seller page not ready")
+        let vc = StoryboardScene.Main.storeProfileViewControllerScene
+            break
+            
+        default:
+            print("id type not mentioned")
+        }
+    }
     
     //MARK:- indicator info provider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

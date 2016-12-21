@@ -9,6 +9,10 @@
 import DropDown
 import UIKit
 
+protocol ProductDetailTask {
+    func updateLikeData(model : ProductDetail?)
+}
+
 class ProductDetailTableViewCell: UITableViewCell {
     
     //MARK:- Outlets
@@ -41,6 +45,7 @@ class ProductDetailTableViewCell: UITableViewCell {
             collectionViewLIkeUser.delegate = collectionViewdataSource
         }
     }
+    var delegate : ProductDetailTask?
     lazy var dropDowns: [DropDown] = {
         return [
             self.selectColorDropDown,
@@ -77,7 +82,7 @@ class ProductDetailTableViewCell: UITableViewCell {
         lblProductName.text = model.productName ?? ""
         lblDescription.text = model.describe
         lblPrice.text = "$" + (model.base_price_unit ?? "0")
-        lblNumberOfLikes.text = "\(model.totalLikes ?? 0)"
+        lblNumberOfLikes.text = model.totalLikes ?? "0"
         lblNumberOfShare.text = "\(model.share ?? 0)"
         lblSelectedColor.text = (model.color?.count ?? 0) > 0 ?  model.color?[0] : ""
         lblSelectedSize.text = (model.variations?.count ?? 0) > 0 ? model.variations?[0] : ""
@@ -110,8 +115,6 @@ class ProductDetailTableViewCell: UITableViewCell {
                 break
             }
         }
-        
-        
         switch temp.count {
         case _ where temp.count > 5:
             lblLikes.isHidden = false
@@ -148,6 +151,8 @@ class ProductDetailTableViewCell: UITableViewCell {
             let cell = cell as? ProductLikeUserCollectionViewCell
             cell?.configureCell(model: arrLike[indexpath.row])
             }, aRowSelectedListener: { (indexPath) in
+            }, willDisplayCell: { (indexPath) in
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewLIkeUser.reloadData()
@@ -171,7 +176,45 @@ class ProductDetailTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnActionLike(_ sender: AnyObject) {
+        if data?.likesStatus == 0 {
+            self.imgLike.image = UIImage(asset : .icLikeOn)
+            let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) + 1
+            self.data?.totalLikes = "\(likeCount)"
+            self.data?.likesStatus = 1
+            lblNumberOfLikes.text = self.data?.totalLikes
+//                        self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
+            
+            self.delegate?.updateLikeData(model: self.data)
+            ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
+                print(err)
+                }, success: { (model) in
+//                    print(model)
+//                    let likeCount = model as? String
+//                    self.data?.totalLikes = likeCount
+//                    self.delegate?.updateLikeData(model: self.data)
+                }, method: "POST", loader: false)
+        }
+        else {
+            self.imgLike.image = UIImage(asset : .icLike)
+            
+            let likeCount = (Int(self.data?.totalLikes ?? "1") ?? 1) - 1
+            self.data?.totalLikes = "\(likeCount)"
+            lblNumberOfLikes.text = self.data?.totalLikes ?? "0"
+            
+            self.data?.likesStatus = 0
+            
+            self.delegate?.updateLikeData(model: self.data)
+            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
+                print(err)
+                }, success: {(model) in
+                    print(model)
+//                    let likeCount = model as? String
+//                    self.data?.totalLikes = likeCount
+//                    self.delegate?.updateLikeData(model: self.data)
+                }, method: "POST", loader: false)
+        }
     }
+    
     @IBAction func btnActionShare(_ sender: AnyObject) {
     }
     @IBAction func btnActionAddToCart(_ sender: AnyObject) {

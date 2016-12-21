@@ -59,6 +59,9 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
                 vc.productId = productId
                 self.navigationController?.pushViewController(vc, animated: true)
                 
+            }, willDisplayCell: {[unowned self] (indexPath) in
+                
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewDeals.reloadData()

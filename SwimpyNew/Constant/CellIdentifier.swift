@@ -23,7 +23,6 @@ enum CellIdentifiers: String {
     //MARK::- COLLECTION VIEW CELL IDENTIFIERS
     
     case DealsCollectionViewCell = "DealsCollectionViewCell"
-    case ExploreCollectionViewCell = "ExploreCollectionViewCell"
     case CategoryProductsCollectionViewCell = "CategoryProductsCollectionViewCell"
     case SaleCollectionViewCell = "SaleCollectionViewCell"
     case PopularProductCollectionViewCell = "PopularProductCollectionViewCell"

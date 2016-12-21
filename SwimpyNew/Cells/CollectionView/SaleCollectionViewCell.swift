@@ -69,7 +69,9 @@ class SaleCollectionViewCell: UICollectionViewCell {
                 print(err)
                 }, success: {[unowned self] (model) in
                     print(model)
-                    
+//                    let likeCount = model as? String
+//                    self.data?.totalLikes = likeCount
+//                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
         else {
@@ -80,11 +82,13 @@ class SaleCollectionViewCell: UICollectionViewCell {
             self.data?.hasLiked = 0
             
             self.delegate?.updateLikeData(model: self.data, index: self.index)
-            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
+            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: {[unowned self] (model) in
-                    print(model             )
-                    
+                    print(model)
+//                    let likeCount = model as? String
+//                    self.data?.totalLikes = likeCount
+//                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
     }

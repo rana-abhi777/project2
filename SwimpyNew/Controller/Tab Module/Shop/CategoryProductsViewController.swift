@@ -58,6 +58,9 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
                 vc.productId = productId
                 self.navigationController?.pushViewController(vc, animated: true)
                 
+            }, willDisplayCell: {[unowned self] (indexPath) in
+                
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewCategoryProducts.reloadData()

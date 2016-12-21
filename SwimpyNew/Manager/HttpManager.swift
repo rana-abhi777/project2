@@ -54,7 +54,16 @@ class HttpManager {
                     
                 }
             }
-            
+        case "PUT" :
+            Alamofire.request(fullPath, method: .put, parameters: parameters, encoding: JSONEncoding.default,headers: getHeader()  ).responseJSON { response in // 1
+                switch response.result {
+                    
+                case .success(let data):
+                    success(data as AnyObject?)
+                case .failure(let error):
+                    failure(error.localizedDescription)
+                }
+            }
         default:
             break
         }

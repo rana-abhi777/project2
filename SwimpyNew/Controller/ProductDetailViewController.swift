@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction {
+class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction,ProductDetailTask {
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewProductImages: UICollectionView!
@@ -75,6 +75,9 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
             
             cell?.configureCell(model: self.arrOtherImages[indexpath.row])
             }, aRowSelectedListener: { (indexPath) in
+            }, willDisplayCell: {[unowned self] (indexPath) in
+                
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewProductImages.reloadData()
@@ -87,7 +90,14 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
         vc.productId = productId
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+    func updateLikeData(model : ProductDetail?) {
+        productDetails = model ?? ProductDetail()
+        configureTableView()
+    }
+    func updateFollowingData(data : ProductDetail?) {
+        productDetails = data ?? ProductDetail()
+        configureTableView()
+    }
     
     //MARK:- button actions
     @IBAction func btnActionCart(_ sender: AnyObject) {

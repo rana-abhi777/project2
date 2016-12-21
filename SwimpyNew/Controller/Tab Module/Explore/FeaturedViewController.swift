@@ -51,10 +51,10 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
             cell?.delegate = self
             cell?.configureCell(model: self.arrFeaturedData[indexpath.row],row : indexpath.row)
             }, aRowSelectedListener: { (indexPath) in
-                let productId = self.arrFeaturedData[indexPath.row].id ?? ""
-                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
-                vc.productId = productId
-                self.navigationController?.pushViewController(vc, animated: true)
+//                let productId = self.arrFeaturedData[indexPath.row].id ?? ""
+//                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+//                vc.productId = productId
+//                self.navigationController?.pushViewController(vc, animated: true)
             })
         
         tableViewFeaturedProducts.delegate = tableViewDataSource
@@ -66,7 +66,12 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
         arrFeaturedData[index] = model ?? Products()
         configureTableView()
     }
-
+    func cellSelected(index : Int ) {
+        let productId = self.arrFeaturedData[index].id ?? ""
+        let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+        vc.productId = productId
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     //MARK:- IndicatorInfoProvider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Featured")
