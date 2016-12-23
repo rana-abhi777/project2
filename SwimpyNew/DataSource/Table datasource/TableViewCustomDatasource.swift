@@ -23,9 +23,10 @@ class TableViewCustomDatasource: NSObject {
     var configureCellBlock : ListCellConfigureBlock?
     var aRowSelectedListener : DidSelectedRow?
     var viewforHeaderInSection : ViewForHeaderInSection?
+    var willDisplayCell : WillDisplayCell?
     var headerHeight : CGFloat? = 0.0
     
-    init (items : Array<AnyObject>? , height : CGFloat ,estimatedHeight :CGFloat , tableView : UITableView? , cellIdentifier : String?  , configureCellBlock : ListCellConfigureBlock? , aRowSelectedListener :   DidSelectedRow?) {
+    init (items : Array<AnyObject>? , height : CGFloat ,estimatedHeight :CGFloat , tableView : UITableView? , cellIdentifier : String?  , configureCellBlock : ListCellConfigureBlock? , aRowSelectedListener :   DidSelectedRow?,willDisplayCell : WillDisplayCell?) {
         
         self.tableView = tableView
         self.items = items
@@ -34,6 +35,7 @@ class TableViewCustomDatasource: NSObject {
         self.tableViewEstimatedRowHeight = estimatedHeight
         self.configureCellBlock = configureCellBlock
         self.aRowSelectedListener = aRowSelectedListener
+        self.willDisplayCell = willDisplayCell
         self.tableView?.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     }
     
@@ -55,7 +57,11 @@ extension TableViewCustomDatasource : UITableViewDelegate , UITableViewDataSourc
         return cell
     }
 
-  
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let block = self.willDisplayCell {
+            block(indexPath)
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let block = self.aRowSelectedListener{

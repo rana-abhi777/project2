@@ -24,7 +24,7 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
             collectionViewPopularProducts.delegate = collectionViewdataSource
         }
     }
-    
+    var pageNo : String?
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -43,6 +43,8 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
     
     //MARK:- FUNCTION
     func initialize() {
+        arrProduct = []
+        pageNo = "0"
         hitApiForPopularProduct()
     }
     
@@ -63,7 +65,14 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }, willDisplayCell: {[unowned self] (indexPath) in
-                
+                if indexPath.row == self.arrProduct.count - 2 {
+                    if let temp = self.pageNo  {
+                        if temp != "" {
+                            self.hitApiForPopularProduct()
+                        }
+                    }
+                    
+                }
                 
             }, scrollViewListener: { (UIScrollView) in
         })
@@ -72,10 +81,15 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
     
     
     func hitApiForPopularProduct() {
-        ApiManager().getDataOfURL(withApi: API.GetPopularProduct(APIParameters.GetPopularProduct().formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetPopularProduct(APIParameters.GetPopularProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                self.arrProduct =  (model as? [Products]) ?? []
+                let response = model as? ProductResponse ?? ProductResponse()
+                self.pageNo = response.pageNo ?? nil
+                print(response.arrProducts.count)
+                for item in response.arrProducts {
+                    self.arrProduct.append(item)
+                }
                 if self.arrProduct.count > 0 {
                     self.configureCollectionView()
                     self.view.bringSubview(toFront: self.collectionViewPopularProducts)

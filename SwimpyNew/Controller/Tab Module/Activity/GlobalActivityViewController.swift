@@ -50,7 +50,9 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
             let cell = cell as? GlobalActivityTableViewCell
             cell?.configureCell(model: self.arrActivityData[indexpath.row],index : indexpath.row )
             }, aRowSelectedListener: { (indexPath) in
-            })
+            }, willDisplayCell: { (indexPath) in
+                
+        })
         
         tableViewGlobalActivity.delegate = tableViewDataSource
         tableViewGlobalActivity.dataSource = tableViewDataSource

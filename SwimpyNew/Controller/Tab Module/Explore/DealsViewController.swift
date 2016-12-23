@@ -20,7 +20,7 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
             collectionViewDeals.delegate = collectionViewdataSource
         }
     }
-    
+    var pageNo : String?
     //MARK:- outlets
     @IBOutlet weak var collectionViewDeals: UICollectionView!
     @IBOutlet weak var viewNoProducts: UIView!
@@ -40,6 +40,8 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     
     //MARK:- FUNCTION
     func initialize() {
+        pageNo = "0"
+        arrProduct = []
         hitApiForPopularProduct()
     }
     
@@ -60,7 +62,14 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }, willDisplayCell: {[unowned self] (indexPath) in
-                
+                if indexPath.row == self.arrProduct.count - 2 {
+                    if let temp = self.pageNo  {
+                        if temp != "" {
+                            self.hitApiForPopularProduct()
+                        }
+                    }
+                    
+                }
                 
             }, scrollViewListener: { (UIScrollView) in
         })
@@ -69,10 +78,15 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     
     
     func hitApiForPopularProduct() {
-        ApiManager().getDataOfURL(withApi: API.GetPopularProduct(APIParameters.GetPopularProduct().formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetPopularProduct(APIParameters.GetPopularProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                self.arrProduct =  (model as? [Products]) ?? []
+                
+                let response = model as? ProductResponse ?? ProductResponse()
+                self.pageNo = response.pageNo ?? nil
+                for item in response.arrProducts {
+                    self.arrProduct.append(item)
+                }
                 if self.arrProduct.count > 0 {
                     self.configureCollectionView()
                     self.view.bringSubview(toFront: self.collectionViewDeals)

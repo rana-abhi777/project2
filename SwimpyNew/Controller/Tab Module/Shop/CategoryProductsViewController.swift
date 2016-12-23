@@ -20,6 +20,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
             collectionViewCategoryProducts.delegate = collectionViewdataSource
         }
     }
+    var pageNo : String?
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewCategoryProducts: UICollectionView!
@@ -40,6 +41,8 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
     
     //MARK:- functions
     func initialize() {
+        pageNo = "0"
+        arrProduct = []
         lblCategoryName.text = categoryName
         hitApiForCategory()
     }
@@ -68,10 +71,15 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
     
     
     func hitApiForCategory() {
-        ApiManager().getDataOfURL(withApi: API.GetCategoryResults(APIParameters.GetCategoryResults(categoryId: categoryId).formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetCategoryResults(APIParameters.GetCategoryResults(categoryId: categoryId,pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                self.arrProduct =  (model as? [Products]) ?? []
+                let response = model as? ProductResponse ?? ProductResponse()
+                self.pageNo = response.pageNo ?? nil
+                print(response.arrProducts.count)
+                for item in response.arrProducts {
+                    self.arrProduct.append(item)
+                }
                 if self.arrProduct.count > 0 {
                     self.configureCollectionView()
                     self.view.bringSubview(toFront: self.collectionViewCategoryProducts)

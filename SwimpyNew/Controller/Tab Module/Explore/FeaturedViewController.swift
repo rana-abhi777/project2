@@ -18,6 +18,7 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     //MARK:- variables
     var arrFeaturedData : [Products] = []
     var tableViewDataSource : TableViewCustomDatasource?
+    var pageNo : String?
   
     //MARK:- override functions
     override func viewDidLoad() {
@@ -26,6 +27,8 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        pageNo = "0"
+        arrFeaturedData = []
         initialize()
     }
     
@@ -35,10 +38,14 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     
     //MARK:- FUNCTION
     func initialize() {
-        ApiManager().getDataOfURL(withApi: API.GetFeaturedProduct(APIParameters.GetFeaturedProduct().formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetFeaturedProduct(APIParameters.GetFeaturedProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: { (model) in
-                self.arrFeaturedData = (model as? [Products]) ?? []
+                let response = model as? ProductResponse ?? ProductResponse()
+                self.pageNo = response.pageNo ?? nil
+                for item in response.arrProducts {
+                    self.arrFeaturedData.append(item)
+                }
                 self.configureTableView()
                 print(model)
             }, method: "GET", loader: true)
@@ -55,7 +62,16 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
 //                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
 //                vc.productId = productId
 //                self.navigationController?.pushViewController(vc, animated: true)
-            })
+            }, willDisplayCell: {[unowned self] (indexPath) in
+                if indexPath.row == self.arrFeaturedData.count - 2 {
+                    if let temp = self.pageNo  {
+                        if temp != "" {
+                            self.initialize()
+                        }
+                    }
+                    
+                }
+        })
         
         tableViewFeaturedProducts.delegate = tableViewDataSource
         tableViewFeaturedProducts.dataSource = tableViewDataSource

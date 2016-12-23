@@ -49,6 +49,8 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider {
             let cell = cell as? GlobalActivityTableViewCell
             cell?.configureCell(model: self.arrActivityData[indexpath.row],index : indexpath.row )
             }, aRowSelectedListener: { (indexPath) in
+            }, willDisplayCell: { (indexPath) in
+                
         })
         
         tableViewUserActivity.delegate = tableViewDataSource

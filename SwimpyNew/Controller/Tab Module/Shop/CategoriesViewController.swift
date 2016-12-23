@@ -55,6 +55,8 @@ class CategoriesViewController: UIViewController , IndicatorInfoProvider {
                 vc.categoryId = self.arrCategoryData[indexPath.row].id
                 vc.categoryName = self.arrCategoryData[indexPath.row].name ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
+            }, willDisplayCell: { (indexPath) in
+                
         })
         
         tableViewCategory.delegate = tableViewDataSource

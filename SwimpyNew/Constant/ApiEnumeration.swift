@@ -58,11 +58,11 @@ enum APIParameters {
     case GetSaleProduct(pageNo : String?)
     case LikeProduct(productId : String?)
     case DislikeProduct(productId : String?)
-    case GetPopularProduct(pageNo : String? )
+    case GetPopularProduct(pageNo : String?)
     case GetGlobalActivity()
     case GetUserActivity()
     case ProductDetail(productId : String?)
-    case GetFeaturedProduct(pageNo : String? )
+    case GetFeaturedProduct(pageNo : String?)
     case FollowStore(sellerId : String?)
     case UnfollowStore(sellerId : String?)
     case GetUserDetail(userId : String?)
@@ -119,13 +119,13 @@ extension API : Router {
         case .LoginViaGoogle(let parameters) : return parameters
         case .GetCategory( _) : return nil
         case .GetCategoryResults(let parameters) :  return parameters
-        case .GetSaleProduct( _) : return nil
+        case .GetSaleProduct(let parameters) : return parameters
         case .LikeProduct(let parameters) : return parameters
         case .DislikeProduct(let parameters) : return parameters
-        case .GetPopularProduct( _) : return nil
+        case .GetPopularProduct(let parameters) : return parameters
         case .GetGlobalActivity(_) : return nil
         case .ProductDetail(let parameters) : return parameters
-        case .GetFeaturedProduct( _) : return nil
+        case .GetFeaturedProduct(let parameters) : return parameters
         case .FollowStore(let parameters) : return parameters
         case .UnfollowStore(let parameters) : return parameters
         case .GetUserDetail(let parameters) : return parameters

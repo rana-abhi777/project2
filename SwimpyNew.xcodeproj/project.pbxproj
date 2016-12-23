@@ -90,6 +90,7 @@
 		20BB0E391DB881E2008CE2A1 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BB0E381DB881E2008CE2A1 /* HttpManager.swift */; };
 		20C29A481E07BFD500EF2E53 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C29A461E07BFD500EF2E53 /* CollectionViewDataSource.swift */; };
 		20C29A491E07BFD500EF2E53 /* LikeUserCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C29A471E07BFD500EF2E53 /* LikeUserCollectionViewDataSource.swift */; };
+		20CF7E401E0BD068006A99BC /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CF7E3F1E0BD068006A99BC /* ProductResponse.swift */; };
 		20D027C21DE7F56600598F71 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D027C11DE7F56600598F71 /* Storyboard.swift */; };
 		20D948621DB755EF007A4D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20D948601DB755EF007A4D07 /* Main.storyboard */; };
 		20D948641DB755EF007A4D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20D948631DB755EF007A4D07 /* Assets.xcassets */; };
@@ -262,6 +263,7 @@
 		20BB0E381DB881E2008CE2A1 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		20C29A461E07BFD500EF2E53 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		20C29A471E07BFD500EF2E53 /* LikeUserCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeUserCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		20CF7E3F1E0BD068006A99BC /* ProductResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
 		20D027C11DE7F56600598F71 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		20D948591DB755EF007A4D07 /* SwimpyNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwimpyNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D948611DB755EF007A4D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				2085B2131E03D4FB0014AD79 /* LikeUser.swift */,
 				20129A311E040FD20012C596 /* RelatedProducts.swift */,
 				2035EBA71E0A497F00832D3D /* UserDetails.swift */,
+				20CF7E3F1E0BD068006A99BC /* ProductResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1103,6 +1106,7 @@
 				20C29A491E07BFD500EF2E53 /* LikeUserCollectionViewDataSource.swift in Sources */,
 				200997761DE85B440084DDED /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				20D948F31DB7589C007A4D07 /* SortViewController.swift in Sources */,
+				20CF7E401E0BD068006A99BC /* ProductResponse.swift in Sources */,
 				20FE08421DFFAC3B005E13D5 /* TimeAgo.swift in Sources */,
 				2009976E1DE85B440084DDED /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
 				20C29A481E07BFD500EF2E53 /* CollectionViewDataSource.swift in Sources */,

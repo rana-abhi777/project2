@@ -25,6 +25,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
             collectionViewSale.delegate = collectionViewdataSource
         }
     }
+    var pageNo : String?
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -44,6 +45,8 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
     
     //MARK:- FUNCTION
     func initialize() {
+        arrProduct = []
+        pageNo = "0"
         hitApiForSaleProduct()
     }
     
@@ -63,7 +66,14 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }, willDisplayCell: {[unowned self] (indexPath) in
-            
+                if indexPath.row == self.arrProduct.count - 2 {
+                    if let temp = self.pageNo  {
+                        if temp != "" {
+                            self.hitApiForSaleProduct()
+                        }
+                    }
+                   
+                }
                 
             }, scrollViewListener: { (UIScrollView) in
         })
@@ -72,10 +82,15 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
     
     
     func hitApiForSaleProduct() {
-        ApiManager().getDataOfURL(withApi: API.GetSaleProduct(APIParameters.GetSaleProduct().formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetSaleProduct(APIParameters.GetSaleProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                self.arrProduct =  (model as? [Products]) ?? []
+                let response = model as? ProductResponse ?? ProductResponse()
+                self.pageNo = response.pageNo ?? nil
+                print(response.arrProducts.count)
+                for item in response.arrProducts {
+                    self.arrProduct.append(item)
+                }
                 if self.arrProduct.count > 0 {
                     self.configureCollectionView()
                     self.view.bringSubview(toFront: self.collectionViewSale)

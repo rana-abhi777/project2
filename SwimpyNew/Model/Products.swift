@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 
 class Products: NSObject {
+    
     var id : String?
     var categoryId : String?
     var createrType : String?
@@ -41,6 +42,7 @@ class Products: NSObject {
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
+        
         id = arrResult["_id"].stringValue
         categoryId = arrResult["categoryId"].stringValue
         createrType = arrResult["createrType"].stringValue
@@ -78,6 +80,7 @@ class Products: NSObject {
     
     static func changeDictToModelArray (jsoon1 : JSON ) -> [Products] {
         var tempArr : [Products] = []
+        
         for arrResult in jsoon1["data"].arrayValue {
             let categoryObj = Products(arrResult: arrResult)
             tempArr.append(categoryObj)

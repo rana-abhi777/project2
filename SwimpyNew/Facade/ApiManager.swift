@@ -43,8 +43,11 @@ class ApiManager {
                     singleUserArray = category as AnyObject?
                     
                 case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) :
-                    let category = Products.changeDictToModelArray(jsoon1: data)
-                    singleUserArray = category as AnyObject?
+                    let result = ProductResponse(arrResult: data["data"])
+                    
+                    
+//                    let category = Products.changeDictToModelArray(jsoon1: data)
+                    singleUserArray = result as AnyObject?
                     
                 case .LikeProduct(_) :
                     let likeData = data["data"].dictionaryValue
