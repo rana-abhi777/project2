@@ -19,17 +19,20 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     var arrFeaturedData : [Products] = []
     var tableViewDataSource : TableViewCustomDatasource?
     var pageNo : String?
-  
+    let refreshControl = UIRefreshControl()
+    
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        arrFeaturedData = []
+        refreshControl.addTarget(self, action: #selector(FeaturedViewController.initialize), for: UIControlEvents.valueChanged)
+        tableViewFeaturedProducts?.refreshControl =  refreshControl
+        initialize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        pageNo = "0"
-        arrFeaturedData = []
-        initialize()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,16 +41,22 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     
     //MARK:- FUNCTION
     func initialize() {
+        pageNo = "0"
+        apiToGetFeaturedData()
+    }
+    
+    func apiToGetFeaturedData() {
+        
         ApiManager().getDataOfURL(withApi: API.GetFeaturedProduct(APIParameters.GetFeaturedProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
-            }, success: { (model) in
+            }, success: { [unowned self] (model) in
+                self.refreshControl.endRefreshing()
                 let response = model as? ProductResponse ?? ProductResponse()
                 self.pageNo = response.pageNo ?? nil
                 for item in response.arrProducts {
                     self.arrFeaturedData.append(item)
                 }
                 self.configureTableView()
-                print(model)
             }, method: "GET", loader: true)
         
     }
@@ -58,20 +67,20 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
             cell?.delegate = self
             cell?.configureCell(model: self.arrFeaturedData[indexpath.row],row : indexpath.row)
             }, aRowSelectedListener: { (indexPath) in
-//                let productId = self.arrFeaturedData[indexPath.row].id ?? ""
-//                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
-//                vc.productId = productId
-//                self.navigationController?.pushViewController(vc, animated: true)
+                //                let productId = self.arrFeaturedData[indexPath.row].id ?? ""
+                //                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+                //                vc.productId = productId
+                //                self.navigationController?.pushViewController(vc, animated: true)
             }, willDisplayCell: {[unowned self] (indexPath) in
                 if indexPath.row == self.arrFeaturedData.count - 2 {
                     if let temp = self.pageNo  {
                         if temp != "" {
-                            self.initialize()
+                            self.apiToGetFeaturedData()
                         }
                     }
                     
                 }
-        })
+            })
         
         tableViewFeaturedProducts.delegate = tableViewDataSource
         tableViewFeaturedProducts.dataSource = tableViewDataSource

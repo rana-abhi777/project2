@@ -44,9 +44,6 @@ class ApiManager {
                     
                 case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) :
                     let result = ProductResponse(arrResult: data["data"])
-                    
-                    
-//                    let category = Products.changeDictToModelArray(jsoon1: data)
                     singleUserArray = result as AnyObject?
                     
                 case .LikeProduct(_) :
@@ -62,7 +59,7 @@ class ApiManager {
                     break
                     
                 case .GetGlobalActivity(_) , .GetUserActivity(_) :
-                    let category = GlobalActivity.changeDictToModelArray(jsoon1: data)
+                     let category = GlobalActivityData(arrResult: data["data"])
                     singleUserArray = category as AnyObject?
                     break
                     

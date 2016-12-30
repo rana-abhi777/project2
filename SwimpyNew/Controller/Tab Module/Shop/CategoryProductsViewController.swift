@@ -21,18 +21,24 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
         }
     }
     var pageNo : String?
+     let refreshControl = UIRefreshControl()
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewCategoryProducts: UICollectionView!
     @IBOutlet weak var lblCategoryName: UILabel!
     @IBOutlet weak var viewNoProducts: UIView!
+    
     //MARK:- override functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl.addTarget(self, action: #selector(CategoryProductsViewController.initialize), for: UIControlEvents.valueChanged)
+        collectionViewCategoryProducts?.refreshControl =  refreshControl
+        initialize()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        initialize()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,6 +49,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
     func initialize() {
         pageNo = "0"
         arrProduct = []
+        configureCollectionView()
         lblCategoryName.text = categoryName
         hitApiForCategory()
     }
@@ -76,7 +83,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
             }, success: {[unowned self] (model) in
                 let response = model as? ProductResponse ?? ProductResponse()
                 self.pageNo = response.pageNo ?? nil
-                print(response.arrProducts.count)
+                self.refreshControl.endRefreshing()
                 for item in response.arrProducts {
                     self.arrProduct.append(item)
                 }

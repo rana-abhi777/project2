@@ -17,16 +17,20 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     //MARK:- variables
     var arrActivityData : [GlobalActivity] = []
     var tableViewDataSource : TableViewCustomDatasource?
+     var pageNo : String?
+    let refreshControl = UIRefreshControl()
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        pageNo = "0"
+        refreshControl.addTarget(self, action: #selector(GlobalActivityViewController.initialize), for: UIControlEvents.valueChanged)
+        tableViewGlobalActivity?.refreshControl =  refreshControl
+        initialize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        initialize()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -34,13 +38,24 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     
     
     //MARK:- FUNCTION
+    
     func initialize() {
-        ApiManager().getDataOfURL(withApi: API.GetGlobalActivity(APIParameters.GetGlobalActivity().formatParameters()), failure: { (err) in
+        pageNo = "0"
+        arrActivityData = []
+        apiToGetGlobalActivity()
+    }
+    
+    func apiToGetGlobalActivity() {
+        ApiManager().getDataOfURL(withApi: API.GetGlobalActivity(APIParameters.GetGlobalActivity(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                self.arrActivityData = (model as? [GlobalActivity]) ?? []
+                self.refreshControl.endRefreshing()
+                let response = (model as? GlobalActivityData) ?? GlobalActivityData()
+                self.pageNo = response.pageNo ?? nil
+                for item in response.arrActivity {
+                    self.arrActivityData.append(item)
+                }
                 self.configureTableView()
-                print(model)
             }, method: "GET", loader: true)
         
     }
@@ -51,9 +66,18 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
             cell?.configureCell(model: self.arrActivityData[indexpath.row],index : indexpath.row )
             }, aRowSelectedListener: { (indexPath) in
             }, willDisplayCell: { (indexPath) in
+                if indexPath.row == self.arrActivityData.count - 2 {
+                    if let temp = self.pageNo  {
+                        if temp != "" {
+                            self.apiToGetGlobalActivity()
+                        }
+                    }
+                    
+                }
+ 
+                
                 
         })
-        
         tableViewGlobalActivity.delegate = tableViewDataSource
         tableViewGlobalActivity.dataSource = tableViewDataSource
         tableViewGlobalActivity.reloadData()

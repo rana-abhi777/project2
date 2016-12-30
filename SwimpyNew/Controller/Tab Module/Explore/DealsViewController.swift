@@ -21,6 +21,9 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
         }
     }
     var pageNo : String?
+    let refreshControl = UIRefreshControl()
+    
+    
     //MARK:- outlets
     @IBOutlet weak var collectionViewDeals: UICollectionView!
     @IBOutlet weak var viewNoProducts: UIView!
@@ -28,12 +31,16 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl.addTarget(self, action: #selector(DealsViewController.initialize), for: UIControlEvents.valueChanged)
+        collectionViewDeals?.refreshControl =  refreshControl
+        initialize()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        initialize()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -41,7 +48,8 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     //MARK:- FUNCTION
     func initialize() {
         pageNo = "0"
-        arrProduct = []
+//        arrProduct = []
+//        configureCollectionView()
         hitApiForPopularProduct()
     }
     
@@ -54,8 +62,7 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
             cell?.delegate = self
             cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
             
-            }, aRowSelectedListener: { (indexPath) in
-                
+            }, aRowSelectedListener: {[unowned self] (indexPath) in
                 let productId = self.arrProduct[indexPath.row].id ?? ""
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
                 vc.productId = productId
@@ -68,9 +75,7 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
                             self.hitApiForPopularProduct()
                         }
                     }
-                    
                 }
-                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewDeals.reloadData()
@@ -81,12 +86,12 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
         ApiManager().getDataOfURL(withApi: API.GetPopularProduct(APIParameters.GetPopularProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                
                 let response = model as? ProductResponse ?? ProductResponse()
                 self.pageNo = response.pageNo ?? nil
                 for item in response.arrProducts {
                     self.arrProduct.append(item)
                 }
+                self.refreshControl.endRefreshing()
                 if self.arrProduct.count > 0 {
                     self.configureCollectionView()
                     self.view.bringSubview(toFront: self.collectionViewDeals)
@@ -110,7 +115,5 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
         return IndicatorInfo(title: "Deals")
     }
 
-    
-  
-
+   
 }

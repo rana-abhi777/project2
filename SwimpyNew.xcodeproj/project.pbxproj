@@ -56,6 +56,7 @@
 		2019E44F1DEC59DA00976364 /* BundleLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2019E44C1DEC59DA00976364 /* BundleLocalization.m */; };
 		2019E4501DEC59DA00976364 /* NSBundle+Localization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2019E44E1DEC59DA00976364 /* NSBundle+Localization.m */; };
 		2019E4541DEC5A8C00976364 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019E4531DEC5A8C00976364 /* LocalizedStrings.swift */; };
+		202C29071E1678C200124BAF /* GlobalActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C29061E1678C200124BAF /* GlobalActivityData.swift */; };
 		2035EBA81E0A497F00832D3D /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2035EBA71E0A497F00832D3D /* UserDetails.swift */; };
 		203CC6701DFA97A500A9747D /* GlobalActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CC66F1DFA97A500A9747D /* GlobalActivity.swift */; };
 		203F333C1DBB27E900B875B1 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F333B1DBB27E900B875B1 /* CustomView.swift */; };
@@ -227,6 +228,7 @@
 		2019E44D1DEC59DA00976364 /* NSBundle+Localization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Localization.h"; sourceTree = "<group>"; };
 		2019E44E1DEC59DA00976364 /* NSBundle+Localization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Localization.m"; sourceTree = "<group>"; };
 		2019E4531DEC5A8C00976364 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		202C29061E1678C200124BAF /* GlobalActivityData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalActivityData.swift; sourceTree = "<group>"; };
 		2035EBA71E0A497F00832D3D /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		203CC66F1DFA97A500A9747D /* GlobalActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalActivity.swift; sourceTree = "<group>"; };
 		203F333B1DBB27E900B875B1 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				20129A311E040FD20012C596 /* RelatedProducts.swift */,
 				2035EBA71E0A497F00832D3D /* UserDetails.swift */,
 				20CF7E3F1E0BD068006A99BC /* ProductResponse.swift */,
+				202C29061E1678C200124BAF /* GlobalActivityData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 				2009977C1DE85B440084DDED /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
 				203F333C1DBB27E900B875B1 /* CustomView.swift in Sources */,
 				200997721DE85B440084DDED /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
+				202C29071E1678C200124BAF /* GlobalActivityData.swift in Sources */,
 				20BB0E391DB881E2008CE2A1 /* HttpManager.swift in Sources */,
 				20D948E81DB7589C007A4D07 /* ProfileItemViewController.swift in Sources */,
 				200652521DCC4EF40042554D /* User.swift in Sources */,

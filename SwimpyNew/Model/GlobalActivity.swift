@@ -51,7 +51,7 @@ class GlobalActivity: NSObject {
     
     static func changeDictToModelArray (jsoon1 : JSON ) -> [GlobalActivity] {
         var tempArr : [GlobalActivity] = []
-        for arrResult in jsoon1["data"].arrayValue {
+        for arrResult in jsoon1["dataToSend"].arrayValue {
             let activityObj = GlobalActivity(arrResult: arrResult)
             tempArr.append(activityObj)
         }

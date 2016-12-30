@@ -38,9 +38,7 @@ class DealsCollectionViewCell: UICollectionViewCell {
         btnShare.setTitle(model.share ?? "0", for: .normal)
         guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black
             return }
-        imgProduct?.sd_setImage(with: URL(string : url)) { (image, error, cache, url) in
-            print(image)
-        }
+        imgProduct?.sd_setImage(with: URL(string : url))
         if model.hasLiked == 0 {
             btnLike.setImage(UIImage(asset: .icLike), for: .normal)
         }

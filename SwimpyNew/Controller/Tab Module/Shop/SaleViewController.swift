@@ -26,15 +26,18 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
         }
     }
     var pageNo : String?
+    let refreshControl = UIRefreshControl()
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl.addTarget(self, action: #selector(SaleViewController.initialize), for: UIControlEvents.valueChanged)
+        collectionViewSale?.refreshControl =  refreshControl
+        initialize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        initialize()
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,6 +49,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
     //MARK:- FUNCTION
     func initialize() {
         arrProduct = []
+        configureCollectionView()
         pageNo = "0"
         hitApiForSaleProduct()
     }
@@ -72,7 +76,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
                             self.hitApiForSaleProduct()
                         }
                     }
-                   
+                    
                 }
                 
             }, scrollViewListener: { (UIScrollView) in
@@ -87,7 +91,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
             }, success: {[unowned self] (model) in
                 let response = model as? ProductResponse ?? ProductResponse()
                 self.pageNo = response.pageNo ?? nil
-                print(response.arrProducts.count)
+                self.refreshControl.endRefreshing()
                 for item in response.arrProducts {
                     self.arrProduct.append(item)
                 }

@@ -14,6 +14,7 @@ class TabBarController: UITabBarController {
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for:.selected)
     }
     
     override func didReceiveMemoryWarning() {

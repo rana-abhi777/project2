@@ -37,7 +37,7 @@ class CategoriesViewController: UIViewController , IndicatorInfoProvider {
     func initialize() {
         ApiManager().getDataOfURL(withApi: API.GetCategory(APIParameters.GetCategory().formatParameters()), failure: { (err) in
             print(err)
-            }, success: { (model) in
+            }, success: {[unowned self] (model) in
                 self.arrCategoryData = (model as? [Category]) ?? []
                 self.configureTableView()
                 print(model)

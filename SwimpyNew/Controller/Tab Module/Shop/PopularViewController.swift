@@ -25,15 +25,18 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
         }
     }
     var pageNo : String?
+    let refreshControl = UIRefreshControl()
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl.addTarget(self, action: #selector(PopularViewController.initialize), for: UIControlEvents.valueChanged)
+        collectionViewPopularProducts?.refreshControl =  refreshControl
+        initialize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        initialize()
     }
 
     
@@ -44,6 +47,7 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
     //MARK:- FUNCTION
     func initialize() {
         arrProduct = []
+        configureCollectionView()
         pageNo = "0"
         hitApiForPopularProduct()
     }
@@ -86,7 +90,8 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
             }, success: {[unowned self] (model) in
                 let response = model as? ProductResponse ?? ProductResponse()
                 self.pageNo = response.pageNo ?? nil
-                print(response.arrProducts.count)
+//                print(response.arrProducts.count)
+                self.refreshControl.endRefreshing()
                 for item in response.arrProducts {
                     self.arrProduct.append(item)
                 }
@@ -96,7 +101,6 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
                 }
                 else {
                     self.view.bringSubview(toFront: self.viewNoProduct)
-                    
                 }
                 print(model)
             }, method: "GET", loader: true)

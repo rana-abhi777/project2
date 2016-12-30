@@ -17,6 +17,7 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider {
     //MARK:- variables
     var arrActivityData : [GlobalActivity] = []
     var tableViewDataSource : TableViewCustomDatasource?
+    var pageNo = "0"
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -34,7 +35,7 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider {
     
     //MARK:- FUNCTION
     func initialize() {
-        ApiManager().getDataOfURL(withApi: API.GetGlobalActivity(APIParameters.GetGlobalActivity().formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetGlobalActivity(APIParameters.GetGlobalActivity(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
                 self.arrActivityData = (model as? [GlobalActivity]) ?? []
