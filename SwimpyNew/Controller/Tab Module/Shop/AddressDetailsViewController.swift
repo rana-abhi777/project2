@@ -9,7 +9,7 @@
 import UIKit
 
 class AddressDetailsViewController: UIViewController {
-
+    
     //MARK:- outlets
     @IBOutlet weak var btnMarkAsDefault: UIButton!
     @IBOutlet weak var btnSave: UIButton!
@@ -24,7 +24,7 @@ class AddressDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -34,11 +34,11 @@ class AddressDetailsViewController: UIViewController {
     @IBAction func btnActionMarkAsDefault(sender: AnyObject) {
         //ic_check_small
     }
-
+    
     @IBAction func btnActionBack(sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)
     }
-
+    
     @IBAction func btnActionCancel(sender: AnyObject) {
     }
     @IBAction func btnActionSave(sender: AnyObject) {

@@ -72,7 +72,7 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
     func configureCollectionView(){
         collectionViewdataSource = CollectionViewDataSource(items: arrOtherImages, collectionView: collectionViewProductImages, cellIdentifier: CellIdentifiers.ProductImagesCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: collectionViewProductImages.frame.size.height, cellWidth: collectionViewProductImages.frame.size.width, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? ProductImagesCollectionViewCell
-            
+           
             cell?.configureCell(model: self.arrOtherImages[indexpath.row])
             }, aRowSelectedListener: { (indexPath) in
             }, willDisplayCell: {[unowned self] (indexPath) in
@@ -90,6 +90,13 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
         vc.productId = productId
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func redirectToCart(model : ProductDetail?) {
+        let vc = StoryboardScene.Main.instantiateCartViewController()
+        vc.productDetail = model
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func updateLikeData(model : ProductDetail?) {
         productDetails = model ?? ProductDetail()
         configureTableView()

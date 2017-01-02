@@ -22,6 +22,8 @@ class DealsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var imgProduct: UIImageView!
     
+    @IBOutlet weak var viewPriceDeductLine: UIView!
+    @IBOutlet weak var lblOldPrice: UILabel!
     //MARK:- variables
     var data : Products?
     var delegate : DealsProductTask?
@@ -33,7 +35,19 @@ class DealsCollectionViewCell: UICollectionViewCell {
         data = model
         index = row
         lblProductName?.text = model.productName ?? ""
-        lblPrice?.text = "$" + (model.base_price_unit ?? "0")
+        let totalPrice = Int(model.total_price ?? "0") ?? 0
+        let basePrice = Int(model.base_price_unit ?? "0") ?? 0
+        if totalPrice < basePrice &&  totalPrice != 0 {
+            lblOldPrice.isHidden = false
+            viewPriceDeductLine.isHidden = false
+            lblOldPrice.text = "$" + (model.base_price_unit ?? "0")
+            lblPrice?.text = "$" + (model.total_price ?? "0")
+        }
+        else {
+            lblOldPrice.isHidden = true
+            viewPriceDeductLine.isHidden = true
+        }
+        
         btnNumberOfLikes.setTitle(model.totalLikes ?? "0", for: .normal)
         btnShare.setTitle(model.share ?? "0", for: .normal)
         guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black

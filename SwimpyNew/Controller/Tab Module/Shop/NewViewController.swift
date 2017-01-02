@@ -10,12 +10,12 @@ import UIKit
 import XLPagerTabStrip
 
 class NewViewController: UIViewController , IndicatorInfoProvider {
-
+    
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

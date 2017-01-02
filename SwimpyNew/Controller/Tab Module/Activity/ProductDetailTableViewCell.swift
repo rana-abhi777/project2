@@ -11,6 +11,7 @@ import UIKit
 
 protocol ProductDetailTask {
     func updateLikeData(model : ProductDetail?)
+    func redirectToCart(model : ProductDetail?)
 }
 
 class ProductDetailTableViewCell: UITableViewCell {
@@ -81,11 +82,13 @@ class ProductDetailTableViewCell: UITableViewCell {
         
         lblProductName.text = model.productName ?? ""
         lblDescription.text = model.describe
-        lblPrice.text = "$" + (model.base_price_unit ?? "0")
+        lblPrice.text = "$" + "\(model.base_price_unit ?? 0.0)"
         lblNumberOfLikes.text = model.totalLikes ?? "0"
         lblNumberOfShare.text = "\(model.share ?? 0)"
         lblSelectedColor.text = (model.color?.count ?? 0) > 0 ?  model.color?[0] : ""
         lblSelectedSize.text = (model.variations?.count ?? 0) > 0 ? model.variations?[0] : ""
+        model.colorSelected = lblSelectedColor.text
+        model.sizeSelected = lblSelectedSize.text
         if model.likesStatus == 0 {
             imgLike.image = UIImage(asset: .icLike)
         }
@@ -165,6 +168,7 @@ class ProductDetailTableViewCell: UITableViewCell {
         selectSizeDropDown.show()
         selectSizeDropDown.selectionAction = { [unowned self] (index, item) in
             self.lblSelectedSize.text = self.data?.variations?[index]
+            self.data?.sizeSelected = self.lblSelectedSize.text
         }
     }
     
@@ -172,6 +176,7 @@ class ProductDetailTableViewCell: UITableViewCell {
         selectColorDropDown.show()
         selectColorDropDown.selectionAction = { [unowned self] (index, item) in
             self.lblSelectedColor.text = self.data?.color?[index]
+            self.data?.colorSelected = self.lblSelectedColor.text
         }
     }
     
@@ -182,16 +187,11 @@ class ProductDetailTableViewCell: UITableViewCell {
             self.data?.totalLikes = "\(likeCount)"
             self.data?.likesStatus = 1
             lblNumberOfLikes.text = self.data?.totalLikes
-//                        self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
-            
             self.delegate?.updateLikeData(model: self.data)
             ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
-//                    print(model)
-//                    let likeCount = model as? String
-//                    self.data?.totalLikes = likeCount
-//                    self.delegate?.updateLikeData(model: self.data)
+
                 }, method: "POST", loader: false)
         }
         else {
@@ -208,9 +208,6 @@ class ProductDetailTableViewCell: UITableViewCell {
                 print(err)
                 }, success: {(model) in
                     print(model)
-//                    let likeCount = model as? String
-//                    self.data?.totalLikes = likeCount
-//                    self.delegate?.updateLikeData(model: self.data)
                 }, method: "POST", loader: false)
         }
     }
@@ -218,6 +215,7 @@ class ProductDetailTableViewCell: UITableViewCell {
     @IBAction func btnActionShare(_ sender: AnyObject) {
     }
     @IBAction func btnActionAddToCart(_ sender: AnyObject) {
+        self.delegate?.redirectToCart(model: self.data)
     }
     @IBAction func btnActionBuyNow(_ sender: AnyObject) {
     }

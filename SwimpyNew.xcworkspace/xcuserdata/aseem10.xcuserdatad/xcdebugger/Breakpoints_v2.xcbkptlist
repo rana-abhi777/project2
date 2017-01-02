@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Model/User.swift"
-            timestampString = "500899369.563219"
+            filePath = "SwimpyNew/Controller/Tab Module/Activity/GlobalActivityViewController.swift"
+            timestampString = "505029610.639785"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "init(arrResult:)"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "redirectToItemScreen(itemID:idType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Manager/HttpManager.swift"
-            timestampString = "503819101.048073"
+            filePath = "SwimpyNew/Controller/ProductDetailViewController.swift"
+            timestampString = "504853286.357627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "callApiWithParameters(api:image:success:failure:method:)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "redirectToCart(model:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Cells/CollectionView/RelatedProductsCollectionViewCell.swift"
-            timestampString = "503658757.869785"
+            filePath = "SwimpyNew/Controller/Tab Module/Profile/ProfileActivityViewController.swift"
+            timestampString = "505051094.377593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "configureCell(model:row:)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "redirectToItemScreen(itemID:idType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,45 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Manager/HttpManager.swift"
-            timestampString = "503818576.705071"
+            filePath = "SwimpyNew/Controller/Tab Module/Profile/ProfileActivityViewController.swift"
+            timestampString = "505051094.377593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "callApiWithParameters(api:success:failure:method:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Manager/HttpManager.swift"
-            timestampString = "503913609.627792"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "callApiWithParameters(api:success:failure:method:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Activity/ProductDetailTableViewCell.swift"
-            timestampString = "503921451.365459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "configureCell(model:)"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "redirectToItemScreen(itemID:idType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimpyNew/Controller/Tab Module/Activity/GlobalActivityViewController.swift"
-            timestampString = "504791163.816286"
+            timestampString = "505029610.639785"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "redirectToItemScreen(idType:itemID:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "redirectToItemScreen(itemID:idType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Explore/DealsViewController.swift"
-            timestampString = "504787213.364555"
+            filePath = "../../../../../Users/aseem10/Desktop/GlobalActivityTableViewCell.swift"
+            timestampString = "505030043.736957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "hitApiForPopularProduct()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "configureCell(model:index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,43 +105,75 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Explore/DealsViewController.swift"
-            timestampString = "504787213.364555"
+            filePath = "SwimpyNew/Manager/HttpManager.swift"
+            timestampString = "505031281.877529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "hitApiForPopularProduct()"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getHeader(contentType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Controller/Tab Module/Shop/StoreProfileViewController.swift"
+            timestampString = "505036459.075194"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "hitApiForStoreDetail()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Controller/Tab Module/Shop/StoreProfileViewController.swift"
+            timestampString = "505036459.075194"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "hitApiForStoreDetail()"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SwimpyNew.DealsViewController.hitApiForPopularProduct () -&gt; ()"
+                  symbolName = "SwimpyNew.StoreProfileViewController.hitApiForStoreDetail () -&gt; ()"
                   moduleName = "SwimpyNew"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Data/myData%20New/swimpy%20git/social-comnerce/SwimpyNew/Controller/Tab%20Module/Explore/DealsViewController.swift"
-                  timestampString = "504788293.552824"
+                  urlString = "file:///Volumes/Data/myData%20New/swimpy%20git/social-comnerce/SwimpyNew/Controller/Tab%20Module/Shop/StoreProfileViewController.swift"
+                  timestampString = "505052119.113239"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
                   offsetFromSymbolStart = "22">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SwimpyNew.DealsViewController.(hitApiForPopularProduct () -&gt; ()).(closure #1)"
+                  symbolName = "SwimpyNew.StoreProfileViewController.(hitApiForStoreDetail () -&gt; ()).(closure #1)"
                   moduleName = "SwimpyNew"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Data/myData%20New/swimpy%20git/social-comnerce/SwimpyNew/Controller/Tab%20Module/Explore/DealsViewController.swift"
-                  timestampString = "504788293.554323"
+                  urlString = "file:///Volumes/Data/myData%20New/swimpy%20git/social-comnerce/SwimpyNew/Controller/Tab%20Module/Shop/StoreProfileViewController.swift"
+                  timestampString = "505052119.114814"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
                   offsetFromSymbolStart = "19">
                </Location>
             </Locations>
@@ -185,13 +185,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Explore/DealsViewController.swift"
-            timestampString = "504787213.364555"
+            filePath = "SwimpyNew/Cells/CollectionView/DealsCollectionViewCell.swift"
+            timestampString = "505042467.159228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "hitApiForPopularProduct()"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "configureCell(model:row:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,174 +201,126 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Explore/DealsViewController.swift"
-            timestampString = "504787213.364555"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "hitApiForPopularProduct()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Explore/DealsViewController.swift"
-            timestampString = "504787213.364555"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "hitApiForPopularProduct()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Explore/DealsViewController.swift"
-            timestampString = "504787213.364555"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "configureCollectionView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Explore/DealsViewController.swift"
-            timestampString = "504787213.364555"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "configureCollectionView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Controller/Tab Module/Activity/GlobalActivityViewController.swift"
-            timestampString = "504788846.389629"
+            filePath = "SwimpyNew/Controller/Tab Module/Profile/ProfileStoreViewController.swift"
+            timestampString = "505051094.377593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
             endingLineNumber = "52"
+            landmarkName = "hitApiToGetUserStores()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Cells/CollectionView/ProfileStoreCollectionViewCell.swift"
+            timestampString = "505044430.927932"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "configureCell(model:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Cells/CollectionView/ProfileItemCollectionViewCell.swift"
+            timestampString = "505047374.514894"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "configureCell(model:row:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Manager/HttpManager.swift"
+            timestampString = "505049056.386527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "callApiWithParameters(api:success:failure:method:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Manager/HttpManager.swift"
+            timestampString = "505049262.360332"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "callApiWithParameters(api:success:failure:method:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Controller/Tab Module/Profile/ProfileItemViewController.swift"
+            timestampString = "505051608.776809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "hitApiToGetUserItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Controller/Tab Module/Profile/ProfileStoreViewController.swift"
+            timestampString = "505051046.455004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "hitApiToGetUserStores()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwimpyNew/Controller/Tab Module/Profile/ProfileActivityViewController.swift"
+            timestampString = "505051056.686685"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "apiToGetGlobalActivity()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Manager/HttpManager.swift"
-            timestampString = "504788580.713632"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "callApiWithParameters(api:success:failure:method:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static SwimpyNew.HttpManager.callApiWithParameters (api : SwimpyNew.API, success : (Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; (), failure : (Swift.String) -&gt; (), method : Swift.String) -&gt; ()"
-                  moduleName = "SwimpyNew"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Data/myData%20New/swimpy%20git/social-comnerce/SwimpyNew/Manager/HttpManager.swift"
-                  timestampString = "504788580.929259"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "587">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static SwimpyNew.HttpManager.(callApiWithParameters (api : SwimpyNew.API, success : (Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; (), failure : (Swift.String) -&gt; (), method : Swift.String) -&gt; ()).(closure #1)"
-                  moduleName = "SwimpyNew"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Data/myData%20New/swimpy%20git/social-comnerce/SwimpyNew/Manager/HttpManager.swift"
-                  timestampString = "504788580.930871"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38"
-                  offsetFromSymbolStart = "31">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwimpyNew/Manager/HttpManager.swift"
-            timestampString = "504788582.577591"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "callApiWithParameters(api:success:failure:method:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static SwimpyNew.HttpManager.callApiWithParameters (api : SwimpyNew.API, success : (Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; (), failure : (Swift.String) -&gt; (), method : Swift.String) -&gt; ()"
-                  moduleName = "SwimpyNew"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Data/myData%20New/swimpy%20git/social-comnerce/SwimpyNew/Manager/HttpManager.swift"
-                  timestampString = "504788582.832886"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "1533">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static SwimpyNew.HttpManager.(callApiWithParameters (api : SwimpyNew.API, success : (Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; (), failure : (Swift.String) -&gt; (), method : Swift.String) -&gt; ()).(closure #2)"
-                  moduleName = "SwimpyNew"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Data/myData%20New/swimpy%20git/social-comnerce/SwimpyNew/Manager/HttpManager.swift"
-                  timestampString = "504788582.834422"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "31">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

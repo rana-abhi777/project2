@@ -1,15 +1,14 @@
 //
-//  ProfileViewController.swift
-//  Swimpy
+//  UserProfileViewController.swift
+//  SwimpyNew
 //
-//  Created by Aseem 10 on 10/6/16.
-//  Copyright © 2016 Aseem 10. All rights reserved.
+//  Created by Aseem 10 on 1/2/17.
+//  Copyright © 2017 Aseem 10. All rights reserved.
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class ProfileViewController: BasePageViewController {
+class UserProfileViewController: BasePageViewController {
     
     //MARK:- outlets
     @IBOutlet weak var btnBack: UIButton!
@@ -50,7 +49,7 @@ class ProfileViewController: BasePageViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-   
+    
     //MARK:- functions
     func hitApiToGetUserDetails() {
         ApiManager().getDataOfURL(withApi: API.GetUserDetail(APIParameters.GetUserDetail(userId : userId).formatParameters()), failure: { (err) in
@@ -60,7 +59,7 @@ class ProfileViewController: BasePageViewController {
                 self.setUI()
                 print(model)
             }, method: "GET", loader: true)
-
+        
     }
     
     func setUI() {
@@ -69,15 +68,9 @@ class ProfileViewController: BasePageViewController {
         lblNumberOfFollowers.text = (userDetails?.totalFollowing ?? "") + " followers"
         lblNumberOfFollowing.text = (userDetails?.totalFollowedBy ?? "") + " following"
         imgUserImage.sd_setImage(with: URL(string: userDetails?.profilePicURLThumbnail ?? ""))
-//        profileActivityVC.userId = userId
-//        profileStoreVC.userId = userId
-//        profileItemVC.userId = userId
     }
     
     override func getViewControllers() -> [UIViewController] {
-        profileActivityVC.userId = userId
-        profileStoreVC.userId = userId
-        profileItemVC.userId = userId
         return [profileItemVC,profileStoreVC,profileActivityVC]
     }
     
@@ -89,10 +82,10 @@ class ProfileViewController: BasePageViewController {
     @IBAction func btnActionCart(sender: AnyObject) {
     }
     @IBAction func btnSearchAction(sender: AnyObject) {
-//        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()
-//        self.navigationController?.pushViewController(VC, animated: true)
+        //        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()
+        //        self.navigationController?.pushViewController(VC, animated: true)
     }
-
+    
     @IBAction func brnActionBack(_ sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)
     }

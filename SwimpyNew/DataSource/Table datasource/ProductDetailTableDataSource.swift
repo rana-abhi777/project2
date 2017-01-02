@@ -37,6 +37,7 @@ class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewData
                 return UITableViewCell()
             }
             cell.configureCell(model: datasource ?? ProductDetail())
+            cell.delegate = (vc as? ProductDetailViewController) ?? nil
             return cell
         }
         else if indexPath.row == 1 {

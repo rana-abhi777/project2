@@ -27,7 +27,7 @@ class CategoriesViewController: UIViewController , IndicatorInfoProvider {
         super.viewWillAppear(true)
         initialize()
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

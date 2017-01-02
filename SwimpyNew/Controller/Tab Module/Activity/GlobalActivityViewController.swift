@@ -17,7 +17,7 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     //MARK:- variables
     var arrActivityData : [GlobalActivity] = []
     var tableViewDataSource : TableViewCustomDatasource?
-     var pageNo : String?
+    var pageNo : String?
     let refreshControl = UIRefreshControl()
     
     //MARK:- override functions
@@ -63,6 +63,7 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     func configureTableView() {
         tableViewDataSource = TableViewCustomDatasource(items: arrActivityData, height: 89, estimatedHeight: 89, tableView: tableViewGlobalActivity, cellIdentifier: CellIdentifiers.GlobalActivityTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? GlobalActivityTableViewCell
+            cell?.delegate = self
             cell?.configureCell(model: self.arrActivityData[indexpath.row],index : indexpath.row )
             }, aRowSelectedListener: { (indexPath) in
             }, willDisplayCell: { (indexPath) in
@@ -74,9 +75,6 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
                     }
                     
                 }
- 
-                
-                
         })
         tableViewGlobalActivity.delegate = tableViewDataSource
         tableViewGlobalActivity.dataSource = tableViewDataSource
@@ -84,7 +82,7 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     }
     
     //MARK:- global activity delegate
-    func redirectToItemScreen(idType : String, itemID : String) {
+    func redirectToItemScreen(itemID : String, idType : String) {
         switch idType {
         case "PRODUCT" :
             let vc = StoryboardScene.Main.instantiateProductDetailViewController()
@@ -95,8 +93,10 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
             print("customer page not ready")
             break
         case "SELLER" :
-            print("seller page not ready")
-        let vc = StoryboardScene.Main.storeProfileViewControllerScene
+            
+            let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
+            vc.sellerId = itemID
+            self.navigationController?.pushViewController(vc, animated: true)
             break
             
         default:

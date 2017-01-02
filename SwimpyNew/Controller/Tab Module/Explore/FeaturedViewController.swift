@@ -67,10 +67,7 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
             cell?.delegate = self
             cell?.configureCell(model: self.arrFeaturedData[indexpath.row],row : indexpath.row)
             }, aRowSelectedListener: { (indexPath) in
-                //                let productId = self.arrFeaturedData[indexPath.row].id ?? ""
-                //                let vc = StoryboardScene.Main.instantiateProductDetailViewController()
-                //                vc.productId = productId
-                //                self.navigationController?.pushViewController(vc, animated: true)
+                
             }, willDisplayCell: {[unowned self] (indexPath) in
                 if indexPath.row == self.arrFeaturedData.count - 2 {
                     if let temp = self.pageNo  {

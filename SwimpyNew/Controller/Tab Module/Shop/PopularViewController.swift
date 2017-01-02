@@ -38,7 +38,7 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -58,9 +58,9 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
             cell?.layer.cornerRadius = 4.0
             cell?.layer.borderWidth = 2.0
             cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-             cell?.delegate = self
+            cell?.delegate = self
             cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
-           
+            
             }, aRowSelectedListener: { (indexPath) in
                 
                 let productId = self.arrProduct[indexPath.row].id ?? ""
@@ -90,7 +90,7 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
             }, success: {[unowned self] (model) in
                 let response = model as? ProductResponse ?? ProductResponse()
                 self.pageNo = response.pageNo ?? nil
-//                print(response.arrProducts.count)
+                //                print(response.arrProducts.count)
                 self.refreshControl.endRefreshing()
                 for item in response.arrProducts {
                     self.arrProduct.append(item)

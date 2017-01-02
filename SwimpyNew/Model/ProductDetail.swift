@@ -23,13 +23,13 @@ class ProductDetail: NSObject {
     var returns : String?
     var applyCoupon : String?
     var sku : String?
-    var total_price : String?
+    var total_price : Float?
     var repost_price : String?
     var location : String?
-    var shippingPrice : String?
+    var shippingPrice : Float?
     var isActive : String?
     var color : [String]?
-    var base_price_unit : String?
+    var base_price_unit : Float?
     var totalLikes : String?
     var arrLikeUser : [LikeUser]?
     var productName : String?
@@ -52,10 +52,21 @@ class ProductDetail: NSObject {
     var storeImgOriginal : String?
     var numberOfFollwers : String?
     
+//    internationalShipCost
+//    nationalShipCost
+//    paypalId
+    
+    
     
     var arrMoreFromStore : [MoreFromStore]?
     
     var arrRelatedProducts : [RelatedProducts]?
+    
+    var colorSelected : String?
+    var sizeSelected : String?
+    var quantitySelected : String = "1"
+    var flagMarkAsGift = false
+    
     
     //MARK:- initializer
     init(response : JSON) {
@@ -76,10 +87,10 @@ class ProductDetail: NSObject {
         returns = arrResult["returns"].stringValue
         applyCoupon = arrResult["applyCoupon"].stringValue
         sku = arrResult["sku"].stringValue
-        total_price = arrResult["total_price"].stringValue
+        total_price = arrResult["total_price"].floatValue
         repost_price = arrResult["repost_price"].stringValue
         location = arrResult["location"].stringValue
-        shippingPrice = arrResult["shippingPrice"].stringValue
+        shippingPrice = arrResult["shippingPrice"].floatValue
         isActive = arrResult["isActive"].stringValue
         color = []
         for item in arrResult["color"].arrayValue {
@@ -90,7 +101,7 @@ class ProductDetail: NSObject {
             variations?.append(item.stringValue)
         }
         featured = arrResult["featured"].stringValue
-        base_price_unit = arrResult["base_price_unit"].stringValue
+        base_price_unit = arrResult["base_price_unit"].floatValue
         share = arrResult["share"].intValue
         totalLikes = arrResult["totalLikes"].stringValue
         productName = arrResult["productName"].stringValue

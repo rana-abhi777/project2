@@ -323,6 +323,15 @@ struct StoryboardScene {
       }
       return vc
     }
+
+    case userProfileViewControllerScene = "UserProfileViewController"
+    static func instantiateUserProfileViewController() -> UserProfileViewController {
+      guard let vc = StoryboardScene.Main.userProfileViewControllerScene.viewController() as? UserProfileViewController
+      else {
+        fatalError("ViewController 'UserProfileViewController' is not of the expected class UserProfileViewController.")
+      }
+      return vc
+    }
   }
 }
 

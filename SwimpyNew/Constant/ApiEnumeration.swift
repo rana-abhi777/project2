@@ -16,9 +16,9 @@ protocol Router {
 }
 
 enum APIConstant : String {
-
-    case baseURL = "http://130.211.244.184:4001/"   //live 
-//     case baseURL =   "http://192.168.100.125:4001/"
+    
+    case baseURL = "http://130.211.244.184:4001/"   //live
+    //     case baseURL =   "http://192.168.100.125:4001/"
 }
 
 enum API {
@@ -44,6 +44,12 @@ enum API {
     case FollowStore(OptionalDictionary)
     case UnfollowStore(OptionalDictionary)
     case GetUserDetail(OptionalDictionary)
+    
+    
+    case GetStoreDetail(OptionalDictionary)
+    case GetUserStore(OptionalDictionary)
+    case GetUserItem(OptionalDictionary)
+    
 }
 
 
@@ -66,6 +72,9 @@ enum APIParameters {
     case FollowStore(sellerId : String?)
     case UnfollowStore(sellerId : String?)
     case GetUserDetail(userId : String?)
+    case GetStoreDetail(sellerId : String?)
+    case GetUserStore(type : String?)
+    case GetUserItem(type : String?)
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
@@ -99,7 +108,7 @@ enum APIParameters {
             return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetSaleProduct(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
-        
+            
         case .GetPopularProduct(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
             
@@ -107,6 +116,10 @@ enum APIParameters {
             return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetUserActivity(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
+        case .GetStoreDetail(let sellerId) :
+            return["sellerId" : (sellerId ?? "") as AnyObject]
+        case .GetUserStore(let type) , .GetUserItem(let type) :
+            return ["Type" : (type ?? "") as AnyObject]
 
             
         default:
@@ -136,6 +149,9 @@ extension API : Router {
         case .UnfollowStore(let parameters) : return parameters
         case .GetUserDetail(let parameters) : return parameters
         case .GetUserActivity(let parameters) : return parameters
+        case .GetStoreDetail(let parameters) : return parameters
+        case .GetUserStore(let parameters) : return parameters
+            case .GetUserItem(let parameters) : return parameters
         }
     }
     
@@ -159,6 +175,8 @@ extension API : Router {
         case .UnfollowStore(_) : return "api/users/unfollowStores"
         case .GetUserDetail(_) : return "api/users/getUserDetails"
         case .GetUserActivity(_) : return "api/users/getUserActivity"
+        case .GetStoreDetail(_) : return "sellers/getStoreDetails"
+        case .GetUserStore(_) , .GetUserItem(_) : return "api/users/item_store_activity"
         }
     }
     

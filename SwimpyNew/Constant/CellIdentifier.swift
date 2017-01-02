@@ -19,6 +19,8 @@ enum CellIdentifiers: String {
     case FeaturedTableViewCell = "FeaturedTableViewCell"
     case MoreFromStoreTableViewCell = "MoreFromStoreTableViewCell"
     case RelatedProductsTableViewCell = "RelatedProductsTableViewCell"
+    case CartProductDetailTableViewCell = "CartProductDetailTableViewCell"
+    case CartPriceDetailTableViewCell = "CartPriceDetailTableViewCell"
     
     //MARK::- COLLECTION VIEW CELL IDENTIFIERS
     
@@ -30,4 +32,6 @@ enum CellIdentifiers: String {
     case ProductLikeUserCollectionViewCell = "ProductLikeUserCollectionViewCell"
     case MoreProductsCollectionViewCell = "MoreProductsCollectionViewCell"
     case RelatedProductsCollectionViewCell = "RelatedProductsCollectionViewCell"
+    case ProfileStoreCollectionViewCell = "ProfileStoreCollectionViewCell"
+    case ProfileItemCollectionViewCell = "ProfileItemCollectionViewCell"
 }

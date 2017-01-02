@@ -14,7 +14,7 @@ class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -43,6 +43,6 @@ class FilterViewController: UIViewController {
     @IBAction func btnActionBack(sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)
     }
-
-
+    
+    
 }

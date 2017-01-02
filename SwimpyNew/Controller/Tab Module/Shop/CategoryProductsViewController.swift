@@ -21,7 +21,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
         }
     }
     var pageNo : String?
-     let refreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewCategoryProducts: UICollectionView!
@@ -35,7 +35,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
         refreshControl.addTarget(self, action: #selector(CategoryProductsViewController.initialize), for: UIControlEvents.valueChanged)
         collectionViewCategoryProducts?.refreshControl =  refreshControl
         initialize()
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

@@ -10,7 +10,7 @@ import UIKit
 import XLPagerTabStrip
 
 class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProductTask {
-
+    
     //MARK:- variables
     var categoryId : String?
     var arrProduct : [Products] = []
@@ -34,7 +34,7 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
         refreshControl.addTarget(self, action: #selector(DealsViewController.initialize), for: UIControlEvents.valueChanged)
         collectionViewDeals?.refreshControl =  refreshControl
         initialize()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,8 +48,8 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     //MARK:- FUNCTION
     func initialize() {
         pageNo = "0"
-//        arrProduct = []
-//        configureCollectionView()
+        //        arrProduct = []
+        //        configureCollectionView()
         hitApiForPopularProduct()
     }
     
@@ -114,6 +114,6 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Deals")
     }
-
-   
+    
+    
 }
