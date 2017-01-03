@@ -20,7 +20,7 @@ class ProfileStoreCollectionViewCell: UICollectionViewCell {
     
     //MARK:-  function
     
-    func configureCell(model : StoreDetail) {
+    func configureCell(model : UserStores) {
         lblStoreName.text = model.storeName ?? ""
 //        lblDescription.text = model?.describe ?? ""
         lblNumberOfFollowers.text = (model.totalFollow ?? "") + " followers"

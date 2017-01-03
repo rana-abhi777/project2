@@ -42,7 +42,7 @@ class ApiManager {
                     let category = Category.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
                     
-                case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) :
+                case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) , .GetUserItem(_) :
                     let result = ProductResponse(arrResult: data["data"])
                     singleUserArray = result as AnyObject?
                     
@@ -85,13 +85,10 @@ class ApiManager {
                     print(data)
                     break
                 case .GetUserStore(_) :
-                    let userStore = StoreDetail.changeDictToModelArray(jsoon1: data["data"])
-                    singleUserArray = userStore as AnyObject?
+                    let userStores = AllStores(arrResult : data["data"])
+                    singleUserArray = userStores as AnyObject?
                     break
-                case .GetUserItem(_) :
-                    let userItems = Products.changeDictToModelArray(jsoon1: data)
-                    singleUserArray = userItems as AnyObject?
-                    break
+
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }

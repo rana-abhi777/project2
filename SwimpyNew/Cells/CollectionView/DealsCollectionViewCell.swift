@@ -21,9 +21,9 @@ class DealsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btnShare: UIButton!
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var imgProduct: UIImageView!
-    
     @IBOutlet weak var viewPriceDeductLine: UIView!
     @IBOutlet weak var lblOldPrice: UILabel!
+    
     //MARK:- variables
     var data : Products?
     var delegate : DealsProductTask?

@@ -8,21 +8,24 @@
 
 import UIKit
 
-class StoreProfileViewController: UIViewController {
+class StoreProfileViewController: UIViewController ,StoreProfileTask,StoreProductTask,StoreProfileCollectionViewTask {
     
     //MARK:- outlets
-    @IBOutlet weak var collectionViewItems: UICollectionView!
+    @IBOutlet weak var collectionViewstoreProducts: UICollectionView!
     
-    @IBOutlet weak var btnFollowStore: CustomButton!
-    @IBOutlet weak var btnMessage: CustomButton!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var lblNumberOfFollowers: UILabel!
-    @IBOutlet weak var lblStoreName: UILabel!
-    @IBOutlet weak var imgStoreThumbnail: CustomImageView!
-    @IBOutlet weak var imgStoreCoverPic: UIImageView!
+    
     //MARK:- variables
     var sellerId = ""
     var model : StoreDetail?
+    var arrProductData : [StoreProducts] = []
+    var pageNo : String?
+    var collectionViewdataSource : StoreProfileCollectionViewDataSource?{
+        didSet{
+            collectionViewstoreProducts.dataSource = collectionViewdataSource
+            collectionViewstoreProducts.delegate = collectionViewdataSource
+        }
+    }
+    
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -36,48 +39,67 @@ class StoreProfileViewController: UIViewController {
     
     //MARK:- functions
     func initialize() {
+        pageNo = "0"
         hitApiForStoreDetail()
     }
     
     func hitApiForStoreDetail() {
-        ApiManager().getDataOfURL(withApi: API.GetStoreDetail(APIParameters.GetStoreDetail(sellerId: sellerId).formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetStoreDetail(APIParameters.GetStoreDetail(sellerId: sellerId,pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
                 self.model = (model as? StoreDetail) ?? StoreDetail()
-                self.setUI()
-                print(model)
+                
+                self.pageNo = self.model?.pageNo
+                
+                for item in self.model?.productData ?? []{
+                    self.arrProductData.append(item)
+                }
+                self.model?.productData = self.arrProductData
+                self.configureCollectionView()
             }, method: "GET", loader: true)
     }
     
-    func setUI() {
-        lblStoreName.text = model?.storeName ?? ""
-        lblDescription.text = model?.describe ?? ""
-        lblNumberOfFollowers.text = (model?.totalFollow ?? "") + " followers"
-        imgStoreCoverPic.sd_setImage(with: URL(string: model?.coverPicURLOriginal ?? ""))
-        imgStoreThumbnail.sd_setImage(with: URL(string: model?.profilePicURLThumbnail ?? ""))
+    
+    //MARK:- configure tableview and collection view
+    
+    func configureCollectionView(){
+        collectionViewdataSource = StoreProfileCollectionViewDataSource(colectionView: collectionViewstoreProducts, datasource: model ?? StoreDetail(), vc: self,pageNo : pageNo)
+        collectionViewdataSource?.delegate = self
+        collectionViewstoreProducts.reloadData()
     }
-    //MARK:- button actions
-    @IBAction func btnActionFollowStore(sender: AnyObject) {
-    }
-    @IBAction func btnActionMessage(sender: AnyObject) {
-    }
-    @IBAction func btnActionSort(sender: AnyObject) {
+    
+    
+    //MARK:- delegate functions
+   
+    func sortPressed() {
         let VC = StoryboardScene.Main.instantiateSortViewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
-    @IBAction func btnActionFilter(sender: AnyObject) {
+    func filterPressed() {
         let VC = StoryboardScene.Main.instantiateFilterViewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
-    @IBAction func btnActionCart(sender: AnyObject) {
+    func openCart() {
         let VC = StoryboardScene.Main.instantiateCartViewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
-    @IBAction func btnActionSearch(sender: AnyObject) {
+    func openSearch() {
         let VC = StoryboardScene.Main.instantiateSearchViewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
-    @IBAction func btnActionBack(sender: AnyObject) {
+    func goBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+    func updateLikeData(model : StoreProducts?, index : Int) {
+        self.model?.productData[index] =  model ?? StoreProducts()
+        configureCollectionView()
+    }
+    func redirectToProductDetail(productId : String) {
+        let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+        vc.productId = productId
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+     func hitApiAgain() {
+        hitApiForStoreDetail()
     }
 }

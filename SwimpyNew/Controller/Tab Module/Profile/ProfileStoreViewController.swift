@@ -15,7 +15,7 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
     @IBOutlet weak var collectionViewProfileStores: UICollectionView!
     
     //MARK:- variables
-    var arrStores : [StoreDetail] = []
+    var arrStores : [UserStores] = []
     var collectionViewdataSource : CollectionViewDataSource?{
         didSet{
             collectionViewProfileStores.dataSource = collectionViewdataSource
@@ -23,12 +23,13 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
         }
     }
     var userId = ""
-    
+    var pageNo : String?
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -40,16 +41,24 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
     
     //MARK:- functions
     func initialize() {
+        pageNo = "0"
         hitApiToGetUserStores()
     }
     
     func hitApiToGetUserStores() {
-        ApiManager().getDataOfURL(withApi: API.GetUserStore(APIParameters.GetUserStore(type : "STORES").formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetUserStore(APIParameters.GetUserStore(type : "STORES", userId: userId,pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                self.arrStores = (model as? [StoreDetail]) ?? []
-                self.configureCollectionView()
-                print(self.arrStores.count)
+                
+                let response = model as? AllStores ?? AllStores()
+                self.pageNo = response.pageNo ?? nil
+                for item in response.userStore {
+                    self.arrStores.append(item)
+                }
+                if self.arrStores.count > 0 {
+                    self.configureCollectionView()
+//                    self.view.bringSubview(toFront: self.collectionViewUserItem)
+                }
             }, method: "POST", loader: true)
     }
     
@@ -62,7 +71,19 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
             cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
             cell?.configureCell(model: self.arrStores[indexpath.row])
             }, aRowSelectedListener: {[unowned self] (indexPath) in
+                let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
+                vc.sellerId = self.arrStores[indexPath.row].id ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+
             }, willDisplayCell: {[unowned self] (indexPath) in
+                if indexPath.row == self.arrStores.count - 2 {
+                    if let temp = self.pageNo  {
+                        if temp != "" {
+                            self.hitApiToGetUserStores()
+                        }
+                    }
+                    
+                }
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewProfileStores.reloadData()

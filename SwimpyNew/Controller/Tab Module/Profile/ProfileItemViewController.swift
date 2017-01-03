@@ -22,6 +22,7 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider,Profil
         }
     }
     var userId = ""
+    var pageNo : String?
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -38,31 +39,30 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider,Profil
     func initialize() {
         arrProduct = []
         configureCollectionView()
-//        pageNo = "0"
+        pageNo = "0"
         hitApiToGetUserItems()
     }
     
     func hitApiToGetUserItems() {
-        ApiManager().getDataOfURL(withApi: API.GetUserItem(APIParameters.GetUserItem(type : "ITEMS").formatParameters()), failure: { (err) in
+        ApiManager().getDataOfURL(withApi: API.GetUserItem(APIParameters.GetUserItem(type : "ITEMS", userId: userId,pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
                 
-//                let response = model as? ProductResponse ?? ProductResponse()
-//                self.pageNo = response.pageNo ?? nil
-//                self.refreshControl.endRefreshing()
-//                for item in response.arrProducts {
-//                    self.arrProduct.append(item)
-//                }
-//                if self.arrProduct.count > 0 {
-//                    self.configureCollectionView()
-//                    self.view.bringSubview(toFront: self.collectionViewSale)
-//                }
+                let response = model as? ProductResponse ?? ProductResponse()
+                self.pageNo = response.pageNo ?? nil
+                for item in response.arrProducts {
+                    self.arrProduct.append(item)
+                }
+                if self.arrProduct.count > 0 {
+                    self.configureCollectionView()
+                    self.view.bringSubview(toFront: self.collectionViewUserItem)
+                }
                 
                 
-                self.arrProduct = model as? [Products] ?? []
-                print(self.arrProduct.count)
-//                self.arrProduct = response.arrProducts
-                self.configureCollectionView()
+//                self.arrProduct = model as? [Products] ?? []
+//                print(self.arrProduct.count)
+////                self.arrProduct = response.arrProducts
+//                self.configureCollectionView()
             }, method: "POST", loader: true)
         
     }
@@ -83,14 +83,14 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider,Profil
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }, willDisplayCell: {[unowned self] (indexPath) in
-//                if indexPath.row == self.arrProduct.count - 2 {
-//                    if let temp = self.pageNo  {
-//                        if temp != "" {
-//                            self.hitApiToGetUserItems()
-//                        }
-//                    }
-//                    
-//                }
+                if indexPath.row == self.arrProduct.count - 2 {
+                    if let temp = self.pageNo  {
+                        if temp != "" {
+                            self.hitApiToGetUserItems()
+                        }
+                    }
+                    
+                }
                 
             }, scrollViewListener: { (UIScrollView) in
         })

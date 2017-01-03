@@ -72,9 +72,9 @@ enum APIParameters {
     case FollowStore(sellerId : String?)
     case UnfollowStore(sellerId : String?)
     case GetUserDetail(userId : String?)
-    case GetStoreDetail(sellerId : String?)
-    case GetUserStore(type : String?)
-    case GetUserItem(type : String?)
+    case GetStoreDetail(sellerId : String?,pageNo : String?)
+    case GetUserStore(type : String?,userId : String?,pageNo : String?)
+    case GetUserItem(type : String?,userId : String?,pageNo : String?)
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
@@ -116,10 +116,10 @@ enum APIParameters {
             return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetUserActivity(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
-        case .GetStoreDetail(let sellerId) :
-            return["sellerId" : (sellerId ?? "") as AnyObject]
-        case .GetUserStore(let type) , .GetUserItem(let type) :
-            return ["Type" : (type ?? "") as AnyObject]
+        case .GetStoreDetail(let sellerId, let pageNo) :
+            return["sellerId" : (sellerId ?? "") as AnyObject,"pageNo" : (pageNo ?? "") as AnyObject]
+        case .GetUserStore(let type, let userId,let pageNo) , .GetUserItem(let type,let userId,let pageNo) :
+            return ["Type" : (type ?? "") as AnyObject, "userId" : (userId ?? "") as AnyObject,"pageNo" : (pageNo ?? "") as AnyObject]
 
             
         default:
