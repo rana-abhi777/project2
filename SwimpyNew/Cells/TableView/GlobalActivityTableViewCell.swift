@@ -10,6 +10,7 @@ import UIKit
 
 protocol GlobalActivityTask {
     func redirectToItemScreen(itemID : String, idType : String)
+    func openUserDetail(userID : String)
 }
 
 class GlobalActivityTableViewCell: UITableViewCell {
@@ -59,6 +60,13 @@ class GlobalActivityTableViewCell: UITableViewCell {
         lblTime?.text = calculateTimeSince(time: timeAgo)
     }
 
+    
+    
+    @IBAction func btnActionOpenUser(_ sender: AnyObject) {
+        if data?.userId != MMUserManager.shared.loggedInUser?.id {
+            self.delegate?.openUserDetail(userID: data?.userId ?? "")
+        }
+    }
     @IBAction func btnActionOpenItem(_ sender: AnyObject) {
         self.delegate?.redirectToItemScreen(itemID: (data?.itemId ?? ""), idType: (data?.idType ?? ""))
     }

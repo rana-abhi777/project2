@@ -12,11 +12,13 @@ import UIKit
 protocol ProductDetailTask {
     func updateLikeData(model : ProductDetail?)
     func redirectToCart(model : ProductDetail?)
+    func openStore(sellerId : String)
 }
 
 class ProductDetailTableViewCell: UITableViewCell {
     
     //MARK:- Outlets
+    
     @IBOutlet weak var imgStoreLogo: CustomImageView!
     @IBOutlet weak var lblStoreName: UILabel!
     @IBOutlet weak var lblProductName: UILabel!
@@ -164,6 +166,9 @@ class ProductDetailTableViewCell: UITableViewCell {
     
     //MARK:- button actions
     
+    @IBAction func btnActionOpenStore(_ sender: AnyObject) {
+        self.delegate?.openStore(sellerId: data?.storeId ?? "")
+    }
     @IBAction func btnActionSelectSize(_ sender: AnyObject) {
         selectSizeDropDown.show()
         selectSizeDropDown.selectionAction = { [unowned self] (index, item) in

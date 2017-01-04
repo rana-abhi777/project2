@@ -13,6 +13,7 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     
     //MARK:- outlets
     @IBOutlet weak var tableViewGlobalActivity: UITableView!
+     @IBOutlet weak var viewNoActivity: UIView!
     
     //MARK:- variables
     var arrActivityData : [GlobalActivity] = []
@@ -42,6 +43,7 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     func initialize() {
         pageNo = "0"
         arrActivityData = []
+        configureTableView()
         apiToGetGlobalActivity()
     }
     
@@ -89,11 +91,15 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
             vc.productId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
             break
-        case "CUSTOMER":
-            print("customer page not ready")
-            break
-        case "SELLER" :
             
+        case "CUSTOMER":
+            let vc = StoryboardScene.Main.instantiateProfileViewController()
+            vc.flagMyProfile = false
+            vc.userId = itemID
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+            
+        case "SELLER" :
             let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
             vc.sellerId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
@@ -103,7 +109,13 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
             print("id type not mentioned")
         }
     }
-    
+    func openUserDetail(userID : String) {
+        let vc = StoryboardScene.Main.instantiateProfileViewController()
+        vc.flagMyProfile = false
+        vc.userId = userID
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
     //MARK:- indicator info provider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Global")

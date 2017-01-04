@@ -45,6 +45,7 @@ class CartViewController: UIViewController,CartProductTask {
     
     //MARK:- configure tableview and collection view
     func configureTableView() {
+        
         tableDataSource = CartDataSource(tableView: tableViewCart, datasource: productDetail ?? ProductDetail(),vc: self)
         tableViewCart.reloadData()
     }

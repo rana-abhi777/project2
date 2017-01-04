@@ -50,6 +50,9 @@ enum API {
     case GetUserStore(OptionalDictionary)
     case GetUserItem(OptionalDictionary)
     
+    case FollowUser(OptionalDictionary)
+    case UnfollowUser(OptionalDictionary)
+    
 }
 
 
@@ -75,6 +78,8 @@ enum APIParameters {
     case GetStoreDetail(sellerId : String?,pageNo : String?)
     case GetUserStore(type : String?,userId : String?,pageNo : String?)
     case GetUserItem(type : String?,userId : String?,pageNo : String?)
+    case FollowUser(userId : String?)
+    case UnfollowUser(userId : String?)
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
@@ -120,7 +125,10 @@ enum APIParameters {
             return["sellerId" : (sellerId ?? "") as AnyObject,"pageNo" : (pageNo ?? "") as AnyObject]
         case .GetUserStore(let type, let userId,let pageNo) , .GetUserItem(let type,let userId,let pageNo) :
             return ["Type" : (type ?? "") as AnyObject, "userId" : (userId ?? "") as AnyObject,"pageNo" : (pageNo ?? "") as AnyObject]
-
+        case .FollowUser(let userId) :
+            return ["userId" : (userId ?? "") as AnyObject]
+        case .UnfollowUser(let userId) :
+            return ["userId" : (userId ?? "") as AnyObject]
             
         default:
             return ["" : "" as AnyObject]
@@ -151,7 +159,9 @@ extension API : Router {
         case .GetUserActivity(let parameters) : return parameters
         case .GetStoreDetail(let parameters) : return parameters
         case .GetUserStore(let parameters) : return parameters
-            case .GetUserItem(let parameters) : return parameters
+        case .GetUserItem(let parameters) : return parameters
+        case .FollowUser(let parameters) : return parameters
+        case .UnfollowUser(let parameters) : return parameters
         }
     }
     
@@ -177,6 +187,8 @@ extension API : Router {
         case .GetUserActivity(_) : return "api/users/getUserActivity"
         case .GetStoreDetail(_) : return "sellers/getStoreDetails"
         case .GetUserStore(_) , .GetUserItem(_) : return "api/users/item_store_activity"
+        case .FollowUser(_) : return "api/users/followUser"
+        case .UnfollowUser(_) : return "api/users/unfollowUser"
         }
     }
     

@@ -14,6 +14,7 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
     //MARK:- OUTLETS
     @IBOutlet weak var collectionViewProfileStores: UICollectionView!
     
+    @IBOutlet weak var viewNoStores: UIView!
     //MARK:- variables
     var arrStores : [UserStores] = []
     var collectionViewdataSource : CollectionViewDataSource?{
@@ -57,7 +58,11 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
                 }
                 if self.arrStores.count > 0 {
                     self.configureCollectionView()
-//                    self.view.bringSubview(toFront: self.collectionViewUserItem)
+                    self.view.bringSubview(toFront: self.collectionViewProfileStores)
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoStores)
+                    
                 }
             }, method: "POST", loader: true)
     }

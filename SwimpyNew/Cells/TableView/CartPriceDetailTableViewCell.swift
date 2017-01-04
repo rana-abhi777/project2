@@ -10,16 +10,6 @@ import UIKit
 
 class CartPriceDetailTableViewCell: UITableViewCell {
     
-    //MARK:-  outlets
-    @IBOutlet weak var lblItemTotalPrice: UILabel!
-    @IBOutlet weak var btnMarkAsGift: UIButton!
-    @IBOutlet weak var lblShippingPrice: UILabel!
-    @IBOutlet weak var lblTotalPrice: UILabel!
-    
-    
-    //MARK:- VARIABLES
-    var data : ProductDetail?
-    
     
     //MARK:-  override function
     override func awakeFromNib() {
@@ -31,32 +21,10 @@ class CartPriceDetailTableViewCell: UITableViewCell {
         
     }
     
-    //MARK:-  function
-    func configureCell(model : ProductDetail) {
-        data = model
-        let shipPrice = model.shippingPrice ?? 0.0
-        let quantity = Float(model.quantitySelected) ?? 0.0
-        let totalPrice = model.total_price ?? 0.0
-        let basePrice = model.base_price_unit ?? 0.0
-        lblShippingPrice.text =  "$ " + "\((shipPrice * quantity))" + "USD"
-        lblTotalPrice.text =  "$ " + "\((totalPrice * quantity))" + "USD" //multiply quantity later on
-        lblItemTotalPrice.text = "$ " + "\((basePrice * quantity))" + "USD" //multiply quantity
-    }
-    
     //MARK:-  button action
     @IBAction func btnActionCheckOut(_ sender: AnyObject) {
         
     }
     
-    @IBAction func btnActionMarkAsGift(_ sender: AnyObject) {
-        if data?.flagMarkAsGift == true {
-            btnMarkAsGift.setImage(UIImage(asset : .icCheckSmall0), for: .normal)
-            data?.flagMarkAsGift = false
-        }
-        else {
-            btnMarkAsGift.setImage(UIImage(asset : .icCheckSmall), for: .normal)
-            data?.flagMarkAsGift = true
-        }
-        
-    }
+   
 }

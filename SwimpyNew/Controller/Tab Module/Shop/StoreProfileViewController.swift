@@ -90,10 +90,17 @@ class StoreProfileViewController: UIViewController ,StoreProfileTask,StoreProduc
     func goBack() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func updateFollowData(model: StoreDetail?, index: Int) {
+        self.model =  model ?? StoreDetail()
+        configureCollectionView()
+    }
+    
     func updateLikeData(model : StoreProducts?, index : Int) {
         self.model?.productData[index] =  model ?? StoreProducts()
         configureCollectionView()
     }
+    
     func redirectToProductDetail(productId : String) {
         let vc = StoryboardScene.Main.instantiateProductDetailViewController()
         vc.productId = productId

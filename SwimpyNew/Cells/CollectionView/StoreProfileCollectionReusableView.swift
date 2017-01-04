@@ -13,6 +13,7 @@ protocol StoreProfileTask {
     func openCart()
     func openSearch()
     func goBack()
+    func updateFollowData(model: StoreDetail?, index: Int)
 }
 
 class StoreProfileCollectionReusableView: UICollectionReusableView {
@@ -23,24 +24,33 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var lblNumberOfFollowers: UILabel!
     @IBOutlet weak var imgStoreThumbnail: CustomImageView!
     @IBOutlet weak var imgStoreCoverPic: UIImageView!
-    
+    @IBOutlet weak var btnFollowStore: CustomButton!
     
     //MARK:-  variables
     var data : StoreDetail?
     var delegate : StoreProfileTask?
-    
-   
-    
+    var  index : Int = 0
     
     //MARK:-  function
-    func configureCell(model : StoreDetail) {
+    func configureCell(model : StoreDetail,row : Int) {
         data = model
+        index = row
         lblStoreName.text = model.storeName ?? ""
         lblDescription.text = model.describe ?? ""
         lblNumberOfFollowers.text = (model.totalFollow ?? "") + " followers"
         imgStoreCoverPic.sd_setImage(with: URL(string: model.coverPicURLOriginal ?? ""))
         imgStoreThumbnail.sd_setImage(with: URL(string: model.profilePicURLThumbnail ?? ""))
-        
+        if model.followStatus == "1" {
+            btnFollowStore.setTitle("Following", for: .normal)
+            btnFollowStore.setTitleColor(UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
+                , for: .normal)
+            btnFollowStore?.borderColor = UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
+        } else {
+            btnFollowStore.setTitle("Follow store", for: .normal)
+            btnFollowStore?.borderColor =  UIColor.black
+            btnFollowStore.setTitleColor(UIColor.black
+                , for: .normal)
+        }
     }
     
     
@@ -69,5 +79,42 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
     }
     
     @IBAction func btnActionFollowStore(_ sender: AnyObject) {
+        if data?.followStatus == "0" {
+            self.data?.followStatus = "1"
+            btnFollowStore?.setTitle("Following", for: .normal)
+            btnFollowStore.setTitleColor(UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
+                , for: .normal)
+            btnFollowStore?.borderColor = UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
+            let totalFollowers = "\((Int(data?.totalFollow ?? "0") ?? 0) + 1)"
+            lblNumberOfFollowers.text = totalFollowers + " followers"
+            data?.totalFollow = totalFollowers
+            self.delegate?.updateFollowData(model: self.data, index: self.index)
+            
+            ApiManager().getDataOfURL(withApi: API.FollowStore(APIParameters.FollowStore(sellerId: data?.id).formatParameters()), failure: { (err) in
+                print(err)
+                }, success: { (model) in
+                    print(model)
+                    
+                }, method: "PUT", loader: false)
+        }
+        else {
+            btnFollowStore?.setTitle("Follow store", for: .normal)
+            btnFollowStore?.borderColor =  UIColor.black
+            btnFollowStore.setTitleColor(UIColor.black
+                , for: .normal)
+            self.data?.followStatus = "0"
+            let totalFollowers = "\((Int(data?.totalFollow ?? "1") ?? 1) - 1)"
+            lblNumberOfFollowers.text = totalFollowers + " followers"
+            data?.totalFollow = totalFollowers
+            
+            self.delegate?.updateFollowData(model: self.data, index: self.index)
+            
+            ApiManager().getDataOfURL(withApi: API.UnfollowStore(APIParameters.UnfollowStore(sellerId: data?.id).formatParameters()), failure: { (err) in
+                print(err)
+                }, success: { (model) in
+                    print(model)
+                    
+                }, method: "PUT", loader: false)
+        }
     }
 }

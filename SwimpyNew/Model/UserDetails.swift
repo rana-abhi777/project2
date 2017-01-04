@@ -21,6 +21,7 @@ class UserDetails: NSObject {
     var profilePicURLOriginal : String?
     var totalFollowing : String?
     var totalFollowedBy : String?
+    var followStatus : String?
     
     
     //MARK:- initializer
@@ -37,6 +38,7 @@ class UserDetails: NSObject {
         profilePicURLOriginal = profilePicDict["original"]?.stringValue
         totalFollowing = arrResult["totalFollowing"].stringValue
         totalFollowedBy = arrResult["totalFollowedBy"].stringValue
+        followStatus = arrResult["followStatus"].stringValue
     }
     
     override init() {

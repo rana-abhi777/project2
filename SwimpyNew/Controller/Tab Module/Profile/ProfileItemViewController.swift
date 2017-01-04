@@ -10,8 +10,10 @@ import UIKit
 import XLPagerTabStrip
 
 class ProfileItemViewController: BaseViewController,IndicatorInfoProvider,ProfileItemTask {
-   
+    
+    //MARK:- outlets
     @IBOutlet weak var collectionViewUserItem: UICollectionView!
+    @IBOutlet weak var viewNoItem: UIView!
     
     //MARK:- variable
     var arrProduct : [Products] = []
@@ -29,7 +31,7 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider,Profil
         super.viewDidLoad()
         initialize()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -58,11 +60,15 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider,Profil
                     self.view.bringSubview(toFront: self.collectionViewUserItem)
                 }
                 
+                else {
+                    self.view.bringSubview(toFront: self.viewNoItem)
+                    
+                }
                 
-//                self.arrProduct = model as? [Products] ?? []
-//                print(self.arrProduct.count)
-////                self.arrProduct = response.arrProducts
-//                self.configureCollectionView()
+                //                self.arrProduct = model as? [Products] ?? []
+                //                print(self.arrProduct.count)
+                ////                self.arrProduct = response.arrProducts
+                //                self.configureCollectionView()
             }, method: "POST", loader: true)
         
     }
@@ -105,6 +111,6 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider,Profil
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Item")
     }
-
-
+    
+    
 }

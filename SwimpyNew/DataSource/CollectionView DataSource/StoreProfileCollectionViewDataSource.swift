@@ -72,7 +72,7 @@ class StoreProfileCollectionViewDataSource: NSObject,UICollectionViewDelegate , 
         guard let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CellIdentifiers.StoreProfileCollectionReusableView.rawValue , for: indexPath) as? StoreProfileCollectionReusableView else {
             return UICollectionReusableView()
         }
-        headerCell.configureCell(model: datasource ?? StoreDetail())
+        headerCell.configureCell(model: datasource ?? StoreDetail(),row : indexPath.row)
         headerCell.delegate = (vc as? StoreProfileViewController) ?? nil
         return headerCell
     }

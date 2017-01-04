@@ -13,7 +13,7 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
    
     //MARK:- Outlet
     @IBOutlet weak var tableViewUserActivity: UITableView!
-    
+    @IBOutlet weak var viewNoActivity: UIView!
     //MARK:- variables
     var arrActivityData : [GlobalActivity] = []
     var tableViewDataSource : TableViewCustomDatasource?
@@ -57,7 +57,14 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
                 for item in response.arrActivity {
                     self.arrActivityData.append(item)
                 }
-                self.configureTableView()
+                if self.arrActivityData.count > 0 {
+                    self.configureTableView()
+                    self.view.bringSubview(toFront: self.tableViewUserActivity)
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoActivity)
+                    
+                }
             }, method: "GET", loader: true)
     }
     
@@ -108,7 +115,14 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
         tableViewUserActivity.dataSource = tableViewDataSource
         tableViewUserActivity.reloadData()
     }
-
+    
+    func openUserDetail(userID : String) {
+        let vc = StoryboardScene.Main.instantiateProfileViewController()
+        vc.flagMyProfile = false
+        vc.userId = userID
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
     //MARK:- IndicatorInfoProvider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

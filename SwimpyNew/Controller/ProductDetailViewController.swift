@@ -105,6 +105,12 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
         productDetails = data ?? ProductDetail()
         configureTableView()
     }
+    func openStore(sellerId : String) {
+        let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
+        vc.sellerId = sellerId
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
     
     //MARK:- button actions
     @IBAction func btnActionCart(_ sender: AnyObject) {
