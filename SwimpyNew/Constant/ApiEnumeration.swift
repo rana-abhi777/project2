@@ -53,6 +53,10 @@ enum API {
     case FollowUser(OptionalDictionary)
     case UnfollowUser(OptionalDictionary)
     
+    case AddToCart(OptionalDictionary)
+    case GetCartDetail(OptionalDictionary)
+    case RemoveCartItem(OptionalDictionary)
+    
 }
 
 
@@ -80,6 +84,9 @@ enum APIParameters {
     case GetUserItem(type : String?,userId : String?,pageNo : String?)
     case FollowUser(userId : String?)
     case UnfollowUser(userId : String?)
+    case AddToCart(productId : String?,variations : String?,color : String?)
+    case GetCartDetail()
+    case RemoveCartItem(cartId : String?)
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
@@ -129,7 +136,10 @@ enum APIParameters {
             return ["userId" : (userId ?? "") as AnyObject]
         case .UnfollowUser(let userId) :
             return ["userId" : (userId ?? "") as AnyObject]
-            
+        case .AddToCart(let productId,let variations, let color) :
+            return ["productId" : (productId ?? "") as AnyObject,"variations" : (variations ?? "") as AnyObject,"color" : (color ?? "") as AnyObject]
+        case .RemoveCartItem(let cartId) :
+            return ["cartId" : (cartId ?? "") as AnyObject]
         default:
             return ["" : "" as AnyObject]
         }
@@ -162,6 +172,9 @@ extension API : Router {
         case .GetUserItem(let parameters) : return parameters
         case .FollowUser(let parameters) : return parameters
         case .UnfollowUser(let parameters) : return parameters
+        case .AddToCart(let parameters) : return parameters
+        case .GetCartDetail(_) : return nil
+        case.RemoveCartItem(let parameters) : return parameters
         }
     }
     
@@ -189,6 +202,9 @@ extension API : Router {
         case .GetUserStore(_) , .GetUserItem(_) : return "api/users/item_store_activity"
         case .FollowUser(_) : return "api/users/followUser"
         case .UnfollowUser(_) : return "api/users/unfollowUser"
+        case .AddToCart(_) : return "api/users/addToCart"
+        case .GetCartDetail(_) : return "api/users/getCartDetails"
+        case .RemoveCartItem(_) : return "api/users/removeCart"
         }
     }
     

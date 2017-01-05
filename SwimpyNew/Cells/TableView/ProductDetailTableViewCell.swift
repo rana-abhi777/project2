@@ -155,6 +155,7 @@ class ProductDetailTableViewCell: UITableViewCell {
         collectionViewdataSource = CollectionViewDataSource(items: arrLike, collectionView: collectionViewLIkeUser, cellIdentifier: CellIdentifiers.ProductLikeUserCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 35, cellWidth: 20 , cellSpacing: 0, configureCellBlock: { (cell, item, indexpath) in
             let cell = cell as? ProductLikeUserCollectionViewCell
             cell?.configureCell(model: arrLike[indexpath.row])
+            cell?.bringSubview(toFront: self)
             }, aRowSelectedListener: { (indexPath) in
             }, willDisplayCell: { (indexPath) in
                 

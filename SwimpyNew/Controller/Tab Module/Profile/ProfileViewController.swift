@@ -72,8 +72,8 @@ class ProfileViewController: BasePageViewController {
     func setUI() {
         lblName.text = userDetails?.name ?? ""
         lblCountryName.text = "India"
-        btnNumberOfFollowers.setTitle((userDetails?.totalFollowing ?? "") + " followers", for: .normal)
-        btnNumberOfFollowing.setTitle((userDetails?.totalFollowedBy ?? "") + " following", for: .normal)
+        btnNumberOfFollowers.setTitle((userDetails?.totalFollowedBy ?? "") + " followers", for: .normal)
+        btnNumberOfFollowing.setTitle((userDetails?.totalFollowing ?? "") + " following", for: .normal)
         
         imgUserImage.sd_setImage(with: URL(string: userDetails?.profilePicURLThumbnail ?? ""))
         if userDetails?.followStatus == "0" {
@@ -81,9 +81,7 @@ class ProfileViewController: BasePageViewController {
         }else {
             btnFollow?.setTitle("Following", for: .normal)
         }
-        //        profileActivityVC.userId = userId
-        //        profileStoreVC.userId = userId
-        //        profileItemVC.userId = userId
+        
     }
     
     override func getViewControllers() -> [UIViewController] {
@@ -132,6 +130,7 @@ class ProfileViewController: BasePageViewController {
                 }, method: "PUT", loader: false)
         }
     }
+    
     @IBAction func btnActionCart(sender: AnyObject) {
     }
     @IBAction func btnSearchAction(sender: AnyObject) {
@@ -139,6 +138,10 @@ class ProfileViewController: BasePageViewController {
         //        self.navigationController?.pushViewController(VC, animated: true)
     }
     
+    @IBAction func btnActionLogout(_ sender: AnyObject) {
+        let VC = StoryboardScene.Main.instantiateSettingsViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
     @IBAction func brnActionBack(_ sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)
     }

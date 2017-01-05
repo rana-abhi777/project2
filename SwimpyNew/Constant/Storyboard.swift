@@ -47,8 +47,8 @@ struct StoryboardScene {
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
-    static func initialViewController() -> UINavigationController {
-      guard let vc = storyboard().instantiateInitialViewController() as? UINavigationController else {
+    static func initialViewController() -> InitialNavigationViewController {
+      guard let vc = storyboard().instantiateInitialViewController() as? InitialNavigationViewController else {
         fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
       }
       return vc
@@ -158,6 +158,15 @@ struct StoryboardScene {
       guard let vc = StoryboardScene.Main.inboxViewControllerScene.viewController() as? InboxViewController
       else {
         fatalError("ViewController 'InboxViewController' is not of the expected class InboxViewController.")
+      }
+      return vc
+    }
+
+    case initialNavigationViewControllerScene = "InitialNavigationViewController"
+    static func instantiateInitialNavigationViewController() -> InitialNavigationViewController {
+      guard let vc = StoryboardScene.Main.initialNavigationViewControllerScene.viewController() as? InitialNavigationViewController
+      else {
+        fatalError("ViewController 'InitialNavigationViewController' is not of the expected class InitialNavigationViewController.")
       }
       return vc
     }
@@ -288,6 +297,15 @@ struct StoryboardScene {
       return vc
     }
 
+    case settingsViewControllerScene = "SettingsViewController"
+    static func instantiateSettingsViewController() -> SettingsViewController {
+      guard let vc = StoryboardScene.Main.settingsViewControllerScene.viewController() as? SettingsViewController
+      else {
+        fatalError("ViewController 'SettingsViewController' is not of the expected class SettingsViewController.")
+      }
+      return vc
+    }
+
     case shopViewControllerScene = "ShopViewController"
     static func instantiateShopViewController() -> ShopViewController {
       guard let vc = StoryboardScene.Main.shopViewControllerScene.viewController() as? ShopViewController
@@ -320,15 +338,6 @@ struct StoryboardScene {
       guard let vc = StoryboardScene.Main.tabBarControllerScene.viewController() as? TabBarController
       else {
         fatalError("ViewController 'TabBarController' is not of the expected class TabBarController.")
-      }
-      return vc
-    }
-
-    case userProfileViewControllerScene = "UserProfileViewController"
-    static func instantiateUserProfileViewController() -> UserProfileViewController {
-      guard let vc = StoryboardScene.Main.userProfileViewControllerScene.viewController() as? UserProfileViewController
-      else {
-        fatalError("ViewController 'UserProfileViewController' is not of the expected class UserProfileViewController.")
       }
       return vc
     }

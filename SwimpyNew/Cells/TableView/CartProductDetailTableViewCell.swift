@@ -10,8 +10,8 @@ import UIKit
 import DropDown
 
 protocol CartProductTask {
-    func updateQuantity(model : ProductDetail?)
-    func gotoPreviousScreen()
+    func updateQuantity(model : CartData? , index: Int)
+    func removeProductFromCart(index: Int)
 }
 
 class CartProductDetailTableViewCell: UITableViewCell {
@@ -26,7 +26,7 @@ class CartProductDetailTableViewCell: UITableViewCell {
     
     //MARK:- variables
     var delegate : CartProductTask?
-    var data : ProductDetail?
+    var data : CartData?
     let selectQuantityDropDown = DropDown()
     lazy var dropDowns: [DropDown] = {
         return [
@@ -35,7 +35,7 @@ class CartProductDetailTableViewCell: UITableViewCell {
             ]
     }()
     let arrQuantity = ["1", "2" , "3", "4" ,"5", "6", "7"]
-    
+    var row = 0
     //MARK:- override functions
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,11 +46,12 @@ class CartProductDetailTableViewCell: UITableViewCell {
     }
     
     //MARK:-  function
-    func configureCell(model : ProductDetail) {
+    func configureCell(model : CartData,index : Int) {
+        row = index
         data = model
         lblStoreName.text = "Order from " + (model.storeName ?? "") + " (" + (model.colorSelected ?? "") + ")"
         lblProductName.text = model.productName ?? ""
-        lblPrice.text = "$" + "\(model.base_price_unit ?? 0.0)"
+        lblPrice.text = "$" + (model.base_price_unit ?? "0")
         lblQuantity.text = model.quantitySelected 
         imgProduct.sd_setImage(with: URL(string : model.imageOriginal ?? ""))
         selectQuantityDropDown.anchorView = lblQuantity
@@ -71,11 +72,11 @@ class CartProductDetailTableViewCell: UITableViewCell {
             self.lblQuantity.text = self.arrQuantity[index]
 //            self.reloadInputViews()
             self.data?.quantitySelected = self.lblQuantity.text ?? ""
-            self.delegate?.updateQuantity(model: self.data)
+            self.delegate?.updateQuantity(model: self.data,index : self.row)
         }
     }
     
     @IBAction func btnActionRemove(_ sender: AnyObject) {
-        self.delegate?.gotoPreviousScreen()
+        self.delegate?.removeProductFromCart(index: row)
     }
 }

@@ -12,19 +12,20 @@ class CartViewController: UIViewController,CartProductTask {
     
     //MARK:- outlets
     @IBOutlet weak var tableViewCart: UITableView!
-    
+    @IBOutlet weak var viewNoItems: UIView!
     //MARK:- variables
-    var productDetail : ProductDetail?
     var tableDataSource : CartDataSource? {
         didSet{
             tableViewCart.dataSource = tableDataSource
             tableViewCart.delegate = tableDataSource
         }
     }
-   
+    var arrCartData : [CartData] = []
+    
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialize()
         configureTableView()
     }
     
@@ -32,21 +33,42 @@ class CartViewController: UIViewController,CartProductTask {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK:- function
+     
+    func initialize() {
+        hitApiToGetCartDetails()
+    }
+    
+    func hitApiToGetCartDetails() {
+        ApiManager().getDataOfURL(withApi: API.GetCartDetail(APIParameters.GetCartDetail().formatParameters()), failure: { (err) in
+            print(err)
+            }, success: {[unowned self] (model) in
+                self.arrCartData = (model as? [CartData]) ?? []
+                self.configureTableView()
+                print(model)
+            }, method: "POST", loader: true)
+    }
+    
     //MARK:- CartProductTask delegate function
     
-    func updateQuantity(model : ProductDetail?) {
-        productDetail = model
+    func updateQuantity(model : CartData?,index: Int) {
+        arrCartData[index] = model ?? CartData()
         configureTableView()
     }
     
-    func gotoPreviousScreen() {
-        self.navigationController?.popViewController(animated: true)
+    func removeProductFromCart(index: Int) {
+        ApiManager().getDataOfURL(withApi: API.RemoveCartItem(APIParameters.RemoveCartItem(cartId: arrCartData[index].cartId).formatParameters()), failure: { (err) in
+            print(err)
+            }, success: {[unowned self] (model) in
+                self.hitApiToGetCartDetails()
+                self.configureTableView()
+                print(model)
+            }, method: "PUT", loader: true)
     }
     
     //MARK:- configure tableview and collection view
     func configureTableView() {
-        
-        tableDataSource = CartDataSource(tableView: tableViewCart, datasource: productDetail ?? ProductDetail(),vc: self)
+        tableDataSource = CartDataSource(tableView: tableViewCart, datasource: arrCartData ,vc: self)
         tableViewCart.reloadData()
     }
     

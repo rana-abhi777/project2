@@ -19,6 +19,7 @@ class User: NSObject {
     var deviceToken : String?
     var profilePicURLThumbnail : String?
     var profilePicURLOriginal : String?
+    var notification : String = "1"
     
     //MARK:- initializer
     init(arrResult : JSON) {
@@ -32,6 +33,7 @@ class User: NSObject {
         let profilePicDict = arrResult["profilePicURL"].dictionaryValue
         profilePicURLThumbnail = profilePicDict["thumbnail"]?.stringValue
         profilePicURLOriginal = profilePicDict["original"]?.stringValue
+        notification = arrResult["notification"].stringValue
     }
     
     override init() {

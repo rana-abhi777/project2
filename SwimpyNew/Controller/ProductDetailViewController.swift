@@ -75,8 +75,8 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
            
             cell?.configureCell(model: self.arrOtherImages[indexpath.row])
             }, aRowSelectedListener: { (indexPath) in
-            }, willDisplayCell: {[unowned self] (indexPath) in
-                
+            }, willDisplayCell: { (indexPath) in
+                //
                 
             }, scrollViewListener: { (UIScrollView) in
         })
@@ -92,9 +92,11 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
     }
     
     func redirectToCart(model : ProductDetail?) {
-        let vc = StoryboardScene.Main.instantiateCartViewController()
-        vc.productDetail = model
-        self.navigationController?.pushViewController(vc, animated: true)
+        ApiManager().getDataOfURL(withApi: API.AddToCart(APIParameters.AddToCart(productId: model?.id,variations : model?.sizeSelected,color: model?.colorSelected).formatParameters()), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+                UserFunctions.showAlert(title : "Success", message: L10n.productAddedToCart.string)
+            }, method: "POST", loader: true)
     }
     
     func updateLikeData(model : ProductDetail?) {

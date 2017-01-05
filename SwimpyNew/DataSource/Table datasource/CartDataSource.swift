@@ -13,30 +13,32 @@ class CartDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
     //MARK:- variables
     
     var tableView:UITableView?
-    var datasource : ProductDetail?
+    var datasource : [CartData]?
     var vc : UIViewController?
+    var count : Int = 0
     
     //MARK:- initializer
-    init(tableView: UITableView ,  datasource : ProductDetail, vc : UIViewController) {
+    init(tableView: UITableView ,  datasource : [CartData], vc : UIViewController) {
         self.tableView = tableView
         self.datasource = datasource
         self.vc = vc
+        self.count = datasource.count + 1
     }
     override init() {
         super.init()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return count
     }
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.row < count-1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.CartProductDetailTableViewCell.rawValue) as? CartProductDetailTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configureCell(model: datasource ?? ProductDetail())
+            cell.configureCell(model: datasource?[indexPath.row] ?? CartData(),index : indexPath.row)
             cell.delegate = (vc as? CartViewController) ?? nil
             return cell
         }
@@ -44,8 +46,7 @@ class CartDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.CartPriceDetailTableViewCell.rawValue) as? CartPriceDetailTableViewCell else {
                 return UITableViewCell()
             }
-//            cell.configureCell(model: datasource ?? ProductDetail())
-//            cell.delegate = (vc as? CartViewController) ?? nil
+
             return cell
         }
         
@@ -53,7 +54,7 @@ class CartDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        if indexPath.row < count-1 {
             return 171
         }else  {
             return 56
@@ -61,7 +62,7 @@ class CartDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        if indexPath.row < count-1 {
             return 171
         }else  {
             return 56

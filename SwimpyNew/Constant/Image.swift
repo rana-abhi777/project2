@@ -57,6 +57,8 @@ enum Asset: String {
   case icSide = "ic_side"
   case icStore = "ic_store"
   case icStoreOn = "ic_store_on"
+  case icToggleOff = "ic_toggle_off"
+  case icToggleOn = "ic_toggle_on"
   case icUpload = "ic_upload"
   case icUu = "ic_uu"
   case superG = "super g"

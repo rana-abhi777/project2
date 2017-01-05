@@ -19,6 +19,16 @@ enum L10n {
   case apiWhichIsHitIsNotPresentInApiCollection
   /// Password length should be atleast 6 characters
   case passwordLengthShouldBeAtleast6Characters
+  /// Product added to cart
+  case productAddedToCart
+  /// Edit profile
+  case editProfile
+  /// Terms and conditions
+  case termsAndConditions
+  /// Notifications
+  case notifications
+  /// Logout
+  case logout
 }
 // swiftlint:enable type_body_length
 
@@ -41,6 +51,16 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "API which is hit is not present in Api Collection")
       case .passwordLengthShouldBeAtleast6Characters:
         return L10n.tr(key: "Password length should be atleast 6 characters")
+      case .productAddedToCart:
+        return L10n.tr(key: "Product added to cart")
+      case .editProfile:
+        return L10n.tr(key: "Edit profile")
+      case .termsAndConditions:
+        return L10n.tr(key: "Terms and conditions")
+      case .notifications:
+        return L10n.tr(key: "Notifications")
+      case .logout:
+        return L10n.tr(key: "Logout")
     }
   }
 

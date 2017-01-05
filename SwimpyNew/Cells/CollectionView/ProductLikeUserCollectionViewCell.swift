@@ -18,6 +18,7 @@ class ProductLikeUserCollectionViewCell: UICollectionViewCell {
         guard let url = model.userImgThumbnail else { imgUser?.backgroundColor = UIColor.gray
             return }
         imgUser?.sd_setImage(with: URL(string : url))
+        self.bringSubview(toFront: imgUser)
     }
 
     

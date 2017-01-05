@@ -32,6 +32,9 @@ class ActivityViewController: BasePageViewController {
     
     //MARK:- button actions
     @IBAction func btnActionCart(sender: AnyObject) {
+        let VC = StoryboardScene.Main.instantiateCartViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
+
     }
     
     @IBAction func btnSearchAction(sender: AnyObject) {

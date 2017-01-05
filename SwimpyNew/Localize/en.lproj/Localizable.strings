@@ -13,3 +13,8 @@
 "Your internet connection seems to be offline" = "Your internet connection seems to be offline";
 "API which is hit is not present in Api Collection" = "API which is hit is not present in Api Collection";
 "Password length should be atleast 6 characters" = "Password length should be atleast 6 characters";
+"Product added to cart" = "Product added to cart";
+"Edit profile" = "Edit profile";
+"Terms and conditions" = "Terms and conditions";
+"Notifications" = "Notifications";
+"Logout" = "Logout";

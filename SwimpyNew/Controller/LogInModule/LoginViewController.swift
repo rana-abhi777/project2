@@ -75,6 +75,9 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                 }, success: { (model) in
                     print(model)
                     let VC = StoryboardScene.Main.instantiateTabBarController()
+                    
+                    
+                    VC.selectedIndex = 0
                     self.navigationController?.pushViewController(VC, animated: true)
                 }, method: "POST", loader: true)
         } else {
@@ -152,6 +155,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                 }, success: { (model) in
                     print(model)
                     let VC = StoryboardScene.Main.instantiateTabBarController()
+//                    VC.selectedIndex = 0
+//                    VC.tabBar.selectedItem = VC.tabBar.items?[0]
                     self.navigationController?.pushViewController(VC, animated: true)
                 }, method: "POST", loader: true)
         }
@@ -182,6 +187,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                 print(err)
                 }, success: { (model) in
                     let VC = StoryboardScene.Main.instantiateTabBarController()
+                    VC.selectedIndex = 0
                     self.navigationController?.pushViewController(VC, animated: true)
                 }, method: "POST", loader: true, image: btnProfilePic.image(for: .normal))
         }

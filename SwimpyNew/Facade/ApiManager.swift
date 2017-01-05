@@ -88,7 +88,13 @@ class ApiManager {
                     let userStores = AllStores(arrResult : data["data"])
                     singleUserArray = userStores as AnyObject?
                     break
-
+                case .AddToCart(_) :
+                    break
+                case .GetCartDetail(_) :
+                    let cartDetails = CartData.changeDictToModelArray(jsoon1: data)
+                    singleUserArray = cartDetails as AnyObject?
+                    break
+                
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }
