@@ -78,9 +78,11 @@ class ProductDetail: NSObject {
         categoryId = arrResult["categoryId"].stringValue
         createrType = arrResult["createrType"].stringValue
         order = arrResult["order"].stringValue
+        
         let defaultImage = arrResult["defaultImage"].dictionaryValue
         imageThumbnail = defaultImage["thumbnail"]?.stringValue
         imageOriginal = defaultImage["original"]?.stringValue
+        
         flatValue = arrResult["flatValue"].stringValue
         percentage = arrResult["percentage"].stringValue
         couponCode = arrResult["couponCode"].stringValue
@@ -108,6 +110,8 @@ class ProductDetail: NSObject {
         subcategoryId = arrResult["subcategoryId"].stringValue
         createrId = arrResult["createrId"].stringValue
         otherImage = ProductOtherImage.changeDictToModelArray(jsoonArr: arrResult["otherImage"].arrayValue)
+        otherImage?.insert(ProductOtherImage(arrResult: arrResult["defaultImage"]), at: 0)
+//        otherImage?.append(ProductOtherImage(arrResult: arrResult["defaultImage"]))    //append profile image to other images array
         flatDiscount = arrResult["flatDiscount"].stringValue
         describe = arrResult["description"].stringValue
         likesStatus = arrResult["likesStatus"].intValue

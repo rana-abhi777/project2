@@ -1361,7 +1361,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b4f6ae60-ea71-4278-bb34-15a4f3c96a68";
+				PROVISIONING_PROFILE = "471f9ea1-e4e6-4b92-8e06-526a2b451370";
 				PROVISIONING_PROFILE_SPECIFIER = SwimpyAdhocProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1384,7 +1384,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b4f6ae60-ea71-4278-bb34-15a4f3c96a68";
+				PROVISIONING_PROFILE = "471f9ea1-e4e6-4b92-8e06-526a2b451370";
 				PROVISIONING_PROFILE_SPECIFIER = SwimpyAdhocProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

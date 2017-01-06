@@ -23,6 +23,7 @@ class FeaturedTableViewCell: UITableViewCell {
     @IBOutlet weak var btnNumberOfLike: UIButton!
     @IBOutlet weak var btnLike: UIButton!
     
+    @IBOutlet weak var imgHeart: UIImageView!
     //MARK:- variables
     var data : Products?
     var delegate : FeaturedProductsTask?
@@ -63,12 +64,14 @@ class FeaturedTableViewCell: UITableViewCell {
         self.addGestureRecognizer(singleTapGesture)
         doubleTapGesture.requiresExclusiveTouchType = true
         singleTapGesture.require(toFail: doubleTapGesture)
-        
+        imgHeart.isHidden = true
         
     }
     func tapOn() {
+        imgHeart.isHidden = false
         print("double tapped")
-        likeAction()
+        animateLike()
+       
     }
     func tappedOnCell() {
         self.delegate?.cellSelected(index: index)
@@ -107,6 +110,29 @@ class FeaturedTableViewCell: UITableViewCell {
         }
         
     }
+    
+    func animateLike() {
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+            self.imgHeart.isHidden = false
+            self.imgHeart.transform = CGAffineTransform(scaleX: 1.7, y: 1.7)
+            self.imgHeart.alpha = 1.0
+            }, completion: {(_ finished: Bool) -> Void in
+                UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+                    self.imgHeart.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+                    }, completion: {(_ finished: Bool) -> Void in
+                        UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+                            self.imgHeart.transform = CGAffineTransform(scaleX: 1.7, y: 1.7)
+                            self.imgHeart.alpha = 0.0
+                            }, completion: {(_ finished: Bool) -> Void in
+                                self.imgHeart.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                                self.imgHeart.isHidden = true
+                                 self.likeAction()
+                        })
+                })
+        })
+    }
+    
     //MARK:- button actions
     @IBAction func btnActionLike(_ sender: AnyObject) {
         likeAction()

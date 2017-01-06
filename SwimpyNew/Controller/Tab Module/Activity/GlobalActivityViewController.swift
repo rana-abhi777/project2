@@ -57,7 +57,15 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
                 for item in response.arrActivity {
                     self.arrActivityData.append(item)
                 }
-                self.configureTableView()
+                if self.arrActivityData.count > 0 {
+                    self.configureTableView()
+                    self.view.bringSubview(toFront: self.tableViewGlobalActivity)
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoActivity)
+                    
+                }
+
             }, method: "GET", loader: true)
         
     }

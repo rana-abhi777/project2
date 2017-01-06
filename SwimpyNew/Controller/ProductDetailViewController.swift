@@ -15,6 +15,8 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var tableViewProductDetail: UITableView!
     
+    @IBOutlet weak var pageControlImage: UIPageControl!
+    
     //MARK:- variables
     var productId : String = ""
     var productDetails : ProductDetail?
@@ -34,6 +36,14 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pageControlImage.currentPage = 0
+        pageControlImage.pageIndicatorTintColor = UIColor.gray
+        pageControlImage.currentPageIndicatorTintColor = UIColor.white
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        pageControlImage.currentPage = 0
         initialize()
     }
     
@@ -56,6 +66,7 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
                 self.arrOtherImages = (self.productDetails?.otherImage)!
                 self.configureCollectionView()
                 self.configureTableView()
+                self.pageControlImage.numberOfPages = self.arrOtherImages.count
                 //set all the data
                 
             }, method: "GET", loader: true)
@@ -72,17 +83,19 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
     func configureCollectionView(){
         collectionViewdataSource = CollectionViewDataSource(items: arrOtherImages, collectionView: collectionViewProductImages, cellIdentifier: CellIdentifiers.ProductImagesCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: collectionViewProductImages.frame.size.height, cellWidth: collectionViewProductImages.frame.size.width, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? ProductImagesCollectionViewCell
-           
+            
             cell?.configureCell(model: self.arrOtherImages[indexpath.row])
             }, aRowSelectedListener: { (indexPath) in
             }, willDisplayCell: { (indexPath) in
                 //
                 
-            }, scrollViewListener: { (UIScrollView) in
+            }, scrollViewListener: { [unowned self] (UIScrollView) in
+                let width = self.collectionViewProductImages.frame.width
+                let page = self.collectionViewProductImages.contentOffset.x / width
+                self.pageControlImage.currentPage = Int(page)
         })
         collectionViewProductImages.reloadData()
     }
-    
     
     //MARK:- delegate function
     func redirectToProductDetail(productId : String) {
@@ -111,15 +124,23 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
         let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
         vc.sellerId = sellerId
         self.navigationController?.pushViewController(vc, animated: true)
-
+    }
+    func openThisStore(sellerId : String) {
+        let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
+        vc.sellerId = sellerId
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     //MARK:- button actions
     @IBAction func btnActionCart(_ sender: AnyObject) {
+        let VC = StoryboardScene.Main.instantiateCartViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     @IBAction func btnActionBack(_ sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)
     }
+    
     
     
 }

@@ -132,6 +132,9 @@ class ProfileViewController: BasePageViewController {
     }
     
     @IBAction func btnActionCart(sender: AnyObject) {
+        let VC = StoryboardScene.Main.instantiateCartViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
+
     }
     @IBAction func btnSearchAction(sender: AnyObject) {
         //        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()

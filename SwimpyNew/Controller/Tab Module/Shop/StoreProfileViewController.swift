@@ -84,8 +84,8 @@ class StoreProfileViewController: UIViewController ,StoreProfileTask,StoreProduc
         self.navigationController?.pushViewController(VC, animated: true)
     }
     func openSearch() {
-        let VC = StoryboardScene.Main.instantiateSearchViewController()
-        self.navigationController?.pushViewController(VC, animated: true)
+//        let VC = StoryboardScene.Main.instantiateSearchViewController()
+//        self.navigationController?.pushViewController(VC, animated: true)
     }
     func goBack() {
         self.navigationController?.popViewController(animated: true)

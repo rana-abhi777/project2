@@ -98,7 +98,6 @@ class HttpManager {
                 print(encodingError.localizedDescription)
                 failure(encodingError.localizedDescription)
             }
-            
         }
     }
     

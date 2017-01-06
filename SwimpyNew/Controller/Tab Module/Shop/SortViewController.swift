@@ -36,8 +36,8 @@ class SortViewController: UIViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
     @IBAction func btnActionSearch(sender: AnyObject) {
-        let VC = StoryboardScene.Main.instantiateSearchViewController()
-        self.navigationController?.pushViewController(VC, animated: true)
+//        let VC = StoryboardScene.Main.instantiateSearchViewController()
+//        self.navigationController?.pushViewController(VC, animated: true)
     }
     @IBAction func btnActionBack(sender: AnyObject) {
         self.navigationController?.popViewController(animated: true)

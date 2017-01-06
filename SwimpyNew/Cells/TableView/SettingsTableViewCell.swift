@@ -15,6 +15,10 @@ class SettingsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblSettingCategory: UILabel!
     @IBOutlet weak var btnSwitch: UIButton!
     
+    
+    var data : String = ""
+    var index = 0
+    
     //MARK:- override functions
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +30,8 @@ class SettingsTableViewCell: UITableViewCell {
 
     //MARK:-  function
     func configureCell(model : String,row : Int) {
+        data = model
+        index = row
         lblSettingCategory.text = model
         if row == 2 {
             (MMUserManager.shared.loggedInUser?.notification == "1") ? btnSwitch.setImage(UIImage(asset : .icToggleOn), for: .normal) : btnSwitch.setImage(UIImage(asset : .icToggleOff), for: .normal)
@@ -37,5 +43,20 @@ class SettingsTableViewCell: UITableViewCell {
     
     //MARK:- button actions
     @IBAction func btnActionSwitch(_ sender: AnyObject) {
+        if MMUserManager.shared.loggedInUser?.notification == "1" {
+            btnSwitch.setImage(UIImage(asset : .icToggleOff), for: .normal)
+            let userData = MMUserManager.shared.loggedInUser
+            userData?.notification = "0"
+            MMUserManager.shared.loggedInUser = userData
+            configureCell(model: data,row: index)
+        }else {
+            btnSwitch.setImage(UIImage(asset : .icToggleOn), for: .normal)
+            let userData = MMUserManager.shared.loggedInUser
+            userData?.notification = "1"
+            MMUserManager.shared.loggedInUser = userData
+            configureCell(model: data,row: index)
+        }
+        
+
     }
 }

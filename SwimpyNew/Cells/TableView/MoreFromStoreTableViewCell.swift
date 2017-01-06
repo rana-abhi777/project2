@@ -11,6 +11,7 @@ import UIKit
 protocol MoreProductsDelegateFunction {
     func redirectToProductDetail(productId : String)
     func updateFollowingData(data : ProductDetail?)
+    func openThisStore(sellerId : String)
 }
 
 class MoreFromStoreTableViewCell: UITableViewCell {
@@ -117,5 +118,10 @@ class MoreFromStoreTableViewCell: UITableViewCell {
 
         }
     }
+    
+    @IBAction func btnActionOpenStore(_ sender: AnyObject) {
+        self.delegate?.openThisStore(sellerId: data?.storeId ?? "")
+    }
+    
     
 }
