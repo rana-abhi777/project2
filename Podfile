@@ -20,6 +20,7 @@ pod 'Google/SignIn'
 pod 'DropDown'
 pod 'SDWebImage'
 pod 'Kingfisher'
+pod 'Presentr'
 end
 
 post_install do |installer|

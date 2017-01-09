@@ -66,6 +66,8 @@
 		203F33421DBB67FC00B875B1 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F33411DBB67FC00B875B1 /* FacebookManager.swift */; };
 		2046F30E1DFFCC6900B0911D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046F30D1DFFCC6900B0911D /* FriendsViewController.swift */; };
 		2046F3141E0002EA00B0911D /* ProductDetailTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2046F3131E0002EA00B0911D /* ProductDetailTableDataSource.swift */; };
+		2047FFA81E23A40A00B1C555 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047FFA71E23A40A00B1C555 /* ChangePasswordViewController.swift */; };
+		2047FFAA1E23A78F00B1C555 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047FFA91E23A78F00B1C555 /* EditProfileViewController.swift */; };
 		204CD5F91DE706B000075745 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204CD5F81DE706B000075745 /* BaseViewController.swift */; };
 		204CD5FB1DE7070300075745 /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204CD5FA1DE7070300075745 /* BasePageViewController.swift */; };
 		204FBF9F1DEC5F1900874159 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 204FBFA11DEC5F1900874159 /* Localizable.strings */; };
@@ -253,6 +255,8 @@
 		203F33411DBB67FC00B875B1 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		2046F30D1DFFCC6900B0911D /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		2046F3131E0002EA00B0911D /* ProductDetailTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailTableDataSource.swift; sourceTree = "<group>"; };
+		2047FFA71E23A40A00B1C555 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		2047FFA91E23A78F00B1C555 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		204CD5F81DE706B000075745 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		204CD5FA1DE7070300075745 /* BasePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
 		204FBFA01DEC5F1900874159 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -734,6 +738,8 @@
 				20D948911DB7589C007A4D07 /* ProfileStoreViewController.swift */,
 				20D948921DB7589C007A4D07 /* ProfileViewController.swift */,
 				20970CFB1E1E626B0090178E /* SettingsViewController.swift */,
+				2047FFA71E23A40A00B1C555 /* ChangePasswordViewController.swift */,
+				2047FFA91E23A78F00B1C555 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1100,6 +1106,7 @@
 				20AB22301DE6E4A000E0BA13 /* CategoryProductsViewController.swift in Sources */,
 				20A368EA1DE30DAD00B72A40 /* Category.swift in Sources */,
 				20AAAF621E03FD85009BA0BB /* MoreProductsCollectionViewCell.swift in Sources */,
+				2047FFA81E23A40A00B1C555 /* ChangePasswordViewController.swift in Sources */,
 				20D948D81DB7589C007A4D07 /* Keys.swift in Sources */,
 				200997691DE85B440084DDED /* NVActivityIndicatorAnimationBallScale.swift in Sources */,
 				20D948E01DB7589C007A4D07 /* ActivityViewController.swift in Sources */,
@@ -1129,6 +1136,7 @@
 				2085B2141E03D4FB0014AD79 /* LikeUser.swift in Sources */,
 				20970CFC1E1E626B0090178E /* SettingsViewController.swift in Sources */,
 				20A470BF1E01272B0005F224 /* ProductOtherImage.swift in Sources */,
+				2047FFAA1E23A78F00B1C555 /* EditProfileViewController.swift in Sources */,
 				200997701DE85B440084DDED /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				200997631DE85B440084DDED /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				20D9491F1DB7589C007A4D07 /* UserFunctions.swift in Sources */,

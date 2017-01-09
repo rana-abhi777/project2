@@ -7,6 +7,7 @@
 //
 import UIKit
 import Fusuma
+import Presentr
 
 class BaseViewController: UIViewController {
     
@@ -25,6 +26,39 @@ class BaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK::- CUSTOM PRESENTER
+    
+    let presenter: Presentr = {
+        let width = ModalSize.default
+        let height = ModalSize.default
+        let center = ModalCenterPosition.center
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .coverVertical
+        customPresenter.roundCorners = true
+        
+        return customPresenter
+    }()
+
+//    let center = ModalCenterPosition.Center
+//    let customType = PresentationType.Custom(width: ModalSize.Custom(size: 240), height: ModalSize.Custom(size: 128), center: center)
+//    let customPresenter = Presentr(presentationType: customType)
+//    customPresenter.transitionType = .CoverVertical
+//    customPresenter.roundCorners = true
+//    let vc = viewController as? CustomTagVC
+//
+//    if(selfVC == "AddTripVC"){
+//    vc?.delegate = delegateVC as? AddTripVC
+//    }
+//    else if selfVC == "EditTripVC" {
+//    vc?.delegate = delegateVC as? EditTripVC
+//    }
+//    else{
+//    vc?.delegate = delegateVC as? EditProfileVC
+//    }
+//    
+//    self.customPresentViewController(customPresenter, viewController:vc! , animated: true, completion: nil)
+    
     //MARK: functions
     
     func appendOptionalStrings(strings : [String?],separator : String) -> String{
@@ -38,6 +72,7 @@ class BaseViewController: UIViewController {
         fusuma.delegate = self
         self.present(fusuma, animated: true, completion: nil)
     }
+    
 
 }
 

@@ -24,6 +24,8 @@ class ProfileViewController: BasePageViewController {
     @IBOutlet weak var btnMessage: UIButton!
     @IBOutlet weak var btnSettings: UIButton!
     @IBOutlet weak var constViewMessageFollowHeight: NSLayoutConstraint!
+    @IBOutlet weak var imgLogo: UIImageView!
+    @IBOutlet weak var lblSwimpy: UILabel!
     
     //MARK:- variables
     let profileActivityVC = StoryboardScene.Main.instantiateProfileActivityViewController()
@@ -41,6 +43,9 @@ class ProfileViewController: BasePageViewController {
             btnBack.isHidden = true
             constViewMessageFollowHeight.constant = 0
             btnSettings.isHidden =  false
+            view.bringSubview(toFront: imgLogo)
+            lblSwimpy.isHidden = false
+            imgLogo.isHidden = false
         }
         else {
             btnBack.isHidden = false
@@ -48,6 +53,9 @@ class ProfileViewController: BasePageViewController {
             btnSettings.isHidden =  true
             lblSettings.isHidden = true
             imgSettings.isHidden = true
+            lblSwimpy.isHidden = true
+            imgLogo.isHidden = true
+            view.sendSubview(toBack: imgLogo)
         }
         self.view.layoutIfNeeded()
         hitApiToGetUserDetails()
@@ -75,7 +83,7 @@ class ProfileViewController: BasePageViewController {
         btnNumberOfFollowers.setTitle((userDetails?.totalFollowedBy ?? "") + " followers", for: .normal)
         btnNumberOfFollowing.setTitle((userDetails?.totalFollowing ?? "") + " following", for: .normal)
         
-        imgUserImage.sd_setImage(with: URL(string: userDetails?.profilePicURLThumbnail ?? ""))
+        imgUserImage.sd_setImage(with: URL(string: userDetails?.profilePicURLOriginal ?? ""))
         if userDetails?.followStatus == "0" {
             btnFollow?.setTitle("Follow", for: .normal)
         }else {
@@ -134,7 +142,7 @@ class ProfileViewController: BasePageViewController {
     @IBAction func btnActionCart(sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateCartViewController()
         self.navigationController?.pushViewController(VC, animated: true)
-
+        
     }
     @IBAction func btnSearchAction(sender: AnyObject) {
         //        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()

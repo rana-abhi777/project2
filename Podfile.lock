@@ -58,6 +58,7 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.7)
   - IQKeyboardManager (4.0.6)
   - Kingfisher (3.2.0)
+  - Presentr (1.0.3)
   - RMMapper (1.1.5)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - Google/SignIn
   - IQKeyboardManager
   - Kingfisher
+  - Presentr
   - RMMapper
   - SDWebImage
   - SwiftyJSON
@@ -111,6 +113,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
   Kingfisher: 50407d1d5dbc34965009d425a286342ff36a84ea
+  Presentr: 9759bf538d9f3211a5ee1314a541a11bbea7ea71
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019

@@ -17,4 +17,7 @@
 "Edit profile" = "Edit profile";
 "Terms and conditions" = "Terms and conditions";
 "Notifications" = "Notifications";
+"Change Password" = "Change Password";
 "Logout" = "Logout";
+"Enter Confirm Password" = "Enter Confirm Password";
+"New password should be same as confirm password" = "New password should be same as confirm password";

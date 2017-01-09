@@ -58,6 +58,7 @@ enum API {
     case RemoveCartItem(OptionalDictionary)
     
     case NotificationOnOff(OptionalDictionary)
+    case ChangePassword(OptionalDictionary)
     
 }
 
@@ -90,6 +91,7 @@ enum APIParameters {
     case GetCartDetail()
     case RemoveCartItem(cartId : String?)
     case NotificationOnOff(blockUnblock : String?)
+    case ChangePassword(newPassword : String?)
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
@@ -145,6 +147,9 @@ enum APIParameters {
             return ["cartId" : (cartId ?? "") as AnyObject]
         case .NotificationOnOff(let blockUnblock) :
             return ["blockUnblock" : (blockUnblock ?? "on") as AnyObject]
+            
+        case .ChangePassword(let newPassword) :
+            return ["newPassword" : (newPassword ?? "") as AnyObject]
         default:
             return ["" : "" as AnyObject]
         }
@@ -181,6 +186,7 @@ extension API : Router {
         case .GetCartDetail(_) : return nil
         case.RemoveCartItem(let parameters) : return parameters
         case.NotificationOnOff(let parameters) : return parameters
+        case .ChangePassword(let parameters) : return parameters
         }
     }
     
@@ -211,7 +217,8 @@ extension API : Router {
         case .AddToCart(_) : return "api/users/addToCart"
         case .GetCartDetail(_) : return "api/users/getCartDetails"
         case .RemoveCartItem(_) : return "api/users/removeCart"
-        case .NotificationOnOff(_) : return "/api/users/on_off_notification"
+        case .NotificationOnOff(_) : return "api/users/on_off_notification"
+        case .ChangePassword(_) : return "api/users/changePassword"
         }
     }
     

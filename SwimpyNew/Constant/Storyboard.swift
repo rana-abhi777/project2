@@ -99,11 +99,29 @@ struct StoryboardScene {
       return vc
     }
 
+    case changePasswordViewControllerScene = "ChangePasswordViewController"
+    static func instantiateChangePasswordViewController() -> ChangePasswordViewController {
+      guard let vc = StoryboardScene.Main.changePasswordViewControllerScene.viewController() as? ChangePasswordViewController
+      else {
+        fatalError("ViewController 'ChangePasswordViewController' is not of the expected class ChangePasswordViewController.")
+      }
+      return vc
+    }
+
     case dealsViewControllerScene = "DealsViewController"
     static func instantiateDealsViewController() -> DealsViewController {
       guard let vc = StoryboardScene.Main.dealsViewControllerScene.viewController() as? DealsViewController
       else {
         fatalError("ViewController 'DealsViewController' is not of the expected class DealsViewController.")
+      }
+      return vc
+    }
+
+    case editProfileViewControllerScene = "EditProfileViewController"
+    static func instantiateEditProfileViewController() -> EditProfileViewController {
+      guard let vc = StoryboardScene.Main.editProfileViewControllerScene.viewController() as? EditProfileViewController
+      else {
+        fatalError("ViewController 'EditProfileViewController' is not of the expected class EditProfileViewController.")
       }
       return vc
     }

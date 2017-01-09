@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tableViewSettings: UITableView!
     
     //MARK:- variables
-     var arrData : [String] = [L10n.editProfile.string,L10n.termsAndConditions.string,L10n.notifications.string,L10n.logout.string]
+     var arrData : [String] = [L10n.editProfile.string,L10n.termsAndConditions.string,L10n.notifications.string,L10n.changePassword.string,L10n.logout.string]
     var tableViewDataSource : TableViewCustomDatasource?
     
     //MARK:- override functions
@@ -33,13 +33,27 @@ class SettingsViewController: UIViewController {
             let cell = cell as? SettingsTableViewCell
             cell?.configureCell(model: self.arrData[indexpath.row] ,row: indexpath.row)
             }, aRowSelectedListener: {[unowned self] (indexPath) in
-                if indexPath.row == 3 { //logout
+                switch indexPath.row {
+//                case 0: //edit profile
+//                    let VC = StoryboardScene.Main.instantiateEditProfileViewController()
+//                    self.navigationController?.pushViewController(VC, animated: true)
+//                    break
+                case 3: //change password
+                    let VC = StoryboardScene.Main.instantiateChangePasswordViewController()
+                    self.navigationController?.pushViewController(VC, animated: true)
+                    break
+                case 4: //logout
                     UserDefaults.standard.removeObject(forKey: "SwimpyUser")
                     let initialNavVC = StoryboardScene.Main.instantiateInitialNavigationViewController()
                     let VC = StoryboardScene.Main.instantiateLoginViewController()
                     initialNavVC.viewControllers = [VC]
                     UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
+
+                    break
+                default :
+                    break
                 }
+               
             }, willDisplayCell: { (indexPath) in                
         })
         

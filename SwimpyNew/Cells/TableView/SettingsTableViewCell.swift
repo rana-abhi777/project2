@@ -10,7 +10,7 @@ import UIKit
 
 
 class SettingsTableViewCell: UITableViewCell {
-
+    
     //MARK:- outlet
     @IBOutlet weak var lblSettingCategory: UILabel!
     @IBOutlet weak var btnSwitch: UIButton!
@@ -23,11 +23,11 @@ class SettingsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
     //MARK:-  function
     func configureCell(model : String,row : Int) {
         data = model
@@ -49,14 +49,26 @@ class SettingsTableViewCell: UITableViewCell {
             userData?.notification = "0"
             MMUserManager.shared.loggedInUser = userData
             configureCell(model: data,row: index)
+            ApiManager().getDataOfURL(withApi: API.NotificationOnOff(APIParameters.NotificationOnOff(blockUnblock: "off" ).formatParameters()), failure: { (err) in
+                print(err)
+                }, success: { (model) in
+                    
+                }, method: "POST", loader: false)
+            
         }else {
             btnSwitch.setImage(UIImage(asset : .icToggleOn), for: .normal)
             let userData = MMUserManager.shared.loggedInUser
             userData?.notification = "1"
             MMUserManager.shared.loggedInUser = userData
             configureCell(model: data,row: index)
+            ApiManager().getDataOfURL(withApi: API.NotificationOnOff(APIParameters.NotificationOnOff(blockUnblock: "on" ).formatParameters()), failure: { (err) in
+                print(err)
+                }, success: { (model) in
+                    
+                }, method: "POST", loader: false)
+            
         }
-        
-
     }
+    
+    
 }

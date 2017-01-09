@@ -27,8 +27,14 @@ enum L10n {
   case termsAndConditions
   /// Notifications
   case notifications
+  /// Change Password
+  case changePassword
   /// Logout
   case logout
+  /// Enter Confirm Password
+  case enterConfirmPassword
+  /// New password should be same as confirm password
+  case newPasswordShouldBeSameAsConfirmPassword
 }
 // swiftlint:enable type_body_length
 
@@ -59,8 +65,14 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "Terms and conditions")
       case .notifications:
         return L10n.tr(key: "Notifications")
+      case .changePassword:
+        return L10n.tr(key: "Change Password")
       case .logout:
         return L10n.tr(key: "Logout")
+      case .enterConfirmPassword:
+        return L10n.tr(key: "Enter Confirm Password")
+      case .newPasswordShouldBeSameAsConfirmPassword:
+        return L10n.tr(key: "New password should be same as confirm password")
     }
   }
 
