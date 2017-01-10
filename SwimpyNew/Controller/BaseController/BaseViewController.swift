@@ -15,7 +15,8 @@ class BaseViewController: UIViewController {
     let overlayObj = LoadingOverlay()
     var selectedImage : UIImage?
     var btnOutlet : UIButton!
-   
+    var viewCartNumber : UIView!
+    var lblCartItem : UILabel!
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -39,6 +40,9 @@ class BaseViewController: UIViewController {
         
         return customPresenter
     }()
+    
+    
+    
 
 //    let center = ModalCenterPosition.Center
 //    let customType = PresentationType.Custom(width: ModalSize.Custom(size: 240), height: ModalSize.Custom(size: 128), center: center)
@@ -71,6 +75,25 @@ class BaseViewController: UIViewController {
         fusuma.hasVideo = false
         fusuma.delegate = self
         self.present(fusuma, animated: true, completion: nil)
+    }
+    
+    func viewCartCount(viewCartNotification : UIView!, lblCartCount : UILabel!) {
+        self.viewCartNumber = viewCartNotification
+        self.lblCartItem = lblCartCount
+        guard let count = MMUserManager.shared.cartCount as? Int else {
+            viewCartNumber.isHidden = true
+            view.sendSubview(toBack: viewCartNumber)
+            return
+        }
+        if count > 0 {
+            viewCartNumber.isHidden = false
+            view.bringSubview(toFront: viewCartNumber)
+            lblCartItem.text = MMUserManager.shared.cartCount ?? "0"
+        }
+        else {
+            viewCartNumber.isHidden = true
+            view.sendSubview(toBack: viewCartNumber)
+        }
     }
     
 

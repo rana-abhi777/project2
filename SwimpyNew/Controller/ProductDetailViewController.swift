@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction,ProductDetailTask {
+class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction,ProductDetailTask {
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewProductImages: UICollectionView!
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var tableViewProductDetail: UITableView!
-    
+    @IBOutlet weak var lblCartCount: UILabel!
+    @IBOutlet weak var viewCartNotification: UIView!
     @IBOutlet weak var pageControlImage: UIPageControl!
     
     //MARK:- variables
@@ -39,7 +40,7 @@ class ProductDetailViewController: UIViewController,RelatedProductsDelegateFunct
         pageControlImage.currentPage = 0
         pageControlImage.pageIndicatorTintColor = UIColor.gray
         pageControlImage.currentPageIndicatorTintColor = UIColor.white
-        
+        viewCartCount(viewCartNotification: viewCartNotification,lblCartCount: lblCartCount)
     }
     
     override func viewWillAppear(_ animated: Bool) {

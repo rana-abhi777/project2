@@ -31,4 +31,19 @@ class MMUserManager: NSObject {
             }
         }
     }
+    
+    var cartCount : String? {
+        get{
+            return UserDefaults.standard.rm_customObject(forKey: "SwimpyCartCount") as? String
+        }
+        set{
+            
+            if let value = newValue {
+                UserDefaults.standard.rm_setCustomObject(value, forKey: "SwimpyCartCount")
+            }else{
+                UserDefaults.standard.removeObject(forKey: "SwimpyCartCount")
+            }
+        }
+    }
+
 }

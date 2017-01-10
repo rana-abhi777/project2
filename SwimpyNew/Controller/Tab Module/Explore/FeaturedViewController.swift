@@ -13,7 +13,7 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     
     //MARK:- outlets
     @IBOutlet weak var tableViewFeaturedProducts: UITableView!
-    
+    @IBOutlet weak var viewNoProducts: UIView!
     
     //MARK:- variables
     var arrFeaturedData : [Products] = []
@@ -56,7 +56,13 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
                 for item in response.arrProducts {
                     self.arrFeaturedData.append(item)
                 }
-                self.configureTableView()
+                if self.arrFeaturedData.count > 0 {
+                    self.configureTableView()
+                    self.view.bringSubview(toFront: self.tableViewFeaturedProducts)
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoProducts)
+                }
             }, method: "GET", loader: true)
         
     }

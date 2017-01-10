@@ -584,7 +584,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXd-PH-uBj">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No products yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ow8-si-HkV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No featured products yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ow8-si-HkV">
                                         <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -733,6 +733,7 @@
                     </view>
                     <connections>
                         <outlet property="tableViewFeaturedProducts" destination="gZr-jm-9CC" id="vKt-Xw-W08"/>
+                        <outlet property="viewNoProducts" destination="fXd-PH-uBj" id="XBZ-V1-mtc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfg-Vd-gs6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1287,17 +1288,36 @@
                                                 <action selector="btnActionBack:" destination="QbF-Yr-QvE" eventType="touchUpInside" id="9RG-xA-mvg"/>
                                             </connections>
                                         </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umi-ut-sJX">
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzW-YR-r0o">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="rzW-YR-r0o" firstAttribute="centerY" secondItem="umi-ut-sJX" secondAttribute="centerY" id="2Fp-6y-2sU"/>
+                                                <constraint firstAttribute="width" constant="24" id="HTq-Te-0MZ"/>
+                                                <constraint firstItem="rzW-YR-r0o" firstAttribute="centerX" secondItem="umi-ut-sJX" secondAttribute="centerX" id="Rq8-yG-Jv1"/>
+                                                <constraint firstAttribute="height" constant="24" id="VcO-Rx-bKF"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="oaN-H5-QL9" firstAttribute="centerX" secondItem="guy-n0-41X" secondAttribute="centerX" id="0pN-nk-7Tm"/>
                                         <constraint firstItem="1oz-JW-3k7" firstAttribute="leading" secondItem="dMr-SY-eWe" secondAttribute="leading" constant="8" id="1OV-PJ-oeh"/>
-                                        <constraint firstItem="1oz-JW-3k7" firstAttribute="top" secondItem="dMr-SY-eWe" secondAttribute="top" constant="8" id="7H4-rc-5G5"/>
+                                        <constraint firstAttribute="trailing" secondItem="7UU-e9-o2a" secondAttribute="trailing" constant="16" id="1Vb-5m-Xj0"/>
+                                        <constraint firstItem="1oz-JW-3k7" firstAttribute="top" secondItem="dMr-SY-eWe" secondAttribute="top" constant="16" id="7H4-rc-5G5"/>
                                         <constraint firstItem="oaN-H5-QL9" firstAttribute="bottom" secondItem="guy-n0-41X" secondAttribute="bottom" constant="-4" id="9WO-De-bNO"/>
+                                        <constraint firstItem="umi-ut-sJX" firstAttribute="top" secondItem="1oz-JW-3k7" secondAttribute="top" constant="-4" id="Fdo-p2-AUy"/>
+                                        <constraint firstAttribute="trailing" secondItem="umi-ut-sJX" secondAttribute="trailing" constant="16" id="Jxl-cc-PXf"/>
                                         <constraint firstItem="guy-n0-41X" firstAttribute="leading" secondItem="dMr-SY-eWe" secondAttribute="leading" id="n1F-ao-s07"/>
                                         <constraint firstAttribute="trailing" secondItem="guy-n0-41X" secondAttribute="trailing" id="pa0-yQ-B7Y"/>
-                                        <constraint firstAttribute="trailing" secondItem="7UU-e9-o2a" secondAttribute="trailing" constant="8" id="r0q-cd-YN8"/>
-                                        <constraint firstItem="7UU-e9-o2a" firstAttribute="top" secondItem="dMr-SY-eWe" secondAttribute="top" constant="8" id="sIn-FZ-p7q"/>
+                                        <constraint firstItem="7UU-e9-o2a" firstAttribute="top" secondItem="dMr-SY-eWe" secondAttribute="top" constant="16" id="sIn-FZ-p7q"/>
                                         <constraint firstItem="guy-n0-41X" firstAttribute="top" secondItem="dMr-SY-eWe" secondAttribute="top" id="z6k-Lh-oAe"/>
                                     </constraints>
                                 </view>
@@ -1972,8 +1992,10 @@ Ships easy to any country from…</string>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="collectionViewProductImages" destination="guy-n0-41X" id="7fa-aA-AV8"/>
+                        <outlet property="lblCartCount" destination="rzW-YR-r0o" id="uRn-UE-KRR"/>
                         <outlet property="pageControlImage" destination="oaN-H5-QL9" id="Nlb-1X-24H"/>
                         <outlet property="tableViewProductDetail" destination="TYc-QJ-EDI" id="e3U-ce-usN"/>
+                        <outlet property="viewCartNotification" destination="umi-ut-sJX" id="V2F-Jw-abN"/>
                         <outlet property="viewHeader" destination="dMr-SY-eWe" id="pTz-8V-Uvs"/>
                     </connections>
                 </viewController>
