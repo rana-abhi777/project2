@@ -36,7 +36,7 @@ class AddressDetailsViewController: UIViewController {
     }
     
     @IBAction func btnActionBack(sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnActionCancel(sender: AnyObject) {

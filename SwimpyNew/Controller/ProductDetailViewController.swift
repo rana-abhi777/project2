@@ -139,7 +139,7 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
         self.navigationController?.pushViewController(VC, animated: true)
     }
     @IBAction func btnActionBack(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     

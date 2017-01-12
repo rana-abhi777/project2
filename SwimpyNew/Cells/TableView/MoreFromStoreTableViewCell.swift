@@ -72,7 +72,7 @@ class MoreFromStoreTableViewCell: UITableViewCell {
             }, aRowSelectedListener: { (indexPath) in
                 let id = arrProducts[indexPath.row].id ?? ""
                 self.delegate?.redirectToProductDetail(productId: id)
-            }, willDisplayCell: {[unowned self] (indexPath) in
+            }, willDisplayCell: { (indexPath) in
                 
                 
             }, scrollViewListener: { (UIScrollView) in
@@ -94,7 +94,7 @@ class MoreFromStoreTableViewCell: UITableViewCell {
             self.delegate?.updateFollowingData(data: self.data)
             ApiManager().getDataOfURL(withApi: API.FollowStore(APIParameters.FollowStore(sellerId: data?.storeId).formatParameters()), failure: { (err) in
                 print(err)
-                }, success: {[unowned self] (model) in
+                }, success: {(model) in
                     print(model)
                     
                 }, method: "PUT", loader: false)
@@ -111,7 +111,7 @@ class MoreFromStoreTableViewCell: UITableViewCell {
             self.delegate?.updateFollowingData(data : self.data)
             ApiManager().getDataOfURL(withApi: API.UnfollowStore(APIParameters.UnfollowStore(sellerId: data?.storeId).formatParameters()), failure: { (err) in
                 print(err)
-                }, success: {[unowned self] (model) in
+                }, success: { (model) in
                     print(model)
                     
                 }, method: "PUT", loader: false)

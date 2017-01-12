@@ -74,6 +74,6 @@ class CartViewController: UIViewController,CartProductTask {
     
     //MARK:- button actions
     @IBAction func btnActionBack(sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }

@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController {
     
     //MARK:- button action
     @IBAction func btnActionBack(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
 }

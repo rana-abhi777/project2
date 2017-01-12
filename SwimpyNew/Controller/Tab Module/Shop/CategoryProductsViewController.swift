@@ -68,7 +68,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
                 vc.productId = productId
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            }, willDisplayCell: {[unowned self] (indexPath) in
+            }, willDisplayCell: {(indexPath) in
                 
                 
             }, scrollViewListener: { (UIScrollView) in
@@ -106,7 +106,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
     
     
     @IBAction func btnActionBack(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
 }

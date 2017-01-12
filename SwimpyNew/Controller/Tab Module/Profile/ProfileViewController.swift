@@ -154,6 +154,6 @@ class ProfileViewController: BasePageViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
     @IBAction func brnActionBack(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }

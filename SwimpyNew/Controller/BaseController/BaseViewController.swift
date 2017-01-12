@@ -80,7 +80,7 @@ class BaseViewController: UIViewController {
     func viewCartCount(viewCartNotification : UIView!, lblCartCount : UILabel!) {
         self.viewCartNumber = viewCartNotification
         self.lblCartItem = lblCartCount
-        guard let count = MMUserManager.shared.cartCount as? Int else {
+        guard let count = Int(MMUserManager.shared.cartCount ?? "0")else {
             viewCartNumber.isHidden = true
             view.sendSubview(toBack: viewCartNumber)
             return

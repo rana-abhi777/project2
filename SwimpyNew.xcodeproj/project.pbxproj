@@ -937,7 +937,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = Y4523532TR;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1365,16 +1365,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
-				DEVELOPMENT_TEAM = Y4523532TR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "471f9ea1-e4e6-4b92-8e06-526a2b451370";
-				PROVISIONING_PROFILE_SPECIFIER = SwimpyAdhocProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1389,15 +1389,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
-				DEVELOPMENT_TEAM = Y4523532TR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "471f9ea1-e4e6-4b92-8e06-526a2b451370";
-				PROVISIONING_PROFILE_SPECIFIER = SwimpyAdhocProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

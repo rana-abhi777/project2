@@ -34,7 +34,7 @@ class CartProductDetailTableViewCell: UITableViewCell {
             
             ]
     }()
-    let arrQuantity = ["1", "2" , "3", "4" ,"5", "6", "7"]
+    var arrQuantity : [String] = ["1"]
     var row = 0
     //MARK:- override functions
     override func awakeFromNib() {
@@ -50,14 +50,14 @@ class CartProductDetailTableViewCell: UITableViewCell {
         row = index
         data = model
         lblStoreName.text = "Order from " + (model.storeName ?? "") + " (" + (model.colorSelected ?? "") + ")"
+        arrQuantity = model.arrQuantity.map {"\($0)"}
         lblProductName.text = model.productName ?? ""
         lblPrice.text = "$" + (model.base_price_unit ?? "0")
         lblQuantity.text = model.quantitySelected 
         imgProduct.sd_setImage(with: URL(string : model.imageOriginal ?? ""))
         selectQuantityDropDown.anchorView = lblQuantity
-        selectQuantityDropDown.bottomOffset = CGPoint(x: 0, y: 40)
+        selectQuantityDropDown.bottomOffset = CGPoint(x: 0, y: 20)
         selectQuantityDropDown.dataSource = arrQuantity
-        
     }
     
     //MARK:-  button action
@@ -69,8 +69,7 @@ class CartProductDetailTableViewCell: UITableViewCell {
         
         selectQuantityDropDown.show()
         selectQuantityDropDown.selectionAction = { [unowned self] (index, item) in
-            self.lblQuantity.text = self.arrQuantity[index]
-//            self.reloadInputViews()
+            self.lblQuantity.text = "\(self.arrQuantity[index])"
             self.data?.quantitySelected = self.lblQuantity.text ?? ""
             self.delegate?.updateQuantity(model: self.data,index : self.row)
         }

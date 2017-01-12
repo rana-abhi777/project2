@@ -33,7 +33,7 @@ class EditProfileViewController: BaseViewController {
     
      //MARK:- button action
     @IBAction func btnActionBack(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+      _ = self.navigationController?.popViewController(animated: true)
     }
    
     @IBAction func btnActionSave(_ sender: AnyObject) {

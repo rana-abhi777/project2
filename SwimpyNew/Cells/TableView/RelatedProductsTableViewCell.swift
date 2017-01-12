@@ -58,7 +58,7 @@ class RelatedProductsTableViewCell: UITableViewCell,RelatedProductsTask {
             }, aRowSelectedListener: { (indexPath) in
                 let id = arrProducts[indexPath.row].id ?? ""
                 self.delegate?.redirectToProductDetail(productId: id)
-            }, willDisplayCell: {[unowned self] (indexPath) in
+            }, willDisplayCell: { (indexPath) in
                 
                 
             }, scrollViewListener: { (UIScrollView) in

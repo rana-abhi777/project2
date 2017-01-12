@@ -59,7 +59,7 @@ class ChangePasswordViewController: UIViewController {
                 }, success: { (model) in
                     print(model)
                     UserFunctions.showAlert(title: "Success", message: "Password updated successfully", success: { 
-                        self.navigationController?.popViewController(animated: true)
+                       _ = self.navigationController?.popViewController(animated: true)
                     })
                    
                 }, method: "PUT", loader: false)
@@ -67,7 +67,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func btnActionBack(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+      _ =  self.navigationController?.popViewController(animated: true)
     }
     
 }

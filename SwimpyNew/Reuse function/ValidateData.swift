@@ -12,7 +12,7 @@ class ValidateData: NSObject {
     
     func trimmedString(string:String)->String{
         let newString = string.trimmingCharacters(in: NSCharacterSet.whitespaces)
-        string.characters
+//        string.characters
         return newString
     }
 

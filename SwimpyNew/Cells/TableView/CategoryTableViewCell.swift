@@ -27,9 +27,8 @@ class CategoryTableViewCell: UITableViewCell {
     //MARK:-   functions
     func configureCell(model : Category) {
         lblCategoryName?.text = model.name ?? ""
-        guard let url = model.categoryImageOriginal   else { imgCategory.backgroundColor = UIColor.black
+        guard let url = model.categoryImageOriginal   else { imgCategory?.backgroundColor = UIColor.black
             return }
-        imgCategory?.setImageWith(URL(string : url))
-
+        imgCategory?.sd_setImage(with: URL(string : url))
     }
 }

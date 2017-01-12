@@ -264,6 +264,100 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_img" translatesAutoresizingMaskIntoConstraints="NO" id="5Nm-uf-HEH"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="5fS-d0-9ON">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="LD7-b6-w7U"/>
+                                    <constraint firstAttribute="height" constant="112" id="jRi-Ed-ueh"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover and buy amazing things all in one place" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHQ-qB-C3N">
+                                <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SG3-Ic-A3c">
+                                <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="iHI-Cj-N2i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="14"/>
+                                <state key="normal" title="Sign in with facebook">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnLoginWithFbWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f2P-u2-R5X"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_facebook-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ywq-Tc-ccI">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="EHH-wy-NNI"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOW-uT-lIh">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="14"/>
+                                <state key="normal" title="Sign in with google">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnActionLoginWithGoogleWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZbU-1t-fT2"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="super g" translatesAutoresizingMaskIntoConstraints="NO" id="1Ih-FZ-msO">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="vG0-Fn-tc3"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmq-Ke-lDz">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="14"/>
+                                <state key="normal" title="Create account">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnActionCreateAccountWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNA-xW-l92"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuF-yq-Fhv">
+                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="12"/>
+                                <state key="normal" title="Sign in using Email">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnActionSigninPopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7uD-an-7ZI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eZ-X3-Nc3">
+                                <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vA-ZC-Zpp">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="bmT-us-Dqa"/>
+                                    <constraint firstAttribute="height" constant="40" id="cJ3-Z1-y2u"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Skip">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="14" name="LucidaGrande-Bold"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="btnActionSkipWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xmu-Sg-jN1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWIMPY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22k-JF-TQQ">
+                                <fontDescription key="fontDescription" name="BryantPro-Bold" family="Bryant Pro" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2f-Qo-QZD" customClass="CustomView" customModule="SwimpyNew" customModuleProvider="target">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Faq-bU-l1o">
@@ -406,100 +500,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_img" translatesAutoresizingMaskIntoConstraints="NO" id="5Nm-uf-HEH"/>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="5fS-d0-9ON">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="96" id="LD7-b6-w7U"/>
-                                    <constraint firstAttribute="height" constant="112" id="jRi-Ed-ueh"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover and buy amazing things all in one place" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHQ-qB-C3N">
-                                <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SG3-Ic-A3c">
-                                <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="iHI-Cj-N2i"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="14"/>
-                                <state key="normal" title="Sign in with facebook">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnLoginWithFbWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f2P-u2-R5X"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_facebook-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ywq-Tc-ccI">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="EHH-wy-NNI"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOW-uT-lIh">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="14"/>
-                                <state key="normal" title="Sign in with google">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnActionLoginWithGoogleWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZbU-1t-fT2"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="super g" translatesAutoresizingMaskIntoConstraints="NO" id="1Ih-FZ-msO">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="vG0-Fn-tc3"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmq-Ke-lDz">
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="14"/>
-                                <state key="normal" title="Create account">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnActionCreateAccountWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNA-xW-l92"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuF-yq-Fhv">
-                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="12"/>
-                                <state key="normal" title="Sign in using Email">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnActionSigninPopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7uD-an-7ZI"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eZ-X3-Nc3">
-                                <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vA-ZC-Zpp">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="bmT-us-Dqa"/>
-                                    <constraint firstAttribute="height" constant="40" id="cJ3-Z1-y2u"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Skip">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="14" name="LucidaGrande-Bold"/>
-                                                <integer key="NSUnderline" value="1"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="btnActionSkipWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xmu-Sg-jN1"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWIMPY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22k-JF-TQQ">
-                                <fontDescription key="fontDescription" name="BryantPro-Bold" family="Bryant Pro" pointSize="22"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -600,13 +600,13 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeaturedTableViewCell" rowHeight="310" id="3Yk-tf-BYs" customClass="FeaturedTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="310"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="310"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Yk-tf-BYs" id="ro8-nZ-F9M">
-                                            <frame key="frameInset" width="375" height="309"/>
+                                            <frame key="frameInset" width="1000" height="310"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iwt-jA-H2w">
+                                                <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iwt-jA-H2w">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="41f-IR-G8c"/>
                                                     </constraints>
@@ -905,7 +905,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="174" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_img" translatesAutoresizingMaskIntoConstraints="NO" id="PUQ-YK-NOF">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_img" translatesAutoresizingMaskIntoConstraints="NO" id="PUQ-YK-NOF">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="knM-et-FQG"/>
                                                     </constraints>
@@ -1040,7 +1041,7 @@
                                             <frame key="frameInset" width="375" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_attach" translatesAutoresizingMaskIntoConstraints="NO" id="KTQ-jb-E7q"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_attach" translatesAutoresizingMaskIntoConstraints="NO" id="KTQ-jb-E7q"/>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HATS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKq-uj-EVV">
                                                     <fontDescription key="fontDescription" name="Gotham-Bold" family="Gotham" pointSize="24"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1239,7 +1240,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="363" height="144"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kvV-oL-jwa"/>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kvV-oL-jwa"/>
                                                         </subviews>
                                                     </view>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1256,68 +1257,13 @@
                                             </cells>
                                         </collectionView>
                                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="oaN-H5-QL9"/>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7UU-e9-o2a" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="BqN-fc-MZx"/>
-                                                <constraint firstAttribute="height" constant="40" id="hJ6-iM-SbH"/>
-                                            </constraints>
-                                            <state key="normal" image="ic_cart"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="6"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="btnActionCart:" destination="QbF-Yr-QvE" eventType="touchUpInside" id="aew-Sf-uL8"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oz-JW-3k7" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="E6M-wq-QoZ"/>
-                                                <constraint firstAttribute="width" constant="40" id="IYS-ID-A7j"/>
-                                            </constraints>
-                                            <state key="normal" image="ic_back"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="6"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="btnActionBack:" destination="QbF-Yr-QvE" eventType="touchUpInside" id="9RG-xA-mvg"/>
-                                            </connections>
-                                        </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umi-ut-sJX">
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzW-YR-r0o">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="tintColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="rzW-YR-r0o" firstAttribute="centerY" secondItem="umi-ut-sJX" secondAttribute="centerY" id="2Fp-6y-2sU"/>
-                                                <constraint firstAttribute="width" constant="24" id="HTq-Te-0MZ"/>
-                                                <constraint firstItem="rzW-YR-r0o" firstAttribute="centerX" secondItem="umi-ut-sJX" secondAttribute="centerX" id="Rq8-yG-Jv1"/>
-                                                <constraint firstAttribute="height" constant="24" id="VcO-Rx-bKF"/>
-                                            </constraints>
-                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="oaN-H5-QL9" firstAttribute="centerX" secondItem="guy-n0-41X" secondAttribute="centerX" id="0pN-nk-7Tm"/>
-                                        <constraint firstItem="1oz-JW-3k7" firstAttribute="leading" secondItem="dMr-SY-eWe" secondAttribute="leading" constant="8" id="1OV-PJ-oeh"/>
-                                        <constraint firstAttribute="trailing" secondItem="7UU-e9-o2a" secondAttribute="trailing" constant="16" id="1Vb-5m-Xj0"/>
-                                        <constraint firstItem="1oz-JW-3k7" firstAttribute="top" secondItem="dMr-SY-eWe" secondAttribute="top" constant="16" id="7H4-rc-5G5"/>
                                         <constraint firstItem="oaN-H5-QL9" firstAttribute="bottom" secondItem="guy-n0-41X" secondAttribute="bottom" constant="-4" id="9WO-De-bNO"/>
-                                        <constraint firstItem="umi-ut-sJX" firstAttribute="top" secondItem="1oz-JW-3k7" secondAttribute="top" constant="-4" id="Fdo-p2-AUy"/>
-                                        <constraint firstAttribute="trailing" secondItem="umi-ut-sJX" secondAttribute="trailing" constant="16" id="Jxl-cc-PXf"/>
                                         <constraint firstItem="guy-n0-41X" firstAttribute="leading" secondItem="dMr-SY-eWe" secondAttribute="leading" id="n1F-ao-s07"/>
                                         <constraint firstAttribute="trailing" secondItem="guy-n0-41X" secondAttribute="trailing" id="pa0-yQ-B7Y"/>
-                                        <constraint firstItem="7UU-e9-o2a" firstAttribute="top" secondItem="dMr-SY-eWe" secondAttribute="top" constant="16" id="sIn-FZ-p7q"/>
                                         <constraint firstItem="guy-n0-41X" firstAttribute="top" secondItem="dMr-SY-eWe" secondAttribute="top" id="z6k-Lh-oAe"/>
                                     </constraints>
                                 </view>
@@ -1633,6 +1579,7 @@ Ships easy to any country from…</string>
                                                 <constraint firstItem="Cww-qA-iE2" firstAttribute="leading" secondItem="HFD-Kn-qxy" secondAttribute="leading" id="ICr-FM-qpa"/>
                                                 <constraint firstItem="vK5-zy-5u6" firstAttribute="leading" secondItem="Xd9-oM-Bqg" secondAttribute="leading" id="Jcx-cp-3ef"/>
                                                 <constraint firstItem="liY-zL-Mss" firstAttribute="top" secondItem="2ii-ri-ecp" secondAttribute="top" constant="-4" id="KVy-3k-prx"/>
+                                                <constraint firstItem="sZO-r6-ubw" firstAttribute="centerY" secondItem="BJ8-7Q-gy9" secondAttribute="centerY" id="LsA-3d-hws"/>
                                                 <constraint firstItem="9Dd-Lc-i4l" firstAttribute="top" secondItem="YMM-tY-Zwu" secondAttribute="top" id="M10-l3-3KY"/>
                                                 <constraint firstItem="2jU-bX-K0a" firstAttribute="top" secondItem="ZaL-p0-eQP" secondAttribute="top" constant="-8" id="MHQ-yq-L7R"/>
                                                 <constraint firstAttribute="trailing" secondItem="wT9-Wv-Pfz" secondAttribute="trailing" multiplier="1.02" constant="20" symbolic="YES" id="NGh-nT-66f"/>
@@ -1642,6 +1589,7 @@ Ships easy to any country from…</string>
                                                 <constraint firstItem="cqf-oT-vd1" firstAttribute="leading" secondItem="BJ8-7Q-gy9" secondAttribute="leading" id="SHG-CG-qjg"/>
                                                 <constraint firstItem="6Ss-SW-kRC" firstAttribute="top" secondItem="cqf-oT-vd1" secondAttribute="top" id="V5A-R6-pnP"/>
                                                 <constraint firstItem="vm8-qg-thq" firstAttribute="width" secondItem="liY-zL-Mss" secondAttribute="width" id="Xig-fe-eRY"/>
+                                                <constraint firstItem="wT9-Wv-Pfz" firstAttribute="centerY" secondItem="cqf-oT-vd1" secondAttribute="centerY" id="Xnk-jg-spH"/>
                                                 <constraint firstItem="sZO-r6-ubw" firstAttribute="centerY" secondItem="7UG-uc-e34" secondAttribute="centerY" constant="-2" id="Y08-3n-dMK"/>
                                                 <constraint firstItem="h2L-Wr-ZLY" firstAttribute="trailing" secondItem="liY-zL-Mss" secondAttribute="trailing" id="YX3-9z-kMQ"/>
                                                 <constraint firstItem="BJ8-7Q-gy9" firstAttribute="leading" secondItem="HFD-Kn-qxy" secondAttribute="leading" multiplier="1.2" constant="20" symbolic="YES" id="YmF-sD-7Wb"/>
@@ -1979,13 +1927,79 @@ Ships easy to any country from…</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OcC-1O-AsS">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7UU-e9-o2a" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="BqN-fc-MZx"/>
+                                            <constraint firstAttribute="height" constant="40" id="hJ6-iM-SbH"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_cart"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnActionCart:" destination="QbF-Yr-QvE" eventType="touchUpInside" id="aew-Sf-uL8"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umi-ut-sJX">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzW-YR-r0o">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="rzW-YR-r0o" firstAttribute="centerY" secondItem="umi-ut-sJX" secondAttribute="centerY" id="2Fp-6y-2sU"/>
+                                            <constraint firstAttribute="width" constant="24" id="HTq-Te-0MZ"/>
+                                            <constraint firstItem="rzW-YR-r0o" firstAttribute="centerX" secondItem="umi-ut-sJX" secondAttribute="centerX" id="Rq8-yG-Jv1"/>
+                                            <constraint firstAttribute="height" constant="24" id="VcO-Rx-bKF"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oz-JW-3k7" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="E6M-wq-QoZ"/>
+                                            <constraint firstAttribute="width" constant="40" id="IYS-ID-A7j"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_back"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnActionBack:" destination="QbF-Yr-QvE" eventType="touchUpInside" id="9RG-xA-mvg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="4XA-0e-zoF"/>
+                                    <constraint firstItem="7UU-e9-o2a" firstAttribute="top" secondItem="OcC-1O-AsS" secondAttribute="top" constant="20" symbolic="YES" id="7Qe-NY-pqY"/>
+                                    <constraint firstItem="1oz-JW-3k7" firstAttribute="top" secondItem="OcC-1O-AsS" secondAttribute="top" constant="20" symbolic="YES" id="Azp-jp-2OZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="7UU-e9-o2a" secondAttribute="trailing" constant="20" symbolic="YES" id="Jsn-VL-xkL"/>
+                                    <constraint firstItem="1oz-JW-3k7" firstAttribute="leading" secondItem="OcC-1O-AsS" secondAttribute="leading" constant="20" symbolic="YES" id="O2J-PG-Uxj"/>
+                                    <constraint firstItem="umi-ut-sJX" firstAttribute="trailing" secondItem="7UU-e9-o2a" secondAttribute="trailing" id="crH-VJ-Oe5"/>
+                                    <constraint firstItem="umi-ut-sJX" firstAttribute="top" secondItem="7UU-e9-o2a" secondAttribute="top" constant="-4" id="zw5-Wd-Jyt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="TYc-QJ-EDI" firstAttribute="top" secondItem="d95-aQ-Jj9" secondAttribute="top" constant="20" id="I5D-bR-t2q"/>
+                            <constraint firstItem="OcC-1O-AsS" firstAttribute="leading" secondItem="TYc-QJ-EDI" secondAttribute="leading" id="3hI-2O-Gtq"/>
+                            <constraint firstItem="TYc-QJ-EDI" firstAttribute="top" secondItem="d95-aQ-Jj9" secondAttribute="top" constant="20" symbolic="YES" id="I5D-bR-t2q"/>
                             <constraint firstItem="TYc-QJ-EDI" firstAttribute="leading" secondItem="d95-aQ-Jj9" secondAttribute="leading" id="Uey-A8-CMi"/>
+                            <constraint firstItem="OcC-1O-AsS" firstAttribute="trailing" secondItem="TYc-QJ-EDI" secondAttribute="trailing" id="X8O-Wd-yhi"/>
                             <constraint firstAttribute="trailing" secondItem="TYc-QJ-EDI" secondAttribute="trailing" id="die-1d-LSM"/>
                             <constraint firstItem="wMk-1b-lF0" firstAttribute="top" secondItem="TYc-QJ-EDI" secondAttribute="bottom" id="gju-T0-Ory"/>
+                            <constraint firstItem="OcC-1O-AsS" firstAttribute="top" secondItem="d95-aQ-Jj9" secondAttribute="top" constant="20" symbolic="YES" id="wUx-hm-dNv"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -2008,7 +2022,7 @@ Ships easy to any country from…</string>
             <objects>
                 <navigationController storyboardIdentifier="InitialNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="gGD-NB-80W" customClass="InitialNavigationViewController" customModule="SwimpyNew" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nIE-NJ-fTf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nIE-NJ-fTf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2178,7 +2192,7 @@ Ships easy to any country from…</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileStoreCollectionViewCell" id="U2O-rg-eU2" customClass="ProfileStoreCollectionViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="44" y="0.0" width="272" height="168"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="168"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="272" height="168"/>
@@ -2317,11 +2331,11 @@ Ships easy to any country from…</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lP1-pK-ufI">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CartProductDetailTableViewCell" rowHeight="171" id="Jhv-Kg-QsS" customClass="CartProductDetailTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="359" height="171"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CartProductDetailTableViewCell" rowHeight="171" id="Jhv-Kg-QsS" customClass="CartProductDetailTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jhv-Kg-QsS" id="Wpg-tI-hF7">
-                                            <frame key="frameInset" width="359" height="171"/>
+                                            <frame key="frameInset" width="1000" height="171"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Order from fab season" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myj-w0-pIt">
@@ -2465,11 +2479,11 @@ Ships easy to any country from…</string>
                                             <outlet property="lblStoreName" destination="myj-w0-pIt" id="sqG-Wy-ePG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CartPriceDetailTableViewCell" rowHeight="56" id="FIO-sl-lZn" customClass="CartPriceDetailTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="199" width="359" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CartPriceDetailTableViewCell" rowHeight="56" id="FIO-sl-lZn" customClass="CartPriceDetailTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="199" width="1000" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FIO-sl-lZn" id="cxm-cG-w9p">
-                                            <frame key="frameInset" width="359" height="56"/>
+                                            <frame key="frameInset" width="1000" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEE-wl-hMc" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
@@ -3187,11 +3201,11 @@ Ships easy to any country from…</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="127" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-gT-b8R">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GlobalActivityTableViewCell" rowHeight="89" id="n5X-1y-0ic" customClass="GlobalActivityTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="89"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GlobalActivityTableViewCell" rowHeight="89" id="n5X-1y-0ic" customClass="GlobalActivityTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n5X-1y-0ic" id="AdM-Yn-0ca">
-                                            <frame key="frameInset" width="375" height="89"/>
+                                            <frame key="frameInset" width="1000" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTn-nf-yoQ">
@@ -3416,7 +3430,7 @@ Ships easy to any country from…</string>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoreProfileCollectionReusableView" id="wIh-wk-7bv" customClass="StoreProfileCollectionReusableView" customModule="SwimpyNew" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="403"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="403"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kqa-4w-vM2">
@@ -3722,10 +3736,10 @@ Ships easy to any country from…</string>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="64" id="VF9-ub-PLr">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VF9-ub-PLr" id="Sbm-2K-AmF">
-                                            <frame key="frameInset" width="375" height="63"/>
+                                            <frame key="frameInset" width="1000" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atv-wf-TCC">
@@ -3793,7 +3807,7 @@ Ships easy to any country from…</string>
                 <navigationController navigationBarHidden="YES" id="9yc-XF-Iff" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="PXi-3A-OH9"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gVU-wS-SYI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gVU-wS-SYI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3822,7 +3836,7 @@ Ships easy to any country from…</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ayh-de-jkg">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="tUb-PW-iNt"/>
+                                            <constraint firstAttribute="width" constant="44" id="tUb-PW-iNt"/>
                                         </constraints>
                                         <state key="normal" image="ic_cart"/>
                                         <connections>
@@ -3851,7 +3865,7 @@ Ships easy to any country from…</string>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uab-7C-ea3">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="Hay-eA-qm9"/>
+                                            <constraint firstAttribute="width" constant="44" id="Hay-eA-qm9"/>
                                         </constraints>
                                         <state key="normal" image="ic_search"/>
                                         <connections>
@@ -3863,7 +3877,7 @@ Ships easy to any country from…</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="0FJ-dO-06P"/>
                                     <constraint firstItem="avw-gz-NGE" firstAttribute="top" secondItem="X5a-ae-juV" secondAttribute="top" constant="28" id="E62-SQ-tC9"/>
-                                    <constraint firstItem="Ayh-de-jkg" firstAttribute="leading" secondItem="Uab-7C-ea3" secondAttribute="trailing" constant="8" id="FDQ-7U-nOm"/>
+                                    <constraint firstItem="Ayh-de-jkg" firstAttribute="leading" secondItem="Uab-7C-ea3" secondAttribute="trailing" id="FDQ-7U-nOm"/>
                                     <constraint firstItem="avw-gz-NGE" firstAttribute="leading" secondItem="X5a-ae-juV" secondAttribute="leading" constant="16" id="FQC-kZ-keU"/>
                                     <constraint firstItem="Uab-7C-ea3" firstAttribute="top" secondItem="X5a-ae-juV" secondAttribute="top" constant="20" symbolic="YES" id="Hpx-4T-2P0"/>
                                     <constraint firstAttribute="bottom" secondItem="Uab-7C-ea3" secondAttribute="bottom" id="KC1-K7-trP"/>
@@ -4124,7 +4138,7 @@ Ships easy to any country from…</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="wMM-ud-jLS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Fsi-yS-syP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zen-JW-9mu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zen-JW-9mu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4143,7 +4157,7 @@ Ships easy to any country from…</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="KWe-D7-4pb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Ama-q9-idn"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ung-3b-LPa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ung-3b-LPa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4162,7 +4176,7 @@ Ships easy to any country from…</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="xmw-5H-FwX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="kxd-nY-Yta"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iga-Cz-pn5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iga-Cz-pn5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4181,7 +4195,7 @@ Ships easy to any country from…</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="R4f-Wl-yQE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="BbY-ff-DHI"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5uh-pl-Hkv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5uh-pl-Hkv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4230,7 +4244,7 @@ Ships easy to any country from…</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileItemCollectionViewCell" id="XBn-02-XdN" customClass="ProfileItemCollectionViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="34" y="0.0" width="291" height="264"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="291" height="264"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="291" height="264"/>
@@ -4351,7 +4365,7 @@ Ships easy to any country from…</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DealsCollectionViewCell" id="Hee-Ul-3xh" customClass="DealsCollectionViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="42" y="0.0" width="291" height="264"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="291" height="264"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="291" height="264"/>
@@ -4565,11 +4579,11 @@ Ships easy to any country from…</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lag-oT-dpH">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="96" id="6Ti-4E-Mdf">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="96"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="96" id="6Ti-4E-Mdf">
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ti-4E-Mdf" id="t88-gR-ei1">
-                                            <frame key="frameInset" width="375" height="95"/>
+                                            <frame key="frameInset" width="1000" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VzZ-iz-AE2" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
@@ -4685,7 +4699,7 @@ Ships easy to any country from…</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularProductCollectionViewCell" id="6Pr-V5-6jJ" customClass="PopularProductCollectionViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="34" y="0.0" width="291" height="264"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="291" height="264"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="291" height="264"/>
@@ -5589,7 +5603,7 @@ Ships easy to any country from…</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DealsCollectionViewCell" id="BLf-pX-lkQ" customClass="DealsCollectionViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="42" y="0.0" width="291" height="264"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="291" height="264"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="291" height="264"/>
@@ -5703,10 +5717,10 @@ Ships easy to any country from…</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsTableViewCell" rowHeight="56" id="Ixq-3h-cyY" customClass="SettingsTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="56"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ixq-3h-cyY" id="ygc-iN-7cP">
-                                            <frame key="frameInset" width="375" height="56"/>
+                                            <frame key="frameInset" width="1000" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFg-xF-EVd">
@@ -5818,7 +5832,7 @@ Ships easy to any country from…</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Bc0-ER-6OU">
-                                        <rect key="frame" x="44" y="0.0" width="272" height="161"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="161"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="272" height="161"/>
@@ -5912,11 +5926,11 @@ Ships easy to any country from…</string>
                             </view>
                             <tableView contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="127" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tfa-Zu-sM1">
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GlobalActivityTableViewCell" rowHeight="89" id="9us-Jj-o0l" customClass="GlobalActivityTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="89"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GlobalActivityTableViewCell" rowHeight="89" id="9us-Jj-o0l" customClass="GlobalActivityTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9us-Jj-o0l" id="QAf-AR-qoy">
-                                            <frame key="frameInset" width="375" height="89"/>
+                                            <frame key="frameInset" width="1000" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hA9-o4-91p" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
@@ -6036,7 +6050,7 @@ Ships easy to any country from…</string>
                                         <rect key="frame" x="0.0" y="28" width="375" height="136"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CdR-Ph-k1q" id="N0X-32-LTa">
-                                            <frame key="frameInset" width="375" height="135"/>
+                                            <frame key="frameInset" width="375" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ohk-nh-Xf9" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
@@ -6082,7 +6096,7 @@ But eventually, even a super-dense guy like me can learn, proving that anybody o
                                         <rect key="frame" x="0.0" y="164" width="375" height="161"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8H9-uA-BdL" id="cha-oj-pEy">
-                                            <frame key="frameInset" width="375" height="160"/>
+                                            <frame key="frameInset" width="375" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qme-xg-y19" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
@@ -6120,7 +6134,7 @@ But eventually, even a super-dense guy like me can learn, proving that anybody o
                                         <rect key="frame" x="0.0" y="325" width="375" height="161"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JW5-GD-5Q0" id="8I3-LA-mhX">
-                                            <frame key="frameInset" width="375" height="160"/>
+                                            <frame key="frameInset" width="375" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mO6-fO-FeF" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
@@ -6158,7 +6172,7 @@ But eventually, even a super-dense guy like me can learn, proving that anybody o
                                         <rect key="frame" x="0.0" y="486" width="375" height="161"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ENK-97-dEJ" id="4lS-fC-mLb">
-                                            <frame key="frameInset" width="375" height="160"/>
+                                            <frame key="frameInset" width="375" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1EV-tj-xlW" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
@@ -6517,11 +6531,11 @@ But eventually, even a super-dense guy like me can learn, proving that anybody o
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="127" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="um4-7o-oF1">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendsTableViewCell" rowHeight="89" id="vOz-gg-TN5" customClass="FriendsTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="89"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendsTableViewCell" rowHeight="89" id="vOz-gg-TN5" customClass="FriendsTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOz-gg-TN5" id="xeo-wk-vUe">
-                                            <frame key="frameInset" width="375" height="89"/>
+                                            <frame key="frameInset" width="1000" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-wq-CGn" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">

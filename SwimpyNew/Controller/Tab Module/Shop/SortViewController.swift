@@ -40,7 +40,7 @@ class SortViewController: UIViewController {
 //        self.navigationController?.pushViewController(VC, animated: true)
     }
     @IBAction func btnActionBack(sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+      _ = self.navigationController?.popViewController(animated: true)
     }
    
 }

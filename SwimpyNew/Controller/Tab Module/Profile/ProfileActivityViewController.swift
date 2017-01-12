@@ -74,21 +74,20 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
             let vc = StoryboardScene.Main.instantiateProductDetailViewController()
             vc.productId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
-            break
+            
         case "CUSTOMER":
             let vc = StoryboardScene.Main.instantiateProfileViewController()
             vc.flagMyProfile = false
             vc.userId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
-            break
             
-            print("customer page not ready")
-            break
+            
+            
         case "SELLER" :
             let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
             vc.sellerId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
-            break
+            
             
         default:
             print("id type not mentioned")

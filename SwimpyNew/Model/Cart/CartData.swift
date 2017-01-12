@@ -16,7 +16,8 @@ class CartData: NSObject {
     var productId : String?
     var accessToken : String?
     var id : String?
-    var quantity : String?
+    var quantity : Int?
+    var arrQuantity : [Int] = []
     var name : String?
     var deviceToken : String?
     var profilePicURLThumbnail : String?
@@ -41,7 +42,10 @@ class CartData: NSObject {
         
         let productDetails = arrResult["productDetails"].dictionaryValue
         productId = productDetails["_id"]?.stringValue
-        quantity = productDetails["quantity"]?.stringValue
+        quantity = productDetails["quantity"]?.intValue ?? 1
+        
+        arrQuantity = Array(1...(quantity ?? 1))
+        
         productName = productDetails["productName"]?.stringValue
         base_price_unit = productDetails["base_price_unit"]?.stringValue
         total_price = productDetails["total_price"]?.intValue

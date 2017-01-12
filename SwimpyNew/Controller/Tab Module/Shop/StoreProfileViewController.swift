@@ -88,7 +88,7 @@ class StoreProfileViewController: UIViewController ,StoreProfileTask,StoreProduc
 //        self.navigationController?.pushViewController(VC, animated: true)
     }
     func goBack() {
-        self.navigationController?.popViewController(animated: true)
+       _ = self.navigationController?.popViewController(animated: true)
     }
     
     func updateFollowData(model: StoreDetail?, index: Int) {
