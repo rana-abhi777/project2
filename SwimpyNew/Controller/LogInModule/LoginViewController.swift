@@ -26,7 +26,6 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     @IBOutlet weak var txtFullname: UITextField!
     @IBOutlet weak var viewSignup: UIView!
     @IBOutlet weak var viewSignin: UIView!
-    @IBOutlet weak var btnSkip: UIButton!
     
     //MARK: override functions
     override func viewDidLoad() {
@@ -35,7 +34,6 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             let VC = StoryboardScene.Main.instantiateTabBarController()
             self.navigationController?.pushViewController(VC, animated: false)
         }
-//        btnSkip.setAttributedTitle(attributedString(), for: .normal)
         
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
@@ -201,10 +199,10 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         txtSigninEmail.text = ""
         txtSigninPassword.text = ""
     }
-    @IBAction func btnActionSkip(sender: AnyObject) {
-        let VC = StoryboardScene.Main.instantiateTabBarController()
-        self.navigationController?.pushViewController(VC, animated: true)
-    }
+//    @IBAction func btnActionSkip(sender: AnyObject) {
+////        let VC = StoryboardScene.Main.instantiateTabBarController()
+////        self.navigationController?.pushViewController(VC, animated: true)
+//    }
     @IBAction func btnActionForgotPassword(sender: AnyObject) {
         showAndHideView(viewManipulated : viewSignin)
         showAndHideView(viewManipulated : viewForgotPassword)

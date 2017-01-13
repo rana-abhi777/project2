@@ -45,19 +45,20 @@ class GlobalActivityTableViewCell: UITableViewCell {
         self.index = index
         lblActivity.text = appendOptionalStrings(strings: [model.userName,model.text,model.itemName], separator: " ")
         
+        
+        
+//        guard let itemUrl = model.itemImgOriginal else {
+//             imgItem?.backgroundColor = UIColor.gray
+//            return
+//        }
+        imgItem?.sd_setImage(with: URL(string : model.itemImgOriginal ?? ""))
+        guard let timeAgo = model.time else { return }
+        print(model.time)
+        lblTime?.text = calculateTimeSince(time: timeAgo)
         guard let url = model.userImgOriginal   else {
             imgUser?.backgroundColor = UIColor.gray
             return }
         imgUser?.sd_setImage(with: URL(string : url))
-        
-        guard let itemUrl = model.itemImgOriginal else {
-             imgItem?.backgroundColor = UIColor.gray
-            return
-        }
-        imgItem?.sd_setImage(with: URL(string : itemUrl))
-        guard let timeAgo = model.time else { return }
-        
-        lblTime?.text = calculateTimeSince(time: timeAgo)
     }
 
     

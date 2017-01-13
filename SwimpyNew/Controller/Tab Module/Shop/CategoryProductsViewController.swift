@@ -104,7 +104,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
         configureCollectionView()
     }
     
-    
+    //MARK:- button actions
     @IBAction func btnActionBack(_ sender: AnyObject) {
         _ = self.navigationController?.popViewController(animated: true)
     }

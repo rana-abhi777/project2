@@ -17,9 +17,11 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
     @IBOutlet weak var lblCartCount: UILabel!
     @IBOutlet weak var viewCartNotification: UIView!
     @IBOutlet weak var pageControlImage: UIPageControl!
+    @IBOutlet weak var viewNavBar: UIView!
     
     //MARK:- variables
     var productId : String = ""
+    private var lastContentOffset: CGFloat = 0
     var productDetails : ProductDetail?
     var arrOtherImages : [ProductOtherImage] = []
     var collectionViewdataSource : CollectionViewDataSource?{
@@ -35,6 +37,7 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
         }
     }
     
+     //MARK:- override function
     override func viewDidLoad() {
         super.viewDidLoad()
         pageControlImage.currentPage = 0
@@ -67,12 +70,25 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
                 self.arrOtherImages = (self.productDetails?.otherImage)!
                 self.configureCollectionView()
                 self.configureTableView()
-                self.pageControlImage.numberOfPages = self.arrOtherImages.count
-                //set all the data
-                
+                self.pageControlImage.numberOfPages = self.arrOtherImages.count                
             }, method: "GET", loader: true)
     }
     
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        
+//        if scrollView.contentOffset.y >= 120 && self.lastContentOffset < scrollView.contentOffset.y   {
+//            if scrollView.contentOffset.y >= 60 {
+//                viewNavBar?.backgroundColor = UIColor.white
+//            }
+//        }
+//        else if self.lastContentOffset > scrollView.contentOffset.y {
+//            if scrollView.contentOffset.y <= 60 {
+//                viewNavBar?.backgroundColor = UIColor.clear
+//                
+//            }
+//        }
+//        lastContentOffset = scrollView.contentOffset.y
+//    }
     
     //MARK:- configure tableview and collection view
     func configureTableView() {
@@ -94,7 +110,7 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
                 let width = self.collectionViewProductImages.frame.width
                 let page = self.collectionViewProductImages.contentOffset.x / width
                 self.pageControlImage.currentPage = Int(page)
-        })
+            })
         collectionViewProductImages.reloadData()
     }
     

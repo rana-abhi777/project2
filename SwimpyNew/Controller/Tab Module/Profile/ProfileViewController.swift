@@ -32,12 +32,13 @@ class ProfileViewController: BasePageViewController {
     let profileStoreVC = StoryboardScene.Main.instantiateProfileStoreViewController()
     let profileItemVC = StoryboardScene.Main.instantiateProfileItemViewController()
     var flagMyProfile = true
-    var userId = MMUserManager.shared.loggedInUser?.id ?? ""
+    var userId : String = MMUserManager.shared.loggedInUser?.id ?? ""
     var userDetails : UserDetails?
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        if gotoLogin() {
         pageVCSetup()
         if flagMyProfile {
             btnBack.isHidden = true
@@ -55,10 +56,12 @@ class ProfileViewController: BasePageViewController {
             imgSettings.isHidden = true
             lblSwimpy.isHidden = true
             imgLogo.isHidden = true
+            
             view.sendSubview(toBack: imgLogo)
         }
         self.view.layoutIfNeeded()
         hitApiToGetUserDetails()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,6 +93,17 @@ class ProfileViewController: BasePageViewController {
             btnFollow?.setTitle("Following", for: .normal)
         }
         
+    }
+    
+    func gotoLogin() -> Bool {
+        guard let _ = MMUserManager.shared.loggedInUser?.accessToken else{
+            let initialNavVC = StoryboardScene.Main.instantiateInitialNavigationViewController()
+            let VC = StoryboardScene.Main.instantiateLoginViewController()
+            initialNavVC.viewControllers = [VC]
+            UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
+            return false
+        }
+        return true
     }
     
     override func getViewControllers() -> [UIViewController] {
@@ -150,8 +164,10 @@ class ProfileViewController: BasePageViewController {
     }
     
     @IBAction func btnActionLogout(_ sender: AnyObject) {
+        if gotoLogin() {
         let VC = StoryboardScene.Main.instantiateSettingsViewController()
         self.navigationController?.pushViewController(VC, animated: true)
+        }
     }
     @IBAction func brnActionBack(_ sender: AnyObject) {
         _ = self.navigationController?.popViewController(animated: true)

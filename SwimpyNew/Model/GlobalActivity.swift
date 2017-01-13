@@ -37,7 +37,7 @@ class GlobalActivity: NSObject {
         userImgOriginal = userImgData?["original"]?.stringValue
         text = activeData["text"]?.stringValue
         time = activeData["time"]?.stringValue
-        
+        print(time)
         itemId = arrResult["_id"].stringValue
         itemName = arrResult["name"].stringValue
         let itemImage = arrResult["pic"].dictionaryValue

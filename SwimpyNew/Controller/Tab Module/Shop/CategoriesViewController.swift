@@ -17,17 +17,15 @@ class CategoriesViewController: UIViewController , IndicatorInfoProvider {
     //MARK:- variables
     var arrCategoryData : [Category] = []
     var tableViewDataSource : TableViewCustomDatasource?
-    var flagShowLoader = true
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+         initialize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        flagShowLoader = false
-        initialize()
     }
     
     
@@ -40,11 +38,10 @@ class CategoriesViewController: UIViewController , IndicatorInfoProvider {
         ApiManager().getDataOfURL(withApi: API.GetCategory(APIParameters.GetCategory().formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                self.flagShowLoader = false
                 self.arrCategoryData = (model as? [Category]) ?? []
                 self.configureTableView()
                 print(model)
-            }, method: "POST", loader: flagShowLoader)
+            }, method: "POST", loader: true)
         
     }
     
