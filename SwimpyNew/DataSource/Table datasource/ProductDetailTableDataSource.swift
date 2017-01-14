@@ -5,6 +5,9 @@
 //  Created by Aseem 10 on 12/13/16.
 //  Copyright © 2016 Aseem 10. All rights reserved.
 //
+protocol NavBarColor {
+    func setNavBarColor(color : UIColor)
+}
 
 import UIKit
 
@@ -15,6 +18,8 @@ class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewData
     var tableView:UITableView?
     var datasource : ProductDetail?
     var vc : UIViewController?
+     private var lastContentOffset: CGFloat = 0
+    var delegate : NavBarColor?
     
     //MARK:- initializer
     init(tableView: UITableView ,  datasource : ProductDetail, vc : UIViewController) {
@@ -80,6 +85,21 @@ class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewData
             return 339
         }
     }
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= 120 && self.lastContentOffset < scrollView.contentOffset.y   {
+            if scrollView.contentOffset.y >= 60 {
+                self.delegate?.setNavBarColor(color: UIColor.white)
+//                viewNavBar?.backgroundColor = UIColor.white
+            }
+        }
+        else if self.lastContentOffset > scrollView.contentOffset.y {
+            if scrollView.contentOffset.y <= 60 {
+                self.delegate?.setNavBarColor(color: UIColor.clear)
+//                viewNavBar?.backgroundColor = UIColor.clear
+                
+            }
+        }
+        lastContentOffset = scrollView.contentOffset.y
+    }
 }
 

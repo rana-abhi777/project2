@@ -40,10 +40,10 @@ class StoreProfileCollectionViewDataSource: NSObject,UICollectionViewDelegate , 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.StoreProductCollectionViewCell.rawValue, for: indexPath) as? StoreProductCollectionViewCell else { return UICollectionViewCell() }
         cell.configureCell(model: (datasource?.productData[indexPath.row])!, row: indexPath.row)
-        cell.layer.cornerRadius = 4.0
+//        cell.layer.cornerRadius = 4.0
         cell.delegate = (vc as? StoreProfileViewController) ?? nil
-        cell.layer.borderWidth = 2.0
-        cell.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+//        cell.layer.borderWidth = 2.0
+//        cell.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
         return cell
         
     }
@@ -83,7 +83,7 @@ extension StoreProfileCollectionViewDataSource : UICollectionViewDelegateFlowLay
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width:(collectionView.frame.size.width - 8)/2 , height: 275 )
+        return CGSize(width:(collectionView.frame.size.width - 0)/2 , height: 275 )
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
@@ -93,12 +93,12 @@ extension StoreProfileCollectionViewDataSource : UICollectionViewDelegateFlowLay
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat{
         
-        return 8
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat{
         
-        return 8/2
+        return 0/2
     }
     
     

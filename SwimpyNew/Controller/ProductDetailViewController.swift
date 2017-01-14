@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction,ProductDetailTask {
+class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction,ProductDetailTask,NavBarColor {
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewProductImages: UICollectionView!
@@ -74,25 +74,26 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
             }, method: "GET", loader: true)
     }
     
-//    func scrollViewDidScroll(scrollView: UIScrollView) {
-//        
-//        if scrollView.contentOffset.y >= 120 && self.lastContentOffset < scrollView.contentOffset.y   {
-//            if scrollView.contentOffset.y >= 60 {
-//                viewNavBar?.backgroundColor = UIColor.white
-//            }
-//        }
-//        else if self.lastContentOffset > scrollView.contentOffset.y {
-//            if scrollView.contentOffset.y <= 60 {
-//                viewNavBar?.backgroundColor = UIColor.clear
-//                
-//            }
-//        }
-//        lastContentOffset = scrollView.contentOffset.y
-//    }
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if scrollView.contentOffset.y >= 120 && self.lastContentOffset < scrollView.contentOffset.y   {
+            if scrollView.contentOffset.y >= 60 {
+                viewNavBar?.backgroundColor = UIColor.white
+            }
+        }
+        else if self.lastContentOffset > scrollView.contentOffset.y {
+            if scrollView.contentOffset.y <= 60 {
+                viewNavBar?.backgroundColor = UIColor.clear
+                
+            }
+        }
+        lastContentOffset = scrollView.contentOffset.y
+    }
     
     //MARK:- configure tableview and collection view
     func configureTableView() {
         tableDataSource = ProductDetailTableDataSource(tableView: tableViewProductDetail, datasource: productDetails ?? ProductDetail(),vc: self)
+        tableDataSource?.delegate = self
         tableViewProductDetail.reloadData()
     }
     
@@ -115,6 +116,11 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
     }
     
     //MARK:- delegate function
+    func setNavBarColor(color : UIColor) {
+        viewNavBar?.backgroundColor = color
+    }
+    
+    
     func redirectToProductDetail(productId : String) {
         let vc = StoryboardScene.Main.instantiateProductDetailViewController()
         vc.productId = productId

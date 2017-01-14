@@ -61,8 +61,11 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         let attributedString = NSAttributedString(string: "Skip", attributes: attributes)
         return attributedString
     }
-    
+    //    func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+    //        ApiManager.hideLoader()
+    //    }
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        //         self.stopAnimating()
         if (error == nil) {
             var imageUrl  = ""
             if user.profile.hasImage{
@@ -72,13 +75,13 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                 print(err)
                 }, success: { (model) in
                     print(model)
+                    ApiManager.hideLoader()
                     let VC = StoryboardScene.Main.instantiateTabBarController()
-                    
-                    
                     VC.selectedIndex = 0
                     self.navigationController?.pushViewController(VC, animated: true)
                 }, method: "POST", loader: true)
         } else {
+            ApiManager.hideLoader()
             print(error)
         }
     }
@@ -103,12 +106,11 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
             indicator = false
         }
-        let trimmedPassword = ValidateData().trimmedString(string: txtSigninPassword.text ?? "")
-        if trimmedPassword.characters.count == 0 {
+        if  (txtSigninPassword.text ?? "").characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterPassword.string)
             indicator = false
         }
-        if trimmedPassword.characters.count < 6 {
+        if (txtSigninPassword.text ?? "").characters.count < 6 {
             UserFunctions.showAlert(message: L10n.passwordLengthShouldBeAtleast6Characters.string)
             indicator = false
         }
@@ -127,12 +129,11 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
             indicator = false
         }
-        let trimmedPassword = ValidateData().trimmedString(string: txtSignupPassword.text ?? "")
-        if trimmedPassword.characters.count == 0 {
+        if (txtSignupPassword.text ?? "").characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterPassword.string)
             indicator = false
         }
-        if trimmedPassword.characters.count < 6 {
+        if (txtSignupPassword.text ?? "").characters.count < 6 {
             UserFunctions.showAlert(message: L10n.passwordLengthShouldBeAtleast6Characters.string)
             indicator = false
         }
@@ -153,8 +154,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                 }, success: { (model) in
                     print(model)
                     let VC = StoryboardScene.Main.instantiateTabBarController()
-//                    VC.selectedIndex = 0
-//                    VC.tabBar.selectedItem = VC.tabBar.items?[0]
+                    //                    VC.selectedIndex = 0
+                    //                    VC.tabBar.selectedItem = VC.tabBar.items?[0]
                     self.navigationController?.pushViewController(VC, animated: true)
                 }, method: "POST", loader: true)
         }
@@ -199,10 +200,10 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         txtSigninEmail.text = ""
         txtSigninPassword.text = ""
     }
-//    @IBAction func btnActionSkip(sender: AnyObject) {
-////        let VC = StoryboardScene.Main.instantiateTabBarController()
-////        self.navigationController?.pushViewController(VC, animated: true)
-//    }
+    //    @IBAction func btnActionSkip(sender: AnyObject) {
+    ////        let VC = StoryboardScene.Main.instantiateTabBarController()
+    ////        self.navigationController?.pushViewController(VC, animated: true)
+    //    }
     @IBAction func btnActionForgotPassword(sender: AnyObject) {
         showAndHideView(viewManipulated : viewSignin)
         showAndHideView(viewManipulated : viewForgotPassword)
@@ -215,7 +216,9 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         txtSignupPassword.text = ""
     }
     @IBAction func btnActionLoginWithGoogle(sender: AnyObject) {
+        
         GIDSignIn.sharedInstance().signIn()
+        //        self.startAnimating(CGSize(width: 40,height: 40), message: "Loading...", type: .lineSpinFadeLoader, color: UIColor.white, padding: 0.0, displayTimeThreshold: 1, minimumDisplayTime: 1)
     }
     @IBAction func btnLoginWithFb(sender: AnyObject) {
         logInWithFb(viewcontroller: self)

@@ -22,6 +22,7 @@ class StoreProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgProduct: UIImageView!
     @IBOutlet weak var lblProductName: UILabel!
     
+    @IBOutlet weak var viewCellLayout: UIView!
     //MARK:- variables
     var data : StoreProducts?
     var delegate : StoreProductTask?
@@ -32,6 +33,10 @@ class StoreProductCollectionViewCell: UICollectionViewCell {
     func configureCell(model : StoreProducts,row : Int) {
         data = model
         index = row
+        viewCellLayout.layer.cornerRadius = 4.0
+        viewCellLayout.layer.borderWidth = 2.0
+        viewCellLayout.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+
         lblProductName?.text = model.productName ?? ""
         lblPrice?.text = "$" + (model.totalPrice ?? "0")
         btnNumberOfLike?.setTitle(model.totalLikes ?? "", for: .normal)
