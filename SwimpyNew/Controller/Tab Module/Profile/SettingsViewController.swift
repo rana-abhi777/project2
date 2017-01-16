@@ -34,10 +34,10 @@ class SettingsViewController: UIViewController {
             cell?.configureCell(model: self.arrData[indexpath.row] ,row: indexpath.row)
             }, aRowSelectedListener: {[unowned self] (indexPath) in
                 switch indexPath.row {
-//                case 0: //edit profile
-//                    let VC = StoryboardScene.Main.instantiateEditProfileViewController()
-//                    self.navigationController?.pushViewController(VC, animated: true)
-//                    break
+                case 0: //edit profile
+                    let VC = StoryboardScene.Main.instantiateEditProfileViewController()
+                    self.navigationController?.pushViewController(VC, animated: true)
+                    break
                 case 3: //change password
                     let VC = StoryboardScene.Main.instantiateChangePasswordViewController()
                     self.navigationController?.pushViewController(VC, animated: true)

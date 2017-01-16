@@ -2683,7 +2683,7 @@ Ships easy to any country from…</string>
                                             <constraint firstAttribute="height" constant="1" id="TtB-IL-JuB"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBA-E5-fMW">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBA-E5-fMW">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="fe6-vD-57b"/>
                                             <constraint firstAttribute="height" constant="80" id="rQg-Ds-Zef"/>

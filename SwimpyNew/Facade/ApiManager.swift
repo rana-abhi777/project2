@@ -129,11 +129,11 @@ class ApiManager {
             if(data["statusCode"].intValue >= 200 && data["statusCode"].intValue <= 299 ){
                 var singleUserArray : AnyObject?
                 switch(withApi){
-                case .Signup(_) :
+                case .Signup(_), .EditProfile(_) :
                     let user = User(arrResult: data["data"])
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
-                    
+               
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }

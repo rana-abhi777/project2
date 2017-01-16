@@ -28,21 +28,21 @@ class ChangePasswordViewController: UIViewController {
     func validateChangePassword() -> Bool {
         var indicator = true
         
-        let trimmedPassword = ValidateData().trimmedString(string: txtNewPassword.text ?? "")
-        if trimmedPassword.characters.count == 0 {
+        
+        if (txtNewPassword.text ?? "").characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterPassword.string)
             indicator = false
         }
-        if trimmedPassword.characters.count < 6 {
+        if (txtNewPassword.text ?? "").characters.count < 6 {
             UserFunctions.showAlert(message: L10n.passwordLengthShouldBeAtleast6Characters.string)
             indicator = false
         }
-        let trimmedSamePassword = ValidateData().trimmedString(string: txtConfirmPassword.text ?? "")
-        if trimmedSamePassword.characters.count == 0 {
+        
+        if (txtConfirmPassword.text ?? "").characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterConfirmPassword.string)
             indicator = false
         }
-        if trimmedPassword != trimmedSamePassword {
+        if txtConfirmPassword.text  != txtNewPassword.text {
             UserFunctions.showAlert(message: L10n.newPasswordShouldBeSameAsConfirmPassword.string)
             indicator = false
         }

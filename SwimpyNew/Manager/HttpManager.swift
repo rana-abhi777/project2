@@ -80,6 +80,7 @@ class HttpManager {
         else {
             flagImage = false
         }
+        guard let httpMethod = HTTPMethod(rawValue: method) else { return }
         
         Alamofire.upload(multipartFormData: {multipartFormData in
             if flagImage {
@@ -88,7 +89,7 @@ class HttpManager {
             for (key, value) in parameters {
                 multipartFormData.append(value.data(using : String.Encoding.utf8.rawValue)!, withName: key)
             }
-        }, to: fullPath) { (result) in
+        }, to: fullPath,method : httpMethod,headers : getHeader()) { (result) in
             switch result {
             case .success(let upload, _, _):
                 upload.responseJSON { response in

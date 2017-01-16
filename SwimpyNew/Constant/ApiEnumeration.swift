@@ -59,16 +59,22 @@ enum API {
     
     case NotificationOnOff(OptionalDictionary)
     case ChangePassword(OptionalDictionary)
+    case SearchSuggestion(OptionalDictionary)
+    
+    case EditProfile(OptionalDictionary)
     
 }
 
 
 enum APIParameters {
+    
+    //login signup
     case Login(email : String? , password : String?)
     case Signup(fullname : String?,email : String? , password : String?)
     case ForgotPassword(email : String?)
     case LoginViaFacebook(facebookId : String?, name : String?, facebookImageUrl : String?)
     case LoginViaGoogle(googleId : String?,name : String? , googleImageUrl : String?)
+    
     case GetCategory()
     case GetCategoryResults(categoryId : String?,pageNo : String?)
     case GetSaleProduct(pageNo : String?)
@@ -79,19 +85,32 @@ enum APIParameters {
     case GetUserActivity(pageNo : String?)
     case ProductDetail(productId : String?)
     case GetFeaturedProduct(pageNo : String?)
+    
     case FollowStore(sellerId : String?)
     case UnfollowStore(sellerId : String?)
+    
+    //user profile
     case GetUserDetail(userId : String?)
     case GetStoreDetail(sellerId : String?,pageNo : String?)
     case GetUserStore(type : String?,userId : String?,pageNo : String?)
     case GetUserItem(type : String?,userId : String?,pageNo : String?)
     case FollowUser(userId : String?)
     case UnfollowUser(userId : String?)
+    case EditProfile(name : String?, email : String?)
+    
+    //cart
     case AddToCart(productId : String?,variations : String?,color : String?)
     case GetCartDetail()
     case RemoveCartItem(cartId : String?)
+    
+    //profile
     case NotificationOnOff(blockUnblock : String?)
     case ChangePassword(newPassword : String?)
+    
+    
+    
+    case SearchSuggestion(text : String?)
+    
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
@@ -150,6 +169,13 @@ enum APIParameters {
             
         case .ChangePassword(let newPassword) :
             return ["newPassword" : (newPassword ?? "") as AnyObject]
+            
+        case .EditProfile(let name, let email) :
+            return ["name" : (name ?? "") as AnyObject, "email" : (email ?? "") as AnyObject]
+            
+        case .SearchSuggestion(let text) :
+             return ["text" : (text ?? "") as AnyObject]
+            
         default:
             return ["" : "" as AnyObject]
         }
@@ -187,6 +213,8 @@ extension API : Router {
         case.RemoveCartItem(let parameters) : return parameters
         case.NotificationOnOff(let parameters) : return parameters
         case .ChangePassword(let parameters) : return parameters
+        case .SearchSuggestion(let parameters) : return parameters
+        case .EditProfile(let parameters) : return parameters
         }
     }
     
@@ -219,6 +247,8 @@ extension API : Router {
         case .RemoveCartItem(_) : return "api/users/removeCart"
         case .NotificationOnOff(_) : return "api/users/on_off_notification"
         case .ChangePassword(_) : return "api/users/changePassword"
+        case .SearchSuggestion(_) : return "api/users/suggestion"
+        case .EditProfile(_) : return "api/users/updateProfile"
         }
     }
     

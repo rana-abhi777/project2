@@ -37,8 +37,15 @@ class EditProfileViewController: BaseViewController {
     }
    
     @IBAction func btnActionSave(_ sender: AnyObject) {
-        
-        //hitapi to edit profile
+        ApiManager().getDataOfURL(withApi: API.EditProfile(APIParameters.EditProfile(name: txtFullname.text, email: txtEmailAddress.text).formatParameters()), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+                UserFunctions.showAlert(title: "Success", message: Profile Edited successfully", success:
+                    
+                )
+                UserFunctions.showAlert(title: "Success" , message: "Profile Edited successfully")
+            }, method: "PUT", loader: true, image: btnProfilePic.image(for: .normal))
+       
     }
 
     @IBAction func btnActionEditProfilePic(_ sender: AnyObject) {
