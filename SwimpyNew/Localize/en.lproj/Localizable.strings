@@ -21,3 +21,34 @@
 "Logout" = "Logout";
 "Enter Confirm Password" = "Enter Confirm Password";
 "New password should be same as confirm password" = "New password should be same as confirm password";
+"Profile Edited successfully" = "Profile Edited successfully";
+"Success" = "Success";
+
+"Follow store" = "Follow store";
+"Following" = "Following";
+" followers" = " followers";
+"Order from " = "Order from ";
+" following" = " following";
+"Follow" = "Follow";
+"Others" = "Others";
+"user" = "user";
+"users" = "users";
+"off" = "off";
+"on" = "on";
+"0" = "0";
+"1" = "1";
+
+"India" = "India";
+"BryantPro-Bold" = "BryantPro-Bold";
+"Loading..." = "Loading...";
+"message" = "message";
+"data" = "data";
+"likes" = "likes";
+"statusCode" = "statusCode";
+"profilePic" = "profilePic";
+
+"Items" = "Items";
+"Sale" = "Sale";
+"People" = "People";
+"Store" = "Store";
+

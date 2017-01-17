@@ -37,16 +37,16 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
         index = row
         lblStoreName.text = model.storeName ?? ""
         lblDescription.text = model.describe ?? ""
-        lblNumberOfFollowers.text = (model.totalFollow ?? "") + " followers"
+        lblNumberOfFollowers.text = (model.totalFollow ?? "") + L10n._Followers.string
         imgStoreCoverPic.sd_setImage(with: URL(string: model.coverPicURLOriginal ?? ""))
         imgStoreThumbnail.sd_setImage(with: URL(string: model.profilePicURLThumbnail ?? ""))
-        if model.followStatus == "1" {
-            btnFollowStore.setTitle("Following", for: .normal)
+        if model.followStatus == L10n._1.string {
+            btnFollowStore.setTitle(L10n.following.string, for: .normal)
             btnFollowStore.setTitleColor(UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
                 , for: .normal)
             btnFollowStore?.borderColor = UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
         } else {
-            btnFollowStore.setTitle("Follow store", for: .normal)
+            btnFollowStore.setTitle(L10n.followStore.string, for: .normal)
             btnFollowStore?.borderColor =  UIColor.black
             btnFollowStore.setTitleColor(UIColor.black
                 , for: .normal)
@@ -79,14 +79,14 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
     }
     
     @IBAction func btnActionFollowStore(_ sender: AnyObject) {
-        if data?.followStatus == "0" {
-            self.data?.followStatus = "1"
-            btnFollowStore?.setTitle("Following", for: .normal)
+        if data?.followStatus == L10n._0.string {
+            self.data?.followStatus = L10n._1.string
+            btnFollowStore?.setTitle(L10n.following.string, for: .normal)
             btnFollowStore.setTitleColor(UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
                 , for: .normal)
             btnFollowStore?.borderColor = UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
-            let totalFollowers = "\((Int(data?.totalFollow ?? "0") ?? 0) + 1)"
-            lblNumberOfFollowers.text = totalFollowers + " followers"
+            let totalFollowers = "\((Int(data?.totalFollow ?? L10n._0.string) ?? 0) + 1)"
+            lblNumberOfFollowers.text = totalFollowers + L10n._Followers.string
             data?.totalFollow = totalFollowers
             self.delegate?.updateFollowData(model: self.data, index: self.index)
             
@@ -98,13 +98,13 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
                 }, method: "PUT", loader: false)
         }
         else {
-            btnFollowStore?.setTitle("Follow store", for: .normal)
+            btnFollowStore?.setTitle(L10n.followStore.string, for: .normal)
             btnFollowStore?.borderColor =  UIColor.black
             btnFollowStore.setTitleColor(UIColor.black
                 , for: .normal)
-            self.data?.followStatus = "0"
-            let totalFollowers = "\((Int(data?.totalFollow ?? "1") ?? 1) - 1)"
-            lblNumberOfFollowers.text = totalFollowers + " followers"
+            self.data?.followStatus = L10n._0.string
+            let totalFollowers = "\((Int(data?.totalFollow ?? L10n._1.string) ?? 1) - 1)"
+            lblNumberOfFollowers.text = totalFollowers + L10n._Followers.string
             data?.totalFollow = totalFollowers
             
             self.delegate?.updateFollowData(model: self.data, index: self.index)

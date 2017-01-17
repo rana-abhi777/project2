@@ -36,15 +36,15 @@ class SaleCollectionViewCell: UICollectionViewCell {
         data = model
         index = row
         lblProductName?.text = model.productName ?? ""
-        lblOriginalPrice?.text = "$" + (model.base_price_unit ?? "0")
-        lblDiscountPrice?.text = "$" + (model.total_price ?? "0")
+        lblOriginalPrice?.text = "$" + (model.base_price_unit ?? L10n._0.string)
+        lblDiscountPrice?.text = "$" + (model.total_price ?? L10n._0.string)
+            
         btnNumberOfLike?.setTitle(model.totalLikes ?? "", for: .normal)
-        btnNumberOfShare?.setTitle(model.share ?? "0", for: .normal)
-        guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black
+            
+        btnNumberOfShare?.setTitle(model.share ?? L10n._0.string, for: .normal)
+        guard let url = model.productImageOriginal else { self.imgProduct.backgroundColor = UIColor.black
             return }
-        imgProduct?.sd_setImage(with: URL(string : url)) { (image, error, cache, url) in
-            print(image)
-        }
+        imgProduct?.sd_setImage(with: URL(string : url))
         if model.hasLiked == 0 {
             btnLike.setImage(UIImage(asset: .icLike), for: .normal)
         }
@@ -59,7 +59,7 @@ class SaleCollectionViewCell: UICollectionViewCell {
     @IBAction func actionBtnLike(_ sender: AnyObject) {
         if data?.hasLiked == 0 {
             self.btnLike.setImage(UIImage(asset : .icLikeOn), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) + 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
             self.data?.totalLikes = "\(likeCount)"
             self.data?.hasLiked = 1
             self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
@@ -73,9 +73,9 @@ class SaleCollectionViewCell: UICollectionViewCell {
         }
         else {
             self.btnLike.setImage(UIImage(asset : .icLike), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? "1") ?? 1) - 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
             self.data?.totalLikes = "\(likeCount)"
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? "0", for: .normal)
+            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? L10n._0.string, for: .normal)
             self.data?.hasLiked = 0
             
             self.delegate?.updateLikeData(model: self.data, index: self.index)

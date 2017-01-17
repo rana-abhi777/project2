@@ -48,7 +48,7 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
     func initialize() {
         arrProduct = []
         configureCollectionView()
-        pageNo = "0"
+        pageNo = L10n._0.string
         hitApiForPopularProduct()
     }
     

@@ -39,7 +39,7 @@ class StoreProfileViewController: UIViewController ,StoreProfileTask,StoreProduc
     
     //MARK:- functions
     func initialize() {
-        pageNo = "0"
+        pageNo = L10n._0.string
         hitApiForStoreDetail()
     }
     

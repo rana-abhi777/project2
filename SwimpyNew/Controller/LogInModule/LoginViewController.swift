@@ -54,18 +54,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     
     
     //MARK: FUNCTION
-    func attributedString() -> NSAttributedString? {
-        let attributes = [
-            NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue
-        ]
-        let attributedString = NSAttributedString(string: "Skip", attributes: attributes)
-        return attributedString
-    }
-    //    func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
-    //        ApiManager.hideLoader()
-    //    }
+    
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        //         self.stopAnimating()
         if (error == nil) {
             var imageUrl  = ""
             if user.profile.hasImage{
@@ -200,10 +190,6 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         txtSigninEmail.text = ""
         txtSigninPassword.text = ""
     }
-    //    @IBAction func btnActionSkip(sender: AnyObject) {
-    ////        let VC = StoryboardScene.Main.instantiateTabBarController()
-    ////        self.navigationController?.pushViewController(VC, animated: true)
-    //    }
     @IBAction func btnActionForgotPassword(sender: AnyObject) {
         showAndHideView(viewManipulated : viewSignin)
         showAndHideView(viewManipulated : viewForgotPassword)
@@ -218,7 +204,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     @IBAction func btnActionLoginWithGoogle(sender: AnyObject) {
         
         GIDSignIn.sharedInstance().signIn()
-        //        self.startAnimating(CGSize(width: 40,height: 40), message: "Loading...", type: .lineSpinFadeLoader, color: UIColor.white, padding: 0.0, displayTimeThreshold: 1, minimumDisplayTime: 1)
+        
     }
     @IBAction func btnLoginWithFb(sender: AnyObject) {
         logInWithFb(viewcontroller: self)

@@ -41,7 +41,7 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     
     //MARK:- FUNCTION
     func initialize() {
-        pageNo = "0"
+        pageNo = L10n._0.string
         arrFeaturedData = []
         configureTableView()
         apiToGetFeaturedData()

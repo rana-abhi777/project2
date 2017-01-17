@@ -34,7 +34,7 @@ class CartProductDetailTableViewCell: UITableViewCell {
             
             ]
     }()
-    var arrQuantity : [String] = ["1"]
+    var arrQuantity : [String] = [L10n._1.string]
     var row = 0
     //MARK:- override functions
     override func awakeFromNib() {
@@ -49,10 +49,10 @@ class CartProductDetailTableViewCell: UITableViewCell {
     func configureCell(model : CartData,index : Int) {
         row = index
         data = model
-        lblStoreName.text = "Order from " + (model.storeName ?? "") + " (" + (model.colorSelected ?? "") + ")"
+        lblStoreName.text = L10n.orderFrom.string + (model.storeName ?? "") + " (" + (model.colorSelected ?? "") + ")"
         arrQuantity = model.arrQuantity.map {"\($0)"}
         lblProductName.text = model.productName ?? ""
-        lblPrice.text = "$" + (model.base_price_unit ?? "0")
+        lblPrice.text = "$" + (model.base_price_unit ?? L10n._0.string)
         lblQuantity.text = model.quantitySelected 
         imgProduct.sd_setImage(with: URL(string : model.imageOriginal ?? ""))
         selectQuantityDropDown.anchorView = lblQuantity

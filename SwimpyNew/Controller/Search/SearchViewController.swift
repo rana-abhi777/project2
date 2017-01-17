@@ -11,6 +11,7 @@ import XLPagerTabStrip
 
 class SearchViewController: BasePageViewController {
     
+    @IBOutlet weak var txtFieldSearch: UITextField!
     //MARK:- variable
     let searchItemVC = StoryboardScene.Main.instantiateSearchItemViewController()
     let searchStoreVC = StoryboardScene.Main.instantiateSearchStoreViewController()
@@ -22,6 +23,7 @@ class SearchViewController: BasePageViewController {
         pageVCSetup()
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -29,6 +31,10 @@ class SearchViewController: BasePageViewController {
     override func getViewControllers() -> [UIViewController] {
         return [searchItemVC,searchStoreVC,searchPeopleVC]
     }
-   
+    
+     //MARK:- btton action
+    @IBAction func btnActionCancel(_ sender: AnyObject) {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
 
 }

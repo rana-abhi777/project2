@@ -50,7 +50,6 @@
 		200997801DE85B440084DDED /* NVActivityIndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200997591DE85B440084DDED /* NVActivityIndicatorShape.swift */; };
 		200997811DE85B440084DDED /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009975B1DE85B440084DDED /* NVActivityIndicatorView.swift */; };
 		200997821DE85B440084DDED /* NVActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009975C1DE85B440084DDED /* NVActivityIndicatorViewable.swift */; };
-		200A18AC1E24B22300DC39CC /* MJBadgeBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200A18AB1E24B22300DC39CC /* MJBadgeBarButton.swift */; };
 		200C14351DB9F42B0000FE42 /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C14341DB9F42B0000FE42 /* SweetAlert.swift */; };
 		200DF1871E03B06700B3F7DE /* MoreFromStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DF1861E03B06600B3F7DE /* MoreFromStore.swift */; };
 		20129A321E040FD20012C596 /* RelatedProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20129A311E040FD20012C596 /* RelatedProducts.swift */; };
@@ -237,7 +236,6 @@
 		2009975A1DE85B440084DDED /* NVActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVActivityIndicatorView.h; sourceTree = "<group>"; };
 		2009975B1DE85B440084DDED /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
 		2009975C1DE85B440084DDED /* NVActivityIndicatorViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorViewable.swift; sourceTree = "<group>"; };
-		200A18AB1E24B22300DC39CC /* MJBadgeBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJBadgeBarButton.swift; sourceTree = "<group>"; };
 		200A9C361DD978880021B907 /* SwimpyNew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwimpyNew.entitlements; sourceTree = "<group>"; };
 		200C14341DB9F42B0000FE42 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
 		200DF1861E03B06600B3F7DE /* MoreFromStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreFromStore.swift; sourceTree = "<group>"; };
@@ -478,7 +476,6 @@
 		200C14331DB9F41D0000FE42 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				200A18AB1E24B22300DC39CC /* MJBadgeBarButton.swift */,
 				200997341DE85B440084DDED /* NVActivityIndicatorView */,
 				200C14341DB9F42B0000FE42 /* SweetAlert.swift */,
 			);
@@ -1094,7 +1091,6 @@
 				200997601DE85B440084DDED /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				20B540601E1B8BA300A31869 /* StoreProducts.swift in Sources */,
 				200997731DE85B440084DDED /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
-				200A18AC1E24B22300DC39CC /* MJBadgeBarButton.swift in Sources */,
 				20D948D71DB7589C007A4D07 /* Image.swift in Sources */,
 				20D948EF1DB7589C007A4D07 /* NewViewController.swift in Sources */,
 				2009977F1DE85B440084DDED /* NVActivityIndicatorPresenter.swift in Sources */,

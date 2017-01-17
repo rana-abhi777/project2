@@ -59,11 +59,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Kingfisher.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-SwimpyNew.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -122,22 +117,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>03D59F7CB7FFB4B5591DC2470CDF50C4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0578E6F24EF687497990254D2839DE78</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>164C9B5B23829F09AE11D63AD59FDE4F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1DE93A359FA21F91DFBE81309E851A4A</key>
+		<key>01901B325E1CC86BDB07CBB44DC56455</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,17 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>46EECB1633BFF6A9AFDD60FD8E0A2855</key>
+		<key>4169EAFC002A8F69AE4B2136685BC020</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>5D69761C2CD2A1E5C013537B29CAB4CF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6652FD59A72EB12077AAAB0DBE2EB0E1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,12 +167,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E11FE003BCC317DA30596E3AF5D53A8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7FFCDCC089F52FEBF4822863E2F0662C</key>
+		<key>94C9A179BBBE652352394D30560BC5CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -212,12 +182,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7D39F2C49892250213C9B0B1D514761</key>
+		<key>A47802E2DA8C2DB6076A901FD155DC7E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C3ADC851F8C36AAF07D6A2FCD2B1D89C</key>
+		<key>A5ED1BB7BED1C2DED4CB04CC6B367781</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C846E3DFE72879B84DB559FDB7FC6392</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8FE3C3E7164EF821B791831C8CAF7B0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -227,12 +207,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E9EE8306CBAEF18BC0049DE938D72447</key>
+		<key>E3A8860444C7107E196F94056971306A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EB9C54F952D05DEAA170F8C7562E6686</key>
+		<key>F496D9CD5E14FE21A7F22DE5B5FDB7C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6F74077BD35D42B3F4E60AA5F758722</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA8493A697ED879F2B83588DD68B4F43</key>
 		<dict>
 			<key>primary</key>
 			<true/>

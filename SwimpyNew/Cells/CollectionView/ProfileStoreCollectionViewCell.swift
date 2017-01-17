@@ -23,7 +23,7 @@ class ProfileStoreCollectionViewCell: UICollectionViewCell {
     func configureCell(model : UserStores) {
         lblStoreName.text = model.storeName ?? ""
 //        lblDescription.text = model?.describe ?? ""
-        lblNumberOfFollowers.text = (model.totalFollow ?? "") + " followers"
+        lblNumberOfFollowers.text = (model.totalFollow ?? "") + L10n._Followers.string
         imgStoreCoverPic.sd_setImage(with: URL(string: model.coverPicURLOriginal ?? ""))
         imgStoreProfilePic.sd_setImage(with: URL(string: model.profilePicURLThumbnail ?? ""))
     }

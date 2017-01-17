@@ -41,7 +41,7 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider,Profil
     func initialize() {
         arrProduct = []
         configureCollectionView()
-        pageNo = "0"
+        pageNo = L10n._0.string
         hitApiToGetUserItems()
     }
     

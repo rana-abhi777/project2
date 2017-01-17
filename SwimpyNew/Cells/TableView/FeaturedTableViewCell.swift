@@ -45,7 +45,7 @@ class FeaturedTableViewCell: UITableViewCell {
         data = model
         index = row
         imgProduct?.sd_setImage(with: URL(string:model.productImageOriginal ?? ""))
-        lblPrice?.text = "$ " + (model.base_price_unit ?? "0")
+        lblPrice?.text = "$ " + (model.base_price_unit ?? L10n._0.string)
         btnNumberOfLike.setTitle(model.totalLikes ?? "",for: .normal)
         btnNumberOfShare?.setTitle(model.share ?? "",for: .normal)
         lblProductName?.text = model.productName
@@ -79,7 +79,7 @@ class FeaturedTableViewCell: UITableViewCell {
     func likeAction() {
         if data?.hasLiked == 0 {
             self.btnLike.setImage(UIImage(asset : .icLikeOn), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) + 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
             self.data?.totalLikes = "\(likeCount)"
             self.data?.hasLiked = 1
             self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
@@ -87,25 +87,21 @@ class FeaturedTableViewCell: UITableViewCell {
             ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
-                    //                    let likeCount = model as? String
-                    //                    self.data?.totalLikes = likeCount
-                    //                    self.delegate?.updateLikeData(model: self.data, index: self.index)
+                   
                 }, method: "POST", loader: false)
         }
         else {
             self.btnLike.setImage(UIImage(asset : .icLike), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? "1") ?? 1) - 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
             self.data?.totalLikes = "\(likeCount)"
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? "0", for: .normal)
+            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? L10n._0.string, for: .normal)
             self.data?.hasLiked = 0
             self.delegate?.updateLikeData(model: self.data, index: self.index)
             
             ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
-                    //                    let likeCount = model as? String
-                    //                    self.data?.totalLikes = likeCount
-                    //                    self.delegate?.updateLikeData(model: self.data, index: self.index)
+                   
                 }, method: "POST", loader: false)
         }
         

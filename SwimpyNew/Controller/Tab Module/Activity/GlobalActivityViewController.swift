@@ -24,7 +24,7 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        pageNo = "0"
+        pageNo = L10n._0.string
         refreshControl.addTarget(self, action: #selector(GlobalActivityViewController.initialize), for: UIControlEvents.valueChanged)
         tableViewGlobalActivity?.refreshControl =  refreshControl
         initialize()
@@ -41,7 +41,7 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider,Globa
     //MARK:- FUNCTION
     
     func initialize() {
-        pageNo = "0"
+        pageNo = L10n._0.string
         arrActivityData = []
         configureTableView()
         apiToGetGlobalActivity()

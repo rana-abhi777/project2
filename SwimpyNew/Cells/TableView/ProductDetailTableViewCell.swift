@@ -80,12 +80,12 @@ class ProductDetailTableViewCell: UITableViewCell {
         
         imgStoreLogo.sd_setImage(with: URL(string: model.storeImgThumbnail ?? ""))
         lblStoreName.text = model.storeName ?? ""
-        lblStoreFollowers.text = (model.numberOfFollwers ?? "0") + " followers"
+        lblStoreFollowers.text = (model.numberOfFollwers ?? L10n._0.string) + L10n._Followers.string
         
         lblProductName.text = model.productName ?? ""
         lblDescription.text = model.describe
         lblPrice.text = "$" + "\(model.base_price_unit ?? 0.0)"
-        lblNumberOfLikes.text = model.totalLikes ?? "0"
+        lblNumberOfLikes.text = model.totalLikes ?? L10n._0.string
         lblNumberOfShare.text = "\(model.share ?? 0)"
         lblSelectedColor.text = (model.color?.count ?? 0) > 0 ?  model.color?[0] : ""
         lblSelectedSize.text = (model.variations?.count ?? 0) > 0 ? model.variations?[0] : ""
@@ -123,7 +123,7 @@ class ProductDetailTableViewCell: UITableViewCell {
         switch temp.count {
         case _ where temp.count > 5:
             lblLikes.isHidden = false
-            lblLikes.text = "+ " + "\(temp.count - 5) " + "Others"
+            lblLikes.text = "+ " + "\(temp.count - 5) " + L10n.others.string
             break
         case _ where temp.count == 5 :
             constCollectionViewLikeUserWidth.constant = 120.0
@@ -145,10 +145,10 @@ class ProductDetailTableViewCell: UITableViewCell {
         if arrLike.count <= 5 {
             lblLikes.isHidden = false
             if arrLike.count == 1 {
-                lblLikes.text =  "\(arrLike.count) " + "user"
+                lblLikes.text =  "\(arrLike.count) " + L10n.user.string
             }
             else {
-                lblLikes.text =  "\(arrLike.count) " + "users"
+                lblLikes.text =  "\(arrLike.count) " + L10n.users.string
             }
         }
         
@@ -189,7 +189,7 @@ class ProductDetailTableViewCell: UITableViewCell {
     @IBAction func btnActionLike(_ sender: AnyObject) {
         if data?.likesStatus == 0 {
             self.imgLike.image = UIImage(asset : .icLikeOn)
-            let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) + 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
             self.data?.totalLikes = "\(likeCount)"
             self.data?.likesStatus = 1
             lblNumberOfLikes.text = self.data?.totalLikes
@@ -203,9 +203,9 @@ class ProductDetailTableViewCell: UITableViewCell {
         else {
             self.imgLike.image = UIImage(asset : .icLike)
             
-            let likeCount = (Int(self.data?.totalLikes ?? "1") ?? 1) - 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
             self.data?.totalLikes = "\(likeCount)"
-            lblNumberOfLikes.text = self.data?.totalLikes ?? "0"
+            lblNumberOfLikes.text = self.data?.totalLikes ?? L10n._0.string
             
             self.data?.likesStatus = 0
             

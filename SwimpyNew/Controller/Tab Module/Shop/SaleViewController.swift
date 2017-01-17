@@ -50,7 +50,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider,SalesTask {
     func initialize() {
         arrProduct = []
         configureCollectionView()
-        pageNo = "0"
+        pageNo = L10n._0.string
         hitApiForSaleProduct()
     }
     

@@ -35,6 +35,60 @@ enum L10n {
   case enterConfirmPassword
   /// New password should be same as confirm password
   case newPasswordShouldBeSameAsConfirmPassword
+  /// Profile Edited successfully
+  case profileEditedSuccessfully
+  /// Success
+  case success
+  /// Follow store
+  case followStore
+  /// Following
+  case following
+  ///  followers
+  case _Followers
+  /// Order from 
+  case orderFrom
+  ///  following
+  case _Following
+  /// Follow
+  case follow
+  /// Others
+  case others
+  /// user
+  case user
+  /// users
+  case users
+  /// off
+  case off
+  /// on
+  case on
+  /// 0
+  case _0
+  /// 1
+  case _1
+  /// India
+  case india
+  /// BryantPro-Bold
+  case bryantProBold
+  /// Loading...
+  case loading
+  /// message
+  case message
+  /// data
+  case data
+  /// likes
+  case likes
+  /// statusCode
+  case statusCode
+  /// profilePic
+  case profilePic
+  /// Items
+  case items
+  /// Sale
+  case sale
+  /// People
+  case people
+  /// Store
+  case store
 }
 // swiftlint:enable type_body_length
 
@@ -73,6 +127,60 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "Enter Confirm Password")
       case .newPasswordShouldBeSameAsConfirmPassword:
         return L10n.tr(key: "New password should be same as confirm password")
+      case .profileEditedSuccessfully:
+        return L10n.tr(key: "Profile Edited successfully")
+      case .success:
+        return L10n.tr(key: "Success")
+      case .followStore:
+        return L10n.tr(key: "Follow store")
+      case .following:
+        return L10n.tr(key: "Following")
+      case ._Followers:
+        return L10n.tr(key: " followers")
+      case .orderFrom:
+        return L10n.tr(key: "Order from ")
+      case ._Following:
+        return L10n.tr(key: " following")
+      case .follow:
+        return L10n.tr(key: "Follow")
+      case .others:
+        return L10n.tr(key: "Others")
+      case .user:
+        return L10n.tr(key: "user")
+      case .users:
+        return L10n.tr(key: "users")
+      case .off:
+        return L10n.tr(key: "off")
+      case .on:
+        return L10n.tr(key: "on")
+      case ._0:
+        return L10n.tr(key: "0")
+      case ._1:
+        return L10n.tr(key: "1")
+      case .india:
+        return L10n.tr(key: "India")
+      case .bryantProBold:
+        return L10n.tr(key: "BryantPro-Bold")
+      case .loading:
+        return L10n.tr(key: "Loading...")
+      case .message:
+        return L10n.tr(key: "message")
+      case .data:
+        return L10n.tr(key: "data")
+      case .likes:
+        return L10n.tr(key: "likes")
+      case .statusCode:
+        return L10n.tr(key: "statusCode")
+      case .profilePic:
+        return L10n.tr(key: "profilePic")
+      case .items:
+        return L10n.tr(key: "Items")
+      case .sale:
+        return L10n.tr(key: "Sale")
+      case .people:
+        return L10n.tr(key: "People")
+      case .store:
+        return L10n.tr(key: "Store")
     }
   }
 

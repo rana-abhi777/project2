@@ -131,7 +131,7 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
         ApiManager().getDataOfURL(withApi: API.AddToCart(APIParameters.AddToCart(productId: model?.id,variations : model?.sizeSelected,color: model?.colorSelected).formatParameters()), failure: { (err) in
             print(err)
             }, success: { (model) in
-                UserFunctions.showAlert(title : "Success", message: L10n.productAddedToCart.string)
+                UserFunctions.showAlert(title : L10n.success.string, message: L10n.productAddedToCart.string)
             }, method: "POST", loader: true)
     }
     

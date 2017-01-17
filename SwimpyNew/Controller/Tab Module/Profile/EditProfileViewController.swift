@@ -37,13 +37,15 @@ class EditProfileViewController: BaseViewController {
     }
    
     @IBAction func btnActionSave(_ sender: AnyObject) {
+        self.view.endEditing(true)
         ApiManager().getDataOfURL(withApi: API.EditProfile(APIParameters.EditProfile(name: txtFullname.text, email: txtEmailAddress.text).formatParameters()), failure: { (err) in
             print(err)
             }, success: { (model) in
-                UserFunctions.showAlert(title: "Success", message: Profile Edited successfully", success:
-                    
-                )
-                UserFunctions.showAlert(title: "Success" , message: "Profile Edited successfully")
+                UserFunctions.showAlert(title: L10n.success.string, message: L10n.profileEditedSuccessfully.string, success: {
+                    let vc = StoryboardScene.Main.instantiateProfileViewController()
+                    self.navigationController?.pushViewController(vc, animated: false)
+                })
+                
             }, method: "PUT", loader: true, image: btnProfilePic.image(for: .normal))
        
     }

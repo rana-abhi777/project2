@@ -47,7 +47,7 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
     
     //MARK:- functions
     func initialize() {
-        pageNo = "0"
+        pageNo = L10n._0.string
         arrProduct = []
         configureCollectionView()
         lblCategoryName.text = categoryName

@@ -35,21 +35,21 @@ class DealsCollectionViewCell: UICollectionViewCell {
         data = model
         index = row
         lblProductName?.text = model.productName ?? ""
-        let totalPrice = Int(model.total_price ?? "0") ?? 0
-        let basePrice = Int(model.base_price_unit ?? "0") ?? 0
+        let totalPrice = Int(model.total_price ?? L10n._0.string) ?? 0
+        let basePrice = Int(model.base_price_unit ?? L10n._0.string) ?? 0
         if totalPrice < basePrice &&  totalPrice != 0 {
             lblOldPrice.isHidden = false
             viewPriceDeductLine.isHidden = false
-            lblOldPrice.text = "$" + (model.base_price_unit ?? "0")
-            lblPrice?.text = "$" + (model.total_price ?? "0")
+            lblOldPrice.text = "$" + (model.base_price_unit ?? L10n._0.string)
+            lblPrice?.text = "$" + (model.total_price ?? L10n._0.string)
         }
         else {
             lblOldPrice.isHidden = true
             viewPriceDeductLine.isHidden = true
         }
         
-        btnNumberOfLikes.setTitle(model.totalLikes ?? "0", for: .normal)
-        btnShare.setTitle(model.share ?? "0", for: .normal)
+        btnNumberOfLikes.setTitle(model.totalLikes ?? L10n._0.string, for: .normal)
+        btnShare.setTitle(model.share ?? L10n._0.string, for: .normal)
         guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black
             return }
         imgProduct?.sd_setImage(with: URL(string : url))
@@ -65,7 +65,7 @@ class DealsCollectionViewCell: UICollectionViewCell {
     @IBAction func btnActionLike(_ sender: AnyObject) {
         if data?.hasLiked == 0 {
             self.btnLike.setImage(UIImage(asset : .icLikeOn), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) + 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
             self.data?.totalLikes = "\(likeCount)"
             self.data?.hasLiked = 1
             self.btnNumberOfLikes?.setTitle(self.data?.totalLikes, for: .normal)
@@ -73,24 +73,18 @@ class DealsCollectionViewCell: UICollectionViewCell {
             ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
-//                    let likeCount = model as? String
-//                    self.data?.totalLikes = likeCount
-//                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
         else {
             self.btnLike.setImage(UIImage(asset : .icLike), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? "1") ?? 1) - 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
             self.data?.totalLikes = "\(likeCount)"
-            self.btnNumberOfLikes?.setTitle(self.data?.totalLikes ?? "0", for: .normal)
+            self.btnNumberOfLikes?.setTitle(self.data?.totalLikes ?? L10n._0.string, for: .normal)
             self.data?.hasLiked = 0
             self.delegate?.updateLikeData(model: self.data, index: self.index)
             ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
-//                    let likeCount = model as? String
-//                    self.data?.totalLikes = likeCount
-//                    self.delegate?.updateLikeData(model: self.data, index: self.index)
                 }, method: "POST", loader: false)
         }
     }

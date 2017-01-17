@@ -8,6 +8,7 @@
 import UIKit
 import Fusuma
 import Presentr
+import Material
 
 class BaseViewController: UIViewController {
     
@@ -80,7 +81,7 @@ class BaseViewController: UIViewController {
     func viewCartCount(viewCartNotification : UIView!, lblCartCount : UILabel!) {
         self.viewCartNumber = viewCartNotification
         self.lblCartItem = lblCartCount
-        guard let count = Int(MMUserManager.shared.cartCount ?? "0")else {
+        guard let count = Int(MMUserManager.shared.cartCount ?? L10n._0.string)else {
             viewCartNumber.isHidden = true
             view.sendSubview(toBack: viewCartNumber)
             return
@@ -88,7 +89,7 @@ class BaseViewController: UIViewController {
         if count > 0 {
             viewCartNumber.isHidden = false
             view.bringSubview(toFront: viewCartNumber)
-            lblCartItem.text = MMUserManager.shared.cartCount ?? "0"
+            lblCartItem.text = MMUserManager.shared.cartCount ?? L10n._0.string
         }
         else {
             viewCartNumber.isHidden = true

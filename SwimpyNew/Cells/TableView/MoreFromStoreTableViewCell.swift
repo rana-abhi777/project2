@@ -48,15 +48,15 @@ class MoreFromStoreTableViewCell: UITableViewCell {
         data = model
         imgStore?.sd_setImage(with: URL(string: model.storeImgThumbnail ?? ""))
         lblStoreName?.text = model.storeName ?? ""
-        lblNumberOfFollowers?.text = (model.numberOfFollwers ?? "0") + " followers"
+        lblNumberOfFollowers?.text = (model.numberOfFollwers ?? L10n._0.string) + L10n._Followers.string
         if (model.arrMoreFromStore?.count ?? 0) > 0 {
             configureCollectionView()
         }
         if model.hasFollowed == 1 {
-            btnFollow.setTitle("Following", for: .normal)
+            btnFollow.setTitle(L10n.following.string, for: .normal)
         }
         else {
-            btnFollow.setTitle("Follow", for: .normal)
+            btnFollow.setTitle(L10n.follow.string, for: .normal)
         }
     }
     
@@ -83,15 +83,12 @@ class MoreFromStoreTableViewCell: UITableViewCell {
     //MARK:- button actions
     @IBAction func btnActionFollow(_ sender: AnyObject) {
         if data?.hasFollowed == 0 {
-//            self.imgLike.image = UIImage(asset : .icLikeOn)
-            
-            let followingCount = (Int(self.data?.numberOfFollwers ?? "0") ?? 0) + 1
+            let followingCount = (Int(self.data?.numberOfFollwers ?? L10n._0.string) ?? 0) + 1
             self.data?.numberOfFollwers = "\(followingCount)"
             self.data?.hasFollowed = 1
             lblNumberOfFollowers?.text = self.data?.numberOfFollwers
-         
-            
             self.delegate?.updateFollowingData(data: self.data)
+            
             ApiManager().getDataOfURL(withApi: API.FollowStore(APIParameters.FollowStore(sellerId: data?.storeId).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: {(model) in
@@ -100,15 +97,13 @@ class MoreFromStoreTableViewCell: UITableViewCell {
                 }, method: "PUT", loader: false)
         }
         else {
-//            self.imgLike.image = UIImage(asset : .icLike)
             
-             let followingCount = (Int(self.data?.numberOfFollwers ?? "1") ?? 1) - 1
+             let followingCount = (Int(self.data?.numberOfFollwers ?? L10n._1.string) ?? 1) - 1
             self.data?.numberOfFollwers = "\(followingCount)"
             lblNumberOfFollowers?.text = self.data?.numberOfFollwers
-            
             self.data?.hasFollowed = 0
-            
             self.delegate?.updateFollowingData(data : self.data)
+            
             ApiManager().getDataOfURL(withApi: API.UnfollowStore(APIParameters.UnfollowStore(sellerId: data?.storeId).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in

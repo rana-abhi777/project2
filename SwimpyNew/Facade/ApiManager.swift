@@ -152,7 +152,7 @@ class ApiManager {
     
     
     static func showLoader() {
-        UserFunctions.sharedInstance().window?.rootViewController?.startAnimating(CGSize(width: 40,height: 40), message: "Loading...", type: .lineSpinFadeLoader, color: UIColor.white, padding: 0.0, displayTimeThreshold: 1, minimumDisplayTime: 1)
+        UserFunctions.sharedInstance().window?.rootViewController?.startAnimating(CGSize(width: 40,height: 40), message: "Loading...", type: .ballClipRotate, color: UIColor.white, padding: 0.0, displayTimeThreshold: 1, minimumDisplayTime: 1)
     }
     
     

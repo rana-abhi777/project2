@@ -47,7 +47,7 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     
     //MARK:- FUNCTION
     func initialize() {
-        pageNo = "0"
+        pageNo = L10n._0.string
         //        arrProduct = []
         //        configureCollectionView()
         hitApiForPopularProduct()

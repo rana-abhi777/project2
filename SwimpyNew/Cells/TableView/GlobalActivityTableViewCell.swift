@@ -45,12 +45,6 @@ class GlobalActivityTableViewCell: UITableViewCell {
         self.index = index
         lblActivity.text = appendOptionalStrings(strings: [model.userName,model.text,model.itemName], separator: " ")
         
-        
-        
-//        guard let itemUrl = model.itemImgOriginal else {
-//             imgItem?.backgroundColor = UIColor.gray
-//            return
-//        }
         imgItem?.sd_setImage(with: URL(string : model.itemImgOriginal ?? ""))
         guard let timeAgo = model.time else { return }
         print(model.time)

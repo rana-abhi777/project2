@@ -34,41 +34,51 @@ class ProfileViewController: BasePageViewController {
     var flagMyProfile = true
     var userId : String = MMUserManager.shared.loggedInUser?.id ?? ""
     var userDetails : UserDetails?
+    var flagEditProfile = false
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        if gotoLogin() {
-        pageVCSetup()
-        if flagMyProfile {
-            btnBack.isHidden = true
-            constViewMessageFollowHeight.constant = 0
-            btnSettings.isHidden =  false
-            view.bringSubview(toFront: imgLogo)
-            lblSwimpy.isHidden = false
-            imgLogo.isHidden = false
-        }
-        else {
-            btnBack.isHidden = false
-            constViewMessageFollowHeight.constant = 48.0
-            btnSettings.isHidden =  true
-            lblSettings.isHidden = true
-            imgSettings.isHidden = true
-            lblSwimpy.isHidden = true
-            imgLogo.isHidden = true
-            
-            view.sendSubview(toBack: imgLogo)
-        }
-        self.view.layoutIfNeeded()
-        hitApiToGetUserDetails()
-        }
+        setup()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        setup()
+    }
     
     //MARK:- functions
+    func setup() {
+        if gotoLogin() {
+            pageVCSetup()
+            if flagMyProfile {
+                btnBack.isHidden = true
+                constViewMessageFollowHeight.constant = 0
+                btnSettings.isHidden =  false
+                view.bringSubview(toFront: imgLogo)
+                lblSwimpy.isHidden = false
+                imgLogo.isHidden = false
+            }
+            else {
+                btnBack.isHidden = false
+                constViewMessageFollowHeight.constant = 48.0
+                btnSettings.isHidden =  true
+                lblSettings.isHidden = true
+                imgSettings.isHidden = true
+                lblSwimpy.isHidden = true
+                imgLogo.isHidden = true
+                
+                view.sendSubview(toBack: imgLogo)
+            }
+            self.view.layoutIfNeeded()
+            hitApiToGetUserDetails()
+        }
+        
+    }
+    
+    
     func hitApiToGetUserDetails() {
         ApiManager().getDataOfURL(withApi: API.GetUserDetail(APIParameters.GetUserDetail(userId : userId).formatParameters()), failure: { (err) in
             print(err)
@@ -83,14 +93,14 @@ class ProfileViewController: BasePageViewController {
     func setUI() {
         lblName.text = userDetails?.name ?? ""
         lblCountryName.text = "India"
-        btnNumberOfFollowers.setTitle((userDetails?.totalFollowedBy ?? "") + " followers", for: .normal)
-        btnNumberOfFollowing.setTitle((userDetails?.totalFollowing ?? "") + " following", for: .normal)
+        btnNumberOfFollowers.setTitle((userDetails?.totalFollowedBy ?? "") + L10n._Followers.string, for: .normal)
+        btnNumberOfFollowing.setTitle((userDetails?.totalFollowing ?? "") + L10n._Following.string, for: .normal)
         
         imgUserImage.sd_setImage(with: URL(string: userDetails?.profilePicURLOriginal ?? ""))
-        if userDetails?.followStatus == "0" {
-            btnFollow?.setTitle("Follow", for: .normal)
+        if userDetails?.followStatus == L10n._0.string {
+            btnFollow?.setTitle(L10n.follow.string, for: .normal)
         }else {
-            btnFollow?.setTitle("Following", for: .normal)
+            btnFollow?.setTitle(L10n.following.string, for: .normal)
         }
         
     }
@@ -123,27 +133,24 @@ class ProfileViewController: BasePageViewController {
     @IBAction func btnActionMessage(sender: AnyObject) {
     }
     @IBAction func btnActionFollow(sender: AnyObject) {
-        if userDetails?.followStatus == "0" {
-            userDetails?.followStatus = "1"
-            btnFollow?.setTitle("Following", for: .normal)
-            let totalFollowers = "\((Int(userDetails?.totalFollowedBy ?? "0") ?? 0) + 1)"
-            btnNumberOfFollowers.setTitle(totalFollowers + " followers", for: .normal)
+        if userDetails?.followStatus == L10n._0.string {
+            userDetails?.followStatus = L10n._1.string
+            btnFollow?.setTitle(L10n.following.string, for: .normal)
+            let totalFollowers = "\((Int(userDetails?.totalFollowedBy ?? L10n._0.string) ?? 0) + 1)"
+            btnNumberOfFollowers.setTitle(totalFollowers + L10n._Followers.string, for: .normal)
             userDetails?.totalFollowedBy = totalFollowers
-            
             ApiManager().getDataOfURL(withApi: API.FollowUser(APIParameters.FollowUser(userId: userDetails?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
                     print(model)
-                    
                 }, method: "POST", loader: false)
         }
         else {
-            btnFollow?.setTitle("Follow store", for: .normal)
-            self.userDetails?.followStatus = "0"
-            let totalFollowers = "\((Int(userDetails?.totalFollowedBy ?? "1") ?? 1) - 1)"
-            btnNumberOfFollowers.setTitle(totalFollowers + " followers", for: .normal)
+            btnFollow?.setTitle(L10n.followStore.string, for: .normal)
+            self.userDetails?.followStatus = L10n._0.string
+            let totalFollowers = "\((Int(userDetails?.totalFollowedBy ?? L10n._1.string) ?? 1) - 1)"
+            btnNumberOfFollowers.setTitle(totalFollowers + L10n._Followers.string, for: .normal)
             userDetails?.totalFollowedBy = totalFollowers
-            
             ApiManager().getDataOfURL(withApi: API.UnfollowUser(APIParameters.UnfollowUser(userId: userDetails?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
@@ -165,8 +172,8 @@ class ProfileViewController: BasePageViewController {
     
     @IBAction func btnActionLogout(_ sender: AnyObject) {
         if gotoLogin() {
-        let VC = StoryboardScene.Main.instantiateSettingsViewController()
-        self.navigationController?.pushViewController(VC, animated: true)
+            let VC = StoryboardScene.Main.instantiateSettingsViewController()
+            self.navigationController?.pushViewController(VC, animated: true)
         }
     }
     @IBAction func brnActionBack(_ sender: AnyObject) {

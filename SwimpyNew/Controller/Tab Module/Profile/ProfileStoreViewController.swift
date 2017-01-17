@@ -42,7 +42,7 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
     
     //MARK:- functions
     func initialize() {
-        pageNo = "0"
+        pageNo = L10n._0.string
         hitApiToGetUserStores()
     }
     

@@ -10,18 +10,18 @@ import UIKit
 @IBDesignable
 class CustomView: UIView {
 
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable override var cornerRadius: CGFloat  {
         didSet {
             layer.cornerRadius = cornerRadius
             layer.masksToBounds = cornerRadius > 0
         }
     }
-    @IBInspectable var borderWidth: CGFloat = 0 {
+    @IBInspectable override var borderWidth: CGFloat {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable override var borderColor: UIColor? {
         didSet {
             layer.borderColor = borderColor?.cgColor
         }

@@ -63,6 +63,7 @@ enum API {
     
     case EditProfile(OptionalDictionary)
     
+    case Logout()
 }
 
 
@@ -106,7 +107,7 @@ enum APIParameters {
     //profile
     case NotificationOnOff(blockUnblock : String?)
     case ChangePassword(newPassword : String?)
-    
+    case Logout()
     
     
     case SearchSuggestion(text : String?)
@@ -215,6 +216,7 @@ extension API : Router {
         case .ChangePassword(let parameters) : return parameters
         case .SearchSuggestion(let parameters) : return parameters
         case .EditProfile(let parameters) : return parameters
+        case .Logout(_) : return nil
         }
     }
     
@@ -249,6 +251,7 @@ extension API : Router {
         case .ChangePassword(_) : return "api/users/changePassword"
         case .SearchSuggestion(_) : return "api/users/suggestion"
         case .EditProfile(_) : return "api/users/updateProfile"
+        case .Logout(_) : return "api/users/logout"
         }
     }
     

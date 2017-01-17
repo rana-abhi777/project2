@@ -38,9 +38,9 @@ class StoreProductCollectionViewCell: UICollectionViewCell {
         viewCellLayout.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
 
         lblProductName?.text = model.productName ?? ""
-        lblPrice?.text = "$" + (model.totalPrice ?? "0")
+        lblPrice?.text = "$" + (model.totalPrice ?? L10n._0.string)
         btnNumberOfLike?.setTitle(model.totalLikes ?? "", for: .normal)
-        btnNumberOfShare?.setTitle(model.share ?? "0", for: .normal)
+        btnNumberOfShare?.setTitle(model.share ?? L10n._0.string, for: .normal)
         guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black
             return }
         imgProduct?.sd_setImage(with: URL(string : url)) { (image, error, cache, url) in
@@ -60,7 +60,7 @@ class StoreProductCollectionViewCell: UICollectionViewCell {
     @IBAction func actionBtnLike(_ sender: AnyObject) {
         if data?.likesStatus == 0 {
             self.btnLike.setImage(UIImage(asset : .icLikeOn), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? "0") ?? 0) + 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
             self.data?.totalLikes = "\(likeCount)"
             self.data?.likesStatus = 1
             self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
@@ -75,9 +75,9 @@ class StoreProductCollectionViewCell: UICollectionViewCell {
         }
         else {
             self.btnLike.setImage(UIImage(asset : .icLike), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? "1") ?? 1) - 1
+            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
             self.data?.totalLikes = "\(likeCount)"
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? "0", for: .normal)
+            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? L10n._0.string, for: .normal)
             self.data?.likesStatus = 0
             
             self.delegate?.updateLikeData(model: self.data, index: self.index)
