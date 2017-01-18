@@ -6,29 +6,48 @@
 //  Copyright © 2016 Aseem 10. All rights reserved.
 
 import UIKit
+import SwiftMessages
 
 class UserFunctions: NSObject {
     
     static func sharedInstance() -> AppDelegate {
-           return UIApplication.shared.delegate as! AppDelegate
+        return UIApplication.shared.delegate as! AppDelegate
         
     }
     
-    static func showAlert(title : String = "Oops" ,message : String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+    static func showAlert(title : String = "Oops" ,message : String, type : String = "info") {
+        let myView = MessageView.viewFromNib(layout: .MessageView)
         
-        sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
+        myView.button?.isHidden = true
+        //        myView.backgroundView.backgroundColor = UIColor.gray
+        myView.configureContent(title: title, body: message, iconImage: UIImage())
+        var config = SwiftMessages.Config()
+        config.presentationStyle = .bottom
+        config.presentationContext = .window(windowLevel: 0.0)
+        config.dimMode = .gray(interactive: true)
+        SwiftMessages.show(config: config, view: myView)
+        
     }
     
     static func showAlert(title : String = "Oops" ,message : String,success: @escaping () -> ()) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            success()
-        }))
-        
-        sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
+        let myView = MessageView.viewFromNib(layout: .MessageView)
+        myView.button?.isHidden = true
+        //         myView.backgroundView.backgroundColor = UIColor.gray
+        //        myView.button?.titleLabel?.text = "ok"
+        //        myView.configureContent(title: title, body: message)
+        myView.configureContent(title: title, body: message, iconImage: UIImage())
+        var config = SwiftMessages.Config()
+        config.presentationStyle = .bottom
+        config.presentationContext = .window(windowLevel: 0.0)
+        config.dimMode = .gray(interactive: true)
+        SwiftMessages.show(config: config, view: myView)
+        //        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        //
+        //        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+        //            success()
+        //        }))
+        //
+        //        sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     static func uniq<S : Sequence, T : Hashable>(source: S) -> [T] where S.Iterator.Element == T {

@@ -63,6 +63,8 @@ enum API {
     
     case EditProfile(OptionalDictionary)
     
+    case AddAddress(OptionalDictionary)
+    
     case Logout()
 }
 
@@ -103,6 +105,10 @@ enum APIParameters {
     case AddToCart(productId : String?,variations : String?,color : String?)
     case GetCartDetail()
     case RemoveCartItem(cartId : String?)
+    
+    
+    //AddAddress
+    case AddAddress(fullName : String?,addressLine1 : String?,addressLine2 : String?,countryName : String?,city : String?, state : String?,zipcode : String?,phoneNo : String?,isDefault : Bool?)
     
     //profile
     case NotificationOnOff(blockUnblock : String?)
@@ -177,6 +183,9 @@ enum APIParameters {
         case .SearchSuggestion(let text) :
              return ["text" : (text ?? "") as AnyObject]
             
+        case .AddAddress(let fullName,let addressLine1,let addressLine2, let countryName, let city,let state,let zipcode,let  phoneNo,let isDefault) :
+            return ["fullName" : (fullName ?? "") as AnyObject, "addressLine1" : (addressLine1 ?? "") as AnyObject,"addressLine2" : (addressLine2 ?? "") as AnyObject, "countryName" : (countryName ?? "") as AnyObject,"city" : (city ?? "") as AnyObject, "state" : (state ?? "") as AnyObject,"zipcode" : (zipcode ?? "") as AnyObject, "phoneNo" : (phoneNo ?? "") as AnyObject, "isDefault" : (isDefault ?? true) as AnyObject]
+            
         default:
             return ["" : "" as AnyObject]
         }
@@ -217,6 +226,7 @@ extension API : Router {
         case .SearchSuggestion(let parameters) : return parameters
         case .EditProfile(let parameters) : return parameters
         case .Logout(_) : return nil
+        case .AddAddress(let parameters) : return parameters
         }
     }
     
@@ -252,6 +262,7 @@ extension API : Router {
         case .SearchSuggestion(_) : return "api/users/suggestion"
         case .EditProfile(_) : return "api/users/updateProfile"
         case .Logout(_) : return "api/users/logout"
+        case .AddAddress(_) : return "api/users/addAddress"
         }
     }
     

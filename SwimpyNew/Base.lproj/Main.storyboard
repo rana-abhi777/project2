@@ -1954,15 +1954,23 @@ Ships easy to any country from…</string>
                                             <action selector="btnActionBack:" destination="QbF-Yr-QvE" eventType="touchUpInside" id="9RG-xA-mvg"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRR-fZ-toV">
+                                        <fontDescription key="fontDescription" name="BryantPro-Medium" family="Bryant Pro" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="4XA-0e-zoF"/>
                                     <constraint firstItem="7UU-e9-o2a" firstAttribute="top" secondItem="OcC-1O-AsS" secondAttribute="top" constant="20" symbolic="YES" id="7Qe-NY-pqY"/>
                                     <constraint firstItem="1oz-JW-3k7" firstAttribute="top" secondItem="OcC-1O-AsS" secondAttribute="top" constant="20" symbolic="YES" id="Azp-jp-2OZ"/>
+                                    <constraint firstItem="7UU-e9-o2a" firstAttribute="leading" secondItem="XRR-fZ-toV" secondAttribute="trailing" constant="8" symbolic="YES" id="H33-xQ-Kim"/>
+                                    <constraint firstItem="XRR-fZ-toV" firstAttribute="centerY" secondItem="1oz-JW-3k7" secondAttribute="centerY" id="IS1-1E-gXC"/>
                                     <constraint firstAttribute="trailing" secondItem="7UU-e9-o2a" secondAttribute="trailing" constant="20" symbolic="YES" id="Jsn-VL-xkL"/>
                                     <constraint firstItem="1oz-JW-3k7" firstAttribute="leading" secondItem="OcC-1O-AsS" secondAttribute="leading" constant="20" symbolic="YES" id="O2J-PG-Uxj"/>
                                     <constraint firstItem="umi-ut-sJX" firstAttribute="trailing" secondItem="7UU-e9-o2a" secondAttribute="trailing" id="crH-VJ-Oe5"/>
+                                    <constraint firstItem="XRR-fZ-toV" firstAttribute="leading" secondItem="1oz-JW-3k7" secondAttribute="trailing" constant="8" symbolic="YES" id="pAs-6A-NRx"/>
                                     <constraint firstItem="umi-ut-sJX" firstAttribute="top" secondItem="7UU-e9-o2a" secondAttribute="top" constant="-4" id="zw5-Wd-Jyt"/>
                                 </constraints>
                             </view>
@@ -1983,6 +1991,7 @@ Ships easy to any country from…</string>
                     <connections>
                         <outlet property="collectionViewProductImages" destination="guy-n0-41X" id="7fa-aA-AV8"/>
                         <outlet property="lblCartCount" destination="rzW-YR-r0o" id="uRn-UE-KRR"/>
+                        <outlet property="lblProductName" destination="XRR-fZ-toV" id="Hxu-gs-Qvb"/>
                         <outlet property="pageControlImage" destination="oaN-H5-QL9" id="Nlb-1X-24H"/>
                         <outlet property="tableViewProductDetail" destination="TYc-QJ-EDI" id="e3U-ce-usN"/>
                         <outlet property="viewCartNotification" destination="umi-ut-sJX" id="V2F-Jw-abN"/>
@@ -1999,7 +2008,7 @@ Ships easy to any country from…</string>
             <objects>
                 <navigationController storyboardIdentifier="InitialNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="gGD-NB-80W" customClass="InitialNavigationViewController" customModule="SwimpyNew" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nIE-NJ-fTf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nIE-NJ-fTf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2176,12 +2185,14 @@ Ships easy to any country from…</string>
                                             <rect key="frame" x="0.0" y="0.0" width="272" height="168"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAh-o2-IV6">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAh-o2-IV6">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="88" id="flk-K7-phx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3ZR-C2-7Ay" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3ZR-C2-7Ay" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="dQF-Fw-j7I"/>
                                                         <constraint firstAttribute="width" constant="48" id="lIa-sF-Ogv"/>
@@ -2306,7 +2317,7 @@ Ships easy to any country from…</string>
                                     <constraint firstItem="o41-9Q-NPb" firstAttribute="centerY" secondItem="N3r-55-srs" secondAttribute="centerY" id="qib-aR-JV2"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lP1-pK-ufI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lP1-pK-ufI">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CartProductDetailTableViewCell" rowHeight="171" id="Jhv-Kg-QsS" customClass="CartProductDetailTableViewCell" customModule="SwimpyNew" customModuleProvider="target">
@@ -2316,39 +2327,33 @@ Ships easy to any country from…</string>
                                             <frame key="frameInset" width="359" height="171"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Order from fab season" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myj-w0-pIt">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order from fab season" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myj-w0-pIt">
                                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
                                                     <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Hat for winter inner isothermal padding  (Black)" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERw-m7-Nl5">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hat for winter inner isothermal padding  (Black)" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERw-m7-Nl5">
                                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N7n-H4-GL2">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7n-H4-GL2">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="cCl-le-NGN"/>
                                                         <constraint firstAttribute="width" constant="80" id="uUS-Gc-9ZY"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqr-aa-nrq">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqr-aa-nrq">
                                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZv-yf-Bvz">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZv-yf-Bvz">
                                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gas-ym-HE6">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gas-ym-HE6">
                                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
                                                     <state key="normal">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2357,20 +2362,17 @@ Ships easy to any country from…</string>
                                                         <action selector="btnActionSelectQuantity:" destination="Jhv-Kg-QsS" eventType="touchUpInside" id="KTy-Yy-yn6"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znm-x4-nDT">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znm-x4-nDT">
                                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" ambiguous="YES" misplaced="YES" text="$ 249" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzW-Wv-P9X">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="$ 249" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzW-Wv-P9X">
                                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVj-z3-Mbc" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVj-z3-Mbc" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="7KL-YZ-bSb"/>
                                                         <constraint firstAttribute="width" constant="80" id="Ck5-kT-ayp"/>
@@ -2391,8 +2393,7 @@ Ships easy to any country from…</string>
                                                         <action selector="btnActionRemove:" destination="Jhv-Kg-QsS" eventType="touchUpInside" id="Uxk-yD-CBF"/>
                                                     </connections>
                                                 </button>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9E-1Z-Zpb" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9E-1Z-Zpb" customClass="CustomButton" customModule="SwimpyNew" customModuleProvider="target">
                                                     <fontDescription key="fontDescription" name="BryantPro-Medium" family="Bryant Pro" pointSize="12"/>
                                                     <state key="normal" title="Edit">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2887,9 +2888,9 @@ Ships easy to any country from…</string>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="sF3-bs-fr0"/>
                                         </constraints>
-                                        <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyP-x4-MzG">
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2898,9 +2899,9 @@ Ships easy to any country from…</string>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address line 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJC-qa-2qP">
-                                        <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yT3-Gv-7sE">
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2909,9 +2910,9 @@ Ships easy to any country from…</string>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address line 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ml0-JS-jSu">
-                                        <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-43-ucm">
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2927,9 +2928,12 @@ Ships easy to any country from…</string>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLS-El-0Ha">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="9Ng-B8-Pn1"/>
+                                            <constraint firstAttribute="height" constant="32" id="9Ng-B8-Pn1"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="btnActionCountryDropDown:" destination="3HY-iG-OrX" eventType="touchUpInside" id="bBa-SE-4zn"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6h-N9-nS2">
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2938,14 +2942,14 @@ Ships easy to any country from…</string>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lrX-jr-YWP">
-                                        <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dqa-fc-0n8">
-                                        <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Fp-oa-5jI">
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2960,7 +2964,7 @@ Ships easy to any country from…</string>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2vM-HO-W3o">
-                                        <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -3022,11 +3026,25 @@ Ships easy to any country from…</string>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j6q-ea-D1T">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="5G0-OG-4Dt"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehj-Er-ohE">
+                                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="2Y3-MF-ro6"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="lrX-jr-YWP" firstAttribute="top" secondItem="Ehj-Er-ohE" secondAttribute="bottom" constant="8" id="0ne-Yn-KGF"/>
                                     <constraint firstAttribute="trailing" secondItem="AA3-W2-hli" secondAttribute="trailing" id="2K3-K8-67R"/>
-                                    <constraint firstItem="lrX-jr-YWP" firstAttribute="top" secondItem="g6h-N9-nS2" secondAttribute="bottom" constant="8" id="2jf-Ic-TUh"/>
                                     <constraint firstItem="Dqa-fc-0n8" firstAttribute="top" secondItem="lrX-jr-YWP" secondAttribute="top" id="30k-ek-udW"/>
                                     <constraint firstItem="R0y-gx-wRh" firstAttribute="leading" secondItem="2vM-HO-W3o" secondAttribute="leading" id="45j-5T-jvv"/>
                                     <constraint firstItem="dZ6-43-ucm" firstAttribute="leading" secondItem="ml0-JS-jSu" secondAttribute="leading" id="4g4-fP-XI6"/>
@@ -3044,10 +3062,11 @@ Ships easy to any country from…</string>
                                     <constraint firstItem="AA3-W2-hli" firstAttribute="top" secondItem="EeL-yc-80P" secondAttribute="bottom" constant="16" id="ECr-Vr-Dzc"/>
                                     <constraint firstItem="dZ6-43-ucm" firstAttribute="top" secondItem="ml0-JS-jSu" secondAttribute="bottom" id="EMU-oV-e7w"/>
                                     <constraint firstItem="yT3-Gv-7sE" firstAttribute="trailing" secondItem="OJC-qa-2qP" secondAttribute="trailing" id="F3R-Qn-769"/>
-                                    <constraint firstItem="2p7-U0-pgJ" firstAttribute="leading" secondItem="R0y-gx-wRh" secondAttribute="trailing" constant="33" id="Fbh-mN-Ssf"/>
+                                    <constraint firstItem="2p7-U0-pgJ" firstAttribute="leading" secondItem="R0y-gx-wRh" secondAttribute="trailing" constant="8" symbolic="YES" id="Fbh-mN-Ssf"/>
                                     <constraint firstItem="HyP-x4-MzG" firstAttribute="trailing" secondItem="20h-nA-UlT" secondAttribute="trailing" id="Frx-xU-nIM"/>
                                     <constraint firstItem="EeL-yc-80P" firstAttribute="centerX" secondItem="oXp-7c-Ygi" secondAttribute="centerX" id="HIZ-wS-Rjv"/>
                                     <constraint firstItem="v58-D2-9LO" firstAttribute="top" secondItem="Dqa-fc-0n8" secondAttribute="bottom" id="Hoc-8k-QL0"/>
+                                    <constraint firstItem="j6q-ea-D1T" firstAttribute="top" secondItem="g6h-N9-nS2" secondAttribute="bottom" constant="8" id="Hsy-nJ-lyR"/>
                                     <constraint firstItem="DvQ-j5-SGQ" firstAttribute="top" secondItem="2vM-HO-W3o" secondAttribute="bottom" id="Huf-y6-eBn"/>
                                     <constraint firstItem="ml0-JS-jSu" firstAttribute="leading" secondItem="OJC-qa-2qP" secondAttribute="leading" id="IFX-lb-ouy"/>
                                     <constraint firstItem="abj-1s-2ha" firstAttribute="height" secondItem="i25-NI-khl" secondAttribute="height" id="JM1-ih-FsD"/>
@@ -3059,12 +3078,15 @@ Ships easy to any country from…</string>
                                     <constraint firstItem="OJC-qa-2qP" firstAttribute="trailing" secondItem="20h-nA-UlT" secondAttribute="trailing" id="OeC-Aw-7SE"/>
                                     <constraint firstItem="yT3-Gv-7sE" firstAttribute="top" secondItem="OJC-qa-2qP" secondAttribute="bottom" id="QF5-03-2uL"/>
                                     <constraint firstItem="3Fp-oa-5jI" firstAttribute="top" secondItem="lrX-jr-YWP" secondAttribute="bottom" id="QsV-sm-HqI"/>
+                                    <constraint firstItem="Ehj-Er-ohE" firstAttribute="top" secondItem="j6q-ea-D1T" secondAttribute="bottom" id="S4J-Aw-0UK"/>
                                     <constraint firstItem="yT3-Gv-7sE" firstAttribute="leading" secondItem="OJC-qa-2qP" secondAttribute="leading" id="SAp-GZ-cxZ"/>
                                     <constraint firstAttribute="trailing" secondItem="i25-NI-khl" secondAttribute="trailing" constant="20" symbolic="YES" id="SDH-6i-blT"/>
                                     <constraint firstItem="ml0-JS-jSu" firstAttribute="trailing" secondItem="OJC-qa-2qP" secondAttribute="trailing" id="Sdv-Uh-Hmh"/>
                                     <constraint firstItem="41I-0X-FL0" firstAttribute="top" secondItem="dZ6-43-ucm" secondAttribute="bottom" constant="16" id="SrF-je-ca3"/>
                                     <constraint firstItem="OJC-qa-2qP" firstAttribute="height" secondItem="20h-nA-UlT" secondAttribute="height" id="VDT-V7-oB6"/>
                                     <constraint firstItem="3Fp-oa-5jI" firstAttribute="trailing" secondItem="lrX-jr-YWP" secondAttribute="trailing" id="Xcl-w5-hNx"/>
+                                    <constraint firstItem="j6q-ea-D1T" firstAttribute="leading" secondItem="ml0-JS-jSu" secondAttribute="leading" id="anK-6t-InT"/>
+                                    <constraint firstItem="j6q-ea-D1T" firstAttribute="trailing" secondItem="ml0-JS-jSu" secondAttribute="trailing" id="aua-vm-zZb"/>
                                     <constraint firstItem="2p7-U0-pgJ" firstAttribute="centerY" secondItem="R0y-gx-wRh" secondAttribute="centerY" id="b1Y-En-zpk"/>
                                     <constraint firstItem="tLS-El-0Ha" firstAttribute="trailing" secondItem="Z2n-PS-DiS" secondAttribute="trailing" constant="8" id="be2-XV-lr4"/>
                                     <constraint firstItem="Dqa-fc-0n8" firstAttribute="leading" secondItem="lrX-jr-YWP" secondAttribute="trailing" constant="24" id="bvz-8U-ndO"/>
@@ -3085,6 +3107,8 @@ Ships easy to any country from…</string>
                                     <constraint firstItem="HyP-x4-MzG" firstAttribute="top" secondItem="20h-nA-UlT" secondAttribute="bottom" id="tUx-JN-MsC"/>
                                     <constraint firstItem="AA3-W2-hli" firstAttribute="leading" secondItem="oXp-7c-Ygi" secondAttribute="leading" id="u2L-hP-9xx"/>
                                     <constraint firstItem="20h-nA-UlT" firstAttribute="top" secondItem="AA3-W2-hli" secondAttribute="bottom" constant="8" id="uP7-rT-6hE"/>
+                                    <constraint firstItem="Ehj-Er-ohE" firstAttribute="trailing" secondItem="j6q-ea-D1T" secondAttribute="trailing" id="uk6-Fc-s69"/>
+                                    <constraint firstItem="Ehj-Er-ohE" firstAttribute="leading" secondItem="j6q-ea-D1T" secondAttribute="leading" id="voZ-Le-BFh"/>
                                     <constraint firstItem="20h-nA-UlT" firstAttribute="leading" secondItem="oXp-7c-Ygi" secondAttribute="leading" constant="8" id="w6r-JN-HS4"/>
                                     <constraint firstItem="abj-1s-2ha" firstAttribute="width" secondItem="i25-NI-khl" secondAttribute="width" id="wH9-eb-lJ2"/>
                                     <constraint firstItem="OJC-qa-2qP" firstAttribute="top" secondItem="HyP-x4-MzG" secondAttribute="bottom" constant="8" id="wpj-Wz-SvB"/>
@@ -3105,7 +3129,7 @@ Ships easy to any country from…</string>
                             <constraint firstItem="qZj-z6-fwm" firstAttribute="leading" secondItem="cmD-WH-nMe" secondAttribute="leading" id="zSh-ey-0nn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shop" image="ic_store" selectedImage="ic_store_on" id="zYa-v6-9AL">
+                    <tabBarItem key="tabBarItem" title="Shop" image="ic_store" selectedImage="ic_store_on" id="DZG-28-IqX">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                     </tabBarItem>
@@ -3114,16 +3138,19 @@ Ships easy to any country from…</string>
                         <outlet property="btnCancel" destination="abj-1s-2ha" id="IXe-dm-x8P"/>
                         <outlet property="btnMarkAsDefault" destination="R0y-gx-wRh" id="gaQ-NS-b4c"/>
                         <outlet property="btnSave" destination="i25-NI-khl" id="dwi-Ww-oyy"/>
+                        <outlet property="lblCountry" destination="41I-0X-FL0" id="s67-Df-XGu"/>
                         <outlet property="txtAddressLine1" destination="OJC-qa-2qP" id="ynv-ER-l4B"/>
                         <outlet property="txtAddressLine2" destination="ml0-JS-jSu" id="9At-2b-7Ul"/>
+                        <outlet property="txtCity" destination="j6q-ea-D1T" id="ADO-8E-iJi"/>
                         <outlet property="txtFullname" destination="20h-nA-UlT" id="kbx-CK-Uit"/>
                         <outlet property="txtMobileNumber" destination="2vM-HO-W3o" id="OQQ-8J-KLq"/>
                         <outlet property="txtState" destination="lrX-jr-YWP" id="5uE-GE-fhM"/>
+                        <outlet property="txtZipcode" destination="Dqa-fc-0n8" id="ra0-GB-OFn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5t-dc-rWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6801" y="2191"/>
+            <point key="canvasLocation" x="6800.8000000000002" y="2190.8545727136434"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fuT-zL-NF2">
@@ -3427,7 +3454,8 @@ Ships easy to any country from…</string>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kqa-4w-vM2">
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L8x-nZ-rjz">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L8x-nZ-rjz">
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="144" id="Nnl-re-9nL"/>
                                                     </constraints>
@@ -3476,7 +3504,8 @@ Ships easy to any country from…</string>
                                                         <action selector="btnActionBack:" destination="wIh-wk-7bv" eventType="touchUpInside" id="jtY-bt-Rbr"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vhu-88-Niu" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vhu-88-Niu" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="SL9-2m-74o"/>
                                                         <constraint firstAttribute="width" constant="80" id="Ud0-df-6Ka"/>
@@ -3484,6 +3513,12 @@ Ships easy to any country from…</string>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
@@ -3800,7 +3835,7 @@ Ships easy to any country from…</string>
                 <navigationController navigationBarHidden="YES" id="9yc-XF-Iff" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="PXi-3A-OH9"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gVU-wS-SYI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gVU-wS-SYI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4132,7 +4167,7 @@ Ships easy to any country from…</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="wMM-ud-jLS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Fsi-yS-syP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zen-JW-9mu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zen-JW-9mu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4151,7 +4186,7 @@ Ships easy to any country from…</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="KWe-D7-4pb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Ama-q9-idn"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ung-3b-LPa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ung-3b-LPa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4170,7 +4205,7 @@ Ships easy to any country from…</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="xmw-5H-FwX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="kxd-nY-Yta"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iga-Cz-pn5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iga-Cz-pn5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4189,7 +4224,7 @@ Ships easy to any country from…</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="R4f-Wl-yQE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="BbY-ff-DHI"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5uh-pl-Hkv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5uh-pl-Hkv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5299,7 +5334,8 @@ Ships easy to any country from…</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-m6-Rr3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-m6-Rr3">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="144" id="orD-s9-6jT"/>
                                 </constraints>
@@ -5348,7 +5384,8 @@ Ships easy to any country from…</string>
                                     <action selector="btnActionBackWithSender:" destination="cxS-sj-C4L" eventType="touchUpInside" id="lyl-dD-JFT"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="97q-tM-vnd" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="97q-tM-vnd" customClass="CustomImageView" customModule="SwimpyNew" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="MT0-1o-jOW"/>
                                     <constraint firstAttribute="height" constant="80" id="oms-pa-dbI"/>
@@ -5356,6 +5393,12 @@ Ships easy to any country from…</string>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>

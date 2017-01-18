@@ -50,7 +50,8 @@ class CartProductDetailTableViewCell: UITableViewCell {
         row = index
         data = model
         lblStoreName.text = L10n.orderFrom.string + (model.storeName ?? "") + " (" + (model.colorSelected ?? "") + ")"
-        arrQuantity = model.arrQuantity.map {"\($0)"}
+//        arrQuantity = model.arrQuantity.map {"\($0)"}
+//        print(arrQuantity)
         lblProductName.text = model.productName ?? ""
         lblPrice.text = "$" + (model.base_price_unit ?? L10n._0.string)
         lblQuantity.text = model.quantitySelected 
@@ -66,7 +67,6 @@ class CartProductDetailTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnActionSelectQuantity(_ sender: AnyObject) {
-        
         selectQuantityDropDown.show()
         selectQuantityDropDown.selectionAction = { [unowned self] (index, item) in
             self.lblQuantity.text = "\(self.arrQuantity[index])"

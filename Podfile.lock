@@ -62,6 +62,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SwiftMessages (3.0.3)
   - SwiftyJSON (3.1.1)
   - SZTextView (1.2.2)
   - XLPagerTabStrip (6.0.0)
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - Presentr
   - RMMapper
   - SDWebImage
+  - SwiftMessages
   - SwiftyJSON
   - SZTextView
   - XLPagerTabStrip
@@ -113,6 +115,7 @@ SPEC CHECKSUMS:
   Presentr: 9759bf538d9f3211a5ee1314a541a11bbea7ea71
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   XLPagerTabStrip: c46e802a8dcac29edbcea573de8fe920e052455b

@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol CartTask {
+    func nextStep()
+}
+
 class CartPriceDetailTableViewCell: UITableViewCell {
     
+    var delegate : CartTask?
     
     //MARK:-  override function
     override func awakeFromNib() {
@@ -23,7 +28,7 @@ class CartPriceDetailTableViewCell: UITableViewCell {
     
     //MARK:-  button action
     @IBAction func btnActionCheckOut(_ sender: AnyObject) {
-        
+        self.delegate?.nextStep()
     }
     
    

@@ -8,11 +8,12 @@
 
 import UIKit
 
-class CartViewController: UIViewController,CartProductTask {
+class CartViewController: UIViewController,CartProductTask,CartTask {
     
     //MARK:- outlets
     @IBOutlet weak var tableViewCart: UITableView!
     @IBOutlet weak var viewNoItems: UIView!
+    
     //MARK:- variables
     var tableDataSource : CartDataSource? {
         didSet{
@@ -26,7 +27,7 @@ class CartViewController: UIViewController,CartProductTask {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-        configureTableView()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,11 +46,14 @@ class CartViewController: UIViewController,CartProductTask {
             }, success: {[unowned self] (model) in
                 self.arrCartData = (model as? [CartData]) ?? []
                 self.configureTableView()
-                print(model)
             }, method: "POST", loader: true)
     }
     
     //MARK:- CartProductTask delegate function
+    func nextStep() {
+        let VC = StoryboardScene.Main.instantiateAddressDetailsViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
     
     func updateQuantity(model : CartData?,index: Int) {
         arrCartData[index] = model ?? CartData()

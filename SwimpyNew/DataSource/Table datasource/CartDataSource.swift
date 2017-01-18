@@ -46,7 +46,7 @@ class CartDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.CartPriceDetailTableViewCell.rawValue) as? CartPriceDetailTableViewCell else {
                 return UITableViewCell()
             }
-
+            cell.delegate = (vc as? CartViewController) ?? nil
             return cell
         }
         
@@ -67,7 +67,7 @@ class CartDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
         }else  {
             return 56
         }
-       
+        
     }
     
 }

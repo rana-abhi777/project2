@@ -20,7 +20,7 @@ pod 'Google/SignIn'
 pod 'DropDown'
 pod 'SDWebImage'
 pod 'Presentr'
-
+pod 'SwiftMessages'
 end
 
 post_install do |installer|

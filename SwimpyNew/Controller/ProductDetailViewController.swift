@@ -11,6 +11,8 @@ import UIKit
 class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction,ProductDetailTask,NavBarColor {
     
     //MARK:- outlets
+    @IBOutlet weak var lblProductName: UILabel!
+    
     @IBOutlet weak var collectionViewProductImages: UICollectionView!
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var tableViewProductDetail: UITableView!
@@ -40,6 +42,7 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
      //MARK:- override function
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         pageControlImage.currentPage = 0
         pageControlImage.pageIndicatorTintColor = UIColor.gray
         pageControlImage.currentPageIndicatorTintColor = UIColor.white
@@ -58,6 +61,7 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
     //MARK:- FUNCTION
     
     func initialize() {
+        lblProductName.isHidden = true
         hitApiForProductDetail()
     }
     
@@ -79,12 +83,15 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
         if scrollView.contentOffset.y >= 120 && self.lastContentOffset < scrollView.contentOffset.y   {
             if scrollView.contentOffset.y >= 60 {
                 viewNavBar?.backgroundColor = UIColor.white
+                lblProductName.isHidden = false
+                lblProductName.text = productDetails?.productName ?? ""
             }
         }
         else if self.lastContentOffset > scrollView.contentOffset.y {
             if scrollView.contentOffset.y <= 60 {
                 viewNavBar?.backgroundColor = UIColor.clear
-                
+                lblProductName.isHidden = true
+                lblProductName.text = ""
             }
         }
         lastContentOffset = scrollView.contentOffset.y
@@ -117,6 +124,14 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
     
     //MARK:- delegate function
     func setNavBarColor(color : UIColor) {
+        if color == UIColor.white {
+            lblProductName.isHidden = false
+            lblProductName.text = productDetails?.productName ?? ""
+        }
+        else {
+            lblProductName.isHidden = true
+            lblProductName.text = ""
+        }
         viewNavBar?.backgroundColor = color
     }
     
