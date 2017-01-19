@@ -22,20 +22,13 @@ class CartProductDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblQuantity: UILabel!
     @IBOutlet weak var imgProduct: UIImageView!
-    @IBOutlet weak var btnQuantitySelected: UIButton!
+    @IBOutlet weak var segmentcontrolQuantity: UISegmentedControl!
     
     //MARK:- variables
     var delegate : CartProductTask?
     var data : CartData?
-    let selectQuantityDropDown = DropDown()
-    lazy var dropDowns: [DropDown] = {
-        return [
-            self.selectQuantityDropDown,
-            
-            ]
-    }()
-    var arrQuantity : [String] = [L10n._1.string]
     var row = 0
+    
     //MARK:- override functions
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,15 +43,12 @@ class CartProductDetailTableViewCell: UITableViewCell {
         row = index
         data = model
         lblStoreName.text = L10n.orderFrom.string + (model.storeName ?? "") + " (" + (model.colorSelected ?? "") + ")"
-//        arrQuantity = model.arrQuantity.map {"\($0)"}
-//        print(arrQuantity)
+
         lblProductName.text = model.productName ?? ""
         lblPrice.text = "$" + (model.base_price_unit ?? L10n._0.string)
         lblQuantity.text = model.quantitySelected 
         imgProduct.sd_setImage(with: URL(string : model.imageOriginal ?? ""))
-        selectQuantityDropDown.anchorView = lblQuantity
-        selectQuantityDropDown.bottomOffset = CGPoint(x: 0, y: 20)
-        selectQuantityDropDown.dataSource = arrQuantity
+
     }
     
     //MARK:-  button action
@@ -66,16 +56,34 @@ class CartProductDetailTableViewCell: UITableViewCell {
         
     }
     
-    @IBAction func btnActionSelectQuantity(_ sender: AnyObject) {
-        selectQuantityDropDown.show()
-        selectQuantityDropDown.selectionAction = { [unowned self] (index, item) in
-            self.lblQuantity.text = "\(self.arrQuantity[index])"
-            self.data?.quantitySelected = self.lblQuantity.text ?? ""
-            self.delegate?.updateQuantity(model: self.data,index : self.row)
-        }
-    }
     
     @IBAction func btnActionRemove(_ sender: AnyObject) {
         self.delegate?.removeProductFromCart(index: row)
     }
+    
+    
+    @IBAction func segmentControlAction(_ sender: AnyObject) {
+        switch segmentcontrolQuantity.selectedSegmentIndex
+        {
+        case 0:
+            if lblQuantity.text == data?.quantity {
+                UserFunctions.showAlert(message: L10n.maximumQuantityReached.string)
+                return
+            }
+            lblQuantity.text = "\((Int(lblQuantity.text ?? "0") ?? 0) + 1)"
+        case 1:
+            if lblQuantity.text == "1" {
+                UserFunctions.showAlert(message: L10n.minimumQuantityIsOne.string)
+                return
+            }
+            lblQuantity.text = "\((Int(lblQuantity.text ?? "1") ?? 1) - 1)"
+        default:
+            print("hello")
+            break; 
+        }
+        self.data?.quantitySelected = self.lblQuantity.text ?? "1"
+        self.delegate?.updateQuantity(model: self.data,index : self.row)
+        
+    }
+    
 }

@@ -42,7 +42,7 @@ class ApiManager {
                     let category = Category.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
                     
-                case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) , .GetUserItem(_) :
+                case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) , .GetUserItem(_), .GetNewProduct(_) :
                     let result = ProductResponse(arrResult: data["data"])
                     singleUserArray = result as AnyObject?
                     
@@ -94,7 +94,13 @@ class ApiManager {
                     let cartDetails = CartData.changeDictToModelArray(jsoon1: data)
                     singleUserArray = cartDetails as AnyObject?
                     break
-                
+                case .GetAddress(_) :
+                    singleUserArray = DefaultAddress(arrResult : data["data"])
+                    
+                case .GetSearchAll(_) :
+                    singleUserArray = SearchResult(arrResult: data["data"])
+                    break
+                    
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }

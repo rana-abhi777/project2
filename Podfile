@@ -21,6 +21,7 @@ pod 'DropDown'
 pod 'SDWebImage'
 pod 'Presentr'
 pod 'SwiftMessages'
+pod 'MICountryPicker', :git => 'https://github.com/mustafaibrahim989/MICountryPicker.git', :branch => 'master'
 end
 
 post_install do |installer|

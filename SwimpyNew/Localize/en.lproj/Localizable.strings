@@ -52,3 +52,9 @@
 "People" = "People";
 "Store" = "Store";
 
+"Address added successfully" = "Address added successfully";
+"Address edited successfully" = "Address edited successfully";
+"Please select country"  = "Please select country";
+"Select Country" = "Select Country";
+"Minimum quantity is one" = "Minimum quantity is one";
+"Maximum quantity reached" = "Maximum quantity reached";

@@ -211,3 +211,15 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     }
     
 }
+//extension UIButton {
+//    
+//    @IBInspectable
+//    open var exclusiveTouch : Bool {
+//        get {
+//            return self.isExclusiveTouch
+//        }
+//        set(value) {
+//            self.isExclusiveTouch = value
+//        }
+//    }
+//}

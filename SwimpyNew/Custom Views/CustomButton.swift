@@ -26,6 +26,15 @@ class CustomButton: UIButton {
             layer.borderColor = borderColor?.cgColor
         }
     }
+//    @IBInspectable
+//    open var exclusiveTouch : Bool  {
+//        get {
+//            return self.isExclusiveTouch
+//        }
+//        set(value) {
+//            self.isExclusiveTouch = value
+//        }
+//    }
     
 //    override func setTitle(_ title: String?, for state: UIControlState) {
 //        super.setTitle(title, for: .normal)

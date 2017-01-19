@@ -30,6 +30,7 @@ enum API {
     case GetCategory(OptionalDictionary)
     case GetCategoryResults(OptionalDictionary)
     case GetSaleProduct(OptionalDictionary)
+    case GetNewProduct(OptionalDictionary)
     
     case LikeProduct(OptionalDictionary)
     case DislikeProduct(OptionalDictionary)
@@ -64,6 +65,10 @@ enum API {
     case EditProfile(OptionalDictionary)
     
     case AddAddress(OptionalDictionary)
+    case GetAddress(OptionalDictionary)
+    case EditAddress(OptionalDictionary)
+    
+    case GetSearchAll(OptionalDictionary)
     
     case Logout()
 }
@@ -88,6 +93,8 @@ enum APIParameters {
     case GetUserActivity(pageNo : String?)
     case ProductDetail(productId : String?)
     case GetFeaturedProduct(pageNo : String?)
+    case GetNewProduct(pageNo : String?)
+    
     
     case FollowStore(sellerId : String?)
     case UnfollowStore(sellerId : String?)
@@ -108,14 +115,17 @@ enum APIParameters {
     
     
     //AddAddress
-    case AddAddress(fullName : String?,addressLine1 : String?,addressLine2 : String?,countryName : String?,city : String?, state : String?,zipcode : String?,phoneNo : String?,isDefault : Bool?)
+    case AddAddress(fullName : String?,addressLine1 : String?,addressLine2 : String?,countryName : String?,city : String?, state : String?,zipcode : String?,phoneNo : String?,isDefault : String?)
+    case GetAddress()
+    case EditAddress(fullName : String?,addressLine1 : String?,addressLine2 : String?,countryName : String?,city : String?, state : String?,zipcode : String?,phoneNo : String?,isDefault : String?,addressId : String?)
     
     //profile
     case NotificationOnOff(blockUnblock : String?)
     case ChangePassword(newPassword : String?)
     case Logout()
     
-    
+    //search
+    case GetSearchAll(text : String? ,value : String?)
     case SearchSuggestion(text : String?)
     
     
@@ -154,6 +164,8 @@ enum APIParameters {
             
         case .GetPopularProduct(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
+        case .GetNewProduct(let pageNo) :
+            return["pageNo" : (pageNo ?? "") as AnyObject]
             
         case .GetGlobalActivity(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
@@ -181,11 +193,15 @@ enum APIParameters {
             return ["name" : (name ?? "") as AnyObject, "email" : (email ?? "") as AnyObject]
             
         case .SearchSuggestion(let text) :
-             return ["text" : (text ?? "") as AnyObject]
+            return ["text" : (text ?? "") as AnyObject]
             
         case .AddAddress(let fullName,let addressLine1,let addressLine2, let countryName, let city,let state,let zipcode,let  phoneNo,let isDefault) :
-            return ["fullName" : (fullName ?? "") as AnyObject, "addressLine1" : (addressLine1 ?? "") as AnyObject,"addressLine2" : (addressLine2 ?? "") as AnyObject, "countryName" : (countryName ?? "") as AnyObject,"city" : (city ?? "") as AnyObject, "state" : (state ?? "") as AnyObject,"zipcode" : (zipcode ?? "") as AnyObject, "phoneNo" : (phoneNo ?? "") as AnyObject, "isDefault" : (isDefault ?? true) as AnyObject]
+            return ["fullName" : (fullName ?? "") as AnyObject, "addressLine1" : (addressLine1 ?? "") as AnyObject,"addressLine2" : (addressLine2 ?? "") as AnyObject, "countryName" : (countryName ?? "") as AnyObject,"city" : (city ?? "") as AnyObject, "state" : (state ?? "") as AnyObject,"zipcode" : (zipcode ?? "") as AnyObject, "phoneNo" : (phoneNo ?? "") as AnyObject, "isDefault" : (isDefault ?? "false") as AnyObject]
             
+        case .EditAddress(let fullName,let addressLine1,let addressLine2, let countryName, let city,let state,let zipcode,let  phoneNo,let isDefault,let addressId) :
+            return ["fullName" : (fullName ?? "") as AnyObject, "addressLine1" : (addressLine1 ?? "") as AnyObject,"addressLine2" : (addressLine2 ?? "") as AnyObject, "countryName" : (countryName ?? "") as AnyObject,"city" : (city ?? "") as AnyObject, "state" : (state ?? "") as AnyObject,"zipcode" : (zipcode ?? "") as AnyObject, "phoneNo" : (phoneNo ?? "") as AnyObject, "isDefault" : (isDefault ?? "false") as AnyObject,"addressId" : (addressId ?? "false") as AnyObject]
+        case .GetSearchAll(let text,let value) :
+            return ["text" : (text ?? "") as AnyObject, "value" : (value ?? "") as AnyObject]
         default:
             return ["" : "" as AnyObject]
         }
@@ -220,13 +236,17 @@ extension API : Router {
         case .UnfollowUser(let parameters) : return parameters
         case .AddToCart(let parameters) : return parameters
         case .GetCartDetail(_) : return nil
-        case.RemoveCartItem(let parameters) : return parameters
-        case.NotificationOnOff(let parameters) : return parameters
+        case .RemoveCartItem(let parameters) : return parameters
+        case .NotificationOnOff(let parameters) : return parameters
         case .ChangePassword(let parameters) : return parameters
         case .SearchSuggestion(let parameters) : return parameters
         case .EditProfile(let parameters) : return parameters
         case .Logout(_) : return nil
         case .AddAddress(let parameters) : return parameters
+        case .GetAddress(_) : return nil
+        case .EditAddress(let parameters) : return parameters
+        case .GetNewProduct(let parameters) : return parameters
+        case .GetSearchAll(let parameters) : return parameters
         }
     }
     
@@ -263,6 +283,10 @@ extension API : Router {
         case .EditProfile(_) : return "api/users/updateProfile"
         case .Logout(_) : return "api/users/logout"
         case .AddAddress(_) : return "api/users/addAddress"
+        case .EditAddress(_) : return "api/users/editAddress"
+        case .GetAddress(_) : return "api/users/getAddresss"
+        case .GetNewProduct(_) : return "product/getNewProduct"
+        case .GetSearchAll(_) : return "api/users/searchAll"
         }
     }
     

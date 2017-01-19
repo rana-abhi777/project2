@@ -57,6 +57,7 @@ PODS:
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
   - IQKeyboardManager (4.0.6)
+  - MICountryPicker (0.2.2)
   - Presentr (1.0.3)
   - RMMapper (1.1.5)
   - SDWebImage (3.8.2):
@@ -83,6 +84,8 @@ DEPENDENCIES:
   - Fusuma (~> 1.0.0)
   - Google/SignIn
   - IQKeyboardManager
+  - MICountryPicker (from `https://github.com/mustafaibrahim989/MICountryPicker.git`,
+    branch `master`)
   - Presentr
   - RMMapper
   - SDWebImage
@@ -91,6 +94,16 @@ DEPENDENCIES:
   - SZTextView
   - XLPagerTabStrip
   - YYWebImage
+
+EXTERNAL SOURCES:
+  MICountryPicker:
+    :branch: master
+    :git: https://github.com/mustafaibrahim989/MICountryPicker.git
+
+CHECKOUT OPTIONS:
+  MICountryPicker:
+    :commit: 43a40241da087c81c4f26715283c12ac1335ebb2
+    :git: https://github.com/mustafaibrahim989/MICountryPicker.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -112,6 +125,7 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
+  MICountryPicker: 82122c5f918bc9f9e2c510793fffd188dc8d38ce
   Presentr: 9759bf538d9f3211a5ee1314a541a11bbea7ea71
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c

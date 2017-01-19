@@ -89,6 +89,18 @@ enum L10n {
   case people
   /// Store
   case store
+  /// Address added successfully
+  case addressAddedSuccessfully
+  /// Address edited successfully
+  case addressEditedSuccessfully
+  /// Please select country
+  case pleaseSelectCountry
+  /// Select Country
+  case selectCountry
+  /// Minimum quantity is one
+  case minimumQuantityIsOne
+  /// Maximum quantity reached
+  case maximumQuantityReached
 }
 // swiftlint:enable type_body_length
 
@@ -181,6 +193,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "People")
       case .store:
         return L10n.tr(key: "Store")
+      case .addressAddedSuccessfully:
+        return L10n.tr(key: "Address added successfully")
+      case .addressEditedSuccessfully:
+        return L10n.tr(key: "Address edited successfully")
+      case .pleaseSelectCountry:
+        return L10n.tr(key: "Please select country")
+      case .selectCountry:
+        return L10n.tr(key: "Select Country")
+      case .minimumQuantityIsOne:
+        return L10n.tr(key: "Minimum quantity is one")
+      case .maximumQuantityReached:
+        return L10n.tr(key: "Maximum quantity reached")
     }
   }
 

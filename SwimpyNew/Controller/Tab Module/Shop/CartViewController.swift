@@ -27,7 +27,6 @@ class CartViewController: UIViewController,CartProductTask,CartTask {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-        
     }
     
     override func didReceiveMemoryWarning() {

@@ -22,8 +22,8 @@ class FeaturedTableViewCell: UITableViewCell {
     @IBOutlet weak var btnNumberOfShare: UIButton!
     @IBOutlet weak var btnNumberOfLike: UIButton!
     @IBOutlet weak var btnLike: UIButton!
-    
     @IBOutlet weak var imgHeart: UIImageView!
+    
     //MARK:- variables
     var data : Products?
     var delegate : FeaturedProductsTask?
