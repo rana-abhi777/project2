@@ -78,7 +78,7 @@ enum APIParameters {
     
     //login signup
     case Login(email : String? , password : String?)
-    case Signup(fullname : String?,email : String? , password : String?)
+    case Signup(fullname : String?,email : String? , password : String?, countryName : String?)
     case ForgotPassword(email : String?)
     case LoginViaFacebook(facebookId : String?, name : String?, facebookImageUrl : String?)
     case LoginViaGoogle(googleId : String?,name : String? , googleImageUrl : String?)
@@ -106,7 +106,7 @@ enum APIParameters {
     case GetUserItem(type : String?,userId : String?,pageNo : String?)
     case FollowUser(userId : String?)
     case UnfollowUser(userId : String?)
-    case EditProfile(name : String?, email : String?)
+    case EditProfile(name : String?, email : String?,countryName : String?)
     
     //cart
     case AddToCart(productId : String?,variations : String?,color : String?)
@@ -131,8 +131,8 @@ enum APIParameters {
     
     func formatParameters() -> [String : AnyObject]? {
         switch  self {
-        case .Signup(let fullname, let email,let password) :
-            return ["name" : (fullname ?? "") as AnyObject, "email" : (email ?? "") as AnyObject , "password" : (password ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject]
+        case .Signup(let fullname, let email,let password, let countryName) :
+            return ["name" : (fullname ?? "") as AnyObject, "email" : (email ?? "") as AnyObject , "password" : (password ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject, "countryName" : (countryName ?? "") as AnyObject]
         case .Login(let email, let  password):
             return ["email" : (email ?? "") as AnyObject, "password" : (password ?? "") as AnyObject, "deviceType" : "IOS" as AnyObject , "deviceToken" : "cd315fd290331e9f85ec1057df0a867bfe1a56b502fc451d40171dd70bf0ad69" as AnyObject]
         case .ForgotPassword(let email):
@@ -189,8 +189,8 @@ enum APIParameters {
         case .ChangePassword(let newPassword) :
             return ["newPassword" : (newPassword ?? "") as AnyObject]
             
-        case .EditProfile(let name, let email) :
-            return ["name" : (name ?? "") as AnyObject, "email" : (email ?? "") as AnyObject]
+        case .EditProfile(let name, let email ,let countryName) :
+            return ["name" : (name ?? "") as AnyObject, "email" : (email ?? "") as AnyObject, "countryName" : (countryName ?? "") as AnyObject]
             
         case .SearchSuggestion(let text) :
             return ["text" : (text ?? "") as AnyObject]

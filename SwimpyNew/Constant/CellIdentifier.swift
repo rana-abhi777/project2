@@ -23,6 +23,7 @@ enum CellIdentifiers: String {
     case CartPriceDetailTableViewCell = "CartPriceDetailTableViewCell"
     case SettingsTableViewCell = "SettingsTableViewCell"
     case SearchPeopleTableViewCell = "SearchPeopleTableViewCell"
+    case SearchLoaderTableViewCell = "SearchLoaderTableViewCell"
     
     //MARK::- COLLECTION VIEW CELL IDENTIFIERS
     
@@ -41,5 +42,6 @@ enum CellIdentifiers: String {
     case NewCollectionViewCell = "NewCollectionViewCell"
     case SearchItemCollectionViewCell = "SearchItemCollectionViewCell"
     case SearchStoreCollectionViewCell = "SearchStoreCollectionViewCell"
+    case SearchLoaderCollectionViewCell = "SearchLoaderCollectionViewCell"
 
 }

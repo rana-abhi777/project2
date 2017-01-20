@@ -8,7 +8,7 @@
 import UIKit
 import Fusuma
 import Presentr
-
+import MICountryPicker
 
 class BaseViewController: UIViewController {
     
@@ -18,6 +18,10 @@ class BaseViewController: UIViewController {
     var btnOutlet : UIButton!
     var viewCartNumber : UIView!
     var lblCartItem : UILabel!
+    var countryName : String = ""
+    
+    var btnCountry : UIButton?
+    var lblCountryName : UILabel?
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -97,8 +101,32 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func selectCountry(labelCountry: UILabel?, btnCountry : UIButton?)  {
+        self.lblCountryName = labelCountry
+        self.btnCountry = btnCountry
+        let picker = MICountryPicker()
+        picker.delegate = self
+        self.navigationController?.pushViewController(picker, animated: false)
+    }
+   
 
 }
+
+//MARK:- MICountryPicker delegates
+
+extension BaseViewController : MICountryPickerDelegate {
+    public func countryPicker(_ picker: MICountryPicker, didSelectCountryWithName name: String, code: String) {
+        countryName = name
+        self.lblCountryName?.text = name
+        self.btnCountry?.setTitle(name, for: .normal)
+        _ = navigationController?.popViewController(animated: false)
+    }
+    
+    func countryPicker(_ picker: MICountryPicker, didSelectCountryWithName name: String, code: String, dialCode: String) {
+        //
+    }
+}
+
 
 //MARK::- Fusuma delegates
 

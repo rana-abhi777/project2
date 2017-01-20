@@ -33,7 +33,7 @@ class DefaultAddress: NSObject {
         zipcode = arrResult["zipcode"].stringValue
         state = arrResult["state"].stringValue
         city = arrResult["city"].stringValue
-        countryName = arrResult["countryName"].stringValue
+        countryName = arrResult["countryName"].stringValue ?? nil
         addressLine2 = arrResult["addressLine2"].stringValue
         addressLine1 = arrResult["addressLine1"].stringValue
         fullName = arrResult["fullName"].stringValue

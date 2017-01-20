@@ -20,11 +20,18 @@ class SearchStoreViewController: UIViewController , IndicatorInfoProvider {
     //MARK:- variable
     var text = ""
     var timer = Timer()
+    var oldText : String?
     var arrStores : [Store] = []
     var collectionViewdataSource : CollectionViewDataSource?{
         didSet{
             collectionViewSearchStore.dataSource = collectionViewdataSource
             collectionViewSearchStore.delegate = collectionViewdataSource
+        }
+    }
+    var collectionViewLoaderDataSource : SearchLoaderDatasource?{
+        didSet{
+            collectionViewSearchStore.dataSource = collectionViewLoaderDataSource
+            collectionViewSearchStore.delegate = collectionViewLoaderDataSource
         }
     }
 
@@ -43,6 +50,7 @@ class SearchStoreViewController: UIViewController , IndicatorInfoProvider {
             timer.invalidate()
             return
         }else {
+            configureLoader()
             timer =   Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchStoreViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
         }
     }
@@ -54,17 +62,34 @@ class SearchStoreViewController: UIViewController , IndicatorInfoProvider {
     //MARK:- function
     func hitApiToGetSearchResult() {
         if text == "" {
+            configureLoader()
             return
         }
+        if text == oldText {
+            return
+        }
+        configureLoader()
+
         ApiManager().getDataOfURL(withApi: API.GetSearchAll(APIParameters.GetSearchAll(text: text, value: "store").formatParameters()), failure: { (err) in
             print(err)
             }, success: { (model) in
                 guard let data = model as? SearchResult else { return }
+                self.oldText = data.text
                 self.arrStores = data.dataStore ?? []
-                self.configureCollectionView()
+                if self.arrStores.count > 0 {
+                    self.view.bringSubview(toFront: self.collectionViewSearchStore)
+                    self.configureCollectionView()
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoStore)
+                }
             }, method: "GET", loader: false)
     }
     
+    func configureLoader() {
+        collectionViewLoaderDataSource = SearchLoaderDatasource(colectionView: collectionViewSearchStore)
+        collectionViewSearchStore.reloadData()
+    }
     
     func configureCollectionView(){
         collectionViewdataSource = CollectionViewDataSource(items: arrStores, collectionView: collectionViewSearchStore, cellIdentifier: CellIdentifiers.SearchStoreCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 168, cellWidth: (collectionViewSearchStore.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in

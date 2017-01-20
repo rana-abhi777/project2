@@ -26,6 +26,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     @IBOutlet weak var txtFullname: UITextField!
     @IBOutlet weak var viewSignup: UIView!
     @IBOutlet weak var viewSignin: UIView!
+    @IBOutlet weak var btnCountryName: UIButton!
     
     //MARK: override functions
     override func viewDidLoad() {
@@ -50,9 +51,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
-    
+       
     //MARK: FUNCTION
     
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -172,7 +171,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     }
     @IBAction func btnActionSignup(sender: AnyObject) {
         if validateSignup() {
-            ApiManager().getDataOfURL(withApi: API.Signup(APIParameters.Signup(fullname: txtFullname.text, email: txtSignupEmail.text, password: txtSignupPassword.text).formatParameters()), failure: { (err) in
+            print(btnCountryName.titleLabel?.text)
+            ApiManager().getDataOfURL(withApi: API.Signup(APIParameters.Signup(fullname: txtFullname.text, email: txtSignupEmail.text, password: txtSignupPassword.text, countryName : btnCountryName.titleLabel?.text).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: { (model) in
                     let VC = StoryboardScene.Main.instantiateTabBarController()
@@ -200,6 +200,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         txtSignupEmail.text = ""
         txtFullname.text = ""
         txtSignupPassword.text = ""
+        btnCountryName.setTitle(L10n.selectCountry.string, for: .normal)
+        btnProfilePic.setImage(UIImage(asset: .icUpload), for: .normal)
     }
     @IBAction func btnActionLoginWithGoogle(sender: AnyObject) {
         
@@ -210,9 +212,12 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         logInWithFb(viewcontroller: self)
     }
     
+    @IBAction func btnActionSelectCountry(_ sender: AnyObject) {
+        self.selectCountry(labelCountry: nil, btnCountry: btnCountryName)
+    }
 }
 //extension UIButton {
-//    
+//
 //    @IBInspectable
 //    open var exclusiveTouch : Bool {
 //        get {

@@ -92,10 +92,13 @@ class ProfileViewController: BasePageViewController {
     
     func setUI() {
         lblName.text = userDetails?.name ?? ""
-        lblCountryName.text = "India"
+        if let country = userDetails?.countryName , country != nil {
+            lblCountryName.text = country
+        }else {
+            lblCountryName.text = "(Country Name)"
+        }
         btnNumberOfFollowers.setTitle((userDetails?.totalFollowedBy ?? "") + L10n._Followers.string, for: .normal)
         btnNumberOfFollowing.setTitle((userDetails?.totalFollowing ?? "") + L10n._Following.string, for: .normal)
-        
         imgUserImage.sd_setImage(with: URL(string: userDetails?.profilePicURLOriginal ?? ""))
         if userDetails?.followStatus == L10n._0.string {
             btnFollow?.setTitle(L10n.follow.string, for: .normal)

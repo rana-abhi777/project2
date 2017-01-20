@@ -14,16 +14,25 @@ class SearchPeopleViewController: UIViewController, IndicatorInfoProvider {
     
     //MARK:- outlets
     @IBOutlet weak var tableViewSearchPeople: UITableView!
+    @IBOutlet weak var viewNoPeople: UIView!
     
     //MARK:- variable
     var text = ""
     var timer = Timer()
     var arrUserData : [UserSearchResult] = []
     var tableViewDataSource : TableViewCustomDatasource?
+    var tableDataSource : SearchLoader? {
+        didSet{
+            tableViewSearchPeople.dataSource = tableDataSource
+            tableViewSearchPeople.delegate = tableDataSource
+        }
+    }
+    var oldText : String?
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -34,6 +43,7 @@ class SearchPeopleViewController: UIViewController, IndicatorInfoProvider {
             timer.invalidate()
             return
         }else {
+            configureLoaderView()
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchPeopleViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
         }
     }
@@ -45,16 +55,33 @@ class SearchPeopleViewController: UIViewController, IndicatorInfoProvider {
     //MARK:- function
      func hitApiToGetSearchResult() {
         if text == "" {
+//            self.view.bringSubview(toFront: self.viewNoPeople)
+            configureLoaderView()
             return
         }
+        if text == oldText {
+            return
+        }
+        configureLoaderView()
         ApiManager().getDataOfURL(withApi: API.GetSearchAll(APIParameters.GetSearchAll(text: text, value: "user").formatParameters()), failure: { (err) in
             print(err)
             }, success: { (model) in
                 guard let data = model as? SearchResult else { return }
+                self.oldText = data.text
                 self.arrUserData = data.dataUser ?? []
-                self.configureTableView()
-                print(model)
+                if self.arrUserData.count > 0 {
+                    self.view.bringSubview(toFront: self.tableViewSearchPeople)
+                    self.configureTableView()
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoPeople)
+                }
             }, method: "GET", loader: false)
+    }
+    
+    func configureLoaderView() {
+        tableDataSource = SearchLoader(tableView: tableViewSearchPeople)
+        tableViewSearchPeople.reloadData()
     }
     
     func configureTableView() {

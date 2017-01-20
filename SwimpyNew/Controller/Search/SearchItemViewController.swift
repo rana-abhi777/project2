@@ -12,7 +12,7 @@ import Alamofire
 
 class SearchItemViewController: UIViewController , IndicatorInfoProvider ,SearchProductTask{
     
-   
+    
     //MARK:- outlets
     @IBOutlet weak var collectionViewSearchItem: UICollectionView!
     @IBOutlet weak var viewNoProduct: UIView!
@@ -27,6 +27,13 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
             collectionViewSearchItem.delegate = collectionViewdataSource
         }
     }
+    var collectionViewLoaderDataSource : SearchLoaderDatasource?{
+        didSet{
+            collectionViewSearchItem.dataSource = collectionViewLoaderDataSource
+            collectionViewSearchItem.delegate = collectionViewLoaderDataSource
+        }
+    }
+    var oldText : String?
     
     //MARK:- override functions
     override func viewDidLoad() {
@@ -38,6 +45,7 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
             timer.invalidate()
             return
         }else {
+            configureLoader()
             timer =   Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchItemViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
         }
     }
@@ -54,16 +62,35 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
     
     func hitApiToGetSearchResult() {
         if text == "" {
+            configureLoader()
+//             self.view.bringSubview(toFront: self.viewNoProduct)
             return
         }
+        if text == oldText {
+            return
+        }
+        configureLoader()
         ApiManager().getDataOfURL(withApi: API.GetSearchAll(APIParameters.GetSearchAll(text: text, value: "item").formatParameters()), failure: { (err) in
             print(err)
             }, success: { (model) in
                 guard let data = model as? SearchResult else { return }
+                self.oldText = data.text
                 self.arrProduct = data.dataitem ?? []
-                self.configureCollectionView()
+                if self.arrProduct.count > 0 {
+                    self.view.bringSubview(toFront: self.collectionViewSearchItem)
+                    self.configureCollectionView()
+                    
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoProduct)
+                }
                 print(model)
             }, method: "GET", loader: false)
+    }
+    
+    func configureLoader() {
+        collectionViewLoaderDataSource = SearchLoaderDatasource(colectionView: collectionViewSearchItem)
+        collectionViewSearchItem.reloadData()
     }
     
     func configureCollectionView(){

@@ -12,6 +12,7 @@ import FBSDKLoginKit
 import IQKeyboardManager
 import XLPagerTabStrip
 import UserNotifications
+import MICountryPicker
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {

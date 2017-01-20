@@ -15,12 +15,13 @@ class SearchResult: NSObject {
     var dataitem : [Item]?
     var dataStore : [Store]?
     var dataUser : [UserSearchResult]?
+    var text : String?
     
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
         value = arrResult["value"].stringValue
-
+        text = arrResult["text"].stringValue
         switch (value ?? "") {
         case "item" :
             dataitem = Item.changeDictToModelArray(jsoon1: arrResult)

@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import MICountryPicker
 
-class AddressDetailsViewController: UIViewController {
+
+class AddressDetailsViewController: BaseViewController {
     
     //MARK:- outlets
     @IBOutlet weak var btnMarkAsDefault: UIButton!
@@ -62,7 +62,12 @@ class AddressDetailsViewController: UIViewController {
         txtCity.text = defaultAddressData?.city ?? ""
         txtZipcode.text = defaultAddressData?.zipcode ?? ""
         txtState.text = defaultAddressData?.state ?? ""
-        lblCountry.text = defaultAddressData?.countryName ?? L10n.selectCountry.string
+        if let country = defaultAddressData?.countryName , country != "" {
+            lblCountry.text = country
+        }
+        else {
+            lblCountry.text  = L10n.selectCountry.string
+        }
         flagMarkAsDefault ? btnMarkAsDefault.setImage(UIImage(asset: .icCheckSmall), for: .normal) : btnMarkAsDefault.setImage(UIImage(asset: .icCheckSmall0), for: .normal)
         guard let _ = defaultAddressData?.id else{
             flagEditApi = false
@@ -121,21 +126,10 @@ class AddressDetailsViewController: UIViewController {
     
     
     @IBAction func btnActionCountryDropDown(_ sender: AnyObject) {
-        let picker = MICountryPicker()
-        picker.delegate = self
-        navigationController?.pushViewController(picker, animated: false)
+        self.selectCountry(labelCountry: lblCountry, btnCountry: nil)
     }
     
 }
 
 
-extension AddressDetailsViewController : MICountryPickerDelegate {
-    public func countryPicker(_ picker: MICountryPicker, didSelectCountryWithName name: String, code: String) {
-        lblCountry.text = name
-        _ = navigationController?.popViewController(animated: false)
-    }
-    
-    func countryPicker(_ picker: MICountryPicker, didSelectCountryWithName name: String, code: String, dialCode: String) {
-        //
-    }
-}
+

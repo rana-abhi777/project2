@@ -22,6 +22,7 @@ class UserDetails: NSObject {
     var totalFollowing : String?
     var totalFollowedBy : String?
     var followStatus : String?
+    var countryName : String?
     
     
     //MARK:- initializer
@@ -39,6 +40,7 @@ class UserDetails: NSObject {
         totalFollowing = arrResult["totalFollowing"].stringValue
         totalFollowedBy = arrResult["totalFollowedBy"].stringValue
         followStatus = arrResult["followStatus"].stringValue
+        countryName = arrResult["countryName"].stringValue
     }
     
     override init() {
