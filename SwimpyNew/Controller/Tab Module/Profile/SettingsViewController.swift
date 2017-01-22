@@ -9,12 +9,12 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    
     //MARK:- outlets
     @IBOutlet weak var tableViewSettings: UITableView!
     
     //MARK:- variables
-     var arrData : [String] = [L10n.editProfile.string,L10n.termsAndConditions.string,L10n.notifications.string,L10n.changePassword.string,L10n.logout.string]
+    var arrData : [String] = [L10n.editProfile.string,L10n.termsAndConditions.string,L10n.notifications.string,L10n.changePassword.string,L10n.logout.string]
     var tableViewDataSource : TableViewCustomDatasource?
     
     //MARK:- override functions
@@ -22,12 +22,12 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         configureTableView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-     //MARK:- functions
+    
+    //MARK:- functions
     func configureTableView() {
         tableViewDataSource = TableViewCustomDatasource(items: arrData as Array<AnyObject>?, height: 56, estimatedHeight: 56, tableView: tableViewSettings, cellIdentifier: CellIdentifiers.SettingsTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? SettingsTableViewCell
@@ -43,18 +43,20 @@ class SettingsViewController: UIViewController {
                     self.navigationController?.pushViewController(VC, animated: true)
                     break
                 case 4: //logout
-                    UserDefaults.standard.removeObject(forKey: "SwimpyUser")
-                    let initialNavVC = StoryboardScene.Main.instantiateInitialNavigationViewController()
-                    let VC = StoryboardScene.Main.instantiateLoginViewController()
-                    initialNavVC.viewControllers = [VC]
-                    UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
-
-                    break
+                    ApiManager().getDataOfURL(withApi: API.Logout(APIParameters.Logout().formatParameters()), failure: { (err) in
+                        print(err)
+                        }, success: {[unowned self] (model) in
+                            UserDefaults.standard.removeObject(forKey: "SwimpyUser")
+                            let initialNavVC = StoryboardScene.Main.instantiateInitialNavigationViewController()
+                            let VC = StoryboardScene.Main.instantiateLoginViewController()
+                            initialNavVC.viewControllers = [VC]
+                            UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
+                        }, method: "PUT", loader: true)
                 default :
                     break
                 }
-               
-            }, willDisplayCell: { (indexPath) in                
+                
+            }, willDisplayCell: { (indexPath) in
         })
         
         tableViewSettings.delegate = tableViewDataSource

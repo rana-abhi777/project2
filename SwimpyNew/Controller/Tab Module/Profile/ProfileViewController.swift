@@ -136,6 +136,8 @@ class ProfileViewController: BasePageViewController {
     @IBAction func btnActionMessage(sender: AnyObject) {
     }
     @IBAction func btnActionFollow(sender: AnyObject) {
+        //because m opening the profile of other uaer followed by affected
+        
         if userDetails?.followStatus == L10n._0.string {
             userDetails?.followStatus = L10n._1.string
             btnFollow?.setTitle(L10n.following.string, for: .normal)
@@ -149,7 +151,7 @@ class ProfileViewController: BasePageViewController {
                 }, method: "POST", loader: false)
         }
         else {
-            btnFollow?.setTitle(L10n.followStore.string, for: .normal)
+            btnFollow?.setTitle(L10n.follow.string, for: .normal)
             self.userDetails?.followStatus = L10n._0.string
             let totalFollowers = "\((Int(userDetails?.totalFollowedBy ?? L10n._1.string) ?? 1) - 1)"
             btnNumberOfFollowers.setTitle(totalFollowers + L10n._Followers.string, for: .normal)

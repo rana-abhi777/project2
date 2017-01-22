@@ -41,7 +41,6 @@ class ApiManager {
                 case .GetCategory(_) :
                     let category = Category.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
-                    
                 case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) , .GetUserItem(_), .GetNewProduct(_) :
                     let result = ProductResponse(arrResult: data["data"])
                     singleUserArray = result as AnyObject?
@@ -58,8 +57,8 @@ class ApiManager {
                     singleUserArray = likeCount as AnyObject?
                     break
                     
-                case .GetGlobalActivity(_) , .GetUserActivity(_) :
-                     let category = GlobalActivityData(arrResult: data["data"])
+                case .GetGlobalActivity(_) , .GetUserActivity(_) , .GetFriendsActivity(_) :
+                    let category = GlobalActivityData(arrResult: data["data"])
                     singleUserArray = category as AnyObject?
                     break
                     
@@ -67,12 +66,12 @@ class ApiManager {
                     let productDetail = ProductDetail(response: data["data"])
                     singleUserArray = productDetail
                     break
-                case .FollowStore(_) :
+                    
+                case .FollowUser(_) , .UnfollowUser(_),.UnfollowStore(_),
+                     .FollowStore(_), .Logout(_) :
                     print(data)
                     break
-                case .UnfollowStore(_) :
-                    print(data)
-                    break
+                    
                 case .GetUserDetail(_) :
                     let userDetail = UserDetails(arrResult: data["data"])
                     singleUserArray = userDetail
@@ -100,6 +99,7 @@ class ApiManager {
                 case .GetSearchAll(_) :
                     singleUserArray = SearchResult(arrResult: data["data"])
                     break
+                    
                     
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
@@ -139,7 +139,7 @@ class ApiManager {
                     let user = User(arrResult: data["data"])
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
-               
+                    
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }

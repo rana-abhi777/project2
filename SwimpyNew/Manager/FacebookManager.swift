@@ -15,7 +15,7 @@ func returnUserdata() {
     var Requset : FBSDKGraphRequest
     
     ApiManager.showLoader()
-    Requset = FBSDKGraphRequest (graphPath:"me", parameters: ["fields":"email,name,picture.type(large),first_name,last_name,hometown"], httpMethod:"GET")
+    Requset = FBSDKGraphRequest (graphPath:"me", parameters: ["fields":"email,name,picture.type(large),first_name,last_name"], httpMethod:"GET")
     
     Requset.start(completionHandler: {  ( connection, result, error) -> Void in
         print(error)
@@ -32,9 +32,9 @@ func returnUserdata() {
                 if email ==  nil {
                     email = fb_id
                 }
-                let location = (result.value(forKey: "hometown") as? String) ?? ""
-                print(location)
-                let parameters = ["username" : uname,"firstname" :  firstname, "lastname" : lastname, "fb_id" : fb_id,"email" : email,"pic" : strPictureURL,"access_token" : accessToken, "country" : location ]
+                //let location = (result.value(forKey: "hometown") as? String) ?? ""
+               // print(location)
+                let parameters = ["username" : uname,"firstname" :  firstname, "lastname" : lastname, "fb_id" : fb_id,"email" : email,"pic" : strPictureURL,"access_token" : accessToken, "country" : "" ]
                 print(parameters)
                 
                 ApiManager().getDataOfURL(withApi: API.LoginViaFacebook(APIParameters.LoginViaFacebook(facebookId: email, name: uname, facebookImageUrl: strPictureURL).formatParameters()), failure: { (err) in
@@ -54,13 +54,14 @@ func returnUserdata() {
         }
     )
 }
+//,"user_hometown" ,hometown
 
 func logInWithFb(viewcontroller : UIViewController) {
     vc=viewcontroller
     let loginView : FBSDKLoginManager = FBSDKLoginManager()
     loginView.logOut()
     loginView.loginBehavior = FBSDKLoginBehavior.browser
-    loginView.logIn(withReadPermissions: ["public_profile","user_friends","email","user_hometown"], from: viewcontroller) { (result , error) in
+    loginView.logIn(withReadPermissions: ["public_profile","user_friends","email"], from: viewcontroller) { (result , error) in
         
         guard ((error) != nil) else {
             if (result?.isCancelled)! {

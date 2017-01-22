@@ -38,9 +38,9 @@ class SaleCollectionViewCell: UICollectionViewCell {
         lblProductName?.text = model.productName ?? ""
         lblOriginalPrice?.text = "$" + (model.base_price_unit ?? L10n._0.string)
         lblDiscountPrice?.text = "$" + (model.total_price ?? L10n._0.string)
-            
+        
         btnNumberOfLike?.setTitle(model.totalLikes ?? "", for: .normal)
-            
+        
         btnNumberOfShare?.setTitle(model.share ?? L10n._0.string, for: .normal)
         guard let url = model.productImageOriginal else { self.imgProduct.backgroundColor = UIColor.black
             return }
@@ -68,7 +68,7 @@ class SaleCollectionViewCell: UICollectionViewCell {
             ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
                 print(err)
                 }, success: {(model) in
-                   
+                    
                 }, method: "POST", loader: false)
         }
         else {
@@ -85,7 +85,5 @@ class SaleCollectionViewCell: UICollectionViewCell {
                 }, method: "POST", loader: false)
         }
     }
-    
-    
     
 }

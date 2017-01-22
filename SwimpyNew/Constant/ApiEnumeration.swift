@@ -37,6 +37,8 @@ enum API {
     
     case GetPopularProduct(OptionalDictionary)
     case GetGlobalActivity(OptionalDictionary)
+    case GetFriendsActivity(OptionalDictionary)
+    
     case GetUserActivity(OptionalDictionary)
     
     case ProductDetail(OptionalDictionary)
@@ -70,7 +72,7 @@ enum API {
     
     case GetSearchAll(OptionalDictionary)
     
-    case Logout()
+    case Logout(OptionalDictionary)
 }
 
 
@@ -90,6 +92,7 @@ enum APIParameters {
     case DislikeProduct(productId : String?)
     case GetPopularProduct(pageNo : String?)
     case GetGlobalActivity(pageNo : String?)
+    case GetFriendsActivity(pageNo : String?)
     case GetUserActivity(pageNo : String?)
     case ProductDetail(productId : String?)
     case GetFeaturedProduct(pageNo : String?)
@@ -166,7 +169,8 @@ enum APIParameters {
             return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetNewProduct(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
-            
+        case .GetFriendsActivity(let pageNo) :
+            return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetGlobalActivity(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetUserActivity(let pageNo) :
@@ -223,6 +227,7 @@ extension API : Router {
         case .DislikeProduct(let parameters) : return parameters
         case .GetPopularProduct(let parameters) : return parameters
         case .GetGlobalActivity(let parameters) : return parameters
+        case .GetFriendsActivity(let parameters) : return parameters
         case .ProductDetail(let parameters) : return parameters
         case .GetFeaturedProduct(let parameters) : return parameters
         case .FollowStore(let parameters) : return parameters
@@ -264,6 +269,7 @@ extension API : Router {
         case .DislikeProduct(_) : return "api/users/DislikeProduct"
         case .GetPopularProduct(_) : return "product/getPopularProduct"
         case .GetGlobalActivity(_) : return "api/users/getGlobalActivity"
+        case .GetFriendsActivity(_) : return "api/users/getFriendsActivity"
         case .ProductDetail(_) : return "product/getProductDetails"
         case .GetFeaturedProduct(_) : return "product/getFeaturedProduct"
         case .FollowStore(_) : return "api/users/followStores"

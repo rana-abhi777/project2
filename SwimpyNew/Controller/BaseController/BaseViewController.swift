@@ -119,6 +119,7 @@ extension BaseViewController : MICountryPickerDelegate {
         countryName = name
         self.lblCountryName?.text = name
         self.btnCountry?.setTitle(name, for: .normal)
+        self.navigationController?.navigationBar.isHidden = true
         _ = navigationController?.popViewController(animated: false)
     }
     

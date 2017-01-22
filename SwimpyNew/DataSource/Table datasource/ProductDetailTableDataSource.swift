@@ -14,11 +14,11 @@ import UIKit
 class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
     
     
-    
+    //MARK:-  variables
     var tableView:UITableView?
     var datasource : ProductDetail?
     var vc : UIViewController?
-     private var lastContentOffset: CGFloat = 0
+    private var lastContentOffset: CGFloat = 0
     var delegate : NavBarColor?
     
     //MARK:- initializer
@@ -89,13 +89,13 @@ class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewData
         if scrollView.contentOffset.y >= 120 && self.lastContentOffset < scrollView.contentOffset.y   {
             if scrollView.contentOffset.y >= 60 {
                 self.delegate?.setNavBarColor(color: UIColor.white)
-//                viewNavBar?.backgroundColor = UIColor.white
+                //                viewNavBar?.backgroundColor = UIColor.white
             }
         }
         else if self.lastContentOffset > scrollView.contentOffset.y {
             if scrollView.contentOffset.y <= 60 {
                 self.delegate?.setNavBarColor(color: UIColor.clear)
-//                viewNavBar?.backgroundColor = UIColor.clear
+                //                viewNavBar?.backgroundColor = UIColor.clear
                 
             }
         }
