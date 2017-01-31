@@ -111,7 +111,7 @@ class ProductDetail: NSObject {
         createrId = arrResult["createrId"].stringValue
         otherImage = ProductOtherImage.changeDictToModelArray(jsoonArr: arrResult["otherImage"].arrayValue)
         otherImage?.insert(ProductOtherImage(arrResult: arrResult["defaultImage"]), at: 0)
-//        otherImage?.append(ProductOtherImage(arrResult: arrResult["defaultImage"]))    //append profile image to other images array
+        //        otherImage?.append(ProductOtherImage(arrResult: arrResult["defaultImage"]))    //append profile image to other images array
         flatDiscount = arrResult["flatDiscount"].stringValue
         describe = arrResult["description"].stringValue
         likesStatus = arrResult["likesStatus"].intValue

@@ -285,7 +285,7 @@
 		20970CF91E1E49930090178E /* CartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartData.swift; sourceTree = "<group>"; };
 		20970CFB1E1E626B0090178E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		20970CFD1E1E695C0090178E /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		209C37791E1BD398003DD400 /* UserStores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStores.swift; sourceTree = "<group>"; };
+		209C37791E1BD398003DD400 /* UserStores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserStores.swift; path = ../Model/UserStores.swift; sourceTree = "<group>"; };
 		209CCCF21DD050B00061EFCF /* MMUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMUserManager.swift; sourceTree = "<group>"; };
 		209E4FF81DB8E89200F25CEC /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		20A368E91DE30DAC00B72A40 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -441,7 +441,6 @@
 				2035EBA71E0A497F00832D3D /* UserDetails.swift */,
 				20CF7E3F1E0BD068006A99BC /* ProductResponse.swift */,
 				202C29061E1678C200124BAF /* GlobalActivityData.swift */,
-				209C37791E1BD398003DD400 /* UserStores.swift */,
 				20E4BD671E307B3600F09AFE /* DefaultAddress.swift */,
 			);
 			path = Model;
@@ -504,6 +503,7 @@
 		200C14331DB9F41D0000FE42 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				209C37791E1BD398003DD400 /* UserStores.swift */,
 				200997341DE85B440084DDED /* NVActivityIndicatorView */,
 				200C14341DB9F42B0000FE42 /* SweetAlert.swift */,
 			);
@@ -981,7 +981,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = Y4523532TR;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1358,7 +1358,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b4f6ae60-ea71-4278-bb34-15a4f3c96a68";
+				PROVISIONING_PROFILE = "91435f83-f832-47fe-aea0-bb5179ed1537";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1405,7 +1405,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "b4f6ae60-ea71-4278-bb34-15a4f3c96a68";
+				PROVISIONING_PROFILE = "91435f83-f832-47fe-aea0-bb5179ed1537";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1421,16 +1421,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
+				DEVELOPMENT_TEAM = Y4523532TR;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "91435f83-f832-47fe-aea0-bb5179ed1537";
+				PROVISIONING_PROFILE_SPECIFIER = SwimpyAdhocProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1445,15 +1445,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
+				DEVELOPMENT_TEAM = Y4523532TR;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "91435f83-f832-47fe-aea0-bb5179ed1537";
+				PROVISIONING_PROFILE_SPECIFIER = SwimpyAdhocProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

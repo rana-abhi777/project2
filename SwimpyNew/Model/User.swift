@@ -35,7 +35,7 @@ class User: NSObject {
         profilePicURLThumbnail = profilePicDict["thumbnail"]?.stringValue
         profilePicURLOriginal = profilePicDict["original"]?.stringValue
         notification = arrResult["notification"].stringValue
-        countryName = arrResult["countryName"].stringValue ?? nil
+        countryName = arrResult["countryName"].stringValue 
     }
     
     override init() {
