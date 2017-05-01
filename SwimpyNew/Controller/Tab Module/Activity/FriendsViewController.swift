@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class FriendsViewController:  UIViewController,IndicatorInfoProvider ,FriendsActivityTask {
+class FriendsViewController:  UIViewController,IndicatorInfoProvider  {
 
     //MARK:- outlets
     @IBOutlet weak var tableViewFriendsActivity: UITableView!
@@ -25,9 +25,9 @@ class FriendsViewController:  UIViewController,IndicatorInfoProvider ,FriendsAct
     override func viewDidLoad() {
         super.viewDidLoad()
         pageNo = L10n._0.string
-        refreshControl.addTarget(self, action: #selector(FriendsViewController.initialize), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(FriendsViewController.setup), for: UIControlEvents.valueChanged)
         tableViewFriendsActivity?.refreshControl =  refreshControl
-        initialize()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,10 +40,9 @@ class FriendsViewController:  UIViewController,IndicatorInfoProvider ,FriendsAct
     
     //MARK:- FUNCTION
     
-    func initialize() {
+    func setup() {
         pageNo = L10n._0.string
         arrActivityData = []
-        configureTableView()
         apiToGetFriendsActivity()
     }
     
@@ -51,6 +50,7 @@ class FriendsViewController:  UIViewController,IndicatorInfoProvider ,FriendsAct
         ApiManager().getDataOfURL(withApi: API.GetFriendsActivity(APIParameters.GetFriendsActivity(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
+                
                 self.refreshControl.endRefreshing()
                 let response = (model as? GlobalActivityData) ?? GlobalActivityData()
                 self.pageNo = response.pageNo ?? nil
@@ -63,51 +63,61 @@ class FriendsViewController:  UIViewController,IndicatorInfoProvider ,FriendsAct
                 }
                 else {
                     self.view.bringSubview(toFront: self.viewNoActivity)
-                    
                 }
                 
-            }, method: "GET", loader: true)
+            }, method: Keys.Get.rawValue, loader: true)
         
     }
     
     func configureTableView() {
-        tableViewDataSource = TableViewCustomDatasource(items: arrActivityData, height: 89, estimatedHeight: 89, tableView: tableViewFriendsActivity, cellIdentifier: CellIdentifiers.FriendsTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
-            let cell = cell as? FriendsTableViewCell
+        tableViewDataSource = TableViewCustomDatasource(items: arrActivityData, height: 89, estimatedHeight: 89, tableView: tableViewFriendsActivity, cellIdentifier: CellIdentifiers.GlobalActivityTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+            
+            let cell = cell as? GlobalActivityTableViewCell
             cell?.delegate = self
             cell?.configureCell(model: self.arrActivityData[indexpath.row],index : indexpath.row )
+            
             }, aRowSelectedListener: { (indexPath) in
+                
             }, willDisplayCell: { (indexPath) in
-                if indexPath.row == self.arrActivityData.count - 2 {
-                    if let temp = self.pageNo  {
-                        if temp != "" {
+                
+                    if let temp = self.pageNo , temp != "" ,indexPath.row == self.arrActivityData.count - 2 {
                             self.apiToGetFriendsActivity()
-                        }
                     }
-                    
-                }
         })
         tableViewFriendsActivity.delegate = tableViewDataSource
         tableViewFriendsActivity.dataSource = tableViewDataSource
         tableViewFriendsActivity.reloadData()
     }
     
-    //MARK:- global activity delegate
+    
+    //MARK:- indicator info provider delegate
+    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Friends")
+    }
+}
+//MARK:- global activity delegate
+
+extension FriendsViewController : GlobalActivityTask {
+    
     func redirectToItemScreen(itemID : String, idType : String) {
         switch idType {
-        case "PRODUCT" :
+        case Keys.PRODUCT.rawValue :
             let vc = StoryboardScene.Main.instantiateProductDetailViewController()
             vc.productId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
             break
             
-        case "CUSTOMER":
+        case Keys.CUSTOMER.rawValue:
+            if MMUserManager.shared.loggedInUser?.id == itemID {
+                break
+            }
             let vc = StoryboardScene.Main.instantiateProfileViewController()
             vc.flagMyProfile = false
             vc.userId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
             break
             
-        case "SELLER" :
+        case Keys.SELLER.rawValue :
             let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
             vc.sellerId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
@@ -123,10 +133,5 @@ class FriendsViewController:  UIViewController,IndicatorInfoProvider ,FriendsAct
         vc.userId = userID
         self.navigationController?.pushViewController(vc, animated: true)
         
-    }
-   
-    //MARK:- indicator info provider delegate
-    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Friends")
     }
 }

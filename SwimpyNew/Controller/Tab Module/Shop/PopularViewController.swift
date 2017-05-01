@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProductTask {
+class PopularViewController: UIViewController,IndicatorInfoProvider {
     
     //MARK:- OUTLET
     @IBOutlet weak var viewNoProduct: UIView!
@@ -26,13 +26,15 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
     }
     var pageNo : String?
     let refreshControl = UIRefreshControl()
+    var isLoadMore = false
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl.addTarget(self, action: #selector(PopularViewController.initialize), for: UIControlEvents.valueChanged)
+        handlePagination()
+        refreshControl.addTarget(self, action: #selector(PopularViewController.setup), for: UIControlEvents.valueChanged)
         collectionViewPopularProducts?.refreshControl =  refreshControl
-        initialize()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,39 +47,54 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
     }
     
     //MARK:- FUNCTION
-    func initialize() {
+    
+    
+    func resetNoMoreData(){
+        self.collectionViewPopularProducts.es_resetNoMoreData()
+    }
+    
+    func foundNoMoreData(){
+        self.collectionViewPopularProducts.es_stopLoadingMore()
+        self.collectionViewPopularProducts.es_noticeNoMoreData()
+    }
+    
+    
+    func handlePagination(){
+        let _ = collectionViewPopularProducts.es_addInfiniteScrolling { [unowned self] in
+            if self.pageNo != "" {
+                self.hitApiForPopularProduct()
+            }else{
+                self.foundNoMoreData()
+            }
+            
+        }
+    }
+   
+    func setup() {
+        resetNoMoreData()
         arrProduct = []
-        configureCollectionView()
         pageNo = L10n._0.string
         hitApiForPopularProduct()
+     //   configureCollectionView()
     }
     
     func configureCollectionView(){
-        collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewPopularProducts, cellIdentifier: CellIdentifiers.PopularProductCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewPopularProducts.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
-            let cell = cell as? PopularProductCollectionViewCell
-            cell?.layer.cornerRadius = 4.0
-            cell?.layer.borderWidth = 2.0
-            cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+        collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewPopularProducts, cellIdentifier: CellIdentifiers.DealsCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewPopularProducts.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+            let cell = cell as? DealsCollectionViewCell
             cell?.delegate = self
+            if self.arrProduct.count > 0 {
             cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
+            }
             
             }, aRowSelectedListener: { (indexPath) in
                 
-                let productId = self.arrProduct[indexPath.row].id ?? ""
+                let productId = /self.arrProduct[indexPath.row].id
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
                 vc.productId = productId
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            }, willDisplayCell: {[unowned self] (indexPath) in
-                if indexPath.row == self.arrProduct.count - 2 {
-                    if let temp = self.pageNo  {
-                        if temp != "" {
-                            self.hitApiForPopularProduct()
-                        }
-                    }
-                    
-                }
-                
+            }, willDisplayCell: {(indexPath) in
+               
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewPopularProducts.reloadData()
@@ -90,11 +107,14 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
             }, success: {[unowned self] (model) in
                 let response = model as? ProductResponse ?? ProductResponse()
                 self.pageNo = response.pageNo ?? nil
-                //                print(response.arrProducts.count)
-                self.refreshControl.endRefreshing()
                 for item in response.arrProducts {
                     self.arrProduct.append(item)
                 }
+                self.isLoadMore = response.arrProducts.count > 0
+                self.collectionViewPopularProducts.es_stopLoadingMore()
+                self.isLoadMore ? self.collectionViewPopularProducts.es_resetNoMoreData() : self.collectionViewPopularProducts.es_noticeNoMoreData()
+                self.refreshControl.endRefreshing()
+                
                 if self.arrProduct.count > 0 {
                     self.configureCollectionView()
                     self.view.bringSubview(toFront: self.collectionViewPopularProducts)
@@ -103,19 +123,25 @@ class PopularViewController: UIViewController,IndicatorInfoProvider,PopularProdu
                     self.view.bringSubview(toFront: self.viewNoProduct)
                 }
                 print(model)
-            }, method: "GET", loader: true)
+            }, method: Keys.Get.rawValue, loader: self.arrProduct.count == 0)
     }
     
-    //MARK:- delegate function
-    func updateLikeData(model : Products?,index : Int) {
-        arrProduct[index] = model ?? Products()
-        configureCollectionView()
-    }
     
     //MARK:- indicator info provide delegate
     
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Popular")
+        return IndicatorInfo(title: Keys.popular.rawValue)
     }
     
+}
+//MARK:- DELEGATE function
+extension PopularViewController : DealsProductTask{
+    
+    func updateLikeData(model : Products?,index : Int) {
+        guard let temp = model else { return }
+        arrProduct[index] = temp
+        configureCollectionView()
+    }
+    func shareProduct(model : Products?, index : Int) {
+    }
 }

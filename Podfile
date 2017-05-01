@@ -13,7 +13,7 @@ pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
 pod 'IQKeyboardManager'
 pod 'SZTextView'
-pod 'XLPagerTabStrip'
+pod 'XLPagerTabStrip' 
 pod 'Fusuma', '~> 1.0.0'
 pod 'RMMapper'
 pod 'Google/SignIn'
@@ -21,7 +21,11 @@ pod 'DropDown'
 pod 'SDWebImage'
 pod 'Presentr'
 pod 'SwiftMessages'
-pod 'MICountryPicker', :git => 'https://github.com/mustafaibrahim989/MICountryPicker.git', :branch => 'master'
+pod 'EZSwiftExtensions'
+pod 'SFFocusViewLayout'
+pod 'Material'
+pod "ESPullToRefresh"
+pod "MIBadgeButton-Swift", :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
 end
 
 post_install do |installer|

@@ -33,7 +33,7 @@ class HttpManager {
         
         switch method {
             
-        case "POST" :
+        case Keys.Post.rawValue :
             Alamofire.request(fullPath, method: .post, parameters: parameters, encoding: JSONEncoding.default,headers: getHeader()  ).responseJSON { response in // 1
                 switch response.result {
                     
@@ -44,7 +44,7 @@ class HttpManager {
                 }
             }
             
-        case "GET" :
+        case Keys.Get.rawValue :
             Alamofire.request(fullPath, method: .get, parameters: parameters, encoding: URLEncoding.default ,headers: getHeader()).responseJSON { response in
                 switch response.result {
                 case .success(let data):
@@ -69,10 +69,11 @@ class HttpManager {
         }
     }
     
-    static func callApiWithParameters( api:API,image : UIImage? , success:@escaping HttpManagerSuccess, failure: @escaping HttpManagerFailure, method: String){
+    static func callApiWithParameters( api:API,image : UIImage? , success:@escaping HttpManagerSuccess, failure: @escaping HttpManagerFailure, method: String) {
+        
         var imageData : Data?
         var flagImage = true
-        guard let parameters = api.parameters else { return failure("Empty Parameters") }
+        var key = "profilePic"
         let fullPath = APIConstant.baseURL.rawValue + api.route
         if let ppic = image {
             imageData = UIImageJPEGRepresentation(ppic,0.6)
@@ -80,14 +81,26 @@ class HttpManager {
         else {
             flagImage = false
         }
+        switch api.route {
+        case "api/users/register" :
+            key = "profilePic"
+            break
+        case "api/users/uploadImage" :
+            key = "image"
+            break
+        default :
+            break
+        }
         guard let httpMethod = HTTPMethod(rawValue: method) else { return }
-        
+        //profilePicimage
         Alamofire.upload(multipartFormData: {multipartFormData in
             if flagImage {
-                multipartFormData.append(imageData!, withName : "profilePic", fileName: "file.png", mimeType: "image/png")
+                multipartFormData.append(imageData!, withName : key, fileName: "file.png", mimeType: "image/png")
             }
-            for (key, value) in parameters {
-                multipartFormData.append(value.data(using : String.Encoding.utf8.rawValue)!, withName: key)
+            if let parameters = api.parameters {
+                for (key, value) in parameters {
+                    multipartFormData.append(value.data(using : String.Encoding.utf8.rawValue)!, withName: key)
+                }
             }
         }, to: fullPath,method : httpMethod,headers : getHeader()) { (result) in
             switch result {

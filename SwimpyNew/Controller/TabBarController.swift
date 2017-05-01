@@ -27,12 +27,12 @@ class TabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-//        if !Alamofire.NetworkReachabilityManager()!.isReachable {
-//            timer.invalidate()
-//            return
-//        }else {
-//            timer =   Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TabBarController.hitApiToGetCartDetails), userInfo: nil, repeats: true)
-//        }
+     /*   if !Alamofire.NetworkReachabilityManager()!.isReachable {
+            timer.invalidate()
+            return
+        }else {
+            timer =   Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TabBarController.hitApiToGetCartDetails), userInfo: nil, repeats: true)
+        }*/
         
     }
     
@@ -43,8 +43,10 @@ class TabBarController: UITabBarController {
                 let arrCartData = (model as? [CartData]) ?? []
                 if arrCartData.count > 0 {
                     MMUserManager.shared.cartCount = "\(arrCartData.count)"
+                }else {
+                    MMUserManager.shared.cartCount = nil
                 }
                                 print(model)
-            }, method: "POST", loader: false)
+            }, method: Keys.Post.rawValue, loader: false)
     }
 }

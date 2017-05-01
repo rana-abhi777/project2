@@ -8,8 +8,9 @@
 
 import UIKit
 import XLPagerTabStrip
+import EZSwiftExtensions
 
-class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedProductsTask {
+class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
     
     //MARK:- outlets
     @IBOutlet weak var tableViewFeaturedProducts: UITableView!
@@ -25,30 +26,29 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
     override func viewDidLoad() {
         super.viewDidLoad()
         arrFeaturedData = []
-        refreshControl.addTarget(self, action: #selector(FeaturedViewController.initialize), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(FeaturedViewController.setup), for: UIControlEvents.valueChanged)
         tableViewFeaturedProducts?.refreshControl =  refreshControl
-        initialize()
+        //setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        setup()
     }
     
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     //MARK:- FUNCTION
-    func initialize() {
+    func setup() {
         pageNo = L10n._0.string
         arrFeaturedData = []
-        configureTableView()
         apiToGetFeaturedData()
     }
     
     func apiToGetFeaturedData() {
-        
         ApiManager().getDataOfURL(withApi: API.GetFeaturedProduct(APIParameters.GetFeaturedProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: { [unowned self] (model) in
@@ -65,45 +65,73 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider,FeaturedP
                 else {
                     self.view.bringSubview(toFront: self.viewNoProducts)
                 }
-            }, method: "GET", loader: true)
-        
+            }, method: Keys.Get.rawValue, loader: true)
     }
     
     func configureTableView() {
-        tableViewDataSource = TableViewCustomDatasource(items: arrFeaturedData, height: 310, estimatedHeight: 310, tableView: tableViewFeaturedProducts, cellIdentifier: CellIdentifiers.FeaturedTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+        tableViewDataSource = TableViewCustomDatasource(items: arrFeaturedData, height: 400 , estimatedHeight: 400, tableView: tableViewFeaturedProducts, cellIdentifier: CellIdentifiers.FeaturedTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+            
             let cell = cell as? FeaturedTableViewCell
             cell?.delegate = self
+            if self.arrFeaturedData.count > 0{
             cell?.configureCell(model: self.arrFeaturedData[indexpath.row],row : indexpath.row)
+            }
             }, aRowSelectedListener: { (indexPath) in
                 
             }, willDisplayCell: {[unowned self] (indexPath) in
-                if indexPath.row == self.arrFeaturedData.count - 2 {
-                    if let temp = self.pageNo  {
-                        if temp != "" {
-                            self.apiToGetFeaturedData()
-                        }
-                    }
-                    
+                if let temp = self.pageNo,temp != "" ,indexPath.row == self.arrFeaturedData.count - 2   {
+                    self.apiToGetFeaturedData()
                 }
             })
-        
         tableViewFeaturedProducts.delegate = tableViewDataSource
         tableViewFeaturedProducts.dataSource = tableViewDataSource
         tableViewFeaturedProducts.reloadData()
     }
     
+    //MARK:- IndicatorInfoProvider delegate
+    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: Keys.featured.rawValue)
+    }
+}
+
+
+//MARK:- DELEGATE FUNCTION
+
+extension FeaturedViewController : FeaturedProductsTask {
+    
     func updateLikeData(model : Products?,index : Int) {
-        arrFeaturedData[index] = model ?? Products()
+        guard let temp = model else { return }
+        arrFeaturedData[index] = temp
         configureTableView()
     }
+    
+    func shareProduct(model : Products?, index : Int) {
+        
+        self.showActivityViewController(text: "Check out this product on Swimpy -" , img: UIImage(), viewController: self, productId : model?.id)
+        
+    }
+    func buyProduct(model : Products?, index : Int) {
+        let cartObj = CartData()
+        cartObj.imageThumbnail = model?.productImageThumbnail
+        cartObj.imageOriginal = model?.productImageOriginal
+        cartObj.total_price = model?.base_price_unit 
+        cartObj.productId = model?.id
+        cartObj.createrId = model?.createrId
+        cartObj.parentSupplierId = model?.parentSupplierId ?? ""
+        cartObj.productName = model?.productName
+        cartObj.shippingPrice = 0
+        cartObj.colorSelected = model?.color?[0] ?? ""
+        cartObj.sizeSelected = model?.size?[0] ?? ""
+        
+        let VC = StoryboardScene.Main.instantiateAddressDetailsViewController()
+        VC.arrCartData = [cartObj]
+        self.navigationController?.pushViewController(VC, animated: true)
+        
+    }
     func cellSelected(index : Int ) {
-        let productId = self.arrFeaturedData[index].id ?? ""
+        let productId = /self.arrFeaturedData[index].id
         let vc = StoryboardScene.Main.instantiateProductDetailViewController()
         vc.productId = productId
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-    //MARK:- IndicatorInfoProvider delegate
-    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Featured")
     }
 }

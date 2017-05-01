@@ -13,13 +13,13 @@ class ProductLikeUserCollectionViewCell: UICollectionViewCell {
      //MARK:- Outlets
     @IBOutlet weak var imgUser: CustomImageView!
     
-    //MARK:-  function
-    func configureCell(model: LikeUser) {
-        guard let url = model.userImgThumbnail else { imgUser?.backgroundColor = UIColor.gray
-            return }
-        imgUser?.sd_setImage(with: URL(string : url))
-        self.bringSubview(toFront: imgUser)
+    
+    var likeUser : LikeUser? {
+        didSet{
+            imgUser?.sd_setImage(with: URL(string : /likeUser?.userImgOriginal))
+            self.bringSubview(toFront: imgUser)
+        }
     }
-
+    
     
 }

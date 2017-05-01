@@ -118,7 +118,7 @@ public class NVActivityIndicatorPresenter {
     private func show(with activityData: ActivityData) {
         let activityContainer: UIView = UIView(frame: UIScreen.main.bounds)
         
-        activityContainer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        activityContainer.backgroundColor = UIColor.overlay()
         activityContainer.restorationIdentifier = restorationIdentifier
         
         let actualSize = activityData.size

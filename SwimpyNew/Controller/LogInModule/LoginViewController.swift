@@ -10,8 +10,11 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+
 class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
+    var backResponse:UserDetails?
+    var status: Bool?
     //MARK: outlets
     @IBOutlet weak var viewForgotPassword: UIView!
     @IBOutlet weak var btnSignin: UIButton!
@@ -31,11 +34,11 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     //MARK: override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         if MMUserManager.shared.loggedInUser?.accessToken  != nil {
             let VC = StoryboardScene.Main.instantiateTabBarController()
             self.navigationController?.pushViewController(VC, animated: false)
         }
-        
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().clientID = "631877456020-bsavm2p985ialf5ga8jihj671rsood5d.apps.googleusercontent.com"
@@ -51,39 +54,69 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-       
+    
     //MARK: FUNCTION
     
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        view.isUserInteractionEnabled = true
         if (error == nil) {
             var imageUrl  = ""
             if user.profile.hasImage{
                 imageUrl = signIn.currentUser.profile.imageURL(withDimension: 120).absoluteString
             }
+            
             ApiManager().getDataOfURL(withApi: API.LoginViaGoogle(APIParameters.LoginViaGoogle(googleId: user.userID, name: user.profile.givenName, googleImageUrl: imageUrl).formatParameters()), failure: { (err) in
                 print(err)
-                }, success: { (model) in
-                    print(model)
-                    ApiManager.hideLoader()
-                    let VC = StoryboardScene.Main.instantiateTabBarController()
-                    VC.selectedIndex = 0
-                    self.navigationController?.pushViewController(VC, animated: true)
-                }, method: "POST", loader: true)
+                
+            }, success: { (model) in
+                let response = model as? User ?? User()
+                ApiManager.hideLoader()
+                self.hitApiForUserDetails(/response.id, completionhandler: { (model) in
+                    self.backResponse = model as? UserDetails ?? UserDetails()
+                    self.status = self.backResponse?.isBlocked
+                    if self.status == true{
+                        UserFunctions.showAlert(message: StringNames.blocked.rawValue)
+                    }
+                    else{
+                        let VC = StoryboardScene.Main.instantiateTabBarController()
+                        VC.selectedIndex = 0
+                        self.navigationController?.pushViewController(VC, animated: true)
+                    }
+                })
+                
+                
+            }, method: Keys.Post.rawValue, loader: true)
         } else {
             ApiManager.hideLoader()
             print(error)
         }
     }
     
+    func hitApiForUserDetails(_ userId : String , completionhandler : @escaping(Any?) -> ()){
+        ApiManager().getDataOfURL(withApi: API.GetUserDetail(APIParameters.GetUserDetail(userId: userId).formatParameters()), failure: { (err) in
+            print(err)
+        }, success: { (model) in
+            //print("User Blocked Status : " , model!["data"].isBlocked)
+            self.backResponse = model as? UserDetails ?? UserDetails()
+            completionhandler(self.backResponse)
+        }, method: Keys.Get.rawValue , loader: false)
+        
+    }
+    
+    
+    
     func showAndHideView(viewManipulated : UIView) {
+        view.endEditing(true)
         if viewManipulated.isHidden {
             overlayObj.showOverlay(view : self.view)
             viewManipulated.isHidden = false
+            showAnimate(view: viewManipulated)
             view.bringSubview(toFront: viewManipulated)
         }
         else {
             overlayObj.hideOverlayView()
-            viewManipulated.isHidden = true
+            removeAnimate(view: viewManipulated)
             view.endEditing(true)
             view.sendSubview(toBack: viewManipulated)
         }
@@ -91,15 +124,16 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     func validateSignin() -> Bool {
         var indicator = true
         let trimmedEmail = ValidateData().emailValidation(mailToCheck: txtSigninEmail.text!)
+        
         if trimmedEmail == false {
             UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
             indicator = false
         }
-        if  (txtSigninPassword.text ?? "").characters.count == 0 {
+        else if  (/txtSigninPassword.text).characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterPassword.string)
             indicator = false
         }
-        if (txtSigninPassword.text ?? "").characters.count < 6 {
+        else if (/txtSigninPassword.text).characters.count < 6 {
             UserFunctions.showAlert(message: L10n.passwordLengthShouldBeAtleast6Characters.string)
             indicator = false
         }
@@ -108,48 +142,61 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     func validateSignup() -> Bool {
         var indicator = true
         let trimmedFullname = ValidateData().trimmedString(string: txtFullname.text ?? "")
+        let trimmedEmail = ValidateData().emailValidation(mailToCheck: txtSignupEmail.text!)
         
         if trimmedFullname.characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterYourFullName.string)
             indicator = false
         }
-        let trimmedEmail = ValidateData().emailValidation(mailToCheck: txtSignupEmail.text!)
-        if trimmedEmail == false {
+        else if (/txtFullname.text).hasSpecialCharcters  {
+            UserFunctions.showAlert(message: L10n.enterYourValidName.string)
+            indicator = false
+        }
+        else if trimmedEmail == false {
             UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
             indicator = false
         }
-        if (txtSignupPassword.text ?? "").characters.count == 0 {
+        else if (/txtSignupPassword.text).characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterPassword.string)
             indicator = false
         }
-        if (txtSignupPassword.text ?? "").characters.count < 6 {
+        else if (/txtSignupPassword.text).characters.count < 6 {
             UserFunctions.showAlert(message: L10n.passwordLengthShouldBeAtleast6Characters.string)
             indicator = false
         }
         return indicator
     }
     
+}
+
+//MARK:- button action
+
+extension LoginViewController {
     
-    
-    //MARK:- button action
     @IBAction func btnActionCloseForgotPassword(sender: AnyObject) {
         showAndHideView(viewManipulated: viewForgotPassword)
+        showAndHideView(viewManipulated: viewSignin)
     }
     
     @IBAction func btnSigninAction(sender: AnyObject) {
+        view.endEditing(true)
         if validateSignin() {
+            
             ApiManager().getDataOfURL(withApi: API.Login(APIParameters.Login(email: txtSigninEmail.text, password: txtSigninPassword.text).formatParameters()), failure: { (err) in
                 print(err)
-                }, success: { (model) in
-                    print(model)
-                    let VC = StoryboardScene.Main.instantiateTabBarController()
-                    //                    VC.selectedIndex = 0
-                    //                    VC.tabBar.selectedItem = VC.tabBar.items?[0]
-                    self.navigationController?.pushViewController(VC, animated: true)
-                }, method: "POST", loader: true)
+                
+            }, success: { (model) in
+                print(model)
+                let VC = StoryboardScene.Main.instantiateTabBarController()
+                //                    VC.selectedIndex = 0
+                //                    VC.tabBar.selectedItem = VC.tabBar.items?[0]
+                self.navigationController?.pushViewController(VC, animated: true)
+                
+            }, method: Keys.Post.rawValue, loader: true)
         }
     }
     @IBAction func btnActionForgotPasswordSubmit(sender: AnyObject) {
+        view.endEditing(true)
         let trimmedEmail = ValidateData().emailValidation(mailToCheck: txtEmailForgotPassword.text!)
         if trimmedEmail == false {
             UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
@@ -158,9 +205,11 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         //hitapi
         ApiManager().getDataOfURL(withApi: API.ForgotPassword(APIParameters.ForgotPassword(email: txtEmailForgotPassword.text).formatParameters()), failure: { (err) in
             print(err)
-            }, success: { (model) in
-                print(model)
-            }, method: "POST", loader: true)
+            
+        }, success: { (model) in
+            print(model)
+            
+        }, method: Keys.Post.rawValue, loader: true)
         
     }
     @IBAction func btnActionCloseSignin(sender: AnyObject) {
@@ -170,19 +219,24 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         showAndHideView(viewManipulated : viewSignup)
     }
     @IBAction func btnActionSignup(sender: AnyObject) {
+        view.endEditing(true)
         if validateSignup() {
             print(btnCountryName.titleLabel?.text)
+            
             ApiManager().getDataOfURL(withApi: API.Signup(APIParameters.Signup(fullname: txtFullname.text, email: txtSignupEmail.text, password: txtSignupPassword.text, countryName : btnCountryName.titleLabel?.text).formatParameters()), failure: { (err) in
                 print(err)
-                }, success: { (model) in
-                    let VC = StoryboardScene.Main.instantiateTabBarController()
-                    VC.selectedIndex = 0
-                    self.navigationController?.pushViewController(VC, animated: true)
-                }, method: "POST", loader: true, image: btnProfilePic.image(for: .normal))
+                
+            }, success: { (model) in
+                let VC = StoryboardScene.Main.instantiateTabBarController()
+                VC.selectedIndex = 0
+                self.navigationController?.pushViewController(VC, animated: true)
+                
+            }, method: Keys.Post.rawValue, loader: true, image: btnProfilePic.image(for: .normal) != UIImage(asset: .icUpload) ? btnProfilePic.image(for: .normal) : nil )
         }
         
     }
     @IBAction func btnActionProfilePic(sender: AnyObject) {
+        view.endEditing(true)
         callFusumaImagePiucker(btnOutlet: btnProfilePic)
     }
     @IBAction func btnActionSigninPopup(_ sender: AnyObject) {
@@ -204,7 +258,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         btnProfilePic.setImage(UIImage(asset: .icUpload), for: .normal)
     }
     @IBAction func btnActionLoginWithGoogle(sender: AnyObject) {
-        
+        view.isUserInteractionEnabled = false
         GIDSignIn.sharedInstance().signIn()
         
     }
@@ -213,9 +267,22 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     }
     
     @IBAction func btnActionSelectCountry(_ sender: AnyObject) {
-        self.selectCountry(labelCountry: nil, btnCountry: btnCountryName)
+        let vc = StoryboardScene.Main.instantiateCountryPickerViewController()
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 }
+
+
+extension LoginViewController : SendData {
+    func setCountryCode(name : String ,code : String) {
+        btnCountryName.setTitleColor(UIColor.black, for: .normal)
+        btnCountryName.setTitle(name, for: .normal)
+    }
+}
+
+
 //extension UIButton {
 //
 //    @IBInspectable

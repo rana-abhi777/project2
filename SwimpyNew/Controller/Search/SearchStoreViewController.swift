@@ -39,13 +39,6 @@ class SearchStoreViewController: UIViewController , IndicatorInfoProvider {
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
             timer.invalidate()
             return
@@ -53,6 +46,14 @@ class SearchStoreViewController: UIViewController , IndicatorInfoProvider {
             configureLoader()
             timer =   Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchStoreViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
         }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,7 +84,7 @@ class SearchStoreViewController: UIViewController , IndicatorInfoProvider {
                 else {
                     self.view.bringSubview(toFront: self.viewNoStore)
                 }
-            }, method: "GET", loader: false)
+            }, method: Keys.Get.rawValue, loader: false)
     }
     
     func configureLoader() {
@@ -96,14 +97,14 @@ class SearchStoreViewController: UIViewController , IndicatorInfoProvider {
             let cell = cell as? SearchStoreCollectionViewCell
             cell?.layer.cornerRadius = 4.0
             cell?.layer.borderWidth = 2.0
-            cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+            cell?.layer.borderColor = UIColor.border()
             cell?.configureCell(model: self.arrStores[indexpath.row])
             }, aRowSelectedListener: {[unowned self] (indexPath) in
                 let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
-                vc.sellerId = self.arrStores[indexPath.row].id ?? ""
+                vc.sellerId = /self.arrStores[indexPath.row].id
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            }, willDisplayCell: {[unowned self] (indexPath) in
+            }, willDisplayCell: { (indexPath) in
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewSearchStore.reloadData()

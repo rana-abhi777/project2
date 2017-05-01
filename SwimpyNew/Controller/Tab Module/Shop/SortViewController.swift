@@ -21,24 +21,30 @@ class SortViewController: UIViewController {
     //MARK:- button actions
     @IBAction func btnActionFollowStore(sender: AnyObject) {
     }
+    
     @IBAction func btnActionMessage(sender: AnyObject) {
     }
+    
     @IBAction func btnActionSort(sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateSortViewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
+    
     @IBAction func btnActionFilter(sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateFilterViewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
+    
     @IBAction func btnActionCart(sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateCartViewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
+    
     @IBAction func btnActionSearch(sender: AnyObject) {
 //        let VC = StoryboardScene.Main.instantiateSearchViewController()
 //        self.navigationController?.pushViewController(VC, animated: true)
     }
+    
     @IBAction func btnActionBack(sender: AnyObject) {
       _ = self.navigationController?.popViewController(animated: true)
     }

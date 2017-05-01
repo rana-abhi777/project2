@@ -13,7 +13,7 @@ protocol GlobalActivityTask {
     func openUserDetail(userID : String)
 }
 
-class GlobalActivityTableViewCell: UITableViewCell {
+class GlobalActivityTableViewCell: BaseTableViewCell {
 
     //MARK:-  Outlet
     @IBOutlet weak var imgUser: CustomImageView!
@@ -36,34 +36,32 @@ class GlobalActivityTableViewCell: UITableViewCell {
 
     //MARK:-   functions
     
-    func appendOptionalStrings(strings : [String?],separator : String) -> String{
-        return strings.flatMap{$0}.joined(separator: separator)
-    }
-    
     func configureCell(model : GlobalActivity,index : Int) {
         data = model
         self.index = index
         lblActivity.text = appendOptionalStrings(strings: [model.userName,model.text,model.itemName], separator: " ")
         
-        imgItem?.sd_setImage(with: URL(string : model.itemImgOriginal ?? ""))
+        imgItem?.sd_setImage(with: URL(string : /model.itemImgOriginal ))
         guard let timeAgo = model.time else { return }
-        print(model.time)
         lblTime?.text = calculateTimeSince(time: timeAgo)
         guard let url = model.userImgOriginal   else {
             imgUser?.backgroundColor = UIColor.gray
             return }
         imgUser?.sd_setImage(with: URL(string : url))
     }
-
+    
+    func appendOptionalStrings(strings : [String?],separator : String) -> String{
+        return strings.flatMap{$0}.joined(separator: separator)
+    }
     
     
     @IBAction func btnActionOpenUser(_ sender: AnyObject) {
         if data?.userId != MMUserManager.shared.loggedInUser?.id {
-            self.delegate?.openUserDetail(userID: data?.userId ?? "")
+            self.delegate?.openUserDetail(userID: /data?.userId )
         }
     }
     @IBAction func btnActionOpenItem(_ sender: AnyObject) {
-        self.delegate?.redirectToItemScreen(itemID: (data?.itemId ?? ""), idType: (data?.idType ?? ""))
+        self.delegate?.redirectToItemScreen(itemID: /data?.itemId , idType: /data?.idType )
     }
     
 }

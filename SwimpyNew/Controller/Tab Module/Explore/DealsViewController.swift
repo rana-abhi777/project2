@@ -8,8 +8,9 @@
 
 import UIKit
 import XLPagerTabStrip
+import ESPullToRefresh
 
-class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProductTask {
+class DealsViewController: BaseViewController,IndicatorInfoProvider {
     
     //MARK:- variables
     var categoryId : String?
@@ -22,7 +23,7 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     }
     var pageNo : String?
     let refreshControl = UIRefreshControl()
-    
+    var isLoadMore = false
     
     //MARK:- outlets
     @IBOutlet weak var collectionViewDeals: UICollectionView!
@@ -31,89 +32,105 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider,DealsProduct
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl.addTarget(self, action: #selector(DealsViewController.initialize), for: UIControlEvents.valueChanged)
+        handlePagination()
+        refreshControl.addTarget(self, action: #selector(DealsViewController.setup), for: UIControlEvents.valueChanged)
         collectionViewDeals?.refreshControl =  refreshControl
-        initialize()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        setup()
     }
     
     //MARK:- FUNCTION
-    func initialize() {
+    
+    func resetNoMoreData(){
+        self.collectionViewDeals.es_resetNoMoreData()
+    }
+    
+    func foundNoMoreData(){
+        self.collectionViewDeals.es_stopLoadingMore()
+        self.collectionViewDeals.es_noticeNoMoreData()
+    }
+    
+    func setup() {
+        resetNoMoreData()
+        arrProduct = []
         pageNo = L10n._0.string
-        //        arrProduct = []
         //        configureCollectionView()
         hitApiForPopularProduct()
     }
     
+    func handlePagination(){
+        let _ = collectionViewDeals.es_addInfiniteScrolling { [unowned self] in
+            if self.pageNo != StringNames.empty.rawValue {
+                self.hitApiForPopularProduct()
+            }else{
+                self.foundNoMoreData()
+            }
+            
+        }
+    }
+    
+    
     func configureCollectionView(){
         collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewDeals, cellIdentifier: CellIdentifiers.DealsCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewDeals.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? DealsCollectionViewCell
-            cell?.layer.cornerRadius = 4.0
-            cell?.layer.borderWidth = 2.0
-            cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
             cell?.delegate = self
-            cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
-            
+            if self.arrProduct.count > 0{
+                cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
+            }
             }, aRowSelectedListener: {[unowned self] (indexPath) in
-                let productId = self.arrProduct[indexPath.row].id ?? ""
+                let productId = self.arrProduct[indexPath.row].id
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
-                vc.productId = productId
+                vc.productId = productId ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
-                
-            }, willDisplayCell: {[unowned self] (indexPath) in
-                if indexPath.row == self.arrProduct.count - 2 {
-                    if let temp = self.pageNo  {
-                        if temp != "" {
-                            self.hitApiForPopularProduct()
-                        }
-                    }
-                }
-            }, scrollViewListener: { (UIScrollView) in
+            }, willDisplayCell: {(indexPath) in
+        }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewDeals.reloadData()
     }
     
-    
     func hitApiForPopularProduct() {
         ApiManager().getDataOfURL(withApi: API.GetPopularProduct(APIParameters.GetPopularProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
-            }, success: {[unowned self] (model) in
-                let response = model as? ProductResponse ?? ProductResponse()
-                self.pageNo = response.pageNo ?? nil
-                for item in response.arrProducts {
-                    self.arrProduct.append(item)
-                }
-                self.refreshControl.endRefreshing()
-                if self.arrProduct.count > 0 {
-                    self.configureCollectionView()
-                    self.view.bringSubview(toFront: self.collectionViewDeals)
-                }
-                else {
-                    self.view.bringSubview(toFront: self.viewNoProducts)
-                    
-                }
-                print(model)
-            }, method: "GET", loader: true)
+        }, success: {[unowned self] (model) in
+            let response = model as? ProductResponse ?? ProductResponse()
+            self.pageNo = response.pageNo
+            for item in response.arrProducts {
+                self.arrProduct.append(item)
+            }
+            
+            //sorting array according to flatDiscount on the Products
+            self.arrProduct.sort(by: {/$1.flatDiscount < /$0.flatDiscount})
+            self.isLoadMore = response.arrProducts.count > 0
+            self.collectionViewDeals.es_stopLoadingMore()
+            self.isLoadMore ? self.collectionViewDeals.es_resetNoMoreData() : self.collectionViewDeals.es_noticeNoMoreData()
+            self.refreshControl.endRefreshing()
+            if self.arrProduct.count > 0 {
+                self.configureCollectionView()
+                self.view.bringSubview(toFront: self.collectionViewDeals)
+            }
+            else {
+                self.view.bringSubview(toFront: self.viewNoProducts)
+            }
+            }, method: Keys.Get.rawValue, loader: self.arrProduct.count == 0)
     }
-    
-    func updateLikeData(model : Products?,index : Int) {
-        arrProduct[index] = model ?? Products()
-        configureCollectionView()
-    }
-    
     
     //MARK:- indicator info provider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Deals")
+        return IndicatorInfo(title: Keys.deals.rawValue)
     }
-    
-    
+}
+//MARK:- DELEGATE FUNCTION
+extension DealsViewController : DealsProductTask {
+    func updateLikeData(model : Products?, index : Int) {
+        guard let temp = model else { return }
+        arrProduct[index] = temp
+        configureCollectionView()
+    }
+    func shareProduct(model : Products?, index : Int) {
+        
+    }
 }

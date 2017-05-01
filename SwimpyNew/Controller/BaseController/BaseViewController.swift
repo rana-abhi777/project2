@@ -8,24 +8,27 @@
 import UIKit
 import Fusuma
 import Presentr
-import MICountryPicker
+import EZSwiftExtensions
+import SwiftyJSON
+import MIBadgeButton_Swift
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController{
     
     //MARK:- VARIABLE
     let overlayObj = LoadingOverlay()
     var selectedImage : UIImage?
     var btnOutlet : UIButton!
-    var viewCartNumber : UIView!
-    var lblCartItem : UILabel!
+    var btnCartBadge : MIBadgeButton!
     var countryName : String = ""
-    
     var btnCountry : UIButton?
     var lblCountryName : UILabel?
+    var txtField: UITextField?
+    var imageButton: UIButton!
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,39 +45,63 @@ class BaseViewController: UIViewController {
         let customPresenter = Presentr(presentationType: customType)
         customPresenter.transitionType = .coverVertical
         customPresenter.roundCorners = true
-        
         return customPresenter
     }()
     
+    func removeAnimate(view:UIView){
+        UIView.animate(withDuration: 1.0, animations: {
+            view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            //view.alpha = 0.0;
+        }, completion:{(finished : Bool)  in
+            view.isHidden = true
+        })
+    }
     
+    func showAnimate(view:UIView){
+        view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        // view.alpha = 0.0;
+        UIView.animate(withDuration: 0.25, animations: {
+            // view.alpha = 1.0
+            view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
+    }
     
-
-//    let center = ModalCenterPosition.Center
-//    let customType = PresentationType.Custom(width: ModalSize.Custom(size: 240), height: ModalSize.Custom(size: 128), center: center)
-//    let customPresenter = Presentr(presentationType: customType)
-//    customPresenter.transitionType = .CoverVertical
-//    customPresenter.roundCorners = true
-//    let vc = viewController as? CustomTagVC
-//
-//    if(selfVC == "AddTripVC"){
-//    vc?.delegate = delegateVC as? AddTripVC
-//    }
-//    else if selfVC == "EditTripVC" {
-//    vc?.delegate = delegateVC as? EditTripVC
-//    }
-//    else{
-//    vc?.delegate = delegateVC as? EditProfileVC
-//    }
-//    
-//    self.customPresentViewController(customPresenter, viewController:vc! , animated: true, completion: nil)
+    func removeDuplicateString(values: [String]) -> [String] {
+        // Convert array into a set to get unique values.
+        let uniques = Set<String>(values)
+        // Convert set back into an Array of Ints.
+        let result = Array<String>(uniques)
+        return result
+    }
+    
+    func convertArrayIntoJson(array: [String]?) -> NSString? {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: array ?? [], options: JSONSerialization.WritingOptions.prettyPrinted)
+            
+            var string = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? ""
+            print(string)
+            string = string.replacingOccurrences(of: "\n", with: "") as NSString
+            string = string.replacingOccurrences(of: "\\\"", with: "\"") as NSString
+            //        string = string.stringByReplacingOccurrencesOfString("\"", withString: "")
+            string = string.replacingOccurrences(of: "\\", with: "") as NSString // removes \
+            //            string = string.stringByReplacingOccurrencesOfString(" ", withString: "")
+            string = string.replacingOccurrences(of: "/", with: "") as NSString
+            print(string)
+            print(JSON(string))
+            return string
+        }
+        catch let error as NSError{
+            print(error.description)
+            return ""
+        }
+    }
     
     //MARK: functions
-    
     func appendOptionalStrings(strings : [String?],separator : String) -> String{
         return strings.flatMap{$0}.joined(separator: separator)
     }
     
-    func callFusumaImagePiucker(btnOutlet : UIButton!){
+    func callFusumaImagePiucker(btnOutlet : UIButton? ){
         self.btnOutlet = btnOutlet
         let fusuma = FusumaViewController()
         fusuma.hasVideo = false
@@ -82,52 +109,14 @@ class BaseViewController: UIViewController {
         self.present(fusuma, animated: true, completion: nil)
     }
     
-    func viewCartCount(viewCartNotification : UIView!, lblCartCount : UILabel!) {
-        self.viewCartNumber = viewCartNotification
-        self.lblCartItem = lblCartCount
-        guard let count = Int(MMUserManager.shared.cartCount ?? L10n._0.string)else {
-            viewCartNumber.isHidden = true
-            view.sendSubview(toBack: viewCartNumber)
-            return
-        }
-        if count > 0 {
-            viewCartNumber.isHidden = false
-            view.bringSubview(toFront: viewCartNumber)
-            lblCartItem.text = MMUserManager.shared.cartCount ?? L10n._0.string
-        }
-        else {
-            viewCartNumber.isHidden = true
-            view.sendSubview(toBack: viewCartNumber)
-        }
-    }
-    
-    func selectCountry(labelCountry: UILabel?, btnCountry : UIButton?)  {
-        self.lblCountryName = labelCountry
-        self.btnCountry = btnCountry
-        let picker = MICountryPicker()
-        picker.delegate = self
-        self.navigationController?.pushViewController(picker, animated: false)
-    }
-   
-
-}
-
-//MARK:- MICountryPicker delegates
-
-extension BaseViewController : MICountryPickerDelegate {
-    public func countryPicker(_ picker: MICountryPicker, didSelectCountryWithName name: String, code: String) {
-        countryName = name
-        self.lblCountryName?.text = name
-        self.btnCountry?.setTitle(name, for: .normal)
-        self.navigationController?.navigationBar.isHidden = true
-        _ = navigationController?.popViewController(animated: false)
-    }
-    
-    func countryPicker(_ picker: MICountryPicker, didSelectCountryWithName name: String, code: String, dialCode: String) {
-        //
+    func viewCartCount(btnCart : MIBadgeButton!) {
+        self.btnCartBadge = btnCart
+        btnCartBadge.badgeEdgeInsets = UIEdgeInsetsMake(18, 0, 0, 11)
+        btnCartBadge.badgeString = MMUserManager.shared.cartCount ?? ""
+        btnCartBadge.badgeTextColor = UIColor.black
+        btnCartBadge.badgeBackgroundColor = UIColor.orange
     }
 }
-
 
 //MARK::- Fusuma delegates
 
@@ -135,7 +124,10 @@ extension BaseViewController : FusumaDelegate{
     
     public func fusumaImageSelected(_ image: UIImage) {
         selectedImage = image
-        btnOutlet.setImage(selectedImage ?? UIImage(), for: .normal)
+        self.txtField?.setImage(image: self.selectedImage)
+        if imageButton != nil{
+        self.imageButton.setImage(self.selectedImage, for: .normal)
+        }
     }
     
     public func fusumaVideoCompleted(withFileURL fileURL: URL) {
@@ -143,10 +135,48 @@ extension BaseViewController : FusumaDelegate{
     
     func fusumaDismissedWithImage(_ image: UIImage) {
         print("Called just after FusumaViewController is dismissed.")
+        selectedImage = image
     }
     
     func fusumaCameraRollUnauthorized() {
-        print("Camera roll unauthorized")
+        UserFunctions.showAlert(message: "Camera permissions are off. Please check settings.")
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    func getTextField(textField: UITextField!){
+        txtField = textField
+    }
+    func getButton(button: UIButton){
+        imageButton = button
+    }
+}
+
+
+//MARK::- Activity View Controller
+
+extension BaseViewController {
+    
+    func shareProductApi(productId : String?) {
+        ApiManager().getDataOfURL(withApi: API.ShareProduct(APIParameters.ShareProduct(productId: productId).formatParameters()), failure: { (err) in
+            print(err)
+        }, success: { (model) in
+            UserFunctions.showAlert(title : "Success",message: "Product Shared")
+        }, method: Keys.Post.rawValue, loader: true)
+        
     }
     
+    func showActivityViewController(text : String ,img :UIImage, viewController : UIViewController, productId : String?){
+        let textToShare = text
+        let image = img
+        let objectsToShare = [textToShare,image] as [Any]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
+        activityVC.completionWithItemsHandler = {
+            (s, ok, items, error) in
+            
+            if ok {
+                self.shareProductApi(productId: productId)
+            }
+        }
+        viewController.present(activityVC, animated: true)
+    }
 }

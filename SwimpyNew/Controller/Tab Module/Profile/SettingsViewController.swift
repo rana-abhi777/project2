@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tableViewSettings: UITableView!
     
     //MARK:- variables
-    var arrData : [String] = [L10n.editProfile.string,L10n.termsAndConditions.string,L10n.notifications.string,L10n.changePassword.string,L10n.logout.string]
+    var arrData : [String] = [L10n.editProfile.string,L10n.myOrders.string,L10n.termsAndConditions.string,L10n.notifications.string,L10n.changePassword.string,L10n.logout.string]
     var tableViewDataSource : TableViewCustomDatasource?
     
     //MARK:- override functions
@@ -34,24 +34,29 @@ class SettingsViewController: UIViewController {
             cell?.configureCell(model: self.arrData[indexpath.row] ,row: indexpath.row)
             }, aRowSelectedListener: {[unowned self] (indexPath) in
                 switch indexPath.row {
-                case 0: //edit profile
+                case SwitchValues.zero.rawValue: //edit profile
                     let VC = StoryboardScene.Main.instantiateEditProfileViewController()
                     self.navigationController?.pushViewController(VC, animated: true)
                     break
-                case 3: //change password
+                case SwitchValues.one.rawValue: //edit profile
+                    let VC = StoryboardScene.Main.instantiateMyOrderViewController()
+                    self.navigationController?.pushViewController(VC, animated: true)
+                    break
+                case SwitchValues.four.rawValue: //change password
                     let VC = StoryboardScene.Main.instantiateChangePasswordViewController()
                     self.navigationController?.pushViewController(VC, animated: true)
                     break
-                case 4: //logout
-                    ApiManager().getDataOfURL(withApi: API.Logout(APIParameters.Logout().formatParameters()), failure: { (err) in
-                        print(err)
-                        }, success: {[unowned self] (model) in
-                            UserDefaults.standard.removeObject(forKey: "SwimpyUser")
-                            let initialNavVC = StoryboardScene.Main.instantiateInitialNavigationViewController()
-                            let VC = StoryboardScene.Main.instantiateLoginViewController()
-                            initialNavVC.viewControllers = [VC]
-                            UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
-                        }, method: "PUT", loader: true)
+                case SwitchValues.five.rawValue: //logout
+                    let alert = UIAlertController(title: L10n.logout.string, message: L10n.areYouSure.string, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .default, handler: { (action) in
+                       
+                    }))
+                    alert.addAction(UIAlertAction(title: L10n.ok.string, style: .default, handler: { (action) in
+                       self.logout()
+                    }))
+
+                    self.present(alert, animated: true, completion: nil)
+                    
                 default :
                     break
                 }
@@ -64,9 +69,24 @@ class SettingsViewController: UIViewController {
         tableViewSettings.reloadData()
     }
     
+    func logout() {
+        
+        
+        ApiManager().getDataOfURL(withApi: API.Logout(APIParameters.Logout( ).formatParameters()), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+                UserDefaults.standard.removeObject(forKey: "SwimpyUser")
+                let initialNavVC = StoryboardScene.Main.instantiateInitialNavigationViewController()
+                let VC = StoryboardScene.Main.instantiateLoginViewController()
+                initialNavVC.viewControllers = [VC]
+                UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
+
+            }, method: Keys.Put.rawValue, loader: true)
+    }
+    
     //MARK:- button action
     @IBAction func btnActionBack(_ sender: AnyObject) {
-        _ = self.navigationController?.popViewController(animated: true)
+       _ = self.navigationController?.popViewController(animated: true)
     }
     
 }

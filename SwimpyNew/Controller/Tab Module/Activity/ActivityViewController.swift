@@ -8,19 +8,24 @@
 
 import UIKit
 import XLPagerTabStrip
+import MIBadgeButton_Swift
 
 class ActivityViewController: BasePageViewController {
- 
+    
     //MARK:- variables
     let globalVC = StoryboardScene.Main.instantiateGlobalActivityViewController()
     let friendsVC = StoryboardScene.Main.instantiateFriendsViewController()
-
+    
+    @IBOutlet weak var btnCart: MIBadgeButton!
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-         pageVCSetup()
+        pageVCSetup()
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        viewCartCount(btnCart: btnCart)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -34,7 +39,7 @@ class ActivityViewController: BasePageViewController {
     @IBAction func btnActionCart(sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateCartViewController()
         self.navigationController?.pushViewController(VC, animated: true)
-
+        
     }
     
     @IBAction func btnSearchAction(sender: AnyObject) {
@@ -42,5 +47,5 @@ class ActivityViewController: BasePageViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
-
+    
 }

@@ -21,7 +21,7 @@ class LoadingOverlay: UIView {
 
      func showOverlay(view: UIView) {
         overlayView.frame = CGRect(x:0,y: 0,width: UIScreen.main.bounds.width,  height : UIScreen.main.bounds.height)
-        overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        overlayView.backgroundColor = UIColor.overlay()
         overlayView.clipsToBounds = true
         view.addSubview(overlayView)
 

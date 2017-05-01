@@ -7,6 +7,8 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - DropDown (2)
+  - ESPullToRefresh (2.1)
+  - EZSwiftExtensions (1.7)
   - FBSDKCoreKit (4.16.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.16.1):
@@ -57,12 +59,16 @@ PODS:
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
   - IQKeyboardManager (4.0.6)
-  - MICountryPicker (0.2.2)
+  - Material (2.3.7):
+    - Material/Core (= 2.3.7)
+  - Material/Core (2.3.7)
+  - MIBadgeButton-Swift (0.5)
   - Presentr (1.0.3)
   - RMMapper (1.1.5)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SFFocusViewLayout (3.1.0)
   - SwiftMessages (3.0.3)
   - SwiftyJSON (3.1.1)
   - SZTextView (1.2.2)
@@ -78,17 +84,21 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - DropDown
+  - ESPullToRefresh
+  - EZSwiftExtensions
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - Fusuma (~> 1.0.0)
   - Google/SignIn
   - IQKeyboardManager
-  - MICountryPicker (from `https://github.com/mustafaibrahim989/MICountryPicker.git`,
+  - Material
+  - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`,
     branch `master`)
   - Presentr
   - RMMapper
   - SDWebImage
+  - SFFocusViewLayout
   - SwiftMessages
   - SwiftyJSON
   - SZTextView
@@ -96,19 +106,21 @@ DEPENDENCIES:
   - YYWebImage
 
 EXTERNAL SOURCES:
-  MICountryPicker:
+  MIBadgeButton-Swift:
     :branch: master
-    :git: https://github.com/mustafaibrahim989/MICountryPicker.git
+    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
 
 CHECKOUT OPTIONS:
-  MICountryPicker:
-    :commit: 43a40241da087c81c4f26715283c12ac1335ebb2
-    :git: https://github.com/mustafaibrahim989/MICountryPicker.git
+  MIBadgeButton-Swift:
+    :commit: 245fbf64b0a3afb8ac2f19c17552059383092c1d
+    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
+  ESPullToRefresh: bb9e156053af3f7f8829c125b27ce00066372e30
+  EZSwiftExtensions: 4afef248066a036903d8496bf07bc355b22ce766
   FBSDKCoreKit: 7a6baaed4a2b2a244ba253346713bdbc74df135b
   FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
   FBSDKShareKit: 53af0239b5bd2ebf191f32f75991245a208cc982
@@ -125,10 +137,12 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
-  MICountryPicker: 82122c5f918bc9f9e2c510793fffd188dc8d38ce
+  Material: b0aa466c72931f6dc3854a059e086455f4103a28
+  MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
   Presentr: 9759bf538d9f3211a5ee1314a541a11bbea7ea71
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SFFocusViewLayout: 8524435eb57796adf3e7be1395c4e3786cd76dcc
   SwiftMessages: 3c6fd0375009d69ff35a7656bae0e31b4d8a930d
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82

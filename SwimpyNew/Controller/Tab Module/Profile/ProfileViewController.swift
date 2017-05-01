@@ -8,10 +8,13 @@
 
 import UIKit
 import XLPagerTabStrip
+import MIBadgeButton_Swift
 
 class ProfileViewController: BasePageViewController {
     
+   
     //MARK:- outlets
+     @IBOutlet weak var btnCart: MIBadgeButton!
     @IBOutlet weak var lblSettings: UILabel!
     @IBOutlet weak var imgSettings: UIImageView!
     @IBOutlet weak var btnBack: UIButton!
@@ -32,7 +35,7 @@ class ProfileViewController: BasePageViewController {
     let profileStoreVC = StoryboardScene.Main.instantiateProfileStoreViewController()
     let profileItemVC = StoryboardScene.Main.instantiateProfileItemViewController()
     var flagMyProfile = true
-    var userId : String = MMUserManager.shared.loggedInUser?.id ?? ""
+    var userId : String = /MMUserManager.shared.loggedInUser?.id
     var userDetails : UserDetails?
     var flagEditProfile = false
     
@@ -47,6 +50,10 @@ class ProfileViewController: BasePageViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         setup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewCartCount(btnCart: btnCart)
     }
     
     //MARK:- functions
@@ -86,20 +93,20 @@ class ProfileViewController: BasePageViewController {
                 self.userDetails = model as? UserDetails
                 self.setUI()
                 print(model)
-            }, method: "GET", loader: true)
+            }, method: Keys.Get.rawValue, loader: true)
         
     }
     
     func setUI() {
-        lblName.text = userDetails?.name ?? ""
+        lblName.text = /userDetails?.name
         if let country = userDetails?.countryName , country != nil {
             lblCountryName.text = country
         }else {
             lblCountryName.text = "(Country Name)"
         }
-        btnNumberOfFollowers.setTitle((userDetails?.totalFollowedBy ?? "") + L10n._Followers.string, for: .normal)
-        btnNumberOfFollowing.setTitle((userDetails?.totalFollowing ?? "") + L10n._Following.string, for: .normal)
-        imgUserImage.sd_setImage(with: URL(string: userDetails?.profilePicURLOriginal ?? ""))
+        btnNumberOfFollowers.setTitle((/userDetails?.totalFollowedBy) + L10n._Followers.string, for: .normal)
+        btnNumberOfFollowing.setTitle((/userDetails?.totalFollowing) + L10n._Following.string, for: .normal)
+        imgUserImage.sd_setImage(with: URL(string: /userDetails?.profilePicURLOriginal))
         if userDetails?.followStatus == L10n._0.string {
             btnFollow?.setTitle(L10n.follow.string, for: .normal)
         }else {
@@ -137,18 +144,16 @@ class ProfileViewController: BasePageViewController {
     }
     @IBAction func btnActionFollow(sender: AnyObject) {
         //because m opening the profile of other uaer followed by affected
+        if UserFunctions.checkInternet() {
         
+        var status = true
         if userDetails?.followStatus == L10n._0.string {
             userDetails?.followStatus = L10n._1.string
             btnFollow?.setTitle(L10n.following.string, for: .normal)
             let totalFollowers = "\((Int(userDetails?.totalFollowedBy ?? L10n._0.string) ?? 0) + 1)"
             btnNumberOfFollowers.setTitle(totalFollowers + L10n._Followers.string, for: .normal)
             userDetails?.totalFollowedBy = totalFollowers
-            ApiManager().getDataOfURL(withApi: API.FollowUser(APIParameters.FollowUser(userId: userDetails?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                    print(model)
-                }, method: "POST", loader: false)
+           
         }
         else {
             btnFollow?.setTitle(L10n.follow.string, for: .normal)
@@ -156,13 +161,17 @@ class ProfileViewController: BasePageViewController {
             let totalFollowers = "\((Int(userDetails?.totalFollowedBy ?? L10n._1.string) ?? 1) - 1)"
             btnNumberOfFollowers.setTitle(totalFollowers + L10n._Followers.string, for: .normal)
             userDetails?.totalFollowedBy = totalFollowers
-            ApiManager().getDataOfURL(withApi: API.UnfollowUser(APIParameters.UnfollowUser(userId: userDetails?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                    print(model)
-                    
-                }, method: "PUT", loader: false)
+            status = false
         }
+        ApiManager().getDataOfURL(withApi: API.FollowUser(APIParameters.FollowUser(userId: userDetails?.id).formatParameters(),type: status), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+                print(model)
+            }, method: Keys.Post.rawValue, loader: false)
+        }else {
+            UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
+        }
+
     }
     
     @IBAction func btnActionCart(sender: AnyObject) {
@@ -178,7 +187,8 @@ class ProfileViewController: BasePageViewController {
     @IBAction func btnActionLogout(_ sender: AnyObject) {
         if gotoLogin() {
             let VC = StoryboardScene.Main.instantiateSettingsViewController()
-            self.navigationController?.pushViewController(VC, animated: true)
+            _ = navigationController?.pushViewController(
+                VC, with: UINavigationCustomTransitionStyleRipple)
         }
     }
     @IBAction func brnActionBack(_ sender: AnyObject) {

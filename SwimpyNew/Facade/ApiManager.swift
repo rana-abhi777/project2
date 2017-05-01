@@ -24,14 +24,15 @@ class ApiManager {
         HttpManager.callApiWithParameters(api: withApi, success: {(response) in
             guard let temp = response else { return }
             let data = JSON(temp)
-            print(response)
+            print("Response : " , response)
             if(data["statusCode"].intValue >= 200 && data["statusCode"].intValue <= 299 ){
                 var singleUserArray : AnyObject?
-                print(data)
+                //print("Data : " , data)
+                let json = data["data"]
                 switch(withApi){
                     
                 case .Signup(_) , .Login(_), .LoginViaFacebook(_), .LoginViaGoogle(_):
-                    let user = User(arrResult: data["data"])
+                    let user = User(arrResult: json)
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
                     
@@ -41,66 +42,92 @@ class ApiManager {
                 case .GetCategory(_) :
                     let category = Category.changeDictToModelArray(jsoon1: data)
                     singleUserArray = category as AnyObject?
-                case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) , .GetUserItem(_), .GetNewProduct(_) :
-                    let result = ProductResponse(arrResult: data["data"])
+                case .GetCategoryResults(_), .GetPopularProduct(_),.GetSaleProduct(_),.GetFeaturedProduct(_) , .GetUserItem(_), .GetNewProduct(_) , .RefineAndSort(_):
+                    let result = ProductResponse(arrResult: json)
                     singleUserArray = result as AnyObject?
                     
+                case .GetAllSeller(_):
+                    let result = AllStoreResponse(arrResult: json)
+                    singleUserArray = result as AnyObject?
                 case .LikeProduct(_) :
-                    let likeData = data["data"].dictionaryValue
+                    let likeData = json.dictionaryValue
                     let likeCount : String = likeData["likes"]?.stringValue ?? ""
                     singleUserArray = likeCount as AnyObject?
+                case .GetAllSellerForUser(_):
+                    let userStores = AllSellerForUser(arrResult: json)
+                    singleUserArray = userStores
                     break
                     
-                case .DislikeProduct(_) :
-                    let likeData = data["data"].dictionaryValue
-                    let likeCount = likeData["likes"]?.stringValue
-                    singleUserArray = likeCount as AnyObject?
-                    break
                     
                 case .GetGlobalActivity(_) , .GetUserActivity(_) , .GetFriendsActivity(_) :
-                    let category = GlobalActivityData(arrResult: data["data"])
+                    let category = GlobalActivityData(arrResult: json)
                     singleUserArray = category as AnyObject?
-                    break
+                    
                     
                 case .ProductDetail(_) :
-                    let productDetail = ProductDetail(response: data["data"])
+                    let productDetail = ProductDetail(response: json)
                     singleUserArray = productDetail
                     break
                     
-                case .FollowUser(_) , .UnfollowUser(_),.UnfollowStore(_),
-                     .FollowStore(_), .Logout(_) :
+                case .FollowUser(_) , .FollowStore(_), .Logout(_) :
                     print(data)
                     break
                     
                 case .GetUserDetail(_) :
-                    let userDetail = UserDetails(arrResult: data["data"])
+                    let userDetail = UserDetails(arrResult: json)
                     singleUserArray = userDetail
-                    print(data)
+                    print("User Details : " , data)
                     break
                     
                 case .GetStoreDetail(_) :
-                    let storeDetail = StoreDetail(arrResult: data["data"])
+                    let storeDetail = StoreDetail(arrResult: json)
                     singleUserArray = storeDetail
                     print(data)
                     break
                 case .GetUserStore(_) :
-                    let userStores = AllStores(arrResult : data["data"])
+                    let userStores = AllStores(arrResult : json)
                     singleUserArray = userStores as AnyObject?
                     break
                 case .AddToCart(_) :
+                    MMUserManager.shared.cartCount =  (((MMUserManager.shared.cartCount ?? "0").toInt() ?? 0).advanced(by: 1)).toString
+                    break
+                case .RemoveCartItem(_) :
+                    MMUserManager.shared.cartCount =  (((MMUserManager.shared.cartCount ?? "0").toInt() ?? 1).advanced(by: -1)).toString
                     break
                 case .GetCartDetail(_) :
-                    let cartDetails = CartData.changeDictToModelArray(jsoon1: data)
+                    let cartDetails = CartData.changeDictToModelArray(jsoon1: data["data"])
+                    let data = data["data"]
+                    MMUserManager.shared.cartCount =  data[Keys.cartLength.rawValue].stringValue
+                    
                     singleUserArray = cartDetails as AnyObject?
                     break
-                case .GetAddress(_) :
-                    singleUserArray = DefaultAddress(arrResult : data["data"])
+                case .GetAddress(_) , .EditAddress(_) , .AddAddress(_) :
+                    singleUserArray = DefaultAddress(arrResult : json)
                     
                 case .GetSearchAll(_) :
-                    singleUserArray = SearchResult(arrResult: data["data"])
+                    singleUserArray = SearchResult(arrResult: json)
                     break
+                case .GenerateOrder(_) :
+                    MMUserManager.shared.cartCount = json[Keys.cartLength.rawValue].stringValue
+                    break
+                case .CalculateShipping(_) :
+                    singleUserArray = OrderSummary(arrResult: json)
+                    break
+                case .MyOrderList(_) :
+                    singleUserArray = MyOrderList.changeDictToModelArray(jsoon1: json) as AnyObject?
+                    print("SingleUserArray : ",singleUserArray)
+                    break
+                case .ChangePassword(_) :
+                    break
+                case .chatListMessaging(_):
+                    print(json)
+                    singleUserArray = MessageData(arrResult: json)
                     
-                    
+                    //singleUserArray = Message.changeDictToModelArray(jsoon1: json) as AnyObject
+                    break
+                case .chatList(_) :
+                    singleUserArray = ChatList.changeDictToModelArray(jsoon1: json) as AnyObject
+                    break
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }
@@ -109,7 +136,17 @@ class ApiManager {
             }
             else{
                 ApiManager.hideLoader()
-                UserFunctions.showAlert(message: data["message"].stringValue)
+                //with api get cart details check
+                
+                if data["message"].stringValue == "Bad token" {
+                    UserDefaults.standard.removeObject(forKey: "SwimpyUser")
+                    let initialNavVC = StoryboardScene.Main.instantiateInitialNavigationViewController()
+                    let VC = StoryboardScene.Main.instantiateLoginViewController()
+                    initialNavVC.viewControllers = [VC]
+                    UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
+                }else {
+                    UserFunctions.showAlert(message: data["message"].stringValue)
+                }
             }
             
             }, failure: { (error) in
@@ -140,6 +177,10 @@ class ApiManager {
                     singleUserArray = user
                     MMUserManager.shared.loggedInUser = singleUserArray as? User
                     
+                case .uploadImage(_) :
+                    let obj = UploadImage(arrResult:  data["data"])
+                    singleUserArray = obj
+                    
                 default:
                     print(L10n.apiWhichIsHitIsNotPresentInApiCollection.string)
                 }
@@ -148,7 +189,17 @@ class ApiManager {
             }
             else{
                 ApiManager.hideLoader()
-                UserFunctions.showAlert(message: data["message"].stringValue)
+                
+                if data["message"].stringValue == "Bad token" {
+                    UserDefaults.standard.removeObject(forKey: "SwimpyUser")
+                    let initialNavVC = StoryboardScene.Main.instantiateInitialNavigationViewController()
+                    let VC = StoryboardScene.Main.instantiateLoginViewController()
+                    initialNavVC.viewControllers = [VC]
+                    UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
+                    
+                }else {
+                    UserFunctions.showAlert(message: data["message"].stringValue)
+                }
             }
             
             }, failure: { (error) in

@@ -32,13 +32,6 @@ class SearchPeopleViewController: UIViewController, IndicatorInfoProvider {
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
             timer.invalidate()
             return
@@ -46,6 +39,14 @@ class SearchPeopleViewController: UIViewController, IndicatorInfoProvider {
             configureLoaderView()
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchPeopleViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
         }
+        
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,7 +66,9 @@ class SearchPeopleViewController: UIViewController, IndicatorInfoProvider {
         configureLoaderView()
         ApiManager().getDataOfURL(withApi: API.GetSearchAll(APIParameters.GetSearchAll(text: text, value: "user").formatParameters()), failure: { (err) in
             print(err)
+            
             }, success: { (model) in
+                
                 guard let data = model as? SearchResult else { return }
                 self.oldText = data.text
                 self.arrUserData = data.dataUser ?? []
@@ -76,7 +79,8 @@ class SearchPeopleViewController: UIViewController, IndicatorInfoProvider {
                 else {
                     self.view.bringSubview(toFront: self.viewNoPeople)
                 }
-            }, method: "GET", loader: false)
+                
+            }, method: Keys.Get.rawValue, loader: false)
     }
     
     func configureLoaderView() {
@@ -86,9 +90,12 @@ class SearchPeopleViewController: UIViewController, IndicatorInfoProvider {
     
     func configureTableView() {
         tableViewDataSource = TableViewCustomDatasource(items: arrUserData, height: 96, estimatedHeight: 96, tableView: tableViewSearchPeople, cellIdentifier: CellIdentifiers.SearchPeopleTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+            
             let cell = cell as? SearchPeopleTableViewCell
             cell?.configureCell(model: self.arrUserData[indexpath.row])
+            
             }, aRowSelectedListener: { (indexPath) in
+                
             }, willDisplayCell: { (indexPath) in
                 
         })

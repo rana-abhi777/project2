@@ -21,10 +21,10 @@ class ProfileStoreCollectionViewCell: UICollectionViewCell {
     //MARK:-  function
     
     func configureCell(model : UserStores) {
-        lblStoreName.text = model.storeName ?? ""
-//        lblDescription.text = model?.describe ?? ""
-        lblNumberOfFollowers.text = (model.totalFollow ?? "") + L10n._Followers.string
-        imgStoreCoverPic.sd_setImage(with: URL(string: model.coverPicURLOriginal ?? ""))
-        imgStoreProfilePic.sd_setImage(with: URL(string: model.profilePicURLThumbnail ?? ""))
+        lblStoreName.text = /model.storeName
+//        lblDescription.text = /model?.describe 
+        lblNumberOfFollowers.text = (/model.totalFollow ) + L10n._Followers.string
+        imgStoreCoverPic.sd_setImage(with: URL(string: /model.coverPicURLOriginal ))
+        imgStoreProfilePic.sd_setImage(with: URL(string: /model.profilePicURLThumbnail))
     }
 }

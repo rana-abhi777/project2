@@ -23,18 +23,18 @@ class Store: NSObject {
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
-        id = arrResult["_id"].stringValue
-        storeName = arrResult["storeName"].stringValue
+        id = arrResult[Keys.ID.rawValue].stringValue
+        storeName = arrResult[Keys.StoreName.rawValue].stringValue
 //        describe = arrResult["description"].stringValue
-        totalFollow = arrResult["totalFollow"].stringValue
+        totalFollow = arrResult[Keys.TotalFollow.rawValue].stringValue
         
-        let profilePicURL = arrResult["profilePicURL"].dictionaryValue
-        profilePicURLOriginal = profilePicURL["original"]?.stringValue
-        profilePicURLThumbnail = profilePicURL["thumbnail"]?.stringValue
+        let profilePicURL = arrResult[Keys.ProfilePicURL.rawValue].dictionaryValue
+        profilePicURLOriginal = profilePicURL[Keys.Original.rawValue]?.stringValue
+        profilePicURLThumbnail = profilePicURL[Keys.Thumbnail.rawValue]?.stringValue
         
-        let coverPicURL = arrResult["coverPicURL"].dictionaryValue
-        coverPicURLOriginal = coverPicURL["original"]?.stringValue
-        coverPicURLThumbnail = coverPicURL["thumbnail"]?.stringValue
+        let coverPicURL = arrResult[Keys.CoverPicURL.rawValue].dictionaryValue
+        coverPicURLOriginal = coverPicURL[Keys.Original.rawValue]?.stringValue
+        coverPicURLThumbnail = coverPicURL[Keys.Thumbnail.rawValue]?.stringValue
     }
     
     override init() {
@@ -43,7 +43,7 @@ class Store: NSObject {
     
     static func changeDictToModelArray (jsoon1 : JSON ) -> [Store] {
         var tempArr : [Store] = []
-        for item in jsoon1["data"].arrayValue {
+        for item in jsoon1[Keys.Data.rawValue].arrayValue {
             let userObj = Store(arrResult: item)
             tempArr.append(userObj)
         }

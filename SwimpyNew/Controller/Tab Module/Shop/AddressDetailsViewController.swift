@@ -4,9 +4,10 @@
 //
 //  Created by Aseem 10 on 10/7/16.
 //  Copyright © 2016 Aseem 10. All rights reserved.
-//
+
 
 import UIKit
+import EZSwiftExtensions
 
 
 class AddressDetailsViewController: BaseViewController {
@@ -24,15 +25,19 @@ class AddressDetailsViewController: BaseViewController {
     @IBOutlet weak var txtCity: UITextField!
     @IBOutlet weak var txtZipcode: UITextField!
     
+    @IBOutlet weak var btnCart: UIButton!
     //MARK:- variables
     var flagMarkAsDefault = false
     var defaultAddressData : DefaultAddress?
     var flagEditApi = false
-    
+    var arrCartData : [CartData] = []
+    var defaultAddress : DefaultAddress?
+    var code = "IN"
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnCart.isHidden = true
         hitApiToGetAddress()
     }
     
@@ -46,22 +51,26 @@ class AddressDetailsViewController: BaseViewController {
             }, success: {[unowned self] (model) in
                 //fill the fields
                 self.defaultAddressData = model as? DefaultAddress
+                
+                print("Address Data : " , self.defaultAddressData?.countryName ?? "")
                 self.setUI()
                 
-            }, method: "GET", loader: true)
+            }, method: Keys.Get.rawValue, loader: true)
         
     }
     //MARK:-  function
     
     func setUI() {
-        txtFullname.text = defaultAddressData?.fullName ?? ""
-        txtMobileNumber.text = defaultAddressData?.phoneNo ?? ""
-        txtAddressLine2.text = defaultAddressData?.addressLine2 ?? ""
-        txtAddressLine1.text = defaultAddressData?.addressLine1 ?? ""
+        txtFullname.text = /defaultAddressData?.fullName
+        txtMobileNumber.text = /defaultAddressData?.phoneNo
+        txtAddressLine2.text = /defaultAddressData?.addressLine2
+        txtAddressLine1.text = /defaultAddressData?.addressLine1
         flagMarkAsDefault = defaultAddressData?.isDefault ?? false
-        txtCity.text = defaultAddressData?.city ?? ""
-        txtZipcode.text = defaultAddressData?.zipcode ?? ""
-        txtState.text = defaultAddressData?.state ?? ""
+        txtCity.text = /defaultAddressData?.city
+        txtZipcode.text = /defaultAddressData?.zipcode
+        txtState.text = /defaultAddressData?.state
+        code = /defaultAddressData?.countryCode
+        code = "IN"
         if let country = defaultAddressData?.countryName , country != "" {
             lblCountry.text = country
         }
@@ -69,7 +78,7 @@ class AddressDetailsViewController: BaseViewController {
             lblCountry.text  = L10n.selectCountry.string
         }
         flagMarkAsDefault ? btnMarkAsDefault.setImage(UIImage(asset: .icCheckSmall), for: .normal) : btnMarkAsDefault.setImage(UIImage(asset: .icCheckSmall0), for: .normal)
-        guard let _ = defaultAddressData?.id else{
+        guard let id = defaultAddressData?.id , id != ""  else{
             flagEditApi = false
             return
         }
@@ -77,12 +86,81 @@ class AddressDetailsViewController: BaseViewController {
     }
     
     func validateData() -> Bool {
+        
         var indicator = true
-        if lblCountry.text  == L10n.selectCountry.string {
+        if txtFullname.text?.trimmed().characters.count == 0 {
+            UserFunctions.showAlert(message: L10n.enterYourFullName.string)
+            indicator = false
+        }else if (/txtFullname.text).hasSpecialCharcters  {
+            UserFunctions.showAlert(message: L10n.enterYourValidName.string)
+            indicator = false
+        }
+        if /txtAddressLine1.text?.trimmed().characters.count == 0 {
+            UserFunctions.showAlert(message: L10n.enterAddressLine1.string)
+            indicator = false
+            
+        }else if /txtAddressLine2.text?.trimmed().characters.count == 0 {
+            UserFunctions.showAlert(message: L10n.enterAddressLine2.string)
+            indicator = false
+            
+        }else if /txtCity.text?.trimmed().characters.count == 0 {
+            UserFunctions.showAlert(message: L10n.enterCity.string)
+            indicator = false
+            
+        }else if /txtState.text?.trimmed().characters.count == 0 {
+            UserFunctions.showAlert(message: L10n.enterState.string)
+            indicator = false
+            
+        }else if /txtZipcode.text?.trimmed().characters.count == 0 {
+            UserFunctions.showAlert(message: L10n.enterZipcode.string)
+            indicator = false
+        }
+        else if lblCountry.text  == L10n.selectCountry.string {
             UserFunctions.showAlert(message: L10n.pleaseSelectCountry.string)
+            indicator = false
+        }else if /txtMobileNumber.text?.trimmed().characters.count == 0 {
+            UserFunctions.showAlert(message: L10n.enterMobileNumber.string)
             indicator = false
         }
         return indicator
+    }
+    
+    
+    func apiToCalculateShipping() {
+        ApiManager().getDataOfURL(withApi: API.CalculateShipping(APIParameters.CalculateShipping( details: GenerateOrder.changeDictToModelArray(arrData: arrCartData) as AnyObject?,  countryCode: code).formatParameters()), failure: { (err) in
+            print(err)
+            }, success: {[unowned self] (model) in
+                guard let response = model as? OrderSummary else { return }
+                guard let arrOrder = response.arrOrder  else { return }
+                guard let arrNotAvailable = response.arrNotAvailable else { return }
+                
+                
+                print(arrOrder)
+                var totalAmt : Double = 0.0
+                var shippingCost : Double = 0.0
+                
+                for item in arrOrder {
+                    totalAmt = totalAmt +  (((/item.price).toDouble() ?? 0.0) * (item.quantity?.toDouble() ?? 1.0))
+                    shippingCost = shippingCost +
+                        (/item.shippingCost).toDouble()!
+                }
+                
+                let VC = StoryboardScene.Main.instantiateOrderDetailViewController()
+                if arrNotAvailable.count > 0 {
+                    VC.flagNotAvailable = true
+                }
+                if arrOrder.count > 0 {
+                    VC.arrOrder = arrOrder
+                    VC.defaultAddress = self.defaultAddress
+                    VC.totalAmt = totalAmt
+                    VC.shippingCost = shippingCost
+                    self.navigationController?.pushViewController(VC, animated: true)
+                }else {
+                    UserFunctions.showAlert(message: "Product cannot be delivered at your address")
+                }
+            }, method: Keys.Post.rawValue, loader: true)
+        
+        
     }
     
     //MARK:- button actions
@@ -103,33 +181,47 @@ class AddressDetailsViewController: BaseViewController {
     }
     
     @IBAction func btnActionCancel(sender: AnyObject) {
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnActionSave(sender: AnyObject) {
         if validateData() {
+            var api : API?
             if flagEditApi {
-                ApiManager().getDataOfURL(withApi: API.EditAddress(APIParameters.EditAddress(fullName: txtFullname.text, addressLine1: txtAddressLine1.text, addressLine2: txtAddressLine2.text, countryName: lblCountry.text, city: txtCity.text, state: txtState.text, zipcode: txtZipcode.text, phoneNo: txtMobileNumber.text,isDefault : "\(flagMarkAsDefault)",addressId : defaultAddressData?.id).formatParameters()), failure: { (err) in
-                    print(err)
-                    }, success: { (model) in
-                        UserFunctions.showAlert(title : L10n.success.string ,message: L10n.addressEditedSuccessfully.string)
-                    }, method: "POST", loader: true)
+                api = API.EditAddress(APIParameters.EditAddress(addressId : defaultAddressData?.id , fullName: txtFullname.text, addressLine1: txtAddressLine1.text, addressLine2: txtAddressLine2.text, countryName: lblCountry.text, city: txtCity.text, state: txtState.text, zipcode: txtZipcode.text, phoneNo: txtMobileNumber.text,isDefault : "\(flagMarkAsDefault)", countryCode : code).formatParameters())
             }
             else {
-                ApiManager().getDataOfURL(withApi: API.AddAddress(APIParameters.AddAddress(fullName: txtFullname.text, addressLine1: txtAddressLine1.text, addressLine2: txtAddressLine2.text, countryName: lblCountry.text, city: txtCity.text, state: txtState.text, zipcode: txtZipcode.text, phoneNo: txtMobileNumber.text,isDefault : "\(flagMarkAsDefault)").formatParameters()), failure: { (err) in
-                    print(err)
-                    }, success: { (model) in
-                        UserFunctions.showAlert(title : L10n.success.string ,message: L10n.addressAddedSuccessfully.string)
-                    }, method: "POST", loader: true)
+                api = API.AddAddress(APIParameters.AddAddress(fullName: txtFullname.text, addressLine1: txtAddressLine1.text, addressLine2: txtAddressLine2.text, countryName: lblCountry.text, city: txtCity.text, state: txtState.text, zipcode: txtZipcode.text, phoneNo: txtMobileNumber.text,isDefault : "\(flagMarkAsDefault)", countryCode : code).formatParameters())
             }
+            guard let apiObj = api else {return }
+            ApiManager().getDataOfURL(withApi: apiObj, failure: { (err) in
+                print(err)
+                }, success: { [unowned self] (model) in
+                    
+                    
+                    self.defaultAddress = model as? DefaultAddress
+                    self.apiToCalculateShipping()
+                    // VC.shippingCost = shippingCost
+                    // self.navigationController?.pushViewController(VC, animated: true)
+                    // UserFunctions.showAlert(title : L10n.success.string ,message: L10n.addressEditedSuccessfully.string)
+                }, method: "POST", loader: true)
+            
         }
     }
     
     
     @IBAction func btnActionCountryDropDown(_ sender: AnyObject) {
-        self.selectCountry(labelCountry: lblCountry, btnCountry: nil)
+        let vc = StoryboardScene.Main.instantiateCountryPickerViewController()
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
 
-
+extension AddressDetailsViewController : SendData {
+    func setCountryCode(name : String ,code : String) {
+        lblCountry.text = name
+        self.code = code
+    }
+}
 

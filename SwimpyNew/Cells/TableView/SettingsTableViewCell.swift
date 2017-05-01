@@ -9,7 +9,7 @@
 import UIKit
 
 
-class SettingsTableViewCell: UITableViewCell {
+class SettingsTableViewCell: BaseTableViewCell {
     
     //MARK:- outlet
     @IBOutlet weak var lblSettingCategory: UILabel!
@@ -33,8 +33,8 @@ class SettingsTableViewCell: UITableViewCell {
         data = model
         index = row
         lblSettingCategory.text = model
-        if row == 2 {
-            (MMUserManager.shared.loggedInUser?.notification == L10n._1.string) ? btnSwitch.setImage(UIImage(asset : .icToggleOn), for: .normal) : btnSwitch.setImage(UIImage(asset : .icToggleOff), for: .normal)
+        if row == 3 {
+            (MMUserManager.shared.loggedInUser?.notification == L10n.on.string) ? btnSwitch.setImage(UIImage(asset : .icToggleOn), for: .normal) : btnSwitch.setImage(UIImage(asset : .icToggleOff), for: .normal)
             btnSwitch.isHidden = false
         }else {
             btnSwitch.isHidden = true
@@ -43,31 +43,25 @@ class SettingsTableViewCell: UITableViewCell {
     
     //MARK:- button actions
     @IBAction func btnActionSwitch(_ sender: AnyObject) {
-        if MMUserManager.shared.loggedInUser?.notification == L10n._1.string {
+        
+        if MMUserManager.shared.loggedInUser?.notification == L10n.on.string {
             btnSwitch.setImage(UIImage(asset : .icToggleOff), for: .normal)
             let userData = MMUserManager.shared.loggedInUser
-            userData?.notification = L10n._0.string
+            userData?.notification = L10n.off.string
             MMUserManager.shared.loggedInUser = userData
-            configureCell(model: data,row: index)
-            ApiManager().getDataOfURL(withApi: API.NotificationOnOff(APIParameters.NotificationOnOff(blockUnblock: L10n.off.string ).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                    
-                }, method: "POST", loader: false)
-            
         }else {
             btnSwitch.setImage(UIImage(asset : .icToggleOn), for: .normal)
             let userData = MMUserManager.shared.loggedInUser
-            userData?.notification = L10n._1.string
+            userData?.notification = L10n.on.string
             MMUserManager.shared.loggedInUser = userData
-            configureCell(model: data,row: index)
-            ApiManager().getDataOfURL(withApi: API.NotificationOnOff(APIParameters.NotificationOnOff(blockUnblock: L10n.on.string ).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                    
-                }, method: "POST", loader: false)
-            
         }
+        
+        configureCell(model: data,row: index)
+        ApiManager().getDataOfURL(withApi: API.NotificationOnOff(APIParameters.NotificationOnOff(blockUnblock: MMUserManager.shared.loggedInUser?.notification ).formatParameters()), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+                
+            }, method: Keys.Post.rawValue, loader: false)
     }
     
     

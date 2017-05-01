@@ -35,7 +35,7 @@ class RelatedProductsCollectionViewCell: UICollectionViewCell {
     func configureCell(model : RelatedProducts,row : Int) {
         data = model
         index = row
-        lblProductName?.text = model.productName ?? ""
+        lblProductName?.text = /model.productName 
         lblPrice?.text = "$" + (model.base_price_unit ?? L10n._0.string)
         btnNumberOfLike?.setTitle(model.totalLikes ?? L10n._0.string, for: .normal)
         btnNumberOfShare?.setTitle(model.share ?? L10n._0.string, for: .normal)
@@ -44,12 +44,7 @@ class RelatedProductsCollectionViewCell: UICollectionViewCell {
         imgProduct?.sd_setImage(with: URL(string : url)) { (image, error, cache, url) in
             print(image)
         }
-        if model.hasLiked == 0 {
-            btnLike.setImage(UIImage(asset: .icLike), for: .normal)
-        }
-        else {
-            btnLike.setImage(UIImage(asset: .icLikeOn), for: .normal)
-        }
+        btnLike.isSelected = model.hasLiked != 0
         
     }
     
@@ -58,36 +53,20 @@ class RelatedProductsCollectionViewCell: UICollectionViewCell {
     //MARK:- button action
     
     @IBAction func btnActionLike(_ sender: AnyObject) {
-        if data?.hasLiked == 0 {
-            self.btnLike.setImage(UIImage(asset : .icLikeOn), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
-            self.data?.totalLikes = "\(likeCount)"
-            self.data?.hasLiked = 1
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
-            self.btnLike.isUserInteractionEnabled = true
-            self.delegate?.updateLikeData(model: self.data, index: self.index)
-            ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-//                    let likeCount = model as? String
-//                    self.data?.totalLikes = likeCount
-//                    self.delegate?.updateLikeData(model: self.data, index: self.index)
-                }, method: "POST", loader: false)
-        }
-        else {
-            self.btnLike.setImage(UIImage(asset : .icLike), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
-            self.data?.totalLikes = "\(likeCount)"
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? L10n._0.string, for: .normal)
-            self.data?.hasLiked = 0
-            self.delegate?.updateLikeData(model: self.data, index: self.index)
-            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-//                    let likeCount = model as? String
-//                    self.data?.totalLikes = likeCount
-//                    self.delegate?.updateLikeData(model: self.data, index: self.index)
-                }, method: "POST", loader: false)
+        if UserFunctions.checkInternet() {
+        btnLike.isSelected = data?.hasLiked == 1
+        
+        let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : /data?.hasLiked == 0 ? 1 : -1)
+        self.data?.totalLikes = likeCount?.toString
+        self.data?.hasLiked = /data?.hasLiked == 0 ? 1 : 0
+        self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
+        self.delegate?.updateLikeData(model: self.data, index: self.index)
+        ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters(),type: /data?.hasLiked == 0), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+            }, method: Keys.Post.rawValue, loader: false)
+        }else {
+            UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
         }
     }
 }

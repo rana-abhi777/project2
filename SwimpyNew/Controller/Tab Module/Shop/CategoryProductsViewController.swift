@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryProductsViewController: UIViewController, CategoryProductsTask {
+class CategoryProductsViewController: UIViewController {
     
     //MARK:- variables
     var categoryId : String?
@@ -22,7 +22,11 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
     }
     var pageNo : String?
     let refreshControl = UIRefreshControl()
-    
+    var arrSubCategory : [SubCategory]?
+    var creatorId : String?
+    var isLoadMore = false
+    var flagRefine = false
+    var refineParams : OptionalDictionary = nil
     //MARK:- outlets
     @IBOutlet weak var collectionViewCategoryProducts: UICollectionView!
     @IBOutlet weak var lblCategoryName: UILabel!
@@ -32,13 +36,15 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl.addTarget(self, action: #selector(CategoryProductsViewController.initialize), for: UIControlEvents.valueChanged)
+        handlePagination()
+        refreshControl.addTarget(self, action: #selector(CategoryProductsViewController.setup), for: UIControlEvents.valueChanged)
         collectionViewCategoryProducts?.refreshControl =  refreshControl
-        initialize()
+        setup()
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,22 +52,48 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
     }
     
     //MARK:- functions
-    func initialize() {
+    
+    func resetNoMoreData(){
+        self.collectionViewCategoryProducts.es_resetNoMoreData()
+    }
+    
+    func foundNoMoreData(){
+        self.collectionViewCategoryProducts.es_stopLoadingMore()
+        self.collectionViewCategoryProducts.es_noticeNoMoreData()
+    }
+    
+    func setup() {
+        resetNoMoreData()
         pageNo = L10n._0.string
         arrProduct = []
-        configureCollectionView()
+        //configureCollectionView()
         lblCategoryName.text = categoryName
         hitApiForCategory()
     }
     
+    
+    func handlePagination(){
+        let _ = collectionViewCategoryProducts.es_addInfiniteScrolling { [unowned self] in
+            if self.pageNo != "" {
+                if self.flagRefine {
+                    self.getRefinedData()
+                }else {
+                    self.hitApiForCategory()
+                }
+            }else{
+                self.foundNoMoreData()
+            }
+            
+        }
+    }
+    
     func configureCollectionView(){
-        collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewCategoryProducts, cellIdentifier: CellIdentifiers.CategoryProductsCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewCategoryProducts.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
-            let cell = cell as? CategoryProductsCollectionViewCell
-            cell?.layer.cornerRadius = 4.0
-            cell?.layer.borderWidth = 2.0
-            cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+        collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewCategoryProducts, cellIdentifier: CellIdentifiers.DealsCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewCategoryProducts.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+            
+            let cell = cell as? DealsCollectionViewCell
             cell?.delegate = self
             cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
+            
             }, aRowSelectedListener: { (indexPath) in
                 let productId = self.arrProduct[indexPath.row].id ?? ""
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
@@ -81,32 +113,102 @@ class CategoryProductsViewController: UIViewController, CategoryProductsTask {
         ApiManager().getDataOfURL(withApi: API.GetCategoryResults(APIParameters.GetCategoryResults(categoryId: categoryId,pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
             }, success: {[unowned self] (model) in
-                let response = model as? ProductResponse ?? ProductResponse()
+                guard let temp = model  as? ProductResponse else { return }
+                let response = temp
+                self.arrSubCategory = []
                 self.pageNo = response.pageNo ?? nil
                 self.refreshControl.endRefreshing()
                 for item in response.arrProducts {
                     self.arrProduct.append(item)
                 }
+                self.isLoadMore = response.arrProducts.count > 0
+                self.collectionViewCategoryProducts.es_stopLoadingMore()
+                self.isLoadMore ? self.collectionViewCategoryProducts.es_resetNoMoreData() : self.collectionViewCategoryProducts.es_noticeNoMoreData()
                 if self.arrProduct.count > 0 {
                     self.configureCollectionView()
                     self.view.bringSubview(toFront: self.collectionViewCategoryProducts)
+                    self.arrSubCategory = response.arrSubcategory
                 }
                 else {
                     self.view.bringSubview(toFront: self.viewNoProducts)
                     
                 }
                 print(model)
-            }, method: "GET", loader: true)
+            }, method: Keys.Get.rawValue, loader: self.arrProduct.count == 0)
     }
+    
+    
+    
+    //MARK:- button actions
+    
+    @IBAction func btnActionRefineAndSort(_ sender: AnyObject) {
+        let VC = StoryboardScene.Main.instantiateRefineAndSortViewController()
+        VC.arrSubCategory = arrSubCategory
+        VC.creatorId = creatorId
+        VC.categoryId = categoryId
+        VC.delegate = self
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    
+    @IBAction func btnActionBack(_ sender: AnyObject) {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+}
+
+extension CategoryProductsViewController : SendRefineParameters {
+    
+    func sendParameters(param : OptionalDictionary) {
+        refineParams = param
+        resetNoMoreData()
+        pageNo = L10n._0.string
+        arrProduct = []
+        configureCollectionView()
+        getRefinedData()
+        
+    }
+    
+    func  getRefinedData() {
+        ApiManager().getDataOfURL(withApi: API.RefineAndSort(refineParams), failure: { (err) in
+            print(err)
+            
+            }, success: {[unowned self] (model) in
+                self.flagRefine = true
+                guard let temp = model  as? ProductResponse else { return }
+                let response = temp
+                self.arrSubCategory = []
+                self.pageNo = response.pageNo ?? nil
+                self.refreshControl.endRefreshing()
+                for item in response.arrProducts {
+                    self.arrProduct.append(item)
+                }
+                self.isLoadMore = response.arrProducts.count > 0
+                self.collectionViewCategoryProducts.es_stopLoadingMore()
+                self.isLoadMore ? self.collectionViewCategoryProducts.es_resetNoMoreData() : self.collectionViewCategoryProducts.es_noticeNoMoreData()
+                if self.arrProduct.count > 0 {
+                    self.configureCollectionView()
+                    self.view.bringSubview(toFront: self.collectionViewCategoryProducts)
+                    self.arrSubCategory = response.arrSubcategory
+                }
+                else {
+                    self.view.bringSubview(toFront: self.viewNoProducts)
+                    
+                }
+                print(model)
+            }, method: Keys.Get.rawValue, loader: true)
+        
+    }
+}
+
+
+//MARK:- DELEGATE function
+extension CategoryProductsViewController : DealsProductTask{
     
     func updateLikeData(model : Products?,index : Int) {
         arrProduct[index] = model ?? Products()
         configureCollectionView()
     }
     
-    //MARK:- button actions
-    @IBAction func btnActionBack(_ sender: AnyObject) {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
     
 }

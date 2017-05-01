@@ -66,14 +66,14 @@ extension CollectionViewDataSource : UICollectionViewDelegate , UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let block = self.willDisplayCell{
-            block(indexPath as IndexPath)
+            block(indexPath )
         }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let block = self.aRowSelectedListener{
-            block(indexPath as IndexPath)
+            block(indexPath )
         }
     }
     

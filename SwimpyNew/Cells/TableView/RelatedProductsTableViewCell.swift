@@ -12,7 +12,7 @@ protocol RelatedProductsDelegateFunction {
     func redirectToProductDetail(productId : String)
 }
 
-class RelatedProductsTableViewCell: UITableViewCell,RelatedProductsTask {
+class RelatedProductsTableViewCell: BaseTableViewCell,RelatedProductsTask {
 
     //MARK:- Outlets
     @IBOutlet weak var collectionViewRelatedProducts: UICollectionView!
@@ -53,10 +53,10 @@ class RelatedProductsTableViewCell: UITableViewCell,RelatedProductsTask {
             cell?.layer.cornerRadius = 4.0
             cell?.delegate = self
             cell?.layer.borderWidth = 2.0
-            cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+            cell?.layer.borderColor = UIColor.border()
             cell?.configureCell(model: arrProducts[indexpath.row],row : indexpath.row)
             }, aRowSelectedListener: { (indexPath) in
-                let id = arrProducts[indexPath.row].id ?? ""
+                let id = /arrProducts[indexPath.row].id 
                 self.delegate?.redirectToProductDetail(productId: id)
             }, willDisplayCell: { (indexPath) in
                 

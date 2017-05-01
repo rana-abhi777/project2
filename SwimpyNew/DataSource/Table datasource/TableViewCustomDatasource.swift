@@ -51,6 +51,7 @@ extension TableViewCustomDatasource : UITableViewDelegate , UITableViewDataSourc
         }
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier , for: indexPath) as UITableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
         if let block = self.configureCellBlock , let item: AnyObject = self.items as AnyObject?{
             block(cell , item , indexPath )
         }

@@ -8,9 +8,13 @@
 
 import UIKit
 import XLPagerTabStrip
+import MIBadgeButton_Swift
 
 class BasePageViewController: ButtonBarPagerTabStripViewController {
 
+    
+    var btnCartBadge : MIBadgeButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -22,7 +26,7 @@ class BasePageViewController: ButtonBarPagerTabStripViewController {
     //MARK:- FUNCTIONS
     func pageVCSetup() {
         settings.style.buttonBarHeight = 40.0
-        settings.style.buttonBarItemFont = UIFont(name: "BryantPro-Bold", size: 14.0)!
+        settings.style.buttonBarItemFont = UIFont(name: "BryantPro-Bold", size: 14.0) ?? UIFont.systemFont(ofSize: 14)
         settings.style.selectedBarHeight  = 4.0
         settings.style.selectedBarBackgroundColor = UIColor.black
         settings.style.buttonBarItemTitleColor = UIColor.gray
@@ -41,4 +45,13 @@ class BasePageViewController: ButtonBarPagerTabStripViewController {
     func getViewControllers() -> [UIViewController] {
         return [self]
     }
+    
+    func viewCartCount(btnCart : MIBadgeButton!) {
+        self.btnCartBadge = btnCart
+        btnCartBadge.badgeEdgeInsets = UIEdgeInsetsMake(18, 0, 0, 11)
+        btnCartBadge.badgeString = MMUserManager.shared.cartCount ?? ""
+        btnCartBadge.badgeTextColor = UIColor.black
+        btnCartBadge.badgeBackgroundColor = UIColor.orange
+    }
+    
 }

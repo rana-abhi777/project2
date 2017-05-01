@@ -12,7 +12,18 @@ public func calculateTimeSince(time : String) -> String {
     return  timeAgoSinceDate(date: locationDate,numericDates: true)
 }
 
-
+public func calculateDate(time : String) -> String {
+    let dateFormatter: DateFormatter = DateFormatter()
+    dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    guard let locationDate: Date =  dateFormatter.date(from: time) as Date? else { return "" }
+    print(locationDate)
+    dateFormatter.dateFormat = "EEE, MMM d, yyyy - h:mm a"
+    dateFormatter.timeZone = NSTimeZone.local
+    let timeStamp = dateFormatter.string(from: locationDate)
+    print(timeStamp)
+    return  timeStamp
+}
 public func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
     let calendar = NSCalendar.current
     let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]

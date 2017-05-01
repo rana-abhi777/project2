@@ -8,6 +8,7 @@
 
 import UIKit
 import XLPagerTabStrip
+import MIBadgeButton_Swift
 
 class ExploreViewController: BasePageViewController {
     
@@ -15,10 +16,16 @@ class ExploreViewController: BasePageViewController {
     let dealsVC = StoryboardScene.Main.dealsViewControllerScene.viewController()
     let featureVC = StoryboardScene.Main.instantiateFeaturedViewController()
     
+    @IBOutlet weak var btnCart: MIBadgeButton!
     //MARK:- override functions
     override func viewDidLoad() {
         pageVCSetup()
+        viewCartCount(btnCart: btnCart)
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewCartCount(btnCart: btnCart)
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,11 +40,11 @@ class ExploreViewController: BasePageViewController {
     
     //MARK:- button actions
     
-    @IBAction func btnActionCart(sender: AnyObject) {
+    @IBAction func btnActionCart(_ sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateCartViewController()
         self.navigationController?.pushViewController(VC, animated: true)
-
     }
+   
     
     @IBAction func btnSearchAction(sender: AnyObject) {
 //        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()

@@ -17,13 +17,12 @@ class SearchStoreCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblNumberOfFollowers: UILabel!
     
     
-    
     //MARK:-  function
     
     func configureCell(model : Store) {
-        lblStoreName.text = model.storeName ?? ""
-        lblNumberOfFollowers.text = (model.totalFollow ?? "") + L10n._Followers.string
-        imgStoreCoverPic.sd_setImage(with: URL(string: model.coverPicURLOriginal ?? ""))
-        imgStoreProfilePic.sd_setImage(with: URL(string: model.profilePicURLThumbnail ?? ""))
+        lblStoreName.text = /model.storeName 
+        lblNumberOfFollowers.text = (/model.totalFollow) + L10n._Followers.string
+        imgStoreCoverPic.sd_setImage(with: URL(string: /model.coverPicURLOriginal ))
+        imgStoreProfilePic.sd_setImage(with: URL(string: /model.profilePicURLThumbnail))
     }
 }

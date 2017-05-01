@@ -25,16 +25,16 @@ class Item: NSObject {
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
-        id = arrResult["_id"].stringValue
-        let image = arrResult["defaultImage"].dictionaryValue
-        productImageOriginal = image["original"]?.stringValue
-        productImageThumbnail = image["thumbnail"]?.stringValue
-        total_price = arrResult["total_price"].stringValue
-        share = arrResult["share"].stringValue
-        totalLikes = arrResult["totalLikes"].stringValue
-        productName = arrResult["productName"].stringValue
-        likesStatus = arrResult["likeStatus"].intValue
-        base_price_unit = arrResult["base_price_unit"].stringValue
+        id = arrResult[Keys.ID.rawValue].stringValue
+        let image = arrResult[Keys.DefaultImage.rawValue].dictionaryValue
+        productImageOriginal = image[Keys.Original.rawValue]?.stringValue
+        productImageThumbnail = image[Keys.Thumbnail.rawValue]?.stringValue
+        total_price = arrResult[Keys.TotalPrice.rawValue].stringValue
+        share = arrResult[Keys.Share.rawValue].stringValue
+        totalLikes = arrResult[Keys.TotalLikes.rawValue].stringValue
+        productName = arrResult[Keys.ProductName.rawValue].stringValue
+        likesStatus = arrResult[Keys.LikesStatus.rawValue].intValue
+        base_price_unit = arrResult[Keys.BasePriceUnit.rawValue].stringValue
     }
     
     override init() {
@@ -43,7 +43,7 @@ class Item: NSObject {
     
     static func changeDictToModelArray (jsoon1 : JSON ) -> [Item] {
         var tempArr : [Item] = []
-        for item in jsoon1["data"].arrayValue {
+        for item in jsoon1[Keys.Data.rawValue].arrayValue {
             let userObj = Item(arrResult: item)
             tempArr.append(userObj)
         }

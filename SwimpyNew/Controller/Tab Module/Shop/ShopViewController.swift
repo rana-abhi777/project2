@@ -8,10 +8,14 @@
 
 import UIKit
 import XLPagerTabStrip
+import MIBadgeButton_Swift
 
 class ShopViewController: BasePageViewController {
     
     //MARK:- outlets
+    @IBOutlet weak var btnCart: MIBadgeButton!
+ 
+    //MARK:- variables
     let categoryVC = StoryboardScene.Main.instantiateCategoriesViewController()
     let newVC = StoryboardScene.Main.instantiateNewViewController()
     let popularVC = StoryboardScene.Main.instantiatePopularViewController()
@@ -25,6 +29,10 @@ class ShopViewController: BasePageViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewCartCount(btnCart: btnCart)
     }
     
     //MARK:- functions

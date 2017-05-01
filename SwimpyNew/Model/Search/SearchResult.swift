@@ -20,14 +20,14 @@ class SearchResult: NSObject {
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
-        value = arrResult["value"].stringValue
-        text = arrResult["text"].stringValue
-        switch (value ?? "") {
-        case "item" :
+        value = arrResult[Keys.Value.rawValue].stringValue
+        text = arrResult[Keys.Text.rawValue].stringValue
+        switch (/value) {
+        case Keys.Item.rawValue :
             dataitem = Item.changeDictToModelArray(jsoon1: arrResult)
-        case "store" :
+        case Keys.Store.rawValue :
             dataStore = Store.changeDictToModelArray(jsoon1: arrResult)
-        case "user" :
+        case Keys.User.rawValue :
             dataUser = UserSearchResult.changeDictToModelArray(jsoon1: arrResult)
         default :
             break

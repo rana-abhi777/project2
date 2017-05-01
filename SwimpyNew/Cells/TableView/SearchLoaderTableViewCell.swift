@@ -8,26 +8,24 @@
 
 import UIKit
 
-class SearchLoaderTableViewCell: UITableViewCell {
+class SearchLoaderTableViewCell: BaseTableViewCell {
     
-    
+    //MARK:- Outlets
     @IBOutlet weak var lblSearching: UILabel!
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //MARK:- functions
     func configureCell() {
         activityIndicator.startAnimating()
     }
-
+    
+    //MARK:- override functions
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
+    
 }

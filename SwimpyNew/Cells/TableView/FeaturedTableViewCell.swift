@@ -8,12 +8,15 @@
 //
 
 import UIKit
+import Foundation
 protocol FeaturedProductsTask {
     func updateLikeData(model : Products?, index : Int)
     func cellSelected(index : Int)
+    func shareProduct(model : Products?, index : Int)
+    func buyProduct(model : Products?, index : Int)
 }
 
-class FeaturedTableViewCell: UITableViewCell {
+class FeaturedTableViewCell: BaseTableViewCell {
     
     //MARK:- Outlets
     @IBOutlet weak var imgProduct: UIImageView!
@@ -23,6 +26,9 @@ class FeaturedTableViewCell: UITableViewCell {
     @IBOutlet weak var btnNumberOfLike: UIButton!
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var imgHeart: UIImageView!
+    @IBOutlet weak var lblNumberOfLikes: UILabel!
+    @IBOutlet weak var lblIsFeatured: UILabel!
+    
     
     //MARK:- variables
     var data : Products?
@@ -39,22 +45,18 @@ class FeaturedTableViewCell: UITableViewCell {
         
     }
     
-    
     //MARK:-   functions
     func configureCell(model : Products,row : Int) {
         data = model
         index = row
-        imgProduct?.sd_setImage(with: URL(string:model.productImageOriginal ?? ""))
+        imgProduct?.sd_setImage(with: URL(string: /model.productImageOriginal ))
         lblPrice?.text = "$ " + (model.base_price_unit ?? L10n._0.string)
-        btnNumberOfLike.setTitle(model.totalLikes ?? "",for: .normal)
-        btnNumberOfShare?.setTitle(model.share ?? "",for: .normal)
+        btnNumberOfLike.setTitle(model.totalLikes,for: .normal)
+        lblNumberOfLikes.text = model.totalLikes
+        btnNumberOfShare?.setTitle(model.share,for: .normal)
+        btnLike.isSelected = model.hasLiked != 0
+        model.hasLiked != 0 ? btnLike.setTitle(StringNames.awsome.rawValue, for: .selected) : btnLike.setTitle(StringNames.like.rawValue, for: .normal)
         lblProductName?.text = model.productName
-        if model.hasLiked == 0 {
-            btnLike.setImage(UIImage(asset: .icLike), for: .normal)
-        }
-        else {
-            btnLike.setImage(UIImage(asset: .icLikeOn), for: .normal)
-        }
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(FeaturedTableViewCell.tapOn))
         doubleTapGesture.numberOfTapsRequired = 2
         imgProduct?.addGestureRecognizer(doubleTapGesture)
@@ -69,43 +71,51 @@ class FeaturedTableViewCell: UITableViewCell {
     }
     func tapOn() {
         imgHeart.isHidden = false
-        print("double tapped")
         animateLike()
-       
+        
     }
     func tappedOnCell() {
         self.delegate?.cellSelected(index: index)
     }
     func likeAction() {
-        if data?.hasLiked == 0 {
-            self.btnLike.setImage(UIImage(asset : .icLikeOn), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
-            self.data?.totalLikes = "\(likeCount)"
-            self.data?.hasLiked = 1
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
-            self.delegate?.updateLikeData(model: self.data, index: self.index)
-            ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                   
-                }, method: "POST", loader: false)
+        btnLike.isSelected = data?.hasLiked == 1
+        
+        let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : /data?.hasLiked == 0 ? 1 : -1)
+        self.data?.totalLikes = likeCount?.toString
+        self.data?.hasLiked = /data?.hasLiked == 0 ? 1 : 0
+        self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
+        self.delegate?.updateLikeData(model: self.data, index: self.index)
+        ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters(),type: /data?.hasLiked == 0), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+            }, method: Keys.Post.rawValue, loader: false)
+    }
+    
+    //MARK:- button actions
+    @IBAction func btnActionLike(_ sender: AnyObject) {
+        if UserFunctions.checkInternet() {
+            likeAction()
+        }else {
+            UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
         }
-        else {
-            self.btnLike.setImage(UIImage(asset : .icLike), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
-            self.data?.totalLikes = "\(likeCount)"
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? L10n._0.string, for: .normal)
-            self.data?.hasLiked = 0
-            self.delegate?.updateLikeData(model: self.data, index: self.index)
-            
-            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                   
-                }, method: "POST", loader: false)
-        }
+    }
+    
+    @IBAction func btnActionShare(_ sender: AnyObject) {
+        self.delegate?.shareProduct(model: data, index: index)
         
     }
+    
+    
+    @IBAction func btnActionBuy(_ sender: AnyObject) {
+        self.delegate?.buyProduct(model: data, index: index)
+    }
+    
+}
+
+
+
+//MARK: - animation like
+extension FeaturedTableViewCell {
     
     func animateLike() {
         
@@ -113,27 +123,22 @@ class FeaturedTableViewCell: UITableViewCell {
             self.imgHeart.isHidden = false
             self.imgHeart.transform = CGAffineTransform(scaleX: 1.7, y: 1.7)
             self.imgHeart.alpha = 1.0
+            
             }, completion: {(_ finished: Bool) -> Void in
                 UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
                     self.imgHeart.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+                    
                     }, completion: {(_ finished: Bool) -> Void in
                         UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
                             self.imgHeart.transform = CGAffineTransform(scaleX: 1.7, y: 1.7)
                             self.imgHeart.alpha = 0.0
+                            
                             }, completion: {(_ finished: Bool) -> Void in
                                 self.imgHeart.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                                 self.imgHeart.isHidden = true
-                                 self.likeAction()
+                                self.likeAction()
                         })
                 })
         })
-    }
-    
-    //MARK:- button actions
-    @IBAction func btnActionLike(_ sender: AnyObject) {
-        likeAction()
-    }
-    
-    @IBAction func btnActionShare(_ sender: AnyObject) {
     }
 }

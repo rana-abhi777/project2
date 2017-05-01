@@ -38,9 +38,6 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
             timer.invalidate()
             return
@@ -48,6 +45,10 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
             configureLoader()
             timer =   Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchItemViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,9 +71,12 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
             return
         }
         configureLoader()
+        
         ApiManager().getDataOfURL(withApi: API.GetSearchAll(APIParameters.GetSearchAll(text: text, value: "item").formatParameters()), failure: { (err) in
             print(err)
+            
             }, success: { (model) in
+                
                 guard let data = model as? SearchResult else { return }
                 self.oldText = data.text
                 self.arrProduct = data.dataitem ?? []
@@ -85,7 +89,8 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
                     self.view.bringSubview(toFront: self.viewNoProduct)
                 }
                 print(model)
-            }, method: "GET", loader: false)
+                
+            }, method: Keys.Get.rawValue, loader: false)
     }
     
     func configureLoader() {
@@ -98,17 +103,18 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
             let cell = cell as? SearchItemCollectionViewCell
             cell?.layer.cornerRadius = 4.0
             cell?.layer.borderWidth = 2.0
-            cell?.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+            cell?.layer.borderColor = UIColor.border()
             cell?.delegate = self
             cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
             
             }, aRowSelectedListener: {[unowned self] (indexPath) in
-                let productId = self.arrProduct[indexPath.row].id ?? ""
+                let productId = /self.arrProduct[indexPath.row].id
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
                 vc.productId = productId
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            }, willDisplayCell: {[unowned self] (indexPath) in
+            }, willDisplayCell: {(indexPath) in
+                
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewSearchItem.reloadData()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchPeopleTableViewCell: UITableViewCell {
+class SearchPeopleTableViewCell: BaseTableViewCell {
     
     //MARK:-  Outlet
     @IBOutlet weak var imgUser: CustomImageView!
@@ -27,9 +27,9 @@ class SearchPeopleTableViewCell: UITableViewCell {
     
     //MARK:-   functions
     func configureCell(model : UserSearchResult) {
-        lblFolllowers.text = (model.totalFollowedBy ?? "") + L10n._Followers.string
+        lblFolllowers.text = /model.totalFollowedBy  + L10n._Followers.string
         lblcountry.text = L10n.india.string
-        lblUsername?.text = model.name ?? ""
+        lblUsername?.text = /model.name 
         guard let url = model.profileImageOriginal   else {
             imgUser?.backgroundColor = UIColor.gray
             return }

@@ -22,12 +22,12 @@ class UserSearchResult: NSObject {
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
-        id = arrResult["_id"].stringValue
-        let image = arrResult["profilePicURL"].dictionaryValue
-        profileImageOriginal = image["original"]?.stringValue
-        profileImageThumbnail = image["thumbnail"]?.stringValue
-        totalFollowedBy = arrResult["totalFollowedBy"].stringValue
-        name = arrResult["name"].stringValue
+        id = arrResult[Keys.ID.rawValue].stringValue
+        let image = arrResult[Keys.ProfilePicURL.rawValue].dictionaryValue
+        profileImageOriginal = image[Keys.Original.rawValue]?.stringValue
+        profileImageThumbnail = image[Keys.Thumbnail.rawValue]?.stringValue
+        totalFollowedBy = arrResult[Keys.TotalFollowedBy.rawValue].stringValue
+        name = arrResult[Keys.Name.rawValue].stringValue
         
     }
     
@@ -37,7 +37,7 @@ class UserSearchResult: NSObject {
     
     static func changeDictToModelArray (jsoon1 : JSON ) -> [UserSearchResult] {
         var tempArr : [UserSearchResult] = []
-        for item in jsoon1["data"].arrayValue {
+        for item in jsoon1[Keys.Data.rawValue].arrayValue {
             let userObj = UserSearchResult(arrResult: item)
             tempArr.append(userObj)
         }

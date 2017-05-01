@@ -7,7 +7,9 @@
 */
 
 "Enter password" = "Enter password";
+"Enter old password" = "Enter old password";
 "Enter your full name" = "Enter your full name";
+"Enter your valid name" = "Enter your valid name";
 "Please enter valid email" = "Please enter valid email";
 "Something went wrong" = "Something went wrong";
 "Your internet connection seems to be offline" = "Your internet connection seems to be offline";
@@ -22,12 +24,14 @@
 "Enter Confirm Password" = "Enter Confirm Password";
 "New password should be same as confirm password" = "New password should be same as confirm password";
 "Profile Edited successfully" = "Profile Edited successfully";
+"Password updated successfully" = "Password updated successfully";
 "Success" = "Success";
 
 "Follow store" = "Follow store";
 "Following" = "Following";
+
 " followers" = " followers";
-"Order from " = "Order from ";
+
 " following" = " following";
 "Follow" = "Follow";
 "Others" = "Others";
@@ -51,10 +55,63 @@
 "Sale" = "Sale";
 "People" = "People";
 "Store" = "Store";
-
+"Product is out of stock" = "Product is out of stock";
 "Address added successfully" = "Address added successfully";
 "Address edited successfully" = "Address edited successfully";
 "Please select country"  = "Please select country";
 "Select Country" = "Select Country";
 "Minimum quantity is one" = "Minimum quantity is one";
 "Maximum quantity reached" = "Maximum quantity reached";
+
+"Enter email" = "Enter email";
+"Enter address line 1" = "Enter address line 1";
+"Enter address line 2" = "Enter address line 2";
+"Enter city" = "Enter city";
+"Enter state" = "Enter state";
+"Enter country" = "Enter country";
+"Enter zipcode" = "Enter zipcode";
+"Enter mobile number" = "Enter mobile number";
+
+"Price" = "Price";
+"Color" = "Color";
+"Sub Category" = "Sub Category";
+
+
+"Popular" = "Popular";
+"Newest" = "Newest";
+"Price : Low to High" = "Price : Low to High";
+"Price : High to Low" = "Price : High to Low";
+
+
+"Any Price" = "Any Price";
+"$1-20" = "$1-20";
+"$21-100" = "$21-100";
+"$101-200" = "$101-200";
+"$201-500" = "$201-500";
+"$501+" = "$501+";
+
+
+"Red" = "Red";
+"Pink" = "Pink";
+"Purple" = "Purple";
+"Blue" = "Blue";
+"Skyblue" = "Skyblue";
+"Green" = "Green";
+"Yellow" = "Yellow";
+"Orange" = "Orange";
+"Brown" = "Brown";
+"Black" = "Black";
+"White" = "White";
+"Silver" = "Silver";
+"Gold" = "Gold";
+"Gray" = "Gray";
+
+
+"Are you sure?" = "Are you sure?";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Placed on " = "Placed on ";
+"Order from " = "Order from ";
+"Order placed successfully" = "Order placed successfully";
+
+"My Orders" = "My Orders";

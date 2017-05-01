@@ -12,28 +12,51 @@ import FBSDKLoginKit
 import IQKeyboardManager
 import XLPagerTabStrip
 import UserNotifications
-import MICountryPicker
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     
-    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        UITabBar.appearance().backgroundColor = UIColor.white
-        
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for:.selected)
+     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        UIApplication.shared.statusBarStyle = .lightContent
+//        UITabBar.appearance().backgroundColor = UIColor.white
+//        
+//        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for:.selected)
         IQKeyboardManager.shared().isEnabled = true
-        let center  = UNUserNotificationCenter.current()
-        center.delegate = self
-        center.requestAuthorization(options: [.sound,.alert,.badge]) { (granted, error) in
-        }
-        application.registerForRemoteNotifications()
+        
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
+        { (granted, error) in
+            if granted == true{
+                NSLog("Granted")
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+            if let error = error {
+                print(error.localizedDescription)
+               // print("Error: \(error.description)")
+            }
+        }
+        
+        registerForRemoteNotification()
+        
+    
+         //guard let pushNotificationUserInfo = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] else {return true }
+      
+     //   guard let dictPush = (launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject : AnyObject]) else { return true }
+       
+        //  print(pushNotification)
+     //   let data = JSON(pushNotificationUserInfo)
+     //   MMUserManager.sharedInstance.notificationData = data
+        
+     //   handlePushNavigation(userInfo: data)
         
         return true
         
@@ -60,12 +83,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
+        SocketIOManager.sharedInstance.establishConnection()
+         UIApplication.shared.applicationIconBadgeNumber = 0
     }
+    
     //MARK:- push notification delegate
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let deviceToken = deviceToken.description.replacingOccurrences(of: "<", with: "", options: String.CompareOptions.literal, range: nil).replacingOccurrences(of: " ", with: "", options: String.CompareOptions.literal , range: nil)
-        print(deviceToken)
+        let chars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
+        var token = ""
+        
+        for i in 0..<deviceToken.count {
+            token += String(format: "%02.2hhx", arguments: [chars[i]])
+        }
+        
+        print("Device Token = ", token)
+        MMUserManager.shared.deviceToken = token
     }
     
     
@@ -76,12 +108,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
         print("Handle push from foreground")
         print("\(notification.request.content.userInfo)")
+        let data =  JSON(notification.request.content.userInfo)
+        
+        if data.isEmpty {
+            return
+        }else {
+            handlePush(userInfo : data)
+        }
+        print(data)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Handle push from background or closed")
         
         print("\(response.notification.request.content.userInfo)")
+        let data =  JSON(response.notification.request.content.userInfo)
+        
+        if data.isEmpty {
+            return
+        }else {
+            handlePush(userInfo : data)
+        }
+        print(data)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -91,4 +139,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     
 }
+extension AppDelegate {
+    
+    
+    func registerForRemoteNotification() {
+        if #available(iOS 10.0, *) {
+            let center  = UNUserNotificationCenter.current()
+            center.delegate = self
+            center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+                if error == nil{
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }else {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
 
+    
+    func handlePush(userInfo : JSON){
+        
+        let dictio = userInfo["aps"].dictionaryValue
+        
+        let message = dictio["alert"]?.stringValue ?? ""
+        
+        
+        
+        if UIApplication.shared.applicationState == .active {
+            
+            let notification = UILocalNotification()
+            notification.fireDate = NSDate(timeIntervalSinceNow: 5) as Date
+            notification.alertBody = message
+            notification.timeZone = NSTimeZone.default
+            notification.alertAction = "be awesome!"
+            notification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.shared.scheduleLocalNotification(notification)
+            HDNotificationView.show(with: UIImage(contentsOfFile: "" ), title: "Swimpy", message: message, isAutoHide: true) { [weak self] in
+                HDNotificationView.hide()
+                self?.handlePushNavigation(userInfo: userInfo)
+            }
+            
+        }else {
+            handlePushNavigation(userInfo: userInfo )
+        }
+    }
+    
+    
+    func handlePushNavigation(userInfo :  JSON){
+        
+        let id =  userInfo["id"].stringValue
+        if id == "" {
+            return
+        }
+        
+        
+        
+        let storybard = UIStoryboard(name: "Main", bundle: nil)
+        /*guard  let VC = storybard.instantiateViewController(withIdentifier: Constant.Identifier.OrderDetailVC.rawValue) as? OrderDetailVC else{ return }
+        
+        VC.checkNoti = 1
+        VC.orderID = id
+        
+        
+        let navController = self.window?.rootViewController as? UINavigationController
+        navController?.pushViewController(VC, animated: true)*/
+    }
+
+}

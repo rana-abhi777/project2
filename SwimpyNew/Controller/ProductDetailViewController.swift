@@ -7,19 +7,18 @@
 //
 
 import UIKit
+import MIBadgeButton_Swift
 
-class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFunction,MoreProductsDelegateFunction,ProductDetailTask,NavBarColor {
+class ProductDetailViewController: BaseViewController {
     
     //MARK:- outlets
     @IBOutlet weak var lblProductName: UILabel!
-    
     @IBOutlet weak var collectionViewProductImages: UICollectionView!
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var tableViewProductDetail: UITableView!
-    @IBOutlet weak var lblCartCount: UILabel!
-    @IBOutlet weak var viewCartNotification: UIView!
     @IBOutlet weak var pageControlImage: UIPageControl!
     @IBOutlet weak var viewNavBar: UIView!
+    @IBOutlet weak var btnCart: MIBadgeButton!
     
     //MARK:- variables
     var productId : String = ""
@@ -39,18 +38,19 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
         }
     }
     
-     //MARK:- override function
+    //MARK:- override function
     override func viewDidLoad() {
         super.viewDidLoad()
+        pageControlImage.isHidden = true
         
-        pageControlImage.currentPage = 0
-        pageControlImage.pageIndicatorTintColor = UIColor.gray
-        pageControlImage.currentPageIndicatorTintColor = UIColor.white
-        viewCartCount(viewCartNotification: viewCartNotification,lblCartCount: lblCartCount)
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        viewCartCount(btnCart: btnCart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        pageControlImage.currentPage = 0
+        
         initialize()
     }
     
@@ -66,39 +66,31 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
     }
     
     func hitApiForProductDetail() {
+        
         ApiManager().getDataOfURL(withApi: API.ProductDetail(APIParameters.ProductDetail(productId: productId).formatParameters()), failure: { (err) in
             print(err)
+            
             }, success: {[unowned self] (model) in
                 self.productDetails =  (model as? ProductDetail)
-                print(self.productDetails)
                 self.arrOtherImages = (self.productDetails?.otherImage)!
                 self.configureCollectionView()
                 self.configureTableView()
-                self.pageControlImage.numberOfPages = self.arrOtherImages.count                
-            }, method: "GET", loader: true)
+                if self.arrOtherImages.count > 1 {
+                    self.pageControlImage.isHidden = false
+                    self.pageControlImage.currentPage = 0
+                    self.pageControlImage.pageIndicatorTintColor = UIColor.gray
+                    self.pageControlImage.currentPageIndicatorTintColor = UIColor.white
+                    self.pageControlImage.currentPage = 0
+                    self.pageControlImage.numberOfPages = self.arrOtherImages.count
+                }
+                
+            }, method: Keys.Get.rawValue, loader: true)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        if scrollView.contentOffset.y >= 120 && self.lastContentOffset < scrollView.contentOffset.y   {
-            if scrollView.contentOffset.y >= 60 {
-                viewNavBar?.backgroundColor = UIColor.white
-                lblProductName.isHidden = false
-                lblProductName.text = productDetails?.productName ?? ""
-            }
-        }
-        else if self.lastContentOffset > scrollView.contentOffset.y {
-            if scrollView.contentOffset.y <= 60 {
-                viewNavBar?.backgroundColor = UIColor.clear
-                lblProductName.isHidden = true
-                lblProductName.text = ""
-            }
-        }
-        lastContentOffset = scrollView.contentOffset.y
-    }
     
     //MARK:- configure tableview and collection view
     func configureTableView() {
+        
         tableDataSource = ProductDetailTableDataSource(tableView: tableViewProductDetail, datasource: productDetails ?? ProductDetail(),vc: self)
         tableDataSource?.delegate = self
         tableViewProductDetail.reloadData()
@@ -107,67 +99,20 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
     
     func configureCollectionView(){
         collectionViewdataSource = CollectionViewDataSource(items: arrOtherImages, collectionView: collectionViewProductImages, cellIdentifier: CellIdentifiers.ProductImagesCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: collectionViewProductImages.frame.size.height, cellWidth: collectionViewProductImages.frame.size.width, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
-            let cell = cell as? ProductImagesCollectionViewCell
             
-            cell?.configureCell(model: self.arrOtherImages[indexpath.row])
+            let cell = cell as? ProductImagesCollectionViewCell
+            cell?.productImages = self.arrOtherImages[indexpath.row]
             }, aRowSelectedListener: { (indexPath) in
+                
             }, willDisplayCell: { (indexPath) in
-                //
                 
             }, scrollViewListener: { [unowned self] (UIScrollView) in
                 let width = self.collectionViewProductImages.frame.width
                 let page = self.collectionViewProductImages.contentOffset.x / width
                 self.pageControlImage.currentPage = Int(page)
             })
-        collectionViewProductImages.reloadData()
-    }
-    
-    //MARK:- delegate function
-    func setNavBarColor(color : UIColor) {
-        if color == UIColor.white {
-            lblProductName.isHidden = false
-            lblProductName.text = productDetails?.productName ?? ""
-        }
-        else {
-            lblProductName.isHidden = true
-            lblProductName.text = ""
-        }
-        viewNavBar?.backgroundColor = color
-    }
-    
-    
-    func redirectToProductDetail(productId : String) {
-        let vc = StoryboardScene.Main.instantiateProductDetailViewController()
-        vc.productId = productId
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func redirectToCart(model : ProductDetail?) {
-        ApiManager().getDataOfURL(withApi: API.AddToCart(APIParameters.AddToCart(productId: model?.id,variations : model?.sizeSelected,color: model?.colorSelected).formatParameters()), failure: { (err) in
-            print(err)
-            }, success: { (model) in
-                UserFunctions.showAlert(title : L10n.success.string, message: L10n.productAddedToCart.string)
-            }, method: "POST", loader: true)
-    }
-    
-    func updateLikeData(model : ProductDetail?) {
-        productDetails = model ?? ProductDetail()
-        configureTableView()
-    }
-    func updateFollowingData(data : ProductDetail?) {
-        productDetails = data ?? ProductDetail()
-        configureTableView()
-    }
-    func openStore(sellerId : String) {
-        let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
-        vc.sellerId = sellerId
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    func openThisStore(sellerId : String) {
-        let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
-        vc.sellerId = sellerId
-        self.navigationController?.pushViewController(vc, animated: true)
         
+        collectionViewProductImages.reloadData()
     }
     
     //MARK:- button actions
@@ -179,6 +124,96 @@ class ProductDetailViewController: BaseViewController,RelatedProductsDelegateFun
         _ = self.navigationController?.popViewController(animated: true)
     }
     
+}
+
+//MARK:- delegate function related product and more product
+
+extension ProductDetailViewController : RelatedProductsDelegateFunction ,MoreProductsDelegateFunction {
     
+    func redirectToProductDetail(productId : String) {
+        let vc = StoryboardScene.Main.instantiateProductDetailViewController()
+        vc.productId = productId
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func updateFollowingData(data : ProductDetail?) {
+        guard let model = data else { return }
+        productDetails = model
+        configureTableView()
+    }
+    
+    func openThisStore(sellerId : String) {
+        let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
+        vc.sellerId = sellerId
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
 }
+
+//MARK:- delegate function to set nav bar color
+
+extension ProductDetailViewController : NavBarColor {
+    func setNavBarColor(color : UIColor) {
+        if color == UIColor.white {
+            lblProductName.isHidden = false
+            lblProductName.text = /productDetails?.productName
+            view.bringSubview(toFront: viewNavBar)
+        }
+        else {
+            lblProductName.isHidden = true
+            lblProductName.text = ""
+        }
+        viewNavBar?.backgroundColor = color
+    }
+}
+
+//MARK:- delegate function product task
+
+extension ProductDetailViewController : ProductDetailTask {
+    func redirectToCart(model : ProductDetail?) {
+        if model?.maxQuantity == 0 {
+            UserFunctions.showAlert(message: L10n.productIsOutOfStock.string)
+            return
+        }
+        ApiManager().getDataOfURL(withApi: API.AddToCart(APIParameters.AddToCart(productId: model?.id,variations : model?.sizeSelected,color: model?.colorSelected).formatParameters()), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+                UserFunctions.showAlert(title : L10n.success.string, message: L10n.productAddedToCart.string)
+                self.viewCartCount(btnCart: self.btnCart)
+            }, method: Keys.Post.rawValue, loader: true)
+        
+    }
+    
+    func updateLikeData(model : ProductDetail?) {
+        guard let temp = model else { return }
+        productDetails = temp
+        configureTableView()
+    }
+    
+    func openStore(sellerId : String) {
+        let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
+        vc.sellerId = sellerId
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func buyNow(model : ProductDetail?) {
+        let cartObj = CartData()
+        cartObj.imageThumbnail = model?.imageThumbnail
+        cartObj.imageOriginal = model?.imageOriginal
+        cartObj.total_price = "\(model?.base_price_unit ?? 0.0)"
+        cartObj.productId = model?.id
+        cartObj.createrId = model?.createrId
+        cartObj.parentSupplierId = model?.parentSupplierId ?? ""
+        cartObj.productName = model?.productName
+        cartObj.shippingPrice = 0
+        cartObj.colorSelected = model?.colorSelected ?? ""
+        cartObj.sizeSelected = model?.sizeSelected ?? ""
+        
+        let VC = StoryboardScene.Main.instantiateAddressDetailsViewController()
+        VC.arrCartData = [cartObj]
+        self.navigationController?.pushViewController(VC, animated: true)
+        
+    }
+}
+

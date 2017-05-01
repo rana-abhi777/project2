@@ -1,4 +1,4 @@
-//
+ //
 //  StoreProductCollectionViewCell.swift
 //  SwimpyNew
 //
@@ -35,59 +35,33 @@ class StoreProductCollectionViewCell: UICollectionViewCell {
         index = row
         viewCellLayout.layer.cornerRadius = 4.0
         viewCellLayout.layer.borderWidth = 2.0
-        viewCellLayout.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-
-        lblProductName?.text = model.productName ?? ""
+        viewCellLayout.layer.borderColor = UIColor.border()
+        lblProductName?.text = /model.productName
         lblPrice?.text = "$" + (model.totalPrice ?? L10n._0.string)
-        btnNumberOfLike?.setTitle(model.totalLikes ?? "", for: .normal)
+        btnNumberOfLike?.setTitle(/model.totalLikes , for: .normal)
         btnNumberOfShare?.setTitle(model.share ?? L10n._0.string, for: .normal)
         guard let url = model.productImageOriginal else { imgProduct.backgroundColor = UIColor.black
             return }
         imgProduct?.sd_setImage(with: URL(string : url)) { (image, error, cache, url) in
             print(image)
         }
-        if model.likesStatus == 0 {
-            btnLike.setImage(UIImage(asset: .icLike), for: .normal)
-        }
-        else {
-            btnLike.setImage(UIImage(asset: .icLikeOn), for: .normal)
-        }
+        btnLike.isSelected = model.likesStatus != 0
         
     }
     
     
     //MARK:- button actions
     @IBAction func actionBtnLike(_ sender: AnyObject) {
-        if data?.likesStatus == 0 {
-            self.btnLike.setImage(UIImage(asset : .icLikeOn), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
-            self.data?.totalLikes = "\(likeCount)"
-            self.data?.likesStatus = 1
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
-            
-            self.delegate?.updateLikeData(model: self.data, index: self.index)
-            ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                    print(model)
-                    
-                }, method: "POST", loader: false)
-        }
-        else {
-            self.btnLike.setImage(UIImage(asset : .icLike), for: .normal)
-            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
-            self.data?.totalLikes = "\(likeCount)"
-            self.btnNumberOfLike?.setTitle(self.data?.totalLikes ?? L10n._0.string, for: .normal)
-            self.data?.likesStatus = 0
-            
-            self.delegate?.updateLikeData(model: self.data, index: self.index)
-            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                    print(model)
-                   
-                }, method: "POST", loader: false)
-        }
+        btnLike.isSelected = data?.likesStatus == 1
+        let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : /data?.likesStatus == 0 ? 1 : -1)
+        self.data?.totalLikes = likeCount?.toString
+        self.data?.likesStatus = /data?.likesStatus == 0 ? 1 : 0
+        self.btnNumberOfLike?.setTitle(self.data?.totalLikes, for: .normal)
+        self.delegate?.updateLikeData(model: self.data, index: self.index)
+        ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters(),type: /data?.likesStatus == 0), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+            }, method: Keys.Post.rawValue, loader: false)
     }
     
     

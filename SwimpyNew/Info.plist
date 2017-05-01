@@ -33,6 +33,8 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>17474066_186355001869801_692841789_o</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.631877456020-bsavm2p985ialf5ga8jihj671rsood5d</string>
@@ -41,6 +43,8 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>17474066_186355001869801_692841789_o</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>codeBrew.Swimpy2</string>

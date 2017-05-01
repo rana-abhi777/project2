@@ -24,15 +24,15 @@ class StoreProducts: NSObject {
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
-        id = arrResult["_id"].stringValue
-        let image = arrResult["defaultImage"].dictionaryValue
-        productImageOriginal = image["original"]?.stringValue
-        productImageThumbnail = image["thumbnail"]?.stringValue
-        totalPrice = arrResult["total_price"].stringValue
-        share = arrResult["share"].stringValue
-        totalLikes = arrResult["totalLikes"].stringValue
-        productName = arrResult["productName"].stringValue
-        likesStatus = arrResult["likeStatus"].intValue
+        id = arrResult[Keys.ID.rawValue].stringValue
+        let image = arrResult[Keys.DefaultImage.rawValue].dictionaryValue
+        productImageOriginal = image[Keys.Original.rawValue]?.stringValue
+        productImageThumbnail = image[Keys.Thumbnail.rawValue]?.stringValue
+        totalPrice = arrResult[Keys.TotalPrice.rawValue].stringValue
+        share = arrResult[Keys.Share.rawValue].stringValue
+        totalLikes = arrResult[Keys.TotalLikes.rawValue].stringValue
+        productName = arrResult[Keys.ProductName.rawValue].stringValue
+        likesStatus = arrResult[Keys.LikesStatus.rawValue].intValue
     }
     
     override init() {

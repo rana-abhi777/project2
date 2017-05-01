@@ -12,9 +12,7 @@ enum CellIdentifiers: String {
     
     //MARK::- TABLE VIEW CELL IDENTIFIERS
     
-    case CategoryTableViewCell = "CategoryTableViewCell"
     case GlobalActivityTableViewCell = "GlobalActivityTableViewCell"
-    case FriendsTableViewCell = "FriendsTableViewCell"
     case ProductDetailTableViewCell = "ProductDetailTableViewCell"
     case FeaturedTableViewCell = "FeaturedTableViewCell"
     case MoreFromStoreTableViewCell = "MoreFromStoreTableViewCell"
@@ -24,24 +22,33 @@ enum CellIdentifiers: String {
     case SettingsTableViewCell = "SettingsTableViewCell"
     case SearchPeopleTableViewCell = "SearchPeopleTableViewCell"
     case SearchLoaderTableViewCell = "SearchLoaderTableViewCell"
+    case SortTableViewCell = "SortTableViewCell"
+    case SortHeaderTableViewCell = "SortHeaderTableViewCell"
+    case MyOrderTableViewCell = "MyOrderTableViewCell"
+    
+    case OrderDetailTableViewCell = "OrderDetailTableViewCell"
+    case PriceDetailTableViewCell = "PriceDetailTableViewCell"
+    case AddressTableViewCell = "AddressTableViewCell"
+    case UserChatTextTableViewCell = "UserChatTextTableViewCell"
+    case UserChatImageTableViewCell = "UserChatImageTableViewCell"
+    case SenderTextTableViewCell = "SenderTextTableViewCell"
+    case SenderImageTableViewCell = "SenderImageTableViewCell"
+    case InboxChatListTableViewCell = "InboxChatListTableViewCell"
     
     //MARK::- COLLECTION VIEW CELL IDENTIFIERS
     
     case DealsCollectionViewCell = "DealsCollectionViewCell"
-    case CategoryProductsCollectionViewCell = "CategoryProductsCollectionViewCell"
-    case SaleCollectionViewCell = "SaleCollectionViewCell"
-    case PopularProductCollectionViewCell = "PopularProductCollectionViewCell"
+    case StoresCollectionViewCell = "StoresCollectionViewCell"
     case ProductImagesCollectionViewCell = "ProductImagesCollectionViewCell"
     case ProductLikeUserCollectionViewCell = "ProductLikeUserCollectionViewCell"
     case MoreProductsCollectionViewCell = "MoreProductsCollectionViewCell"
     case RelatedProductsCollectionViewCell = "RelatedProductsCollectionViewCell"
     case ProfileStoreCollectionViewCell = "ProfileStoreCollectionViewCell"
-    case ProfileItemCollectionViewCell = "ProfileItemCollectionViewCell"
     case StoreProductCollectionViewCell = "StoreProductCollectionViewCell"
     case StoreProfileCollectionReusableView = "StoreProfileCollectionReusableView"
-    case NewCollectionViewCell = "NewCollectionViewCell"
     case SearchItemCollectionViewCell = "SearchItemCollectionViewCell"
     case SearchStoreCollectionViewCell = "SearchStoreCollectionViewCell"
     case SearchLoaderCollectionViewCell = "SearchLoaderCollectionViewCell"
+    case CategoryCollectionViewCell = "CategoryCollectionViewCell"
 
 }

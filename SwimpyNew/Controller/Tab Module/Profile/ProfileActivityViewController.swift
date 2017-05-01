@@ -9,8 +9,8 @@
 import UIKit
 import XLPagerTabStrip
 
-class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,GlobalActivityTask {
-   
+class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider {
+    
     //MARK:- Outlet
     @IBOutlet weak var tableViewUserActivity: UITableView!
     @IBOutlet weak var viewNoActivity: UIView!
@@ -18,16 +18,21 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
     var arrActivityData : [GlobalActivity] = []
     var tableViewDataSource : TableViewCustomDatasource?
     var pageNo : String?
-    let refreshControl = UIRefreshControl()
     var userId = ""
+    var refreshControl = UIRefreshControl()
+    var isLoadMore = false
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        pageNo = L10n._0.string
-        refreshControl.addTarget(self, action: #selector(ProfileActivityViewController.initialize), for: UIControlEvents.valueChanged)
+        
+        handlePagination()
+        refreshControl = UIRefreshControl(superView: tableViewUserActivity)
+        refreshControl.addTarget(self, action: #selector(ProfileActivityViewController.setup), for: UIControlEvents.valueChanged)
         tableViewUserActivity?.refreshControl =  refreshControl
-        initialize()
+        setup()
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,9 +45,29 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
     }
     
     //MARK:- FUNCTION
-    func initialize() {
+    func resetNoMoreData(){
+        self.tableViewUserActivity.es_resetNoMoreData()
+    }
+    
+    func foundNoMoreData(){
+        self.tableViewUserActivity.es_stopLoadingMore()
+        self.tableViewUserActivity.es_noticeNoMoreData()
+    }
+    
+    func handlePagination(){
+        let _ = tableViewUserActivity.es_addInfiniteScrolling { [unowned self] in
+            if self.pageNo != "" {
+                self.apiToGetGlobalActivity()
+            }else{
+                self.foundNoMoreData()
+            }
+        }
+    }
+
+    func setup() {
         pageNo = L10n._0.string
         arrActivityData = []
+        configureTableView()
         apiToGetGlobalActivity()
     }
     
@@ -57,6 +82,13 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
                 for item in response.arrActivity {
                     self.arrActivityData.append(item)
                 }
+                
+                self.isLoadMore = response.arrActivity.count > 0
+                self.tableViewUserActivity.es_stopLoadingMore()
+                self.isLoadMore ? self.tableViewUserActivity.es_resetNoMoreData() : self.tableViewUserActivity.es_noticeNoMoreData()
+                
+                
+                self.refreshControl.endRefreshing()
                 if self.arrActivityData.count > 0 {
                     self.configureTableView()
                     self.view.bringSubview(toFront: self.tableViewUserActivity)
@@ -65,25 +97,58 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
                     self.view.bringSubview(toFront: self.viewNoActivity)
                     
                 }
-            }, method: "GET", loader: true)
+                
+            }, method: Keys.Get.rawValue, loader: self.arrActivityData.count == 0)
     }
+    
+    
+    
+    func configureTableView() {
+        tableViewDataSource = TableViewCustomDatasource(items: arrActivityData, height: 89, estimatedHeight: 89, tableView: tableViewUserActivity, cellIdentifier: CellIdentifiers.GlobalActivityTableViewCell.rawValue, configureCellBlock:
+            {[unowned self] (cell, item, indexpath) in
+                
+            let cell = cell as? GlobalActivityTableViewCell
+            cell?.delegate = self
+            cell?.configureCell(model: self.arrActivityData[indexpath.row],index : indexpath.row )
+            
+            }, aRowSelectedListener: { (indexPath) in
+                
+            }, willDisplayCell: { (indexPath) in
+                    if let temp = self.pageNo, temp != "",indexPath.row == self.arrActivityData.count - 2  {
+                        self.apiToGetGlobalActivity()
+                    }
+        })
+        tableViewUserActivity.delegate = tableViewDataSource
+        tableViewUserActivity.dataSource = tableViewDataSource
+        tableViewUserActivity.reloadData()
+    }
+    
+    
+    
+    //MARK:- IndicatorInfoProvider delegate
+    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Activity")
+    }
+    
+}
+
+//MARK: - DELEGATE FUNCTION
+extension ProfileActivityViewController : GlobalActivityTask {
     
     func redirectToItemScreen(itemID : String, idType : String) {
         switch idType {
-        case "PRODUCT" :
+        case Keys.PRODUCT.rawValue :
             let vc = StoryboardScene.Main.instantiateProductDetailViewController()
             vc.productId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
             
-        case "CUSTOMER":
+        case Keys.CUSTOMER.rawValue:
             let vc = StoryboardScene.Main.instantiateProfileViewController()
             vc.flagMyProfile = false
             vc.userId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
-            
-            
-            
-        case "SELLER" :
+           
+        case Keys.SELLER.rawValue :
             let vc = StoryboardScene.Main.instantiateStoreProfileViewController()
             vc.sellerId = itemID
             self.navigationController?.pushViewController(vc, animated: true)
@@ -94,27 +159,6 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
         }
     }
     
-    func configureTableView() {
-        tableViewDataSource = TableViewCustomDatasource(items: arrActivityData, height: 89, estimatedHeight: 89, tableView: tableViewUserActivity, cellIdentifier: CellIdentifiers.GlobalActivityTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
-            let cell = cell as? GlobalActivityTableViewCell
-            cell?.delegate = self
-            cell?.configureCell(model: self.arrActivityData[indexpath.row],index : indexpath.row )
-            }, aRowSelectedListener: { (indexPath) in
-            }, willDisplayCell: { (indexPath) in
-                if indexPath.row == self.arrActivityData.count - 2 {
-                    if let temp = self.pageNo  {
-                        if temp != "" {
-                            self.apiToGetGlobalActivity()
-                        }
-                    }
-                    
-                }
-        })
-        tableViewUserActivity.delegate = tableViewDataSource
-        tableViewUserActivity.dataSource = tableViewDataSource
-        tableViewUserActivity.reloadData()
-    }
-    
     func openUserDetail(userID : String) {
         let vc = StoryboardScene.Main.instantiateProfileViewController()
         vc.flagMyProfile = false
@@ -122,10 +166,4 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider,Gl
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
-    //MARK:- IndicatorInfoProvider delegate
-    public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Activity")
-    }
-
 }

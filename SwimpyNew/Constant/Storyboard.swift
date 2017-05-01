@@ -3,13 +3,17 @@
 import Foundation
 import UIKit
 
+// swiftlint:disable file_length
+// swiftlint:disable line_length
+// swiftlint:disable type_body_length
+
 protocol StoryboardSceneType {
   static var storyboardName: String { get }
 }
 
 extension StoryboardSceneType {
   static func storyboard() -> UIStoryboard {
-    return UIStoryboard(name: self.storyboardName, bundle: nil)
+    return UIStoryboard(name: self.storyboardName, bundle: Bundle(for: BundleToken.self))
   }
 
   static func initialViewController() -> UIViewController {
@@ -32,335 +36,379 @@ extension StoryboardSceneType where Self: RawRepresentable, Self.RawValue == Str
 protocol StoryboardSegueType: RawRepresentable { }
 
 extension UIViewController {
-  func performSegue<S: StoryboardSegueType>(segue: S, sender: AnyObject? = nil) where S.RawValue == String {
+  func perform<S: StoryboardSegueType>(segue: S, sender: Any? = nil) where S.RawValue == String {
     performSegue(withIdentifier: segue.rawValue, sender: sender)
   }
 }
 
-// swiftlint:disable file_length
-// swiftlint:disable type_body_length
-
-struct StoryboardScene {
+enum StoryboardScene {
   enum LaunchScreen: StoryboardSceneType {
     static let storyboardName = "LaunchScreen"
   }
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
-    static func initialViewController() -> InitialNavigationViewController {
-      guard let vc = storyboard().instantiateInitialViewController() as? InitialNavigationViewController else {
+    static func initialViewController() -> SwimpyNew.InitialNavigationViewController {
+      guard let vc = storyboard().instantiateInitialViewController() as? SwimpyNew.InitialNavigationViewController else {
         fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
       }
       return vc
     }
 
     case activityViewControllerScene = "ActivityViewController"
-    static func instantiateActivityViewController() -> ActivityViewController {
-      guard let vc = StoryboardScene.Main.activityViewControllerScene.viewController() as? ActivityViewController
+    static func instantiateActivityViewController() -> SwimpyNew.ActivityViewController {
+      guard let vc = StoryboardScene.Main.activityViewControllerScene.viewController() as? SwimpyNew.ActivityViewController
       else {
-        fatalError("ViewController 'ActivityViewController' is not of the expected class ActivityViewController.")
+        fatalError("ViewController 'ActivityViewController' is not of the expected class SwimpyNew.ActivityViewController.")
       }
       return vc
     }
 
     case addressDetailsViewControllerScene = "AddressDetailsViewController"
-    static func instantiateAddressDetailsViewController() -> AddressDetailsViewController {
-      guard let vc = StoryboardScene.Main.addressDetailsViewControllerScene.viewController() as? AddressDetailsViewController
+    static func instantiateAddressDetailsViewController() -> SwimpyNew.AddressDetailsViewController {
+      guard let vc = StoryboardScene.Main.addressDetailsViewControllerScene.viewController() as? SwimpyNew.AddressDetailsViewController
       else {
-        fatalError("ViewController 'AddressDetailsViewController' is not of the expected class AddressDetailsViewController.")
+        fatalError("ViewController 'AddressDetailsViewController' is not of the expected class SwimpyNew.AddressDetailsViewController.")
       }
       return vc
     }
 
     case cartViewControllerScene = "CartViewController"
-    static func instantiateCartViewController() -> CartViewController {
-      guard let vc = StoryboardScene.Main.cartViewControllerScene.viewController() as? CartViewController
+    static func instantiateCartViewController() -> SwimpyNew.CartViewController {
+      guard let vc = StoryboardScene.Main.cartViewControllerScene.viewController() as? SwimpyNew.CartViewController
       else {
-        fatalError("ViewController 'CartViewController' is not of the expected class CartViewController.")
+        fatalError("ViewController 'CartViewController' is not of the expected class SwimpyNew.CartViewController.")
       }
       return vc
     }
 
     case categoriesViewControllerScene = "CategoriesViewController"
-    static func instantiateCategoriesViewController() -> CategoriesViewController {
-      guard let vc = StoryboardScene.Main.categoriesViewControllerScene.viewController() as? CategoriesViewController
+    static func instantiateCategoriesViewController() -> SwimpyNew.CategoriesViewController {
+      guard let vc = StoryboardScene.Main.categoriesViewControllerScene.viewController() as? SwimpyNew.CategoriesViewController
       else {
-        fatalError("ViewController 'CategoriesViewController' is not of the expected class CategoriesViewController.")
+        fatalError("ViewController 'CategoriesViewController' is not of the expected class SwimpyNew.CategoriesViewController.")
       }
       return vc
     }
 
     case categoryProductsViewControllerScene = "CategoryProductsViewController"
-    static func instantiateCategoryProductsViewController() -> CategoryProductsViewController {
-      guard let vc = StoryboardScene.Main.categoryProductsViewControllerScene.viewController() as? CategoryProductsViewController
+    static func instantiateCategoryProductsViewController() -> SwimpyNew.CategoryProductsViewController {
+      guard let vc = StoryboardScene.Main.categoryProductsViewControllerScene.viewController() as? SwimpyNew.CategoryProductsViewController
       else {
-        fatalError("ViewController 'CategoryProductsViewController' is not of the expected class CategoryProductsViewController.")
+        fatalError("ViewController 'CategoryProductsViewController' is not of the expected class SwimpyNew.CategoryProductsViewController.")
       }
       return vc
     }
 
     case changePasswordViewControllerScene = "ChangePasswordViewController"
-    static func instantiateChangePasswordViewController() -> ChangePasswordViewController {
-      guard let vc = StoryboardScene.Main.changePasswordViewControllerScene.viewController() as? ChangePasswordViewController
+    static func instantiateChangePasswordViewController() -> SwimpyNew.ChangePasswordViewController {
+      guard let vc = StoryboardScene.Main.changePasswordViewControllerScene.viewController() as? SwimpyNew.ChangePasswordViewController
       else {
-        fatalError("ViewController 'ChangePasswordViewController' is not of the expected class ChangePasswordViewController.")
+        fatalError("ViewController 'ChangePasswordViewController' is not of the expected class SwimpyNew.ChangePasswordViewController.")
+      }
+      return vc
+    }
+
+    case countryPickerViewControllerScene = "CountryPickerViewController"
+    static func instantiateCountryPickerViewController() -> SwimpyNew.CountryPickerViewController {
+      guard let vc = StoryboardScene.Main.countryPickerViewControllerScene.viewController() as? SwimpyNew.CountryPickerViewController
+      else {
+        fatalError("ViewController 'CountryPickerViewController' is not of the expected class SwimpyNew.CountryPickerViewController.")
       }
       return vc
     }
 
     case dealsViewControllerScene = "DealsViewController"
-    static func instantiateDealsViewController() -> DealsViewController {
-      guard let vc = StoryboardScene.Main.dealsViewControllerScene.viewController() as? DealsViewController
+    static func instantiateDealsViewController() -> SwimpyNew.DealsViewController {
+      guard let vc = StoryboardScene.Main.dealsViewControllerScene.viewController() as? SwimpyNew.DealsViewController
       else {
-        fatalError("ViewController 'DealsViewController' is not of the expected class DealsViewController.")
+        fatalError("ViewController 'DealsViewController' is not of the expected class SwimpyNew.DealsViewController.")
       }
       return vc
     }
 
     case editProfileViewControllerScene = "EditProfileViewController"
-    static func instantiateEditProfileViewController() -> EditProfileViewController {
-      guard let vc = StoryboardScene.Main.editProfileViewControllerScene.viewController() as? EditProfileViewController
+    static func instantiateEditProfileViewController() -> SwimpyNew.EditProfileViewController {
+      guard let vc = StoryboardScene.Main.editProfileViewControllerScene.viewController() as? SwimpyNew.EditProfileViewController
       else {
-        fatalError("ViewController 'EditProfileViewController' is not of the expected class EditProfileViewController.")
+        fatalError("ViewController 'EditProfileViewController' is not of the expected class SwimpyNew.EditProfileViewController.")
       }
       return vc
     }
 
     case exploreViewControllerScene = "ExploreViewController"
-    static func instantiateExploreViewController() -> ExploreViewController {
-      guard let vc = StoryboardScene.Main.exploreViewControllerScene.viewController() as? ExploreViewController
+    static func instantiateExploreViewController() -> SwimpyNew.ExploreViewController {
+      guard let vc = StoryboardScene.Main.exploreViewControllerScene.viewController() as? SwimpyNew.ExploreViewController
       else {
-        fatalError("ViewController 'ExploreViewController' is not of the expected class ExploreViewController.")
+        fatalError("ViewController 'ExploreViewController' is not of the expected class SwimpyNew.ExploreViewController.")
       }
       return vc
     }
 
     case featuredViewControllerScene = "FeaturedViewController"
-    static func instantiateFeaturedViewController() -> FeaturedViewController {
-      guard let vc = StoryboardScene.Main.featuredViewControllerScene.viewController() as? FeaturedViewController
+    static func instantiateFeaturedViewController() -> SwimpyNew.FeaturedViewController {
+      guard let vc = StoryboardScene.Main.featuredViewControllerScene.viewController() as? SwimpyNew.FeaturedViewController
       else {
-        fatalError("ViewController 'FeaturedViewController' is not of the expected class FeaturedViewController.")
+        fatalError("ViewController 'FeaturedViewController' is not of the expected class SwimpyNew.FeaturedViewController.")
       }
       return vc
     }
 
     case filterViewControllerScene = "FilterViewController"
-    static func instantiateFilterViewController() -> FilterViewController {
-      guard let vc = StoryboardScene.Main.filterViewControllerScene.viewController() as? FilterViewController
+    static func instantiateFilterViewController() -> SwimpyNew.FilterViewController {
+      guard let vc = StoryboardScene.Main.filterViewControllerScene.viewController() as? SwimpyNew.FilterViewController
       else {
-        fatalError("ViewController 'FilterViewController' is not of the expected class FilterViewController.")
+        fatalError("ViewController 'FilterViewController' is not of the expected class SwimpyNew.FilterViewController.")
       }
       return vc
     }
 
     case friendsViewControllerScene = "FriendsViewController"
-    static func instantiateFriendsViewController() -> FriendsViewController {
-      guard let vc = StoryboardScene.Main.friendsViewControllerScene.viewController() as? FriendsViewController
+    static func instantiateFriendsViewController() -> SwimpyNew.FriendsViewController {
+      guard let vc = StoryboardScene.Main.friendsViewControllerScene.viewController() as? SwimpyNew.FriendsViewController
       else {
-        fatalError("ViewController 'FriendsViewController' is not of the expected class FriendsViewController.")
+        fatalError("ViewController 'FriendsViewController' is not of the expected class SwimpyNew.FriendsViewController.")
       }
       return vc
     }
 
     case globalActivityViewControllerScene = "GlobalActivityViewController"
-    static func instantiateGlobalActivityViewController() -> GlobalActivityViewController {
-      guard let vc = StoryboardScene.Main.globalActivityViewControllerScene.viewController() as? GlobalActivityViewController
+    static func instantiateGlobalActivityViewController() -> SwimpyNew.GlobalActivityViewController {
+      guard let vc = StoryboardScene.Main.globalActivityViewControllerScene.viewController() as? SwimpyNew.GlobalActivityViewController
       else {
-        fatalError("ViewController 'GlobalActivityViewController' is not of the expected class GlobalActivityViewController.")
+        fatalError("ViewController 'GlobalActivityViewController' is not of the expected class SwimpyNew.GlobalActivityViewController.")
       }
       return vc
     }
 
     case inboxViewControllerScene = "InboxViewController"
-    static func instantiateInboxViewController() -> InboxViewController {
-      guard let vc = StoryboardScene.Main.inboxViewControllerScene.viewController() as? InboxViewController
+    static func instantiateInboxViewController() -> SwimpyNew.InboxViewController {
+      guard let vc = StoryboardScene.Main.inboxViewControllerScene.viewController() as? SwimpyNew.InboxViewController
       else {
-        fatalError("ViewController 'InboxViewController' is not of the expected class InboxViewController.")
+        fatalError("ViewController 'InboxViewController' is not of the expected class SwimpyNew.InboxViewController.")
       }
       return vc
     }
 
     case initialNavigationViewControllerScene = "InitialNavigationViewController"
-    static func instantiateInitialNavigationViewController() -> InitialNavigationViewController {
-      guard let vc = StoryboardScene.Main.initialNavigationViewControllerScene.viewController() as? InitialNavigationViewController
+    static func instantiateInitialNavigationViewController() -> SwimpyNew.InitialNavigationViewController {
+      guard let vc = StoryboardScene.Main.initialNavigationViewControllerScene.viewController() as? SwimpyNew.InitialNavigationViewController
       else {
-        fatalError("ViewController 'InitialNavigationViewController' is not of the expected class InitialNavigationViewController.")
+        fatalError("ViewController 'InitialNavigationViewController' is not of the expected class SwimpyNew.InitialNavigationViewController.")
       }
       return vc
     }
 
     case loginViewControllerScene = "LoginViewController"
-    static func instantiateLoginViewController() -> LoginViewController {
-      guard let vc = StoryboardScene.Main.loginViewControllerScene.viewController() as? LoginViewController
+    static func instantiateLoginViewController() -> SwimpyNew.LoginViewController {
+      guard let vc = StoryboardScene.Main.loginViewControllerScene.viewController() as? SwimpyNew.LoginViewController
       else {
-        fatalError("ViewController 'LoginViewController' is not of the expected class LoginViewController.")
+        fatalError("ViewController 'LoginViewController' is not of the expected class SwimpyNew.LoginViewController.")
       }
       return vc
     }
 
     case messageViewControllerScene = "MessageViewController"
-    static func instantiateMessageViewController() -> MessageViewController {
-      guard let vc = StoryboardScene.Main.messageViewControllerScene.viewController() as? MessageViewController
+    static func instantiateMessageViewController() -> SwimpyNew.MessageViewController {
+      guard let vc = StoryboardScene.Main.messageViewControllerScene.viewController() as? SwimpyNew.MessageViewController
       else {
-        fatalError("ViewController 'MessageViewController' is not of the expected class MessageViewController.")
+        fatalError("ViewController 'MessageViewController' is not of the expected class SwimpyNew.MessageViewController.")
+      }
+      return vc
+    }
+
+    case myOrderViewControllerScene = "MyOrderViewController"
+    static func instantiateMyOrderViewController() -> SwimpyNew.MyOrderViewController {
+      guard let vc = StoryboardScene.Main.myOrderViewControllerScene.viewController() as? SwimpyNew.MyOrderViewController
+      else {
+        fatalError("ViewController 'MyOrderViewController' is not of the expected class SwimpyNew.MyOrderViewController.")
       }
       return vc
     }
 
     case newViewControllerScene = "NewViewController"
-    static func instantiateNewViewController() -> NewViewController {
-      guard let vc = StoryboardScene.Main.newViewControllerScene.viewController() as? NewViewController
+    static func instantiateNewViewController() -> SwimpyNew.NewViewController {
+      guard let vc = StoryboardScene.Main.newViewControllerScene.viewController() as? SwimpyNew.NewViewController
       else {
-        fatalError("ViewController 'NewViewController' is not of the expected class NewViewController.")
+        fatalError("ViewController 'NewViewController' is not of the expected class SwimpyNew.NewViewController.")
+      }
+      return vc
+    }
+
+    case orderDetailViewControllerScene = "OrderDetailViewController"
+    static func instantiateOrderDetailViewController() -> SwimpyNew.OrderDetailViewController {
+      guard let vc = StoryboardScene.Main.orderDetailViewControllerScene.viewController() as? SwimpyNew.OrderDetailViewController
+      else {
+        fatalError("ViewController 'OrderDetailViewController' is not of the expected class SwimpyNew.OrderDetailViewController.")
       }
       return vc
     }
 
     case popularViewControllerScene = "PopularViewController"
-    static func instantiatePopularViewController() -> PopularViewController {
-      guard let vc = StoryboardScene.Main.popularViewControllerScene.viewController() as? PopularViewController
+    static func instantiatePopularViewController() -> SwimpyNew.PopularViewController {
+      guard let vc = StoryboardScene.Main.popularViewControllerScene.viewController() as? SwimpyNew.PopularViewController
       else {
-        fatalError("ViewController 'PopularViewController' is not of the expected class PopularViewController.")
+        fatalError("ViewController 'PopularViewController' is not of the expected class SwimpyNew.PopularViewController.")
       }
       return vc
     }
 
     case productDetailViewControllerScene = "ProductDetailViewController"
-    static func instantiateProductDetailViewController() -> ProductDetailViewController {
-      guard let vc = StoryboardScene.Main.productDetailViewControllerScene.viewController() as? ProductDetailViewController
+    static func instantiateProductDetailViewController() -> SwimpyNew.ProductDetailViewController {
+      guard let vc = StoryboardScene.Main.productDetailViewControllerScene.viewController() as? SwimpyNew.ProductDetailViewController
       else {
-        fatalError("ViewController 'ProductDetailViewController' is not of the expected class ProductDetailViewController.")
+        fatalError("ViewController 'ProductDetailViewController' is not of the expected class SwimpyNew.ProductDetailViewController.")
       }
       return vc
     }
 
     case profileActivityViewControllerScene = "ProfileActivityViewController"
-    static func instantiateProfileActivityViewController() -> ProfileActivityViewController {
-      guard let vc = StoryboardScene.Main.profileActivityViewControllerScene.viewController() as? ProfileActivityViewController
+    static func instantiateProfileActivityViewController() -> SwimpyNew.ProfileActivityViewController {
+      guard let vc = StoryboardScene.Main.profileActivityViewControllerScene.viewController() as? SwimpyNew.ProfileActivityViewController
       else {
-        fatalError("ViewController 'ProfileActivityViewController' is not of the expected class ProfileActivityViewController.")
+        fatalError("ViewController 'ProfileActivityViewController' is not of the expected class SwimpyNew.ProfileActivityViewController.")
       }
       return vc
     }
 
     case profileItemViewControllerScene = "ProfileItemViewController"
-    static func instantiateProfileItemViewController() -> ProfileItemViewController {
-      guard let vc = StoryboardScene.Main.profileItemViewControllerScene.viewController() as? ProfileItemViewController
+    static func instantiateProfileItemViewController() -> SwimpyNew.ProfileItemViewController {
+      guard let vc = StoryboardScene.Main.profileItemViewControllerScene.viewController() as? SwimpyNew.ProfileItemViewController
       else {
-        fatalError("ViewController 'ProfileItemViewController' is not of the expected class ProfileItemViewController.")
+        fatalError("ViewController 'ProfileItemViewController' is not of the expected class SwimpyNew.ProfileItemViewController.")
       }
       return vc
     }
 
     case profileStoreViewControllerScene = "ProfileStoreViewController"
-    static func instantiateProfileStoreViewController() -> ProfileStoreViewController {
-      guard let vc = StoryboardScene.Main.profileStoreViewControllerScene.viewController() as? ProfileStoreViewController
+    static func instantiateProfileStoreViewController() -> SwimpyNew.ProfileStoreViewController {
+      guard let vc = StoryboardScene.Main.profileStoreViewControllerScene.viewController() as? SwimpyNew.ProfileStoreViewController
       else {
-        fatalError("ViewController 'ProfileStoreViewController' is not of the expected class ProfileStoreViewController.")
+        fatalError("ViewController 'ProfileStoreViewController' is not of the expected class SwimpyNew.ProfileStoreViewController.")
       }
       return vc
     }
 
     case profileViewControllerScene = "ProfileViewController"
-    static func instantiateProfileViewController() -> ProfileViewController {
-      guard let vc = StoryboardScene.Main.profileViewControllerScene.viewController() as? ProfileViewController
+    static func instantiateProfileViewController() -> SwimpyNew.ProfileViewController {
+      guard let vc = StoryboardScene.Main.profileViewControllerScene.viewController() as? SwimpyNew.ProfileViewController
       else {
-        fatalError("ViewController 'ProfileViewController' is not of the expected class ProfileViewController.")
+        fatalError("ViewController 'ProfileViewController' is not of the expected class SwimpyNew.ProfileViewController.")
+      }
+      return vc
+    }
+
+    case refineAndSortViewControllerScene = "RefineAndSortViewController"
+    static func instantiateRefineAndSortViewController() -> SwimpyNew.RefineAndSortViewController {
+      guard let vc = StoryboardScene.Main.refineAndSortViewControllerScene.viewController() as? SwimpyNew.RefineAndSortViewController
+      else {
+        fatalError("ViewController 'RefineAndSortViewController' is not of the expected class SwimpyNew.RefineAndSortViewController.")
+      }
+      return vc
+    }
+
+    case refineViewControllerScene = "RefineViewController"
+    static func instantiateRefineViewController() -> SwimpyNew.RefineViewController {
+      guard let vc = StoryboardScene.Main.refineViewControllerScene.viewController() as? SwimpyNew.RefineViewController
+      else {
+        fatalError("ViewController 'RefineViewController' is not of the expected class SwimpyNew.RefineViewController.")
       }
       return vc
     }
 
     case saleViewControllerScene = "SaleViewController"
-    static func instantiateSaleViewController() -> SaleViewController {
-      guard let vc = StoryboardScene.Main.saleViewControllerScene.viewController() as? SaleViewController
+    static func instantiateSaleViewController() -> SwimpyNew.SaleViewController {
+      guard let vc = StoryboardScene.Main.saleViewControllerScene.viewController() as? SwimpyNew.SaleViewController
       else {
-        fatalError("ViewController 'SaleViewController' is not of the expected class SaleViewController.")
+        fatalError("ViewController 'SaleViewController' is not of the expected class SwimpyNew.SaleViewController.")
       }
       return vc
     }
 
     case searchItemViewControllerScene = "SearchItemViewController"
-    static func instantiateSearchItemViewController() -> SearchItemViewController {
-      guard let vc = StoryboardScene.Main.searchItemViewControllerScene.viewController() as? SearchItemViewController
+    static func instantiateSearchItemViewController() -> SwimpyNew.SearchItemViewController {
+      guard let vc = StoryboardScene.Main.searchItemViewControllerScene.viewController() as? SwimpyNew.SearchItemViewController
       else {
-        fatalError("ViewController 'SearchItemViewController' is not of the expected class SearchItemViewController.")
+        fatalError("ViewController 'SearchItemViewController' is not of the expected class SwimpyNew.SearchItemViewController.")
       }
       return vc
     }
 
     case searchPeopleViewControllerScene = "SearchPeopleViewController"
-    static func instantiateSearchPeopleViewController() -> SearchPeopleViewController {
-      guard let vc = StoryboardScene.Main.searchPeopleViewControllerScene.viewController() as? SearchPeopleViewController
+    static func instantiateSearchPeopleViewController() -> SwimpyNew.SearchPeopleViewController {
+      guard let vc = StoryboardScene.Main.searchPeopleViewControllerScene.viewController() as? SwimpyNew.SearchPeopleViewController
       else {
-        fatalError("ViewController 'SearchPeopleViewController' is not of the expected class SearchPeopleViewController.")
+        fatalError("ViewController 'SearchPeopleViewController' is not of the expected class SwimpyNew.SearchPeopleViewController.")
       }
       return vc
     }
 
     case searchStoreViewControllerScene = "SearchStoreViewController"
-    static func instantiateSearchStoreViewController() -> SearchStoreViewController {
-      guard let vc = StoryboardScene.Main.searchStoreViewControllerScene.viewController() as? SearchStoreViewController
+    static func instantiateSearchStoreViewController() -> SwimpyNew.SearchStoreViewController {
+      guard let vc = StoryboardScene.Main.searchStoreViewControllerScene.viewController() as? SwimpyNew.SearchStoreViewController
       else {
-        fatalError("ViewController 'SearchStoreViewController' is not of the expected class SearchStoreViewController.")
+        fatalError("ViewController 'SearchStoreViewController' is not of the expected class SwimpyNew.SearchStoreViewController.")
       }
       return vc
     }
 
     case searchViewControllerScene = "SearchViewController"
-    static func instantiateSearchViewController() -> SearchViewController {
-      guard let vc = StoryboardScene.Main.searchViewControllerScene.viewController() as? SearchViewController
+    static func instantiateSearchViewController() -> SwimpyNew.SearchViewController {
+      guard let vc = StoryboardScene.Main.searchViewControllerScene.viewController() as? SwimpyNew.SearchViewController
       else {
-        fatalError("ViewController 'SearchViewController' is not of the expected class SearchViewController.")
+        fatalError("ViewController 'SearchViewController' is not of the expected class SwimpyNew.SearchViewController.")
       }
       return vc
     }
 
     case settingsViewControllerScene = "SettingsViewController"
-    static func instantiateSettingsViewController() -> SettingsViewController {
-      guard let vc = StoryboardScene.Main.settingsViewControllerScene.viewController() as? SettingsViewController
+    static func instantiateSettingsViewController() -> SwimpyNew.SettingsViewController {
+      guard let vc = StoryboardScene.Main.settingsViewControllerScene.viewController() as? SwimpyNew.SettingsViewController
       else {
-        fatalError("ViewController 'SettingsViewController' is not of the expected class SettingsViewController.")
+        fatalError("ViewController 'SettingsViewController' is not of the expected class SwimpyNew.SettingsViewController.")
       }
       return vc
     }
 
     case shopViewControllerScene = "ShopViewController"
-    static func instantiateShopViewController() -> ShopViewController {
-      guard let vc = StoryboardScene.Main.shopViewControllerScene.viewController() as? ShopViewController
+    static func instantiateShopViewController() -> SwimpyNew.ShopViewController {
+      guard let vc = StoryboardScene.Main.shopViewControllerScene.viewController() as? SwimpyNew.ShopViewController
       else {
-        fatalError("ViewController 'ShopViewController' is not of the expected class ShopViewController.")
+        fatalError("ViewController 'ShopViewController' is not of the expected class SwimpyNew.ShopViewController.")
       }
       return vc
     }
 
     case sortViewControllerScene = "SortViewController"
-    static func instantiateSortViewController() -> SortViewController {
-      guard let vc = StoryboardScene.Main.sortViewControllerScene.viewController() as? SortViewController
+    static func instantiateSortViewController() -> SwimpyNew.SortViewController {
+      guard let vc = StoryboardScene.Main.sortViewControllerScene.viewController() as? SwimpyNew.SortViewController
       else {
-        fatalError("ViewController 'SortViewController' is not of the expected class SortViewController.")
+        fatalError("ViewController 'SortViewController' is not of the expected class SwimpyNew.SortViewController.")
       }
       return vc
     }
 
     case storeProfileViewControllerScene = "StoreProfileViewController"
-    static func instantiateStoreProfileViewController() -> StoreProfileViewController {
-      guard let vc = StoryboardScene.Main.storeProfileViewControllerScene.viewController() as? StoreProfileViewController
+    static func instantiateStoreProfileViewController() -> SwimpyNew.StoreProfileViewController {
+      guard let vc = StoryboardScene.Main.storeProfileViewControllerScene.viewController() as? SwimpyNew.StoreProfileViewController
       else {
-        fatalError("ViewController 'StoreProfileViewController' is not of the expected class StoreProfileViewController.")
+        fatalError("ViewController 'StoreProfileViewController' is not of the expected class SwimpyNew.StoreProfileViewController.")
       }
       return vc
     }
 
     case tabBarControllerScene = "TabBarController"
-    static func instantiateTabBarController() -> TabBarController {
-      guard let vc = StoryboardScene.Main.tabBarControllerScene.viewController() as? TabBarController
+    static func instantiateTabBarController() -> SwimpyNew.TabBarController {
+      guard let vc = StoryboardScene.Main.tabBarControllerScene.viewController() as? SwimpyNew.TabBarController
       else {
-        fatalError("ViewController 'TabBarController' is not of the expected class TabBarController.")
+        fatalError("ViewController 'TabBarController' is not of the expected class SwimpyNew.TabBarController.")
       }
       return vc
     }
   }
 }
 
-struct StoryboardSegue {
+enum StoryboardSegue {
 }
+
+private final class BundleToken {}

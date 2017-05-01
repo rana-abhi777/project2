@@ -1,6 +1,7 @@
 
 import RMMapper
 import UIKit
+import SwiftyJSON
 
 class MMUserManager: NSObject {
     
@@ -15,7 +16,23 @@ class MMUserManager: NSObject {
         super.init()
     }
     
+    
+    
+    
     deinit {
+    }
+    var notificationData : JSON? {
+        get{
+            return (UserDefaults.standard.value(forKey: "SwimpyNotification") as? JSON)
+        }
+        set{
+            if let value = newValue {
+                return UserDefaults.standard.setValue(value, forKey: "SwimpyNotification")
+            }else{
+                UserDefaults.standard.removeObject(forKey: "SwimpyNotification")
+            }
+        }
+        
     }
     
     var loggedInUser : User? {
@@ -28,6 +45,20 @@ class MMUserManager: NSObject {
                 UserDefaults.standard.rm_setCustomObject(value, forKey: "SwimpyUser")
             }else{
                 UserDefaults.standard.removeObject(forKey: "SwimpyUser")
+            }
+        }
+    }
+    
+    var deviceToken : String? {
+        get{
+            return UserDefaults.standard.rm_customObject(forKey: "SwimpyDeviceToken") as? String
+        }
+        set{
+            
+            if let value = newValue {
+                UserDefaults.standard.rm_setCustomObject(value, forKey: "SwimpyDeviceToken")
+            }else{
+                UserDefaults.standard.removeObject(forKey: "SwimpyDeviceToken")
             }
         }
     }

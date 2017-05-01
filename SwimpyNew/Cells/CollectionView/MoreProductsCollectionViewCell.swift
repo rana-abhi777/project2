@@ -14,6 +14,12 @@ class MoreProductsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imgProduct: CustomImageView!
     
+    var storeProduct : MoreFromStore? {
+        didSet{
+            imgProduct?.sd_setImage(with: URL(string : /storeProduct?.imgOriginal))
+        }
+    }
+    
     //MARK:-  function
     func configureCell(model: MoreFromStore) {
         guard let url = model.imgOriginal else { imgProduct?.backgroundColor = UIColor.gray

@@ -15,7 +15,7 @@ class StoreDetail: NSObject {
     var storeName : String?
     var describe : String?
     var totalFollow : String?
-    var followStatus : String?
+    var followStatus : Int?
     var profilePicURLOriginal : String?
     var profilePicURLThumbnail : String?
     var pageNo : String?
@@ -26,22 +26,22 @@ class StoreDetail: NSObject {
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
-        followStatus = arrResult["followStatus"].stringValue
-        pageNo = arrResult["pageNo"].stringValue
-        let result = arrResult["data"].dictionaryValue
-        id = result["_id"]?.stringValue
-        storeName = result["storeName"]?.stringValue
+        followStatus = arrResult[Keys.FollowStatus.rawValue].intValue
+        pageNo = arrResult[Keys.PageNo.rawValue].stringValue
+        let result = arrResult[Keys.Data.rawValue].dictionaryValue
+        id = result[Keys.ID.rawValue]?.stringValue
+        storeName = result[Keys.StoreName.rawValue]?.stringValue
        
-        describe = result["description"]?.stringValue
-        totalFollow = result["totalFollow"]?.stringValue
+        describe = result[Keys.Description.rawValue]?.stringValue
+        totalFollow = result[Keys.TotalFollow.rawValue]?.stringValue
         
-        let profilePicURL = result["profilePicURL"]?.dictionaryValue
-        profilePicURLOriginal = profilePicURL?["original"]?.stringValue
-        profilePicURLThumbnail = profilePicURL?["thumbnail"]?.stringValue
+        let profilePicURL = result[Keys.ProfilePicURL.rawValue]?.dictionaryValue
+        profilePicURLOriginal = profilePicURL?[Keys.Original.rawValue]?.stringValue
+        profilePicURLThumbnail = profilePicURL?[Keys.Thumbnail.rawValue]?.stringValue
         
-        let coverPicURL = result["coverPicURL"]?.dictionaryValue
-        coverPicURLOriginal = coverPicURL?["original"]?.stringValue
-        coverPicURLThumbnail = coverPicURL?["thumbnail"]?.stringValue
+        let coverPicURL = result[Keys.CoverPicURL.rawValue]?.dictionaryValue
+        coverPicURLOriginal = coverPicURL?[Keys.Original.rawValue]?.stringValue
+        coverPicURLThumbnail = coverPicURL?[Keys.Thumbnail.rawValue]?.stringValue
         productData = []
         productData = StoreProducts.changeDictToModelArray(jsoon1: arrResult)
     }

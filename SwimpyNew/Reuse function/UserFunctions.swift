@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftMessages
+import Alamofire
 
 class UserFunctions: NSObject {
     
@@ -15,11 +16,17 @@ class UserFunctions: NSObject {
         
     }
     
+    static func checkInternet() -> Bool  {
+        if Alamofire.NetworkReachabilityManager()!.isReachable {
+            return true
+        }
+        return false
+    }
+
     static func showAlert(title : String = "Oops" ,message : String, type : String = "info") {
         let myView = MessageView.viewFromNib(layout: .MessageView)
         
         myView.button?.isHidden = true
-        //        myView.backgroundView.backgroundColor = UIColor.gray
         myView.configureContent(title: title, body: message, iconImage: UIImage())
         var config = SwiftMessages.Config()
         config.presentationStyle = .bottom
@@ -29,26 +36,19 @@ class UserFunctions: NSObject {
         
     }
     
-    static func showAlert(title : String = "Oops" ,message : String,success: @escaping () -> ()) {
+  /*  static func showAlert(title : String = "Oops" ,message : String, type : String = "info",success: @escaping () -> ()) {
         let myView = MessageView.viewFromNib(layout: .MessageView)
+        
         myView.button?.isHidden = true
-        //         myView.backgroundView.backgroundColor = UIColor.gray
-        //        myView.button?.titleLabel?.text = "ok"
-        //        myView.configureContent(title: title, body: message)
         myView.configureContent(title: title, body: message, iconImage: UIImage())
         var config = SwiftMessages.Config()
         config.presentationStyle = .bottom
         config.presentationContext = .window(windowLevel: 0.0)
         config.dimMode = .gray(interactive: true)
         SwiftMessages.show(config: config, view: myView)
-        //        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        //
-        //        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-        //            success()
-        //        }))
-        //
-        //        sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
-    }
+        success()
+    }*/
+    
     
     static func uniq<S : Sequence, T : Hashable>(source: S) -> [T] where S.Iterator.Element == T {
         var buffer = [T]()

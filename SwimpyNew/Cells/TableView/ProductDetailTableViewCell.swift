@@ -13,9 +13,10 @@ protocol ProductDetailTask {
     func updateLikeData(model : ProductDetail?)
     func redirectToCart(model : ProductDetail?)
     func openStore(sellerId : String)
+    func buyNow(model : ProductDetail?)
 }
 
-class ProductDetailTableViewCell: UITableViewCell {
+class ProductDetailTableViewCell: BaseTableViewCell {
     
     //MARK:- Outlets
     
@@ -55,6 +56,7 @@ class ProductDetailTableViewCell: UITableViewCell {
             self.selectSizeDropDown
         ]
     }()
+    var cellCollection : ProductLikeUserCollectionViewCell?
     
     //MARK:-  Override functions
     override func awakeFromNib() {
@@ -72,19 +74,15 @@ class ProductDetailTableViewCell: UITableViewCell {
         selectColorDropDown.anchorView = btnSelectColor
         selectColorDropDown.bottomOffset = CGPoint(x: 0, y: 40)
         selectColorDropDown.dataSource = model.color ?? []
-        
         selectSizeDropDown.anchorView = btnSelectColor
         selectSizeDropDown.bottomOffset = CGPoint(x: 0, y: 80)
         selectSizeDropDown.dataSource = model.variations ?? []
-        
-        
-        imgStoreLogo.sd_setImage(with: URL(string: model.storeImgThumbnail ?? ""))
-        lblStoreName.text = model.storeName ?? ""
+        imgStoreLogo.sd_setImage(with: URL(string: /model.storeImgThumbnail ))
+        lblStoreName.text = /model.storeName
         lblStoreFollowers.text = (model.numberOfFollwers ?? L10n._0.string) + L10n._Followers.string
-        
-        lblProductName.text = model.productName ?? ""
+        lblProductName.text = /model.productName
         lblDescription.text = model.describe
-        lblPrice.text = "$" + "\(model.base_price_unit ?? 0.0)"
+        lblPrice.text = "$" + "\(data?.total_price ?? 0.0)"
         lblNumberOfLikes.text = model.totalLikes ?? L10n._0.string
         lblNumberOfShare.text = "\(model.share ?? 0)"
         lblSelectedColor.text = (model.color?.count ?? 0) > 0 ?  model.color?[0] : ""
@@ -112,7 +110,7 @@ class ProductDetailTableViewCell: UITableViewCell {
         var arrLike : [LikeUser] = []
         
         for (index,item) in temp.enumerated() {
-            if index < 5 {
+            if index < SwitchValues.five.rawValue {
                 arrLike.append(item)
                 constCollectionViewLikeUserWidth.constant = CGFloat(arrLike.count * 26)
                 self.layoutIfNeeded()
@@ -121,19 +119,19 @@ class ProductDetailTableViewCell: UITableViewCell {
             }
         }
         switch temp.count {
-        case _ where temp.count > 5:
+        case _ where temp.count > SwitchValues.five.rawValue :
             lblLikes.isHidden = false
             lblLikes.text = "+ " + "\(temp.count - 5) " + L10n.others.string
             break
-        case _ where temp.count == 5 :
-            constCollectionViewLikeUserWidth.constant = 120.0
+        case _ where temp.count == SwitchValues.five.rawValue :
+            constCollectionViewLikeUserWidth.constant = 120
             self.layoutIfNeeded()
             break
-        case _ where temp.count == 1 :
+        case _ where temp.count == SwitchValues.one.rawValue :
             constCollectionViewLikeUserWidth.constant = 40.0
             self.layoutIfNeeded()
             break
-        case _ where temp.count < 5 :
+        case _ where temp.count < SwitchValues.five.rawValue :
             constCollectionViewLikeUserWidth.constant = CGFloat(arrLike.count * 26)
             self.layoutIfNeeded()
             break
@@ -154,11 +152,13 @@ class ProductDetailTableViewCell: UITableViewCell {
         
         collectionViewdataSource = CollectionViewDataSource(items: arrLike, collectionView: collectionViewLIkeUser, cellIdentifier: CellIdentifiers.ProductLikeUserCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 35, cellWidth: 20 , cellSpacing: 0, configureCellBlock: { (cell, item, indexpath) in
             let cell = cell as? ProductLikeUserCollectionViewCell
-            cell?.configureCell(model: arrLike[indexpath.row])
+            cell?.likeUser = arrLike[indexpath.row]
+            //cell?.configureCell(model: arrLike[indexpath.row])
             cell?.bringSubview(toFront: self)
+            self.cellCollection = cell
             }, aRowSelectedListener: { (indexPath) in
-            }, willDisplayCell: { (indexPath) in
-                
+            }, willDisplayCell: {[unowned self] (indexPath) in
+                self.collectionViewLIkeUser.bringSubview(toFront: self.cellCollection ?? ProductLikeUserCollectionViewCell() )
             }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewLIkeUser.reloadData()
@@ -166,9 +166,8 @@ class ProductDetailTableViewCell: UITableViewCell {
     
     
     //MARK:- button actions
-    
     @IBAction func btnActionOpenStore(_ sender: AnyObject) {
-        self.delegate?.openStore(sellerId: data?.storeId ?? "")
+        self.delegate?.openStore(sellerId: /data?.storeId)
     }
     @IBAction func btnActionSelectSize(_ sender: AnyObject) {
         selectSizeDropDown.show()
@@ -187,35 +186,21 @@ class ProductDetailTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnActionLike(_ sender: AnyObject) {
-        if data?.likesStatus == 0 {
-            self.imgLike.image = UIImage(asset : .icLikeOn)
-            let likeCount = (Int(self.data?.totalLikes ?? L10n._0.string) ?? 0) + 1
-            self.data?.totalLikes = "\(likeCount)"
-            self.data?.likesStatus = 1
-            lblNumberOfLikes.text = self.data?.totalLikes
-            self.delegate?.updateLikeData(model: self.data)
-            ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-
-                }, method: "POST", loader: false)
+        if UserFunctions.checkInternet() {
+        imgLike.image = data?.likesStatus == 1 ? UIImage(asset : .icLikeOn) : UIImage(asset : .icLike)
+        let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : /data?.likesStatus == 0 ? 1 : -1)
+        self.data?.totalLikes = likeCount?.toString
+        self.data?.likesStatus = /data?.likesStatus == 0 ? 1 : 0
+        lblNumberOfLikes.text = data?.totalLikes
+        self.delegate?.updateLikeData(model: self.data)
+        ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters(),type: /data?.likesStatus == 0), failure: { (err) in
+            print(err)
+            }, success: { (model) in
+            }, method: Keys.Post.rawValue, loader: false)
+        }else {
+            UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
         }
-        else {
-            self.imgLike.image = UIImage(asset : .icLike)
-            
-            let likeCount = (Int(self.data?.totalLikes ?? L10n._1.string) ?? 1) - 1
-            self.data?.totalLikes = "\(likeCount)"
-            lblNumberOfLikes.text = self.data?.totalLikes ?? L10n._0.string
-            
-            self.data?.likesStatus = 0
-            
-            self.delegate?.updateLikeData(model: self.data)
-            ApiManager().getDataOfURL(withApi: API.DislikeProduct(APIParameters.DislikeProduct(productId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: {(model) in
-                    print(model)
-                }, method: "POST", loader: false)
-        }
+        
     }
     
     @IBAction func btnActionShare(_ sender: AnyObject) {
@@ -224,5 +209,6 @@ class ProductDetailTableViewCell: UITableViewCell {
         self.delegate?.redirectToCart(model: self.data)
     }
     @IBAction func btnActionBuyNow(_ sender: AnyObject) {
+        self.delegate?.buyNow(model: self.data)
     }
 }

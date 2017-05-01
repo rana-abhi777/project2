@@ -8,12 +8,8 @@
 
 import UIKit
 protocol StoreProfileTask {
-    func sortPressed()
-    func filterPressed()
-    func openCart()
-    func openSearch()
-    func goBack()
     func updateFollowData(model: StoreDetail?, index: Int)
+    func redirectToMessageScreen()
 }
 
 class StoreProfileCollectionReusableView: UICollectionReusableView {
@@ -30,21 +26,22 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
     var data : StoreDetail?
     var delegate : StoreProfileTask?
     var  index : Int = 0
+    var allData: AllSellerForUser?
     
     //MARK:-  function
     func configureCell(model : StoreDetail,row : Int) {
         data = model
         index = row
-        lblStoreName.text = model.storeName ?? ""
-        lblDescription.text = model.describe ?? ""
-        lblNumberOfFollowers.text = (model.totalFollow ?? "") + L10n._Followers.string
-        imgStoreCoverPic.sd_setImage(with: URL(string: model.coverPicURLOriginal ?? ""))
-        imgStoreThumbnail.sd_setImage(with: URL(string: model.profilePicURLThumbnail ?? ""))
-        if model.followStatus == L10n._1.string {
+        lblStoreName.text = /model.storeName
+        lblDescription.text = /model.describe
+        lblNumberOfFollowers.text = (/model.totalFollow) + L10n._Followers.string
+        imgStoreCoverPic.sd_setImage(with: URL(string: /model.coverPicURLOriginal ))
+        imgStoreThumbnail.sd_setImage(with: URL(string: /model.profilePicURLThumbnail))
+        if model.followStatus == 1 {
             btnFollowStore.setTitle(L10n.following.string, for: .normal)
-            btnFollowStore.setTitleColor(UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
+            btnFollowStore.setTitleColor(UIColor.btnColor()
                 , for: .normal)
-            btnFollowStore?.borderColor = UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
+            btnFollowStore?.borderColor = UIColor.btnColor()
         } else {
             btnFollowStore.setTitle(L10n.followStore.string, for: .normal)
             btnFollowStore?.borderColor =  UIColor.black
@@ -53,68 +50,36 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
         }
     }
     
+    func hitApiForGetAllSellerForUser(pageNo: String , completion: @escaping(Any) -> ()){
+        ApiManager().getDataOfURL(withApi: API.GetAllSellerForUser(APIParameters.GetAllSellerForUser(pageNo: pageNo).formatParameters()), failure: { (err) in
+            print(err)
+        }, success: { (model) in
+            let response = model as! AllSellerForUser ?? AllSellerForUser()
+            completion(model)
+        }, method: Keys.Get.rawValue, loader: false)
+    }
     
     //MARK:-  button actions
-    @IBAction func btnActionCart(_ sender: AnyObject) {
-        self.delegate?.openCart()
-    }
-    
-    @IBAction func btnActionSearch(_ sender: AnyObject) {
-        self.delegate?.openSearch()
-    }
-    
-    @IBAction func btnActionBack(_ sender: AnyObject) {
-        self.delegate?.goBack()
-    }
-    
-    @IBAction func btnActionSort(_ sender: AnyObject) {
-        self.delegate?.sortPressed()
-    }
-    
-    @IBAction func btnActionFilter(_ sender: AnyObject) {
-        self.delegate?.filterPressed()
-    }
-    
     @IBAction func btnActionMessage(_ sender: AnyObject) {
+        self.delegate?.redirectToMessageScreen()
     }
     
     @IBAction func btnActionFollowStore(_ sender: AnyObject) {
-        if data?.followStatus == L10n._0.string {
-            self.data?.followStatus = L10n._1.string
-            btnFollowStore?.setTitle(L10n.following.string, for: .normal)
-            btnFollowStore.setTitleColor(UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
-                , for: .normal)
-            btnFollowStore?.borderColor = UIColor(red: 1, green: 152/255, blue: 0, alpha: 1)
-            let totalFollowers = "\((Int(data?.totalFollow ?? L10n._0.string) ?? 0) + 1)"
-            lblNumberOfFollowers.text = totalFollowers + L10n._Followers.string
-            data?.totalFollow = totalFollowers
+        if UserFunctions.checkInternet() {
+            btnFollowStore.setTitle(data?.followStatus == 0 ? L10n.follow.string : L10n.following.string , for: .normal)
+            let followingCount = (/self.data?.followStatus).advanced(by : /data?.followStatus == 0 ? 1 : -2)
+            self.data?.totalFollow = String((self.data?.totalFollow?.toInt())! + followingCount)
+            self.data?.followStatus = /data?.followStatus == 0 ? 1 : 0
+            lblNumberOfFollowers?.text = self.data?.totalFollow
             self.delegate?.updateFollowData(model: self.data, index: self.index)
-            
-            ApiManager().getDataOfURL(withApi: API.FollowStore(APIParameters.FollowStore(sellerId: data?.id).formatParameters()), failure: { (err) in
+            btnFollowStore.setTitleColor(/data?.followStatus == 0 ? UIColor.btnColor() : UIColor.black, for: .normal)
+            btnFollowStore?.borderColor = /data?.followStatus == 0 ? UIColor.btnColor() : UIColor.black
+            ApiManager().getDataOfURL(withApi: API.FollowStore(APIParameters.FollowStore(sellerId: data?.id).formatParameters(),type: /data?.followStatus == 0), failure: { (err) in
                 print(err)
-                }, success: { (model) in
-                    print(model)
-                    
-                }, method: "PUT", loader: false)
-        }
-        else {
-            btnFollowStore?.setTitle(L10n.followStore.string, for: .normal)
-            btnFollowStore?.borderColor =  UIColor.black
-            btnFollowStore.setTitleColor(UIColor.black
-                , for: .normal)
-            self.data?.followStatus = L10n._0.string
-            let totalFollowers = "\((Int(data?.totalFollow ?? L10n._1.string) ?? 1) - 1)"
-            lblNumberOfFollowers.text = totalFollowers + L10n._Followers.string
-            data?.totalFollow = totalFollowers
-            
-            self.delegate?.updateFollowData(model: self.data, index: self.index)
-            
-            ApiManager().getDataOfURL(withApi: API.UnfollowStore(APIParameters.UnfollowStore(sellerId: data?.id).formatParameters()), failure: { (err) in
-                print(err)
-                }, success: { (model) in
-                    print(model)
-                    
-                }, method: "PUT", loader: false)
+                }, success: {(model) in
+                }, method: Keys.Put.rawValue, loader: false)
+        }else {
+            UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
         }
     }
 }

@@ -12,7 +12,7 @@ protocol CartTask {
     func nextStep()
 }
 
-class CartPriceDetailTableViewCell: UITableViewCell {
+class CartPriceDetailTableViewCell: BaseTableViewCell {
     
     var delegate : CartTask?
     
