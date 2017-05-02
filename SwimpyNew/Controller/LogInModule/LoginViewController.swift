@@ -220,8 +220,11 @@ extension LoginViewController {
     }
     @IBAction func btnActionSignup(sender: AnyObject) {
         view.endEditing(true)
+        if btnProfilePic.currentImage == #imageLiteral(resourceName: "ic_upload"){
+            UserFunctions.showAlert(title: "Oops!!", message: "Please add profile picture.", type: "info")
+        }
+        else{
         if validateSignup() {
-            print(btnCountryName.titleLabel?.text)
             
             ApiManager().getDataOfURL(withApi: API.Signup(APIParameters.Signup(fullname: txtFullname.text, email: txtSignupEmail.text, password: txtSignupPassword.text, countryName : btnCountryName.titleLabel?.text).formatParameters()), failure: { (err) in
                 print(err)
@@ -232,12 +235,13 @@ extension LoginViewController {
                 self.navigationController?.pushViewController(VC, animated: true)
                 
             }, method: Keys.Post.rawValue, loader: true, image: btnProfilePic.image(for: .normal) != UIImage(asset: .icUpload) ? btnProfilePic.image(for: .normal) : nil )
+            }
         }
         
     }
     @IBAction func btnActionProfilePic(sender: AnyObject) {
-        view.endEditing(true)
         callFusumaImagePiucker(btnOutlet: btnProfilePic)
+        getButton(button: btnProfilePic)
     }
     @IBAction func btnActionSigninPopup(_ sender: AnyObject) {
         showAndHideView(viewManipulated : viewSignin)

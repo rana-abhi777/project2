@@ -107,7 +107,9 @@ class FeaturedTableViewCell: BaseTableViewCell {
     
     
     @IBAction func btnActionBuy(_ sender: AnyObject) {
+    
         self.delegate?.buyProduct(model: data, index: index)
+  
     }
     
 }

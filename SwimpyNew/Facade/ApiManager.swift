@@ -12,7 +12,7 @@ import Foundation
 class ApiManager {
     
     
-    func getDataOfURL(withApi : API, failure: (NSError) ->(), success: @escaping (AnyObject?)->(), method:String,loader : Bool = true){
+    func getDataOfURL(withApi : API, failure: (NSError) ->(), success: @escaping (AnyObject?)->(), method:String,loader : Bool){
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
             UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
             return
@@ -22,6 +22,7 @@ class ApiManager {
             ApiManager.showLoader()
         }
         HttpManager.callApiWithParameters(api: withApi, success: {(response) in
+         
             guard let temp = response else { return }
             let data = JSON(temp)
             print("Response : " , response)
@@ -203,6 +204,7 @@ class ApiManager {
             }
             
             }, failure: { (error) in
+                ApiManager.hideLoader()
                 UserFunctions.showAlert(message: L10n.somethingWentWrong.string)
             }, method: method)
     }

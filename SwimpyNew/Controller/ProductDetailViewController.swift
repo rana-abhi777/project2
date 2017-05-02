@@ -176,13 +176,17 @@ extension ProductDetailViewController : ProductDetailTask {
             UserFunctions.showAlert(message: L10n.productIsOutOfStock.string)
             return
         }
+        else if model?.quantity == 0{
+            UserFunctions.showAlert(title: "Oops!!", message: "Product Out of stock!!", type: "info")
+        }
+        else{
         ApiManager().getDataOfURL(withApi: API.AddToCart(APIParameters.AddToCart(productId: model?.id,variations : model?.sizeSelected,color: model?.colorSelected).formatParameters()), failure: { (err) in
             print(err)
             }, success: { (model) in
                 UserFunctions.showAlert(title : L10n.success.string, message: L10n.productAddedToCart.string)
                 self.viewCartCount(btnCart: self.btnCart)
             }, method: Keys.Post.rawValue, loader: true)
-        
+        }
     }
     
     func updateLikeData(model : ProductDetail?) {
@@ -198,6 +202,10 @@ extension ProductDetailViewController : ProductDetailTask {
     }
     
     func buyNow(model : ProductDetail?) {
+        if model?.quantity == 0{
+            UserFunctions.showAlert(title: "Oops!!", message: "Product Out of Stock!!", type: "info")
+        }
+        else{
         let cartObj = CartData()
         cartObj.imageThumbnail = model?.imageThumbnail
         cartObj.imageOriginal = model?.imageOriginal
@@ -213,7 +221,7 @@ extension ProductDetailViewController : ProductDetailTask {
         let VC = StoryboardScene.Main.instantiateAddressDetailsViewController()
         VC.arrCartData = [cartObj]
         self.navigationController?.pushViewController(VC, animated: true)
-        
+        }
     }
 }
 

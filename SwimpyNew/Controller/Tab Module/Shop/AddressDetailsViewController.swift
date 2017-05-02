@@ -51,11 +51,9 @@ class AddressDetailsViewController: BaseViewController {
             }, success: {[unowned self] (model) in
                 //fill the fields
                 self.defaultAddressData = model as? DefaultAddress
-                
-                print("Address Data : " , self.defaultAddressData?.countryName ?? "")
                 self.setUI()
                 
-            }, method: Keys.Get.rawValue, loader: true)
+            }, method: Keys.Get.rawValue, loader: false)
         
     }
     //MARK:-  function
@@ -70,7 +68,7 @@ class AddressDetailsViewController: BaseViewController {
         txtZipcode.text = /defaultAddressData?.zipcode
         txtState.text = /defaultAddressData?.state
         code = /defaultAddressData?.countryCode
-        code = "IN"
+        //code = "IN"
         if let country = defaultAddressData?.countryName , country != "" {
             lblCountry.text = country
         }

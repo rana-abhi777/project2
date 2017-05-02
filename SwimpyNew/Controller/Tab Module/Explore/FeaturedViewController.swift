@@ -25,20 +25,15 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        arrFeaturedData = []
         refreshControl.addTarget(self, action: #selector(FeaturedViewController.setup), for: UIControlEvents.valueChanged)
         tableViewFeaturedProducts?.refreshControl =  refreshControl
         //setup()
+
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         setup()
-    }
-    
-   
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     //MARK:- FUNCTION
@@ -65,7 +60,7 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
                 else {
                     self.view.bringSubview(toFront: self.viewNoProducts)
                 }
-            }, method: Keys.Get.rawValue, loader: true)
+            }, method: Keys.Get.rawValue, loader: false)
     }
     
     func configureTableView() {
@@ -111,6 +106,7 @@ extension FeaturedViewController : FeaturedProductsTask {
         
     }
     func buyProduct(model : Products?, index : Int) {
+      
         let cartObj = CartData()
         cartObj.imageThumbnail = model?.productImageThumbnail
         cartObj.imageOriginal = model?.productImageOriginal

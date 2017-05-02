@@ -59,12 +59,17 @@ class OrderDetailViewController: BaseViewController {
 extension OrderDetailViewController : ProcessOrder {
     
     func generateOrder() {
+        
         ApiManager().getDataOfURL(withApi: API.GenerateOrder(APIParameters.GenerateOrder(buyerId: MMUserManager.shared.loggedInUser?.id, addressId: defaultAddress?.id, details: OrderDetail.changeArrayToDict(arrData: arrOrder) as AnyObject, netAmount: "\(/shippingCost + /totalAmt)").formatParameters()), failure: { (err) in
             print(err)
-            }, success: {[unowned self] (model) in
-                print(model)
-                UserFunctions.showAlert(message: "Order placed successfully")
-                let _ = self.navigationController?.popToRootViewController(animated: true)
-            }, method: Keys.Post.rawValue, loader: true)
+        }, success: {[unowned self] (model) in
+            print(model)
+         //   UserFunctions.sharedInstance().window?.rootViewController?.stopAnimating()
+            self.view.subviews.forEach({ $0.removeFromSuperview() })
+            
+            //UserFunctions.showAlert(message: "Order placed successfully")
+            UserFunctions.showAlert(title: "Successfull!!", message: "Order placed Successfully.", type: "info")
+            let _ = self.navigationController?.popToRootViewController(animated: false)
+            }, method: Keys.Post.rawValue, loader: false)
     }
 }
