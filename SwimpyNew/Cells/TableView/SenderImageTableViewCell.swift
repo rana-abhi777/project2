@@ -23,6 +23,8 @@ class SenderImageTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     func configureCell(data : Message, storeImage : String?) {
+        imgChat.frame.size = UIImage(urlString: data.imgOriginal ?? "")?.size ?? UIImage().size
+        imgSender.frame.size = UIImage(urlString: storeImage ?? "")?.size ?? UIImage().size
         imgChat.sd_setImage(with: URL(string: data.imgOriginal ?? ""))
         imgSender.sd_setImage(with: URL(string: storeImage ?? ""))
     }

@@ -33,6 +33,8 @@ class EditProfileViewController: BaseViewController {
         txtFullname.text = /MMUserManager.shared.loggedInUser?.name
         txtEmailAddress.text = /MMUserManager.shared.loggedInUser?.email 
        // btnCountryName.setTitle(/MMUserManager.shared.loggedInUser?.email, for: .normal)
+        
+        txtEmailAddress.isUserInteractionEnabled = UserDefaults.standard.bool(forKey: "isLogin") ? false : true
         if let country = MMUserManager.shared.loggedInUser?.countryName , country != "" {
             btnCountryName.setTitle(country, for: .normal)
             btnCountryName.setTitleColor(UIColor.black, for: .normal)

@@ -16,11 +16,16 @@ class SettingsViewController: UIViewController {
     //MARK:- variables
     var arrData : [String] = [L10n.editProfile.string,L10n.myOrders.string,L10n.termsAndConditions.string,L10n.notifications.string,L10n.changePassword.string,L10n.logout.string]
     var tableViewDataSource : TableViewCustomDatasource?
+    var flag: Bool?
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //myCodeAtirek
+        self.flag = UserDefaults.standard.bool(forKey: "isLogin")
         configureTableView()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,6 +34,9 @@ class SettingsViewController: UIViewController {
     
     //MARK:- functions
     func configureTableView() {
+        if flag == true{
+            self.arrData.remove(at: 4)
+        }
         tableViewDataSource = TableViewCustomDatasource(items: arrData as Array<AnyObject>?, height: 56, estimatedHeight: 56, tableView: tableViewSettings, cellIdentifier: CellIdentifiers.SettingsTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? SettingsTableViewCell
             cell?.configureCell(model: self.arrData[indexpath.row] ,row: indexpath.row)
@@ -43,9 +51,14 @@ class SettingsViewController: UIViewController {
                     self.navigationController?.pushViewController(VC, animated: true)
                     break
                 case SwitchValues.four.rawValue: //change password
+                    if self.arrData[4] == L10n.logout.string{
+                        fallthrough
+                    }
+                    else{
                     let VC = StoryboardScene.Main.instantiateChangePasswordViewController()
                     self.navigationController?.pushViewController(VC, animated: true)
                     break
+                    }
                 case SwitchValues.five.rawValue: //logout
                     let alert = UIAlertController(title: L10n.logout.string, message: L10n.areYouSure.string, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .default, handler: { (action) in
@@ -80,7 +93,7 @@ class SettingsViewController: UIViewController {
                 let VC = StoryboardScene.Main.instantiateLoginViewController()
                 initialNavVC.viewControllers = [VC]
                 UserFunctions.sharedInstance().window?.rootViewController = initialNavVC
-
+                UserDefaults.standard.set(false, forKey: "isLogin")
             }, method: Keys.Put.rawValue, loader: true)
     }
     

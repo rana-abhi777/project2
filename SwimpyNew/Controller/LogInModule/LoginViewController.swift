@@ -15,6 +15,8 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     
     var backResponse:UserDetails?
     var status: Bool?
+    var defaults = UserDefaults.standard
+    
     //MARK: outlets
     @IBOutlet weak var viewForgotPassword: UIView!
     @IBOutlet weak var btnSignin: UIButton!
@@ -66,7 +68,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                 imageUrl = signIn.currentUser.profile.imageURL(withDimension: 120).absoluteString
             }
             
-            ApiManager().getDataOfURL(withApi: API.LoginViaGoogle(APIParameters.LoginViaGoogle(googleId: user.userID, name: user.profile.givenName, googleImageUrl: imageUrl).formatParameters()), failure: { (err) in
+            ApiManager().getDataOfURL(withApi: API.LoginViaGoogle(APIParameters.LoginViaGoogle(googleId: user.userID, name: user.profile.givenName, googleImageUrl: imageUrl , email: user.profile.email).formatParameters()), failure: { (err) in
                 print(err)
                 
             }, success: { (model) in
@@ -82,10 +84,13 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                         let VC = StoryboardScene.Main.instantiateTabBarController()
                         VC.selectedIndex = 0
                         self.navigationController?.pushViewController(VC, animated: true)
+                        
+                        //myCode Atirek
+                        (UIApplication.shared.delegate as! AppDelegate).flagg = true
+                        
+                         self.defaults.set(true, forKey: "isLogin")
                     }
                 })
-                
-                
             }, method: Keys.Post.rawValue, loader: true)
         } else {
             ApiManager.hideLoader()
@@ -93,11 +98,12 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         }
     }
     
+    //mycode
     func hitApiForUserDetails(_ userId : String , completionhandler : @escaping(Any?) -> ()){
         ApiManager().getDataOfURL(withApi: API.GetUserDetail(APIParameters.GetUserDetail(userId: userId).formatParameters()), failure: { (err) in
             print(err)
         }, success: { (model) in
-            //print("User Blocked Status : " , model!["data"].isBlocked)
+
             self.backResponse = model as? UserDetails ?? UserDetails()
             completionhandler(self.backResponse)
         }, method: Keys.Get.rawValue , loader: false)
@@ -187,6 +193,7 @@ extension LoginViewController {
                 
             }, success: { (model) in
                 print(model)
+                self.defaults.set(false, forKey: "isLogin")
                 let VC = StoryboardScene.Main.instantiateTabBarController()
                 //                    VC.selectedIndex = 0
                 //                    VC.tabBar.selectedItem = VC.tabBar.items?[0]
@@ -207,7 +214,7 @@ extension LoginViewController {
             print(err)
             
         }, success: { (model) in
-            print(model)
+            //print(model)
             
         }, method: Keys.Post.rawValue, loader: true)
         
@@ -224,17 +231,17 @@ extension LoginViewController {
             UserFunctions.showAlert(title: "Oops!!", message: "Please add profile picture.", type: "info")
         }
         else{
-        if validateSignup() {
-            
-            ApiManager().getDataOfURL(withApi: API.Signup(APIParameters.Signup(fullname: txtFullname.text, email: txtSignupEmail.text, password: txtSignupPassword.text, countryName : btnCountryName.titleLabel?.text).formatParameters()), failure: { (err) in
-                print(err)
+            if validateSignup() {
                 
-            }, success: { (model) in
-                let VC = StoryboardScene.Main.instantiateTabBarController()
-                VC.selectedIndex = 0
-                self.navigationController?.pushViewController(VC, animated: true)
-                
-            }, method: Keys.Post.rawValue, loader: true, image: btnProfilePic.image(for: .normal) != UIImage(asset: .icUpload) ? btnProfilePic.image(for: .normal) : nil )
+                ApiManager().getDataOfURL(withApi: API.Signup(APIParameters.Signup(fullname: txtFullname.text, email: txtSignupEmail.text, password: txtSignupPassword.text, countryName : btnCountryName.titleLabel?.text).formatParameters()), failure: { (err) in
+                    print(err)
+                    
+                }, success: { (model) in
+                    let VC = StoryboardScene.Main.instantiateTabBarController()
+                    VC.selectedIndex = 0
+                    self.navigationController?.pushViewController(VC, animated: true)
+                    
+                }, method: Keys.Post.rawValue, loader: true, image: btnProfilePic.image(for: .normal) != UIImage(asset: .icUpload) ? btnProfilePic.image(for: .normal) : nil )
             }
         }
         

@@ -20,6 +20,7 @@ class MessageViewController: BaseViewController {
     @IBOutlet weak var constBottomTextField: NSLayoutConstraint!
     @IBOutlet var lblNoChats: UILabel!
     
+    @IBOutlet weak var viewTop: UIView!
     //MARK:- variables
     var arrMessages : [Message] = []
     var imgAddress : UIImage?
@@ -70,6 +71,7 @@ class MessageViewController: BaseViewController {
         resetNoMoreData()
         arrMessages = []
         pageNo = L10n._0.string
+        
         hitApiForChatMessages()
     }
     
@@ -122,6 +124,8 @@ class MessageViewController: BaseViewController {
             tableViewMessage.scrollToRow(at: IndexPath(row: arrMessages.count - 1 , section: 0), at: .bottom, animated: false)
         }
     }
+    
+    
     
     func configureTableViewforTop() {
         tableDataSource = ChatDataSource(tableView: tableViewMessage, datasource: arrMessages ,vc: self,storeImage : storeImage)

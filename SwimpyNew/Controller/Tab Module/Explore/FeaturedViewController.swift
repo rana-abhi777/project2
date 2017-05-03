@@ -106,7 +106,6 @@ extension FeaturedViewController : FeaturedProductsTask {
         
     }
     func buyProduct(model : Products?, index : Int) {
-      
         let cartObj = CartData()
         cartObj.imageThumbnail = model?.productImageThumbnail
         cartObj.imageOriginal = model?.productImageOriginal
@@ -118,7 +117,6 @@ extension FeaturedViewController : FeaturedProductsTask {
         cartObj.shippingPrice = 0
         cartObj.colorSelected = model?.color?[0] ?? ""
         cartObj.sizeSelected = model?.size?[0] ?? ""
-        
         let VC = StoryboardScene.Main.instantiateAddressDetailsViewController()
         VC.arrCartData = [cartObj]
         self.navigationController?.pushViewController(VC, animated: true)
