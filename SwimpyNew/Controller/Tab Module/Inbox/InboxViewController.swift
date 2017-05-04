@@ -81,8 +81,8 @@ class InboxViewController: BaseViewController {
     }
     
     @IBAction func btnSearchAction(sender: AnyObject) {
-        //                let VC = StoryboardScene.Main.searchViewControllerScene.viewController()
-        //                self.navigationController?.pushViewController(VC, animated: true)
+                        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()
+                        self.navigationController?.pushViewController(VC, animated: true)
         print(self.arrChatList)
     }
     

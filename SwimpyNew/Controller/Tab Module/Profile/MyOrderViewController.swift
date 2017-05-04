@@ -69,11 +69,21 @@ class MyOrderViewController: UIViewController {
 extension MyOrderViewController : MyOrderTask {
     
     func cancelOrder(index: Int) {
-        ApiManager().getDataOfURL(withApi: API.CancelOrder(APIParameters.CancelOrder(orderId: self.arrOrderList[index].orderId, detailId: self.arrOrderList[index].detailsId).formatParameters()), failure: { (err) in
-            print(err)
-        }, success: { [unowned self] (model) in
-            self.myOrdersApi()
-            }, method: Keys.Put.rawValue, loader: true)
+        //myCodeAtirek
+        let alert = UIAlertController(title: Keys.sure.rawValue, message: L10n.areYouSure.string, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .default, handler: { (action) in
+            
+        }))
+        alert.addAction(UIAlertAction(title: L10n.ok.string, style: .default, handler: { (action) in
+            
+            ApiManager().getDataOfURL(withApi: API.CancelOrder(APIParameters.CancelOrder(orderId: self.arrOrderList[index].orderId, detailId: self.arrOrderList[index].detailsId).formatParameters()), failure: { (err) in
+                print(err)
+            }, success: { [unowned self] (model) in
+                self.myOrdersApi()
+                }, method: Keys.Put.rawValue, loader: true)
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func openDetails(productId : String?) {

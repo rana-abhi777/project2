@@ -122,6 +122,7 @@ enum Keys : String {
     case UserId = "userId"
     case IdType = "idType"
     
+    case sure = "Are you sure you want to cancel?"
     case Value = "value"
     case Text = "text"
     case Item = "item"

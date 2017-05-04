@@ -274,6 +274,7 @@ extension LoginViewController {
         
     }
     @IBAction func btnLoginWithFb(sender: AnyObject) {
+        self.defaults.set(true, forKey: "isLogin")
         logInWithFb(viewcontroller: self)
     }
     
@@ -281,10 +282,8 @@ extension LoginViewController {
         let vc = StoryboardScene.Main.instantiateCountryPickerViewController()
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
 }
-
 
 extension LoginViewController : SendData {
     func setCountryCode(name : String ,code : String) {

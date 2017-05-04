@@ -70,7 +70,8 @@ class MyOrderTableViewCell: UITableViewCell {
 
     //MARK:- button actions
     @IBAction func btnActionCancelItem(_ sender: AnyObject) {
-        self.delegate?.cancelOrder(index : index)
+        
+        self.delegate?.cancelOrder(index : self.index)
     }
     @IBAction func btnActionDetails(_ sender: AnyObject) {
         self.delegate?.openDetails(productId: data?.productId)

@@ -67,8 +67,8 @@ class SettingsViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: L10n.ok.string, style: .default, handler: { (action) in
                        self.logout()
                     }))
-
                     self.present(alert, animated: true, completion: nil)
+                    
                     
                 default :
                     break

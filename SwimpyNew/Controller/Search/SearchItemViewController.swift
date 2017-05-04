@@ -12,7 +12,6 @@ import Alamofire
 
 class SearchItemViewController: UIViewController , IndicatorInfoProvider ,SearchProductTask{
     
-    
     //MARK:- outlets
     @IBOutlet weak var collectionViewSearchItem: UICollectionView!
     @IBOutlet weak var viewNoProduct: UIView!
@@ -38,6 +37,39 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if !Alamofire.NetworkReachabilityManager()!.isReachable {
+//            timer.invalidate()
+//            return
+//        }else {
+//            configureLoader()
+//            timer =   Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchItemViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
+//        }
+        
+        
+        //myCode
+        hitApiForSearch()
+        
+    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        hitApiForSearch()
+//    }
+     
+    override func viewDidAppear(_ animated: Bool) {
+        hitApiForSearch()
+        print("Hello \(text)")
+        //print(text)
+    }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        timer.invalidate()
+//    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+         timer.invalidate()
+    }
+    
+    func hitApiForSearch(){
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
             timer.invalidate()
             return
@@ -46,15 +78,7 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
             timer =   Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchItemViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        timer.invalidate()
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -67,11 +91,13 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
 //             self.view.bringSubview(toFront: self.viewNoProduct)
             return
         }
-        if text == oldText {
-            return
-        }
+//        if text == oldText {
+//            
+//            
+//            
+//            return
+//        }
         configureLoader()
-        
         ApiManager().getDataOfURL(withApi: API.GetSearchAll(APIParameters.GetSearchAll(text: text, value: "item").formatParameters()), failure: { (err) in
             print(err)
             
@@ -79,6 +105,7 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
                 
                 guard let data = model as? SearchResult else { return }
                 self.oldText = data.text
+
                 self.arrProduct = data.dataitem ?? []
                 if self.arrProduct.count > 0 {
                     self.view.bringSubview(toFront: self.collectionViewSearchItem)
@@ -88,7 +115,7 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
                 else {
                     self.view.bringSubview(toFront: self.viewNoProduct)
                 }
-                print(model)
+                //print(model)
                 
             }, method: Keys.Get.rawValue, loader: false)
     }
@@ -97,7 +124,7 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
         collectionViewLoaderDataSource = SearchLoaderDatasource(colectionView: collectionViewSearchItem)
         collectionViewSearchItem.reloadData()
     }
-    
+
     func configureCollectionView(){
         collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewSearchItem, cellIdentifier: CellIdentifiers.SearchItemCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewSearchItem.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? SearchItemCollectionViewCell
@@ -129,6 +156,4 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Items")
     }
-    
-    
 }

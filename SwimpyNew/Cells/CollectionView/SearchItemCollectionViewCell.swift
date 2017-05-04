@@ -48,7 +48,6 @@ class SearchItemCollectionViewCell: UICollectionViewCell {
             return }
         imgProduct?.sd_setImage(with: URL(string : url))
          btnLike.isSelected = model.likesStatus != 0
-       
     }
     
     //MARK:-  Button Action

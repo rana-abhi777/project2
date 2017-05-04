@@ -39,7 +39,6 @@ class SearchViewController: BasePageViewController {
     @IBAction func btnActionCancel(_ sender: AnyObject) {
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
 }
 
 extension SearchViewController  {
