@@ -13,16 +13,19 @@ import Fusuma
 class MessageViewController: BaseViewController {
     
     //MARK:- outlet
+    
+    
     @IBOutlet weak var lblStoreName: UILabel!
     @IBOutlet weak var tableViewMessage: UITableView!
     @IBOutlet weak var btnSend: UIButton!
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var constBottomTextField: NSLayoutConstraint!
     @IBOutlet var lblNoChats: UILabel!
-    
     @IBOutlet weak var viewTop: UIView!
+    
     //MARK:- variables
     var arrMessages : [Message] = []
+    var keyboardHeight: CGFloat?
     var imgAddress : UIImage?
     var storeId : String?
     var storeImage : String?
@@ -45,6 +48,9 @@ class MessageViewController: BaseViewController {
         handlePagination()
         configureTableView()
         btnSend.isExclusiveTouch = true
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        txtMessage.delegate = self
     }
     
     //MARK:- FUNCTION
@@ -92,6 +98,24 @@ class MessageViewController: BaseViewController {
             self.configureTableView()
         }
     }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight = keyboardSize.height
+        }
+    }
+    
+    func keyboardWillHide(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight = keyboardSize.height
+        }
+        self.constBottomTextField?.constant = 20
+        self.view.endEditing(true)
+    }
+    
+    
+    
+    
     
     func hitApiForChatMessages() {
         //print("This is Page number : " , pageNo)
@@ -184,6 +208,7 @@ extension MessageViewController  {
                 self.txtMessage.placeholder = Keys.reply.rawValue
                 }, method: Keys.Post.rawValue, loader: true, image: selectedImage )
         }
+        self.txtMessage.resignFirstResponder()
     }
     
     @IBAction func btnActionBack(_ sender: AnyObject) {
@@ -201,17 +226,30 @@ extension MessageViewController  {
 extension MessageViewController : UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         //  var keyboardSize = NSNotification.userInfo(valueForKey(UIKeyboardFrameBeginUserInfoKey))
-        if txtMessage.text == Keys.writeMessage.rawValue {
-            txtMessage.text = nil
-            txtMessage.textColor = UIColor.black
-        }
-        UIView.animate(withDuration: 0.2, animations: {
-            self.constBottomTextField.constant = 254.0
-            self.view.layoutIfNeeded()
-            self.scrollTableView()
-        }, completion: nil)
+//        if txtMessage.text == Keys.writeMessage.rawValue {
+//            txtMessage.text = nil
+//            txtMessage.textColor = UIColor.black
+//        }
+//        UIView.animate(withDuration: 0.2, animations: {
+//            self.constBottomTextField.constant = 254.0
+//            self.view.layoutIfNeeded()
+//            self.scrollTableView()
+//        }, completion: nil)
+//        return true
+        
+        //myCode Atirek
+        
+        constBottomTextField.constant = 8 + (keyboardHeight ?? 0)
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        constBottomTextField.constant = 0
+    }
+    
+    
+    
 }
 
 

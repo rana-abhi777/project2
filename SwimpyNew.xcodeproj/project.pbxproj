@@ -1301,7 +1301,7 @@
 				TargetAttributes = {
 					20D948581DB755EF007A4D07 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Y4523532TR;
+						DevelopmentTeam = 2N4U73C3E2;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -1812,15 +1812,15 @@
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = Y4523532TR;
+				DEVELOPMENT_TEAM = 2N4U73C3E2;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.imarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1b08ae7b-6470-4580-a86f-3469f250eca8";
-				PROVISIONING_PROFILE_SPECIFIER = SwimpyAdhocProfile;
+				PROVISIONING_PROFILE = "01d4d020-bef3-4734-bb82-1fdbaa2fbbf7";
+				PROVISIONING_PROFILE_SPECIFIER = imarketArnavAdhoc;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1836,14 +1836,14 @@
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = Y4523532TR;
+				DEVELOPMENT_TEAM = 2N4U73C3E2;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.imarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1b08ae7b-6470-4580-a86f-3469f250eca8";
-				PROVISIONING_PROFILE_SPECIFIER = SwimpyAdhocProfile;
+				PROVISIONING_PROFILE = "01d4d020-bef3-4734-bb82-1fdbaa2fbbf7";
+				PROVISIONING_PROFILE_SPECIFIER = imarketArnavAdhoc;
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

@@ -10,7 +10,6 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-
 class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
     var backResponse:UserDetails?
@@ -67,7 +66,6 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             if user.profile.hasImage{
                 imageUrl = signIn.currentUser.profile.imageURL(withDimension: 120).absoluteString
             }
-            
             ApiManager().getDataOfURL(withApi: API.LoginViaGoogle(APIParameters.LoginViaGoogle(googleId: user.userID, name: user.profile.givenName, googleImageUrl: imageUrl , email: user.profile.email).formatParameters()), failure: { (err) in
                 print(err)
                 
@@ -88,7 +86,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
                         //myCode Atirek
                         (UIApplication.shared.delegate as! AppDelegate).flagg = true
                         
-                         self.defaults.set(true, forKey: "isLogin")
+                        self.defaults.set(true, forKey: "isLogin")
                     }
                 })
             }, method: Keys.Post.rawValue, loader: true)
@@ -103,7 +101,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
         ApiManager().getDataOfURL(withApi: API.GetUserDetail(APIParameters.GetUserDetail(userId: userId).formatParameters()), failure: { (err) in
             print(err)
         }, success: { (model) in
-
+            
             self.backResponse = model as? UserDetails ?? UserDetails()
             completionhandler(self.backResponse)
         }, method: Keys.Get.rawValue , loader: false)
@@ -291,8 +289,6 @@ extension LoginViewController : SendData {
         btnCountryName.setTitle(name, for: .normal)
     }
 }
-
-
 //extension UIButton {
 //
 //    @IBInspectable
