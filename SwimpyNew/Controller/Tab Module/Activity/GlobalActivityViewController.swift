@@ -93,7 +93,7 @@ class GlobalActivityViewController: UIViewController,IndicatorInfoProvider {
                     
                 }
                 
-            }, method: Keys.Get.rawValue, loader: self.arrActivityData.count == 0)
+            }, method: Keys.Get.rawValue, loader: true)
         
     }
     

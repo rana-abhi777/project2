@@ -16,7 +16,6 @@ class SearchStoreViewController: UIViewController , IndicatorInfoProvider {
     @IBOutlet weak var viewNoStore: UIView!
     @IBOutlet weak var collectionViewSearchStore: UICollectionView!
     
-    
     //MARK:- variable
     var text = ""
     var timer = Timer()

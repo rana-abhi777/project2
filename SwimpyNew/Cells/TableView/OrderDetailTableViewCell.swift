@@ -31,10 +31,7 @@ class OrderDetailTableViewCell: UITableViewCell {
     func configureCell(model : OrderDetail) {
         guard let quantity = model.quantity else { return }
         lblPriceAndQuantity.text = quantity  + " *" + " $" + /model.price
-        
         let price = (quantity.toDouble() ?? 1.0)  * ((/model.price).toDouble() ?? 0.0)
-        
-        
         lblTotalPrice.text = "$" +   "\(price)"
         lblProductName?.text = /model.name
         guard let url = model.thumbnailImage   else {

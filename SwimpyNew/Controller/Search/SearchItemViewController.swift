@@ -47,20 +47,18 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
         
         
         //myCode
-        hitApiForSearch()
+        //hitApiForSearch()
         
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        hitApiForSearch()
-//    }
-     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         hitApiForSearch()
-        print("Hello \(text)")
-        //print(text)
     }
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        hitApiForSearch()
+//    }
+//    
 //    override func viewWillDisappear(_ animated: Bool) {
 //        timer.invalidate()
 //    }
@@ -91,12 +89,9 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
 //             self.view.bringSubview(toFront: self.viewNoProduct)
             return
         }
-//        if text == oldText {
-//            
-//            
-//            
-//            return
-//        }
+        if text == oldText {
+            return
+        }
         configureLoader()
         ApiManager().getDataOfURL(withApi: API.GetSearchAll(APIParameters.GetSearchAll(text: text, value: "item").formatParameters()), failure: { (err) in
             print(err)
@@ -105,7 +100,6 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
                 
                 guard let data = model as? SearchResult else { return }
                 self.oldText = data.text
-
                 self.arrProduct = data.dataitem ?? []
                 if self.arrProduct.count > 0 {
                     self.view.bringSubview(toFront: self.collectionViewSearchItem)
@@ -115,8 +109,6 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
                 else {
                     self.view.bringSubview(toFront: self.viewNoProduct)
                 }
-                //print(model)
-                
             }, method: Keys.Get.rawValue, loader: false)
     }
     

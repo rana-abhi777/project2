@@ -50,7 +50,6 @@ class ProductDetailViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         initialize()
     }
     
@@ -177,7 +176,7 @@ extension ProductDetailViewController : ProductDetailTask {
             return
         }
         else if model?.quantity == 0{
-            UserFunctions.showAlert(title: "Oops!!", message: "Product Out of stock!!", type: "info")
+            UserFunctions.showAlert(title: Keys.oops.rawValue, message: Keys.outOfStock.rawValue, type: "info")
         }
         else{
         ApiManager().getDataOfURL(withApi: API.AddToCart(APIParameters.AddToCart(productId: model?.id,variations : model?.sizeSelected,color: model?.colorSelected).formatParameters()), failure: { (err) in
@@ -203,18 +202,18 @@ extension ProductDetailViewController : ProductDetailTask {
     
     func buyNow(model : ProductDetail?) {
         if model?.quantity == 0{
-            UserFunctions.showAlert(title: "Oops!!", message: "Product Out of Stock!!", type: "info")
+            UserFunctions.showAlert(title: Keys.oops.rawValue, message: Keys.outOfStock.rawValue, type: "info")
         }
         else{
         let cartObj = CartData()
         cartObj.imageThumbnail = model?.imageThumbnail
         cartObj.imageOriginal = model?.imageOriginal
-        cartObj.total_price = "\(model?.base_price_unit ?? 0.0)"
+        cartObj.total_price = "\(model?.total_price ?? 0.0)"
         cartObj.productId = model?.id
         cartObj.createrId = model?.createrId
         cartObj.parentSupplierId = model?.parentSupplierId ?? ""
         cartObj.productName = model?.productName
-        cartObj.shippingPrice = 0
+        cartObj.shippingPrice = Int(model?.shippingPrice ?? 0)
         cartObj.colorSelected = model?.colorSelected ?? ""
         cartObj.sizeSelected = model?.sizeSelected ?? ""
         

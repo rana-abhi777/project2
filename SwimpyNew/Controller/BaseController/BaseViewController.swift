@@ -119,7 +119,6 @@ class BaseViewController: UIViewController{
 }
 
 //MARK::- Fusuma delegates
-
 extension BaseViewController : FusumaDelegate{
     
     public func fusumaImageSelected(_ image: UIImage) {

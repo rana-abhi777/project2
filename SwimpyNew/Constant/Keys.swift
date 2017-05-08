@@ -116,12 +116,14 @@ enum Keys : String {
     case DataToSend = "dataToSend"
     case ProductDetails = "productDetails"
     case Quantity = "quantity"
+    case outOfStock = "Product out of stock."
     
     case CartData = "cartData"
     case ActiveData = "activeData"
     case UserId = "userId"
     case IdType = "idType"
     
+    case oops = "Oops!!"
     case sure = "Are you sure you want to cancel?"
     case Value = "value"
     case Text = "text"

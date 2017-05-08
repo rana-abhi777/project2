@@ -126,9 +126,7 @@ class PopularViewController: UIViewController,IndicatorInfoProvider {
             }, method: Keys.Get.rawValue, loader: self.arrProduct.count == 0)
     }
     
-    
     //MARK:- indicator info provide delegate
-    
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: Keys.popular.rawValue)
     }
@@ -136,7 +134,6 @@ class PopularViewController: UIViewController,IndicatorInfoProvider {
 }
 //MARK:- DELEGATE function
 extension PopularViewController : DealsProductTask{
-    
     func updateLikeData(model : Products?,index : Int) {
         guard let temp = model else { return }
         arrProduct[index] = temp

@@ -30,16 +30,16 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider {
         refreshControl = UIRefreshControl(superView: tableViewUserActivity)
         refreshControl.addTarget(self, action: #selector(ProfileActivityViewController.setup), for: UIControlEvents.valueChanged)
         tableViewUserActivity?.refreshControl =  refreshControl
+       // setup()
+    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        
+//    }
+    override func viewDidAppear(_ animated: Bool) {
         setup()
-
-        
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -98,7 +98,7 @@ class ProfileActivityViewController: BaseViewController,IndicatorInfoProvider {
                     
                 }
                 
-            }, method: Keys.Get.rawValue, loader: self.arrActivityData.count == 0)
+            }, method: Keys.Get.rawValue, loader: true)
     }
     
     

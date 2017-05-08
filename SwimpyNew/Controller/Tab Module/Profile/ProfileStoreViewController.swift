@@ -39,10 +39,12 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
         collectionViewProfileStores?.refreshControl =  refreshControl
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-            setup()
+//    override func viewWillAppear(_ animated: Bool) {
+//            setup()
+//    }
+    override func viewDidAppear(_ animated: Bool) {
+        setup()
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -103,7 +105,7 @@ class ProfileStoreViewController: BaseViewController,IndicatorInfoProvider  {
                 else {
                     self.view.bringSubview(toFront: self.viewNoStores)
                 }
-            }, method: Keys.Post.rawValue, loader: false)
+            }, method: Keys.Post.rawValue, loader: true)
     }
     
     func configureCollectionView(){

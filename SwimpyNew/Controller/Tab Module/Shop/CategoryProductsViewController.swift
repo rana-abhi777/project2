@@ -92,8 +92,9 @@ class CategoryProductsViewController: UIViewController {
             
             let cell = cell as? DealsCollectionViewCell
             cell?.delegate = self
+            if self.arrProduct.count > 0{
             cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
-            
+            }
             }, aRowSelectedListener: { (indexPath) in
                 let productId = self.arrProduct[indexPath.row].id ?? ""
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
@@ -101,7 +102,6 @@ class CategoryProductsViewController: UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }, willDisplayCell: {(indexPath) in
-                
                 
             }, scrollViewListener: { (UIScrollView) in
         })

@@ -242,7 +242,6 @@ extension LoginViewController {
                 }, method: Keys.Post.rawValue, loader: true, image: btnProfilePic.image(for: .normal) != UIImage(asset: .icUpload) ? btnProfilePic.image(for: .normal) : nil )
             }
         }
-        
     }
     @IBAction func btnActionProfilePic(sender: AnyObject) {
         callFusumaImagePiucker(btnOutlet: btnProfilePic)

@@ -13,8 +13,6 @@ import Fusuma
 class MessageViewController: BaseViewController {
     
     //MARK:- outlet
-    
-    
     @IBOutlet weak var lblStoreName: UILabel!
     @IBOutlet weak var tableViewMessage: UITableView!
     @IBOutlet weak var btnSend: UIButton!
@@ -25,7 +23,6 @@ class MessageViewController: BaseViewController {
     
     //MARK:- variables
     var arrMessages : [Message] = []
-    var keyboardHeight: CGFloat?
     var imgAddress : UIImage?
     var storeId : String?
     var storeImage : String?
@@ -44,15 +41,15 @@ class MessageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         listenEvent()
-        setup()
+        //setup()
         handlePagination()
         configureTableView()
         btnSend.isExclusiveTouch = true
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         txtMessage.delegate = self
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        setup()
+    }
     //MARK:- FUNCTION
     func resetNoMoreData(){
         self.tableViewMessage.es_resetNoMoreData()
@@ -77,7 +74,6 @@ class MessageViewController: BaseViewController {
         resetNoMoreData()
         arrMessages = []
         pageNo = L10n._0.string
-        
         hitApiForChatMessages()
     }
     
@@ -98,25 +94,7 @@ class MessageViewController: BaseViewController {
             self.configureTableView()
         }
     }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            keyboardHeight = keyboardSize.height
-        }
-    }
-    
-    func keyboardWillHide(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            keyboardHeight = keyboardSize.height
-        }
-        self.constBottomTextField?.constant = 20
-        self.view.endEditing(true)
-    }
-    
-    
-    
-    
-    
+
     func hitApiForChatMessages() {
         //print("This is Page number : " , pageNo)
         ApiManager().getDataOfURL(withApi: API.chatListMessaging(APIParameters.chatListMessaging(sellerId: storeId,pageNo : pageNo).formatParameters()), failure: { (err) in
@@ -149,8 +127,6 @@ class MessageViewController: BaseViewController {
         }
     }
     
-    
-    
     func configureTableViewforTop() {
         tableDataSource = ChatDataSource(tableView: tableViewMessage, datasource: arrMessages ,vc: self,storeImage : storeImage)
         tableViewMessage.reloadData()
@@ -159,7 +135,6 @@ class MessageViewController: BaseViewController {
             tableViewMessage.scrollToRow(at: IndexPath(row: 0 , section: 0), at: .bottom, animated: false)
         }
     }
-    
 }
 
 //MARK:- button actions
@@ -209,6 +184,8 @@ extension MessageViewController  {
                 }, method: Keys.Post.rawValue, loader: true, image: selectedImage )
         }
         self.txtMessage.resignFirstResponder()
+        self.constBottomTextField.constant = 0
+        //constBottomTextField.constant = 0
     }
     
     @IBAction func btnActionBack(_ sender: AnyObject) {
@@ -225,28 +202,29 @@ extension MessageViewController  {
 
 extension MessageViewController : UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //  var keyboardSize = NSNotification.userInfo(valueForKey(UIKeyboardFrameBeginUserInfoKey))
-//        if txtMessage.text == Keys.writeMessage.rawValue {
-//            txtMessage.text = nil
-//            txtMessage.textColor = UIColor.black
-//        }
-//        UIView.animate(withDuration: 0.2, animations: {
-//            self.constBottomTextField.constant = 254.0
-//            self.view.layoutIfNeeded()
-//            self.scrollTableView()
-//        }, completion: nil)
-//        return true
+          //var keyboardSize = NSNotification.userInfo(valueForKey(UIKeyboardFrameBeginUserInfoKey))
         
-        //myCode Atirek
-        
-        constBottomTextField.constant = 8 + (keyboardHeight ?? 0)
+        if txtMessage.text == Keys.writeMessage.rawValue {
+            txtMessage.text = nil
+            txtMessage.textColor = UIColor.black
+        }
+        UIView.animate(withDuration: 0.2, animations: {
+            self.constBottomTextField.constant = 254.0
+            self.view.layoutIfNeeded()
+            self.scrollTableView()
+        }, completion: nil)
         return true
+        
+//        //myCode Atirek
+//        
+//        constBottomTextField.constant = 8 + (keyboardHeight ?? 0)
+//        return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        constBottomTextField.constant = 0
-    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        
+//        constBottomTextField.constant = 0
+//    }
     
     
     

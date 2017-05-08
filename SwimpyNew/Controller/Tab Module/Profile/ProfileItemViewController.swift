@@ -27,18 +27,27 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
     var pageNo : String?
     let refreshControl = UIRefreshControl()
     var isLoadMore = false
+    var counter = 0
     
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        handlePagination()
+        //handlePagination()
         refreshControl.addTarget(self, action: #selector(ProfileItemViewController.setup), for: UIControlEvents.valueChanged)
         collectionViewUserItem?.refreshControl =  refreshControl
-        setup()
+        //setup()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(counter != 0) {
+           setup()
+        }
+        counter += 1
+        
     }
     
     //MARK:- functions
@@ -67,7 +76,7 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
         arrProduct = []
         pageNo = L10n._0.string
         hitApiToGetUserItems()
-        configureCollectionView()
+        //configureCollectionView()
     }
     
     func hitApiToGetUserItems() {
@@ -97,16 +106,16 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
                 }
                 
                
-            }, method: Keys.Post.rawValue, loader: self.arrProduct.count == 0)
+            }, method: Keys.Post.rawValue, loader: true)
     }
     
     func configureCollectionView(){
         collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewUserItem, cellIdentifier: CellIdentifiers.DealsCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewUserItem.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
-            
             let cell = cell as? DealsCollectionViewCell
             cell?.delegate = self
+            if self.arrProduct.count > 0{
             cell?.configureCell(model: self.arrProduct[indexpath.row], row: indexpath.row)
-            
+            }
             }, aRowSelectedListener: {[unowned self] (indexPath) in
                 let productId = self.arrProduct[indexPath.row].id ?? ""
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
@@ -114,11 +123,11 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }, willDisplayCell: {[unowned self] (indexPath) in
-                    if let temp = self.pageNo , indexPath.row == self.arrProduct.count - 2  {
-                        if temp != "" {
-                            self.hitApiToGetUserItems()
-                        }
-                    }
+//                    if let temp = self.pageNo , indexPath.row == self.arrProduct.count - 2  {
+//                        if temp != "" {
+//                            self.hitApiToGetUserItems()
+//                        }
+//                    }
                 
             }, scrollViewListener: { (UIScrollView) in
         })
