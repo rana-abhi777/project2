@@ -18,7 +18,7 @@ class ApiManager {
             return
         }
         
-        if loader == true {
+        if loader {
             ApiManager.showLoader()
         }
         HttpManager.callApiWithParameters(api: withApi, success: {(response) in
@@ -134,6 +134,7 @@ class ApiManager {
                 }
                 ApiManager.hideLoader()
                 success(singleUserArray)
+                ApiManager.hideLoader()
             }
             else{
                 ApiManager.hideLoader()
@@ -156,7 +157,7 @@ class ApiManager {
             }, method: method)
     }
     
-    func getDataOfURL(withApi : API, failure: (NSError) ->(), success: @escaping (AnyObject?)->(), method:String,loader : Bool = true,image : UIImage?){
+    func getDataOfURL(withApi : API, failure: (NSError) ->(), success: @escaping (AnyObject?)->(), method:String,loader : Bool,image : UIImage?){
         if !Alamofire.NetworkReachabilityManager()!.isReachable {
             UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
             return

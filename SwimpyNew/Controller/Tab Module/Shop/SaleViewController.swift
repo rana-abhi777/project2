@@ -41,16 +41,15 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setup()
+       
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    
-    
     //MARK:- FUNCTION
-    
     func resetNoMoreData(){
         self.collectionViewSale.es_resetNoMoreData()
     }
@@ -63,7 +62,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
     func handlePagination(){
         let _ = collectionViewSale.es_addInfiniteScrolling { [unowned self] in
             if self.pageNo != "" {
-                self.hitApiForSaleProduct()
+                //self.hitApiForSaleProduct()
             }else{
                 self.foundNoMoreData()
             }
@@ -85,7 +84,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
             let cell = cell as? DealsCollectionViewCell
             cell?.delegate = self
             if self.arrProduct.count > 0{
-            cell?.configureCell(model: self.arrProduct[indexpath.row], row: indexpath.row)
+                cell?.configureCell(model: self.arrProduct[indexpath.row], row: indexpath.row)
             }
             
             }, aRowSelectedListener: {[unowned self] (indexPath) in
@@ -97,7 +96,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
                 
             }, willDisplayCell: {(indexPath) in
                 
-            }, scrollViewListener: { (UIScrollView) in
+        }, scrollViewListener: { (UIScrollView) in
         })
         collectionViewSale.reloadData()
     }
@@ -106,26 +105,30 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
     func hitApiForSaleProduct() {
         ApiManager().getDataOfURL(withApi: API.GetSaleProduct(APIParameters.GetSaleProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
-            }, success: {[unowned self] (model) in
-                let response = model as? ProductResponse ?? ProductResponse()
-                self.pageNo = response.pageNo ?? nil
-                
-                for item in response.arrProducts {
-                    self.arrProduct.append(item)
-                }
-                self.isLoadMore = response.arrProducts.count > 0
-                self.collectionViewSale.es_stopLoadingMore()
-                self.isLoadMore ? self.collectionViewSale.es_resetNoMoreData() : self.collectionViewSale.es_noticeNoMoreData()
-                
-                self.refreshControl.endRefreshing()
-                if self.arrProduct.count > 0 {
-                    self.configureCollectionView()
-                    self.view.bringSubview(toFront: self.collectionViewSale)
-                }
-                else {
-                    self.view.bringSubview(toFront: self.viewNoProduct)
-                }
+        }, success: {[unowned self] (model) in
+            let response = model as? ProductResponse ?? ProductResponse()
+            self.pageNo = response.pageNo ?? nil
+            
+            for item in response.arrProducts {
+                self.arrProduct.append(item)
+            }
+            self.isLoadMore = response.arrProducts.count > 0
+            self.collectionViewSale.es_stopLoadingMore()
+            self.isLoadMore ? self.collectionViewSale.es_resetNoMoreData() : self.collectionViewSale.es_noticeNoMoreData()
+            
+            self.refreshControl.endRefreshing()
+            if self.arrProduct.count > 0 {
+                self.configureCollectionView()
+                self.view.bringSubview(toFront: self.collectionViewSale)
+            }
+            else {
+                self.view.bringSubview(toFront: self.viewNoProduct)
+            }
+            
+            
             }, method: Keys.Get.rawValue, loader: self.arrProduct.count == 0)
+        
+           ApiManager.hideLoader()
     }
     
     
@@ -145,5 +148,5 @@ extension SaleViewController : DealsProductTask{
         configureCollectionView()
     }
     func shareProduct(model : Products?, index : Int) {
-          }
+    }
 }

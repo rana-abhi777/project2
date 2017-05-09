@@ -158,8 +158,6 @@ class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
     
     @IBAction func btnActionApply(_ sender: AnyObject) {
         filterSortApi()
-        
-        
     }
     
     

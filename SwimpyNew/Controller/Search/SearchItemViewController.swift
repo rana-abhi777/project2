@@ -18,6 +18,7 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
     
     //MARK:- variable
     var text = ""
+    var counter = 0
     var timer = Timer()
     var arrProduct : [Item] = []
     var collectionViewdataSource : CollectionViewDataSource?{
@@ -37,32 +38,20 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if !Alamofire.NetworkReachabilityManager()!.isReachable {
-//            timer.invalidate()
-//            return
-//        }else {
-//            configureLoader()
-//            timer =   Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SearchItemViewController.hitApiToGetSearchResult), userInfo: nil, repeats: true)
-//        }
-        
-        
         //myCode
-        //hitApiForSearch()
+        hitApiForSearch()
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        if counter == 0{
         hitApiForSearch()
+        }
+        else{
+            hitApiToGetSearchResult()
+        }
+        counter = 1
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        hitApiForSearch()
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        timer.invalidate()
-//    }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
          timer.invalidate()
     }
@@ -86,25 +75,23 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
     func hitApiToGetSearchResult() {
         if text == "" {
             configureLoader()
-//             self.view.bringSubview(toFront: self.viewNoProduct)
+             self.view.bringSubview(toFront: self.viewNoProduct)
             return
         }
-        if text == oldText {
+        if text == oldText ?? "" {
             return
         }
-        configureLoader()
+          configureLoader()
         ApiManager().getDataOfURL(withApi: API.GetSearchAll(APIParameters.GetSearchAll(text: text, value: "item").formatParameters()), failure: { (err) in
             print(err)
-            
             }, success: { (model) in
-                
                 guard let data = model as? SearchResult else { return }
                 self.oldText = data.text
                 self.arrProduct = data.dataitem ?? []
                 if self.arrProduct.count > 0 {
                     self.view.bringSubview(toFront: self.collectionViewSearchItem)
                     self.configureCollectionView()
-                    
+                    self.timer.invalidate()
                 }
                 else {
                     self.view.bringSubview(toFront: self.viewNoProduct)
@@ -146,6 +133,6 @@ class SearchItemViewController: UIViewController , IndicatorInfoProvider ,Search
     
     //MARK:- indicator info provider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Items")
+        return IndicatorInfo(title: Keys.Item.rawValue)
     }
 }

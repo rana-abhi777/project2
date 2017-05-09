@@ -40,13 +40,8 @@ class NewViewController: UIViewController , IndicatorInfoProvider {
     }
     
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(true)
-    //        setup()
-    //    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         setup()
     }
     
@@ -79,7 +74,7 @@ class NewViewController: UIViewController , IndicatorInfoProvider {
             print(err)
         }, success: { [unowned self] (model) in
             self.data = model as? StoreDetail ?? StoreDetail()
-        }, method: Keys.Get.rawValue, loader: false)
+            }, method: Keys.Get.rawValue, loader: false)
     }
     
     func setup() {

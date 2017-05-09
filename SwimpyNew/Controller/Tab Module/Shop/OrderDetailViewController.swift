@@ -69,7 +69,9 @@ extension OrderDetailViewController : ProcessOrder {
             
             //UserFunctions.showAlert(message: "Order placed successfully")
             UserFunctions.showAlert(title: "Successfull!!", message: "Order placed Successfully.", type: "info")
-            let _ = self.navigationController?.popToRootViewController(animated: false)
-            }, method: Keys.Post.rawValue, loader: false)
+            
+            let _ = self.navigationController?.popToRootViewController(animated: true)
+            ApiManager.hideLoader()
+            }, method: Keys.Post.rawValue, loader: true)
     }
 }

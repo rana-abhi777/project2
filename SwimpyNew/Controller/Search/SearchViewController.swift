@@ -53,14 +53,3 @@ extension SearchViewController  {
         searchPeopleVC.text = text
     }
 }
-
-//extension SearchViewController : UITextFieldDelegate{
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        str = str + string
-//        print(str)
-//        searchItemVC.text = str
-//        searchStoreVC.text = str
-//        searchPeopleVC.text = str
-//        return true
-//    }
-//}
