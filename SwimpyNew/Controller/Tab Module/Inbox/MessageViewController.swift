@@ -34,8 +34,7 @@ class MessageViewController: BaseViewController {
     }
     var pageNo : String?
     var isLoadMore = false
-    
-    
+
     //MARK:- override functions
     
     override func viewDidLoad() {
@@ -46,6 +45,8 @@ class MessageViewController: BaseViewController {
         configureTableView()
         btnSend.isExclusiveTouch = true
         txtMessage.delegate = self
+        
+        print("MyImage : " , MMUserManager.shared.loggedInUser?.profilePicURLOriginal)
     }
     override func viewDidAppear(_ animated: Bool) {
         setup()
@@ -214,20 +215,7 @@ extension MessageViewController : UITextFieldDelegate {
             self.scrollTableView()
         }, completion: nil)
         return true
-        
-//        //myCode Atirek
-//        
-//        constBottomTextField.constant = 8 + (keyboardHeight ?? 0)
-//        return true
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        
-//        constBottomTextField.constant = 0
-//    }
-    
-    
-    
 }
 
 

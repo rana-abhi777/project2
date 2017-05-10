@@ -28,6 +28,7 @@ class DealsCollectionViewCell: UICollectionViewCell {
     var data : Products?
     var delegate : DealsProductTask?
     var index = 0
+    var isItemController = 0
     
     
     //MARK:-  function
@@ -42,7 +43,6 @@ class DealsCollectionViewCell: UICollectionViewCell {
         lblOldPrice.text = "$" + (model.base_price_unit ?? L10n._0.string)
         lblOldPrice.isHidden = totalPrice >= basePrice
         viewPriceDeductLine.isHidden = totalPrice >= basePrice
-    
         btnNumberOfLikes.setTitle(model.totalLikes ?? L10n._0.string, for: .normal)
         btnShare.setTitle(model.share ?? L10n._0.string, for: .normal)
         guard let url = model.productImageOriginal else {
@@ -50,6 +50,13 @@ class DealsCollectionViewCell: UICollectionViewCell {
             return
         }
         imgProduct?.sd_setImage(with: URL(string : url))
+//        if isItemController == 1{
+//            btnLike.setImage(#imageLiteral(resourceName: "ic_like_on"), for: .normal)
+//        }
+//        else{
+//            btnLike.setImage(#imageLiteral(resourceName: "ic_like"), for: .normal)
+//        }
+        
         btnLike.isSelected = model.hasLiked != 0
     }
     
@@ -72,7 +79,6 @@ class DealsCollectionViewCell: UICollectionViewCell {
         }
     }
 }
-
 
 extension UICollectionViewCell {
     

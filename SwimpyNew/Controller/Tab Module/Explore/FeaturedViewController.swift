@@ -29,24 +29,22 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
         tableViewFeaturedProducts?.refreshControl =  refreshControl
         //setup()
     }
-
-//    override func viewDidAppear(_ animated: Bool) {
-//        //super.viewDidAppear(true)
-//        setup()
-//    }
+    
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        //super.viewDidAppear(true)
+    //        setup()
+    //    }
     
     override func viewWillAppear(_ animated: Bool) {
         setup()
-        print("Hello")
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         arrFeaturedData = []
     }
     
     //MARK:- FUNCTION
     func setup() {
-        print("In Featured View Controller : ")
         pageNo = L10n._0.string
         arrFeaturedData = []
         apiToGetFeaturedData()
@@ -55,44 +53,41 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
     func apiToGetFeaturedData() {
         ApiManager().getDataOfURL(withApi: API.GetFeaturedProduct(APIParameters.GetFeaturedProduct(pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
-            }, success: { [unowned self] (model) in
-                self.refreshControl.endRefreshing()
-                let response = model as? ProductResponse ?? ProductResponse()
-                self.pageNo = response.pageNo ?? nil
-                for item in response.arrProducts {
-                    self.arrFeaturedData.append(item)
-                }
+        }, success: { [unowned self] (model) in
+            self.refreshControl.endRefreshing()
+            let response = model as? ProductResponse ?? ProductResponse()
+            self.pageNo = response.pageNo ?? nil
+            for item in response.arrProducts {
+                self.arrFeaturedData.append(item)
+            }
+            
+            if self.arrFeaturedData.count > 0 {
                 
-                if self.arrFeaturedData.count > 0 {
-                    
-                    
-                    self.configureTableView()
-                    self.view.bringSubview(toFront: self.tableViewFeaturedProducts)
-                }
-                else {
-                    self.view.bringSubview(toFront: self.viewNoProducts)
-                }
-            }, method: Keys.Get.rawValue, loader: false)
+                
+                self.configureTableView()
+                self.view.bringSubview(toFront: self.tableViewFeaturedProducts)
+            }
+            else {
+                self.view.bringSubview(toFront: self.viewNoProducts)
+            }
+            }, method: Keys.Get.rawValue, loader: self.arrFeaturedData.count == 0)
+        ApiManager.hideLoader()
     }
     func configureTableView() {
-        print("ArrfeaturedData Count : " , self.arrFeaturedData.count)
-        
-        
-        
         tableViewDataSource = TableViewCustomDatasource(items: arrFeaturedData, height: 400 , estimatedHeight: 400, tableView: tableViewFeaturedProducts, cellIdentifier: CellIdentifiers.FeaturedTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             
             let cell = cell as? FeaturedTableViewCell
             cell?.delegate = self
             if self.arrFeaturedData.count > 0{
-            cell?.configureCell(model: self.arrFeaturedData[indexpath.row],row : indexpath.row)
+                cell?.configureCell(model: self.arrFeaturedData[indexpath.row],row : indexpath.row)
             }
             }, aRowSelectedListener: { (indexPath) in
                 
-            }, willDisplayCell: {[unowned self] (indexPath) in
-//                if let temp = self.pageNo,temp != "" ,indexPath.row == self.arrFeaturedData.count - 2   {
-//                    self.apiToGetFeaturedData()
-//                }
-            })
+        }, willDisplayCell: {[unowned self] (indexPath) in
+            //                if let temp = self.pageNo,temp != "" ,indexPath.row == self.arrFeaturedData.count - 2   {
+            //                    self.apiToGetFeaturedData()
+            //                }
+        })
         tableViewFeaturedProducts.delegate = tableViewDataSource
         tableViewFeaturedProducts.dataSource = tableViewDataSource
         tableViewFeaturedProducts.reloadData()
@@ -117,24 +112,23 @@ extension FeaturedViewController : FeaturedProductsTask {
     
     func shareProduct(model : Products?, index : Int) {
         
-        self.showActivityViewController(text: "Check out this product on Swimpy -" , img: UIImage(), viewController: self, productId : model?.id)
+        self.showActivityViewController(text: Keys.checkoutThisProduct.rawValue , img: UIImage(), viewController: self, productId : model?.id)
     }
     func buyProduct(model : Products?, index : Int) {
         let cartObj = CartData()
         cartObj.imageThumbnail = model?.productImageThumbnail
         cartObj.imageOriginal = model?.productImageOriginal
-        cartObj.total_price = model?.base_price_unit 
+        cartObj.total_price = model?.base_price_unit
         cartObj.productId = model?.id
         cartObj.createrId = model?.createrId
-        cartObj.parentSupplierId = model?.parentSupplierId ?? ""
+        cartObj.parentSupplierId = model?.parentSupplierId ?? StringNames.empty.rawValue
         cartObj.productName = model?.productName
         cartObj.shippingPrice = 0
-        cartObj.colorSelected = model?.color?[0] ?? ""
-        cartObj.sizeSelected = model?.size?[0] ?? ""
+        cartObj.colorSelected = model?.color?[0] ?? StringNames.empty.rawValue
+        cartObj.sizeSelected = model?.size?[0] ?? StringNames.empty.rawValue
         let VC = StoryboardScene.Main.instantiateAddressDetailsViewController()
         VC.arrCartData = [cartObj]
         self.navigationController?.pushViewController(VC, animated: true)
-        
     }
     func cellSelected(index : Int ) {
         let productId = /self.arrFeaturedData[index].id

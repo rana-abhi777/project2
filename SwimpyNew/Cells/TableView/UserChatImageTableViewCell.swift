@@ -25,7 +25,7 @@ class UserChatImageTableViewCell: UITableViewCell {
     }
     
     func configureCell(data : Message) {
-        imgChat.sd_setImage(with: URL(string: data.imgOriginal ?? ""))
-        imgUser.sd_setImage(with: URL(string: MMUserManager.shared.loggedInUser?.profilePicURLThumbnail ?? ""))
+        imgChat.sd_setImage(with: URL(string: data.imgOriginal ?? StringNames.empty.rawValue))
+        imgUser.sd_setImage(with: URL(string: MMUserManager.shared.loggedInUser?.profilePicURLOriginal ?? StringNames.empty.rawValue))
     }
 }

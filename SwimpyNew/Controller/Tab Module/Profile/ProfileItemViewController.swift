@@ -17,13 +17,14 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
     
     //MARK:- variable
     var arrProduct : [Products] = []
+    var count = 0
     var collectionViewdataSource : CollectionViewDataSource?{
         didSet{
             collectionViewUserItem.dataSource = collectionViewdataSource
             collectionViewUserItem.delegate = collectionViewdataSource
         }
     }
-    var userId = ""
+    var userId = StringNames.empty.rawValue
     var pageNo : String?
     let refreshControl = UIRefreshControl()
     var isLoadMore = false
@@ -47,7 +48,6 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
            setup()
         }
         counter += 1
-        
     }
     
     //MARK:- functions
@@ -63,7 +63,7 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
     
     func handlePagination(){
         let _ = collectionViewUserItem.es_addInfiniteScrolling { [unowned self] in
-            if self.pageNo != "" {
+            if self.pageNo != StringNames.empty.rawValue {
                 self.hitApiToGetUserItems()
             }else{
                 self.foundNoMoreData()
@@ -88,7 +88,9 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
                 self.pageNo = response.pageNo ?? nil
                 for item in response.arrProducts {
                     self.arrProduct.append(item)
+                    
                 }
+            
                 
                 self.isLoadMore = response.arrProducts.count > 0
                 self.collectionViewUserItem.es_stopLoadingMore()
@@ -114,7 +116,9 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
             let cell = cell as? DealsCollectionViewCell
             cell?.delegate = self
             if self.arrProduct.count > 0{
+                 cell?.isItemController = 1
             cell?.configureCell(model: self.arrProduct[indexpath.row], row: indexpath.row)
+           
             }
             }, aRowSelectedListener: {[unowned self] (indexPath) in
                 let productId = self.arrProduct[indexPath.row].id ?? ""

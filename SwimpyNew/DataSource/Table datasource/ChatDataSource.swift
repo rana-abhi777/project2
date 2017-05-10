@@ -64,6 +64,7 @@ class ChatDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
                 
             }else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.UserChatTextTableViewCell.rawValue) as? UserChatTextTableViewCell else { return UITableViewCell()}
+                
                 cell.configureCell(data : data)
                 return cell
             }

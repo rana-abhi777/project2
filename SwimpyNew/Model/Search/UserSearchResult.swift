@@ -18,7 +18,6 @@ class UserSearchResult: NSObject {
     var totalFollowedBy : String?
     var name : String?
     
-    
     //MARK:- initializer
     init(arrResult : JSON) {
         super.init()
@@ -28,7 +27,6 @@ class UserSearchResult: NSObject {
         profileImageThumbnail = image[Keys.Thumbnail.rawValue]?.stringValue
         totalFollowedBy = arrResult[Keys.TotalFollowedBy.rawValue].stringValue
         name = arrResult[Keys.Name.rawValue].stringValue
-        
     }
     
     override init() {

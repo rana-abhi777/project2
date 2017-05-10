@@ -24,7 +24,7 @@ class UserChatTextTableViewCell: UITableViewCell {
     }
     
     func configureCell(data : Message) {
-        lblMessage.text = data.message ?? ""
-        imgUser.sd_setImage(with: URL(string: MMUserManager.shared.loggedInUser?.profilePicURLThumbnail ?? ""))    }
+        lblMessage.text = data.message ?? StringNames.empty.rawValue
+        imgUser.sd_setImage(with: URL(string: MMUserManager.shared.loggedInUser?.profilePicURLOriginal ?? StringNames.empty.rawValue))    }
     
 }

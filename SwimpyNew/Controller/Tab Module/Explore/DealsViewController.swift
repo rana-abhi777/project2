@@ -58,7 +58,6 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
         resetNoMoreData()
         arrProduct = []
         pageNo = L10n._0.string
-        //        configureCollectionView()
         hitApiForPopularProduct()
     }
     
@@ -73,9 +72,8 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
         }
     }
     
-    
     func configureCollectionView(){
-        collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewDeals, cellIdentifier: CellIdentifiers.DealsCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewDeals.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+        collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewDeals, cellIdentifier: CellIdentifiers.DealsCollectionViewCell.rawValue, headerIdentifier: StringNames.empty.rawValue, cellHeight: 275, cellWidth: (collectionViewDeals.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? DealsCollectionViewCell
             cell?.delegate = self
             if self.arrProduct.count > 0{
@@ -84,7 +82,7 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
             }, aRowSelectedListener: {[unowned self] (indexPath) in
                 let productId = self.arrProduct[indexPath.row].id
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
-                vc.productId = productId ?? ""
+                vc.productId = productId ?? StringNames.empty.rawValue
                 self.navigationController?.pushViewController(vc, animated: true)
             }, willDisplayCell: {(indexPath) in
         }, scrollViewListener: { (UIScrollView) in
@@ -115,7 +113,8 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
             else {
                 self.view.bringSubview(toFront: self.viewNoProducts)
             }
-            }, method: Keys.Get.rawValue, loader: false)
+            }, method: Keys.Get.rawValue, loader: true)
+        ApiManager.hideLoader()
     }
     
     //MARK:- indicator info provider delegate

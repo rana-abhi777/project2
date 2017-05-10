@@ -41,7 +41,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setup()
-       
+        
         
     }
     
@@ -61,7 +61,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
     
     func handlePagination(){
         let _ = collectionViewSale.es_addInfiniteScrolling { [unowned self] in
-            if self.pageNo != "" {
+            if self.pageNo != StringNames.empty.rawValue {
                 //self.hitApiForSaleProduct()
             }else{
                 self.foundNoMoreData()
@@ -86,9 +86,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
             if self.arrProduct.count > 0{
                 cell?.configureCell(model: self.arrProduct[indexpath.row], row: indexpath.row)
             }
-            
             }, aRowSelectedListener: {[unowned self] (indexPath) in
-                
                 let productId = /self.arrProduct[indexPath.row].id
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
                 vc.productId = productId
@@ -128,7 +126,7 @@ class SaleViewController: UIViewController ,IndicatorInfoProvider {
             
             }, method: Keys.Get.rawValue, loader: self.arrProduct.count == 0)
         
-           ApiManager.hideLoader()
+        ApiManager.hideLoader()
     }
     
     
@@ -148,5 +146,6 @@ extension SaleViewController : DealsProductTask{
         configureCollectionView()
     }
     func shareProduct(model : Products?, index : Int) {
+        
     }
 }

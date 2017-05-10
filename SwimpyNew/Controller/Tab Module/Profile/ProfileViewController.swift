@@ -43,6 +43,7 @@ class ProfileViewController: BasePageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        profileItemVC.count = 1
     }
     
     override func didReceiveMemoryWarning() {
