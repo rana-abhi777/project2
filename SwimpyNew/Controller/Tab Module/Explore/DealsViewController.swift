@@ -99,7 +99,6 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
             for item in response.arrProducts {
                 self.arrProduct.append(item)
             }
-    
             //sorting array according to flatDiscount on the Products
             self.arrProduct.sort(by: {/$1.flatDiscount < /$0.flatDiscount})
             self.isLoadMore = response.arrProducts.count > 0

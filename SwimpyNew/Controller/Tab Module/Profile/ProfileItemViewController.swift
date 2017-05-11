@@ -29,7 +29,7 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
     let refreshControl = UIRefreshControl()
     var isLoadMore = false
     var counter = 0
-    
+    var status = 0
     //MARK:- override functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +77,9 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
         pageNo = L10n._0.string
         hitApiToGetUserItems()
         //configureCollectionView()
+        if status == 1{
+            configureCollectionView()
+        }
     }
     
     func hitApiToGetUserItems() {
@@ -154,4 +157,10 @@ extension ProfileItemViewController : DealsProductTask {
         configureCollectionView()
     }
     
+}
+
+extension ProfileItemViewController : DealsProtocol{
+    func getStatusOfCollectionView(status: Int) {
+        self.status = status
+    }
 }

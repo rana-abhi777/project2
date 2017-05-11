@@ -12,6 +12,11 @@ protocol DealsProductTask {
     func updateLikeData(model : Products?, index : Int)
 }
 
+//myCode
+protocol DealsProtocol{
+    func getStatusOfCollectionView(status : Int)
+}
+
 class DealsCollectionViewCell: UICollectionViewCell {
     
     //MARK:-  Outlet
@@ -27,9 +32,10 @@ class DealsCollectionViewCell: UICollectionViewCell {
     //MARK:- variables
     var data : Products?
     var delegate : DealsProductTask?
+    var myDelegate:DealsProtocol?
     var index = 0
     var isItemController = 0
-    
+    var counter = 0
     
     //MARK:-  function
     func configureCell(model : Products,row : Int) {
@@ -50,30 +56,36 @@ class DealsCollectionViewCell: UICollectionViewCell {
             return
         }
         imgProduct?.sd_setImage(with: URL(string : url))
-//        if isItemController == 1{
-//            btnLike.setImage(#imageLiteral(resourceName: "ic_like_on"), for: .normal)
-//        }
-//        else{
-//            btnLike.setImage(#imageLiteral(resourceName: "ic_like"), for: .normal)
-//        }
-        
+        if isItemController == 1{
+            btnLike.setImage(#imageLiteral(resourceName: "ic_like_on"), for: .normal)
+        }
+        else{
+            btnLike.setImage(#imageLiteral(resourceName: "ic_like"), for: .normal)
+        }
         btnLike.isSelected = model.hasLiked != 0
     }
     
     //MARK:-  Button Action
     @IBAction func btnActionLike(_ sender: AnyObject) {
-        
         if UserFunctions.checkInternet() {
         btnLike.isSelected = data?.hasLiked == 1
+            if isItemController == 0{
         let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : /data?.hasLiked == 0 ? 1 : -1)
         self.data?.totalLikes = likeCount?.toString
         self.data?.hasLiked = /data?.hasLiked == 0 ? 1 : 0
-        self.btnNumberOfLikes?.setTitle(self.data?.totalLikes, for: .normal)
+            }
+            else{
+                let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : -1)
+                self.data?.totalLikes = likeCount?.toString
+            }
         self.delegate?.updateLikeData(model: self.data, index: self.index)
         ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters(),type: /data?.hasLiked == 0), failure: { (err) in
             print(err)
             }, success: { (model) in
-            }, method: Keys.Post.rawValue, loader: false)
+                /self.data?.hasLiked == 0 ? self.btnLike.setImage(#imageLiteral(resourceName: "ic_like"), for: .normal) : self.btnLike.setImage(#imageLiteral(resourceName: "ic_like_on"), for: .normal)
+                self.btnNumberOfLikes?.setTitle(self.data?.totalLikes, for: .normal)
+                self.myDelegate?.getStatusOfCollectionView(status: 1)
+            }, method: Keys.Post.rawValue, loader: true)
         }else {
             UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
         }
