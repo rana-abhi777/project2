@@ -184,9 +184,8 @@ extension MessageViewController  {
                 self.txtMessage.placeholder = Keys.reply.rawValue
                 }, method: Keys.Post.rawValue, loader: true, image: selectedImage )
         }
-        self.txtMessage.resignFirstResponder()
         self.constBottomTextField.constant = 0
-        //constBottomTextField.constant = 0
+        self.txtMessage.resignFirstResponder()
     }
     
     @IBAction func btnActionBack(_ sender: AnyObject) {
@@ -204,7 +203,7 @@ extension MessageViewController  {
 extension MessageViewController : UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
           //var keyboardSize = NSNotification.userInfo(valueForKey(UIKeyboardFrameBeginUserInfoKey))
-        
+        lblNoChats.isHidden = true
         if txtMessage.text == Keys.writeMessage.rawValue {
             txtMessage.text = nil
             txtMessage.textColor = UIColor.black
@@ -215,6 +214,17 @@ extension MessageViewController : UITextFieldDelegate {
             self.scrollTableView()
         }, completion: nil)
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if arrMessages.count > 0 {
+            self.lblNoChats.isHidden = true
+        }
+        else{
+            self.lblNoChats.isHidden = false
+        }
+        self.constBottomTextField.constant = 0
+        self.txtMessage.resignFirstResponder()
     }
 }
 

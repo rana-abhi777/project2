@@ -133,7 +133,6 @@ enum APIParameters {
     case CalculateShipping(details : AnyObject?, countryCode : String? )
     case chatList()
     
-    
     //AddAddress
     case AddAddress(fullName : String?,addressLine1 : String?,addressLine2 : String?,countryName : String?,city : String?, state : String?,zipcode : String?,phoneNo : String?,isDefault : String?, countryCode : String?)
     case GetAddress()
@@ -178,8 +177,6 @@ enum APIParameters {
             return ["productId" : (productId ?? "") as AnyObject]
         case .FollowStore(let sellerId) :
             return["sellerId" : (sellerId ?? "") as AnyObject]
-        
-            
             
         case .GetUserDetail(let userId) :
             return["userId" : (userId ?? "") as AnyObject]
@@ -188,7 +185,7 @@ enum APIParameters {
             return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetSaleProduct(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
-        
+            
         case .GetAllSellerForUser(let pageNo):
             return["pageNo" : (pageNo ?? "") as AnyObject]
             
@@ -198,7 +195,7 @@ enum APIParameters {
             return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetAllSeller(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
-        
+            
         case .GetFriendsActivity(let pageNo) :
             return["pageNo" : (pageNo ?? "") as AnyObject]
         case .GetGlobalActivity(let pageNo) :

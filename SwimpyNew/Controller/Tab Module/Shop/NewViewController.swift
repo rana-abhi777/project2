@@ -40,8 +40,13 @@ class NewViewController: UIViewController , IndicatorInfoProvider {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        setup()
+//    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         setup()
     }
     
@@ -117,8 +122,6 @@ class NewViewController: UIViewController , IndicatorInfoProvider {
             self.allData = model as? AllSellerForUser ?? AllSellerForUser()
         }, method: Keys.Get.rawValue, loader: false)
     }
-    
-    
     func hitApiForAllSellers(){
         ApiManager().getDataOfURL(withApi: API.GetAllSeller(APIParameters.GetAllSeller(pageNo: pageNo).formatParameters()), failure: { (err) in
             print(err)

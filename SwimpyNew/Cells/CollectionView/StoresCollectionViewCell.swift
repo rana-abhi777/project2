@@ -20,6 +20,7 @@ class StoresCollectionViewCell: UICollectionViewCell {
     
     func configureCell(model:StoreFollowStatus , row:Int){
         storesModel = model
+        lblStoreDescription.text = model.describe == "" ? "PROVIDES COLLECTION OF MANY SHOES FOR MANY BRANDSPROVIDES COLLECTION OF MANY SHOES" : model.describe
         lblStoreName.text = model.storeName ?? ""
         imgViewProduct.sd_setImage(with: URL(string: /storesModel?.profilePicURLThumbnail))
     }

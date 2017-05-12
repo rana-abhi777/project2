@@ -93,8 +93,6 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
                     self.arrProduct.append(item)
                     
                 }
-            
-                
                 self.isLoadMore = response.arrProducts.count > 0
                 self.collectionViewUserItem.es_stopLoadingMore()
                 self.isLoadMore ? self.collectionViewUserItem.es_resetNoMoreData() : self.collectionViewUserItem.es_noticeNoMoreData()
@@ -143,7 +141,7 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
     
     //MARK:- IndicatorInfoProvider delegate
     public func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Item")
+        return IndicatorInfo(title: Keys.Item.rawValue)
     }
     
     
