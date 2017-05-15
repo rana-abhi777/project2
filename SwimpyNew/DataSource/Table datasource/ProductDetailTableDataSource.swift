@@ -63,7 +63,10 @@ class ProductDetailTableDataSource: NSObject,UITableViewDelegate,UITableViewData
         }
         
     }
-    
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {

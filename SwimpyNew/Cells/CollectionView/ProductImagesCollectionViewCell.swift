@@ -15,6 +15,8 @@ class ProductImagesCollectionViewCell: UICollectionViewCell {
     
     var productImages : ProductOtherImage? {
         didSet{
+            
+           // imgProduct?.image = UIImage(named: "47044774-image")
             imgProduct?.sd_setImage(with: URL(string : /productImages?.productOtherImageImageOriginal))
         }
     }
