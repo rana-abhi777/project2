@@ -15,6 +15,9 @@ protocol SendData {
 
 class CountryPickerViewController: UIViewController {
     
+    var filteredArray = [CountryData]()
+    
+    @IBOutlet weak var txtCountryName: UITextField!
     @IBOutlet var tableView: UITableView!{
         didSet{
             tableView.dataSource = self
@@ -37,9 +40,6 @@ class CountryPickerViewController: UIViewController {
     @IBAction func actionBtnBack(_ sender: AnyObject) {
         _ = navigationController?.popViewController(animated: true)
     }
-    
-    
-    
 }
 
 extension CountryPickerViewController : UITableViewDataSource , UITableViewDelegate {
@@ -60,3 +60,15 @@ extension CountryPickerViewController : UITableViewDataSource , UITableViewDeleg
     }
     
 }
+
+
+extension CountryPickerViewController:UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+        
+        return true
+    }
+    
+}
+
+

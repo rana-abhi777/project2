@@ -16,6 +16,7 @@ class StoreProfileViewController: UIViewController {
     @IBOutlet weak var collectionViewstoreProducts: UICollectionView!
     @IBOutlet weak var lblStoreName: UILabel!
     @IBOutlet weak var viewNavBar: UIView!
+  
     
     //MARK:- variables
     var sellerId = ""
@@ -39,6 +40,9 @@ class StoreProfileViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        initialize()
     }
     
     //MARK:- functions

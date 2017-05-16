@@ -57,39 +57,55 @@ class DealsCollectionViewCell: UICollectionViewCell {
         }
         imgProduct?.sd_setImage(with: URL(string : url))
         if isItemController == 1{
-            btnLike.setImage(#imageLiteral(resourceName: "ic_like_on"), for: .normal)
+            btnLike.isEnabled = false
         }
         else{
-            btnLike.setImage(#imageLiteral(resourceName: "ic_like"), for: .normal)
+            btnLike.isEnabled = true
         }
         btnLike.isSelected = model.hasLiked != 0
     }
     
     //MARK:-  Button Action
     @IBAction func btnActionLike(_ sender: AnyObject) {
+//        if UserFunctions.checkInternet() {
+//        btnLike.isSelected = data?.hasLiked == 1
+//            if isItemController == 0{
+//        let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : /data?.hasLiked == 0 ? 1 : -1)
+//        self.data?.totalLikes = likeCount?.toString
+//        self.data?.hasLiked = /data?.hasLiked == 0 ? 1 : 0
+//            }
+//            else{
+//                let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : -1)
+//                self.data?.totalLikes = likeCount?.toString
+//            }
+//        self.delegate?.updateLikeData(model: self.data, index: self.index)
+//        ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters(),type: /data?.hasLiked == 0), failure: { (err) in
+//            print(err)
+//            }, success: { (model) in
+//                /self.data?.hasLiked == 0 ? self.btnLike.setImage(#imageLiteral(resourceName: "ic_like"), for: .normal) : self.btnLike.setImage(#imageLiteral(resourceName: "ic_like_on"), for: .normal)
+//                self.btnNumberOfLikes?.setTitle(self.data?.totalLikes, for: .normal)
+//                self.myDelegate?.getStatusOfCollectionView(status: 1)
+//            }, method: Keys.Post.rawValue, loader: true)
+//        }else {
+//            UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
+//        }
+//    }
         if UserFunctions.checkInternet() {
-        btnLike.isSelected = data?.hasLiked == 1
-            if isItemController == 0{
-        let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : /data?.hasLiked == 0 ? 1 : -1)
-        self.data?.totalLikes = likeCount?.toString
-        self.data?.hasLiked = /data?.hasLiked == 0 ? 1 : 0
-            }
-            else{
-                let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : -1)
-                self.data?.totalLikes = likeCount?.toString
-            }
-        self.delegate?.updateLikeData(model: self.data, index: self.index)
-        ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters(),type: /data?.hasLiked == 0), failure: { (err) in
-            print(err)
+            btnLike.isSelected = data?.hasLiked == 1
+            let likeCount = (/self.data?.totalLikes).toInt()?.advanced(by : /data?.hasLiked == 0 ? 1 : -1)
+            self.data?.totalLikes = likeCount?.toString
+            self.data?.hasLiked = /data?.hasLiked == 0 ? 1 : 0
+            self.btnNumberOfLikes?.setTitle(self.data?.totalLikes, for: .normal)
+            self.delegate?.updateLikeData(model: self.data, index: self.index)
+            ApiManager().getDataOfURL(withApi: API.LikeProduct(APIParameters.LikeProduct(productId: data?.id).formatParameters(),type: /data?.hasLiked == 0), failure: { (err) in
+                print(err)
             }, success: { (model) in
-                /self.data?.hasLiked == 0 ? self.btnLike.setImage(#imageLiteral(resourceName: "ic_like"), for: .normal) : self.btnLike.setImage(#imageLiteral(resourceName: "ic_like_on"), for: .normal)
-                self.btnNumberOfLikes?.setTitle(self.data?.totalLikes, for: .normal)
-                self.myDelegate?.getStatusOfCollectionView(status: 1)
-            }, method: Keys.Post.rawValue, loader: true)
+            }, method: Keys.Post.rawValue, loader: false)
         }else {
             UserFunctions.showAlert(message: L10n.yourInternetConnectionSeemsToBeOffline.string)
         }
     }
+
 }
 
 extension UICollectionViewCell {
@@ -100,7 +116,6 @@ extension UICollectionViewCell {
         }
         set {
             layer.cornerRadius = newValue ?? 0.0
-            //layer.masksToBounds = newValue > 0
         }
     }
     

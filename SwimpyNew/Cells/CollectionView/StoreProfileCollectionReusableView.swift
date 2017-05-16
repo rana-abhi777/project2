@@ -22,6 +22,7 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var imgStoreCoverPic: UIImageView!
     @IBOutlet weak var btnFollowStore: CustomButton!
     
+    @IBOutlet weak var lblStoreNameback: UILabel!
     //MARK:-  variables
     var data : StoreDetail?
     var delegate : StoreProfileTask?
@@ -35,7 +36,16 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
         lblStoreName.text = /model.storeName
         lblDescription.text = /model.describe
         lblNumberOfFollowers.text = (/model.totalFollow) + L10n._Followers.string
-        imgStoreCoverPic.sd_setImage(with: URL(string: /model.coverPicURLOriginal ))
+        //imgStoreCoverPic.sd_setImage(with: URL(string: /model.coverPicURLOriginal ))
+        if /model.coverPicURLOriginal == "" {
+            //lblStoreName.text = /model.storeName
+            imgStoreCoverPic.backgroundColor = .lightGray
+            imgStoreCoverPic.alpha = 0.7
+        }
+        else{
+            lblStoreName.isHidden = true
+            imgStoreCoverPic.sd_setImage(with: URL(string: /model.coverPicURLOriginal ))
+        }
         imgStoreThumbnail.sd_setImage(with: URL(string: /model.profilePicURLThumbnail))
         if model.followStatus == 1 {
             btnFollowStore.setTitle(L10n.following.string, for: .normal)

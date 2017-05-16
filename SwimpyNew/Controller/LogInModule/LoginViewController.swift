@@ -152,9 +152,19 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             UserFunctions.showAlert(message: L10n.enterYourFullName.string)
             indicator = false
         }
-        else if (/txtFullname.text).hasSpecialCharcters  {
-            UserFunctions.showAlert(message: L10n.enterYourValidName.string)
-            indicator = false
+//        else if (/txtFullname.text).hasSpecialCharcters  {
+//            UserFunctions.showAlert(message: L10n.enterYourValidName.string)
+//            indicator = false
+//        }
+        else if /txtFullname.text?.characters.count != 0 {
+            let regEx = "^([a-zA-Z]{1,}\\s?[a-zA-z]{1,}'?-?[a-zA-Z]{1,}\\s?([a-zA-Z]{1,})?)"
+            
+            let emailTest = NSPredicate(format:"SELF MATCHES %@", regEx)
+            var status = emailTest.evaluate(with: /txtFullname.text)
+            if status == false{
+                 UserFunctions.showAlert(message: L10n.enterYourValidName.string)
+                indicator = false
+            }
         }
         else if trimmedEmail == false {
             UserFunctions.showAlert(message: L10n.pleaseEnterValidEmail.string)
