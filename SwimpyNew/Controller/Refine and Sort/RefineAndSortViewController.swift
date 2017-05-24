@@ -13,6 +13,10 @@ protocol SendRefineParameters {
     func sendParameters(param : OptionalDictionary)
 }
 
+protocol RefineFilterDelegate {
+    func getAllFilters(dataFilter : [String] , dataSort:[String] , sortValue:[String] , filterValue : [String] , colorSelected:[String] )
+}
+
 
 class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
     
@@ -22,6 +26,7 @@ class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
     
     //MARK:- Variable
     var delegate : SendRefineParameters?
+    var myDelegate : RefineFilterDelegate?
     var tableDataSource : SortDataSource? {
         didSet{
             tableViewSort.dataSource = tableDataSource
@@ -109,8 +114,6 @@ class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
             
         }else if value == 0 {
             switch row {
-                
-                
             case SwitchValues.one.rawValue :
                 minPrice = "1"
                 maxPrice = "20"
@@ -142,6 +145,10 @@ class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
     
     
     func filterSortApi() {
+        self.myDelegate?.getAllFilters(dataFilter: dataFilter, dataSort: dataSort, sortValue: sortValue, filterValue: filterValue, colorSelected: colorSelected)
+        
+        
+        
         let optionaldic = APIParameters.RefineAndSort(createrId: creatorId, categoryId: categoryId , subcategoryId: subCategorySelected?.id, pageNo: "0", color: convertArrayIntoJson(array: colorSelected), minPrice: minPrice, maxPrice: maxPrice, sort: sortType).formatParameters()
         
         self.delegate?.sendParameters(param: optionaldic)

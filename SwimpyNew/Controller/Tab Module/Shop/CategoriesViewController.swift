@@ -33,6 +33,8 @@ class CategoriesViewController: UIViewController , IndicatorInfoProvider {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        arrCategoryData = []
+        initialize()
     }
     
     

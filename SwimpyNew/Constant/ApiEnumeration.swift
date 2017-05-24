@@ -40,7 +40,6 @@ enum API {
     case GetFriendsActivity(OptionalDictionary)
     
     case GetUserActivity(OptionalDictionary)
-    
     case ProductDetail(OptionalDictionary)
     
     case GetFeaturedProduct(OptionalDictionary)
@@ -256,6 +255,7 @@ enum APIParameters {
         }
     }
 }
+
 
 extension API : Router {
     internal var parameters: OptionalDictionary {

@@ -27,6 +27,16 @@ class CategoryProductsViewController: UIViewController {
     var isLoadMore = false
     var flagRefine = false
     var refineParams : OptionalDictionary = nil
+    
+    var dataFilter = [L10n.price.string, L10n.color.string, L10n.subCategory.string]
+    var filterValue : [String] = []
+    var sortValue : [String] = []
+    var dataSort = [L10n.popular.string, L10n.newest.string, L10n.priceLowToHigh.string , L10n.priceHighToLow.string]
+    var colorSelected : [String] = []
+    
+    
+    
+    
     //MARK:- outlets
     @IBOutlet weak var collectionViewCategoryProducts: UICollectionView!
     @IBOutlet weak var lblCategoryName: UILabel!
@@ -44,6 +54,8 @@ class CategoryProductsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        
         
     }
     
@@ -147,6 +159,15 @@ class CategoryProductsViewController: UIViewController {
         VC.creatorId = creatorId
         VC.categoryId = categoryId
         VC.delegate = self
+        VC.myDelegate = self
+//        VC.dataFilter = self.dataFilter
+//        VC.filterValue = self.filterValue
+//        VC.dataSort = self.dataSort
+//        VC.colorSelected = self.colorSelected
+//        VC.sortValue = self.sortValue
+        
+        
+        
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
@@ -212,3 +233,15 @@ extension CategoryProductsViewController : DealsProductTask{
     
     
 }
+
+extension CategoryProductsViewController: RefineFilterDelegate{
+    func getAllFilters(dataFilter: [String], dataSort: [String], sortValue: [String], filterValue: [String], colorSelected: [String]) {
+        self.dataFilter = dataFilter
+        self.filterValue = filterValue
+        self.dataSort = dataSort
+        self.colorSelected = colorSelected
+        self.sortValue = sortValue
+    }
+}
+
+

@@ -45,7 +45,7 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
     
     override func viewWillAppear(_ animated: Bool) {
         if(counter != 0) {
-           setup()
+            setup()
         }
         counter += 1
     }
@@ -76,39 +76,32 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
         arrProduct = []
         pageNo = L10n._0.string
         hitApiToGetUserItems()
-        //configureCollectionView()
-        if status == 1{
-            configureCollectionView()
-        }
+        configureCollectionView()
     }
     
     func hitApiToGetUserItems() {
         ApiManager().getDataOfURL(withApi: API.GetUserItem(APIParameters.GetUserItem(type : "ITEMS", userId: userId,pageNo : pageNo).formatParameters()), failure: { (err) in
             print(err)
-            }, success: {[unowned self] (model) in
+        }, success: {[unowned self] (model) in
+            
+            let response = model as? ProductResponse ?? ProductResponse()
+            self.pageNo = response.pageNo ?? nil
+            for item in response.arrProducts {
+                self.arrProduct.append(item)
                 
-                let response = model as? ProductResponse ?? ProductResponse()
-                self.pageNo = response.pageNo ?? nil
-                for item in response.arrProducts {
-                    self.arrProduct.append(item)
-                    
-                }
-                self.isLoadMore = response.arrProducts.count > 0
-                self.collectionViewUserItem.es_stopLoadingMore()
-                self.isLoadMore ? self.collectionViewUserItem.es_resetNoMoreData() : self.collectionViewUserItem.es_noticeNoMoreData()
+            }
+            self.isLoadMore = response.arrProducts.count > 0
+            self.collectionViewUserItem.es_stopLoadingMore()
+            self.isLoadMore ? self.collectionViewUserItem.es_resetNoMoreData() : self.collectionViewUserItem.es_noticeNoMoreData()
+            self.refreshControl.endRefreshing()
+            if self.arrProduct.count > 0 {
+                self.configureCollectionView()
+                self.view.bringSubview(toFront: self.collectionViewUserItem)
+            }
+            else {
+                self.view.bringSubview(toFront: self.viewNoItem)
                 
-                
-                self.refreshControl.endRefreshing()
-                if self.arrProduct.count > 0 {
-                    self.configureCollectionView()
-                    self.view.bringSubview(toFront: self.collectionViewUserItem)
-                }
-                else {
-                    self.view.bringSubview(toFront: self.viewNoItem)
-                    
-                }
-                
-               
+            }
             }, method: Keys.Post.rawValue, loader: true)
     }
     
@@ -116,10 +109,13 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
         collectionViewdataSource = CollectionViewDataSource(items: arrProduct, collectionView: collectionViewUserItem, cellIdentifier: CellIdentifiers.DealsCollectionViewCell.rawValue, headerIdentifier: "", cellHeight: 275, cellWidth: (collectionViewUserItem.frame.size.width - 8)/2, cellSpacing: 8, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? DealsCollectionViewCell
             cell?.delegate = self
+            //cell?.myDelegate = self
             if self.arrProduct.count > 0{
-                 cell?.isItemController = 1
-            cell?.configureCell(model: self.arrProduct[indexpath.row], row: indexpath.row)
-           
+                cell?.isItemController = 1
+                
+                cell?.configureCell(model: self.arrProduct[indexpath.row], row: indexpath.row)
+                cell?.btnLike.addTarget(self, action: #selector(self.setup), for: .touchUpInside)
+                
             }
             }, aRowSelectedListener: {[unowned self] (indexPath) in
                 let productId = self.arrProduct[indexPath.row].id ?? ""
@@ -128,11 +124,11 @@ class ProfileItemViewController: BaseViewController,IndicatorInfoProvider {
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }, willDisplayCell: {[unowned self] (indexPath) in
-//                    if let temp = self.pageNo , indexPath.row == self.arrProduct.count - 2  {
-//                        if temp != "" {
-//                            self.hitApiToGetUserItems()
-//                        }
-//                    }
+                //                    if let temp = self.pageNo , indexPath.row == self.arrProduct.count - 2  {
+                //                        if temp != "" {
+                //                            self.hitApiToGetUserItems()
+                //                        }
+                //                    }
                 
             }, scrollViewListener: { (UIScrollView) in
         })
@@ -157,8 +153,3 @@ extension ProfileItemViewController : DealsProductTask {
     
 }
 
-extension ProfileItemViewController : DealsProtocol{
-    func getStatusOfCollectionView(status: Int) {
-        self.status = status
-    }
-}

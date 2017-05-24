@@ -13,6 +13,7 @@
 		1D73BE991EB3498E0028976C /* StoreFollowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D73BE981EB3498E0028976C /* StoreFollowStatus.swift */; };
 		1DFEA0391EAB6D6700BF4361 /* AllStoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFEA0381EAB6D6700BF4361 /* AllStoreResponse.swift */; };
 		1DFEA03B1EAB704900BF4361 /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFEA03A1EAB704900BF4361 /* Stores.swift */; };
+		1DFF42011ED3FEEC00CCDBA0 /* CLImageViewPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFF42001ED3FEEC00CCDBA0 /* CLImageViewPopup.swift */; };
 		2003EF441E920F0A00039B7C /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003EF2C1E920F0A00039B7C /* SocketAckEmitter.swift */; };
 		2003EF451E920F0A00039B7C /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003EF2D1E920F0A00039B7C /* SocketAckManager.swift */; };
 		2003EF461E920F0A00039B7C /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003EF2E1E920F0A00039B7C /* SocketAnyEvent.swift */; };
@@ -279,6 +280,7 @@
 		1D73BE981EB3498E0028976C /* StoreFollowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreFollowStatus.swift; sourceTree = "<group>"; };
 		1DFEA0381EAB6D6700BF4361 /* AllStoreResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllStoreResponse.swift; sourceTree = "<group>"; };
 		1DFEA03A1EAB704900BF4361 /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stores.swift; sourceTree = "<group>"; };
+		1DFF42001ED3FEEC00CCDBA0 /* CLImageViewPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLImageViewPopup.swift; sourceTree = "<group>"; };
 		2003EF2C1E920F0A00039B7C /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		2003EF2D1E920F0A00039B7C /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
 		2003EF2E1E920F0A00039B7C /* SocketAnyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAnyEvent.swift; sourceTree = "<group>"; };
@@ -571,6 +573,14 @@
 			name = "All Stores";
 			sourceTree = "<group>";
 		};
+		1DFF41FF1ED3FED400CCDBA0 /* CLImageViewPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				1DFF42001ED3FEEC00CCDBA0 /* CLImageViewPopup.swift */,
+			);
+			path = CLImageViewPopUp;
+			sourceTree = "<group>";
+		};
 		2003EF2B1E920F0A00039B7C /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,6 +696,7 @@
 		200C14331DB9F41D0000FE42 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				1DFF41FF1ED3FED400CCDBA0 /* CLImageViewPopUp */,
 				2003EF2B1E920F0A00039B7C /* Source */,
 				200500B31E56CD1300D739AB /* HDNotification */,
 				20D580651E4C4F850070DF61 /* UINavigationController */,
@@ -1301,7 +1312,7 @@
 				TargetAttributes = {
 					20D948581DB755EF007A4D07 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 2N4U73C3E2;
+						DevelopmentTeam = Y4523532TR;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -1574,6 +1585,7 @@
 				20D948DE1DB7589C007A4D07 /* SearchStoreViewController.swift in Sources */,
 				200997811DE85B440084DDED /* NVActivityIndicatorView.swift in Sources */,
 				203F33401DBB28C600B875B1 /* CustomImageView.swift in Sources */,
+				1DFF42011ED3FEEC00CCDBA0 /* CLImageViewPopup.swift in Sources */,
 				20D948EC1DB7589C007A4D07 /* CartViewController.swift in Sources */,
 				20C49BDF1E8BCF6500B5CCDC /* OrderDetail.swift in Sources */,
 				20AB22341DE6E6BC00E0BA13 /* CellIdentifier.swift in Sources */,
@@ -1812,15 +1824,15 @@
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 2N4U73C3E2;
+				DEVELOPMENT_TEAM = Y4523532TR;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.imarket;
+				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "01d4d020-bef3-4734-bb82-1fdbaa2fbbf7";
-				PROVISIONING_PROFILE_SPECIFIER = imarketArnavAdhoc;
+				PROVISIONING_PROFILE = "0392f1b8-5f5d-407a-aba2-bbe81d114eda";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: codeBrew.Swimpy2";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1836,14 +1848,14 @@
 				CODE_SIGN_ENTITLEMENTS = SwimpyNew/SwimpyNew.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bader AlShammari (Y4523532TR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 2N4U73C3E2;
+				DEVELOPMENT_TEAM = Y4523532TR;
 				INFOPLIST_FILE = SwimpyNew/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.imarket;
+				PRODUCT_BUNDLE_IDENTIFIER = codeBrew.Swimpy2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "01d4d020-bef3-4734-bb82-1fdbaa2fbbf7";
-				PROVISIONING_PROFILE_SPECIFIER = imarketArnavAdhoc;
+				PROVISIONING_PROFILE = "0392f1b8-5f5d-407a-aba2-bbe81d114eda";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: codeBrew.Swimpy2";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwimpyNew/BridgingHeader/SwimpyNew-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

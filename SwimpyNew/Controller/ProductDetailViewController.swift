@@ -155,7 +155,7 @@ extension ProductDetailViewController : RelatedProductsDelegateFunction ,MorePro
 extension ProductDetailViewController : NavBarColor {
     func setNavBarColor(color : UIColor) {
         if color == UIColor.white {
-            lblProductName.isHidden = false
+            lblProductName.isHidden = true
             lblProductName.text = /productDetails?.productName
             view.bringSubview(toFront: viewNavBar)
         }

@@ -61,13 +61,20 @@ class InboxViewController: BaseViewController {
         tableViewDataSource = TableViewCustomDatasource(items: arrChatList, height: 89, estimatedHeight: 89, tableView: tableView, cellIdentifier: CellIdentifiers.InboxChatListTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             let cell = cell as? InboxChatListTableViewCell
             if self.arrChatList.count > 0{
-            cell?.configureCell(data: self.arrChatList[indexpath.row])
+                cell?.configureCell(data: self.arrChatList[indexpath.row])
             }
             }, aRowSelectedListener: { [unowned self] (indexPath) in
-                let VC = StoryboardScene.Main.instantiateMessageViewController()
-                VC.storeId = self.arrChatList[indexPath.row].sellerId
-                VC.storeImage = self.arrChatList[indexPath.row].imgThumbail
-                self.navigationController?.pushViewController(VC, animated: true)
+                print(self.arrChatList[indexPath.row].isBlocked)
+                if self.arrChatList[indexPath.row].isBlocked == 1 {
+                    UserFunctions.showAlert(message: "Store is blocked by admin.")
+                    self.apiToGetGlobalActivity()
+                }
+                else{
+                    let VC = StoryboardScene.Main.instantiateMessageViewController()
+                    VC.storeId = self.arrChatList[indexPath.row].sellerId
+                    VC.storeImage = self.arrChatList[indexPath.row].imgThumbail
+                    self.navigationController?.pushViewController(VC, animated: true)
+                }
             }, willDisplayCell: { (indexPath) in
         })
         tableView.delegate = tableViewDataSource
@@ -83,8 +90,8 @@ class InboxViewController: BaseViewController {
     }
     
     @IBAction func btnSearchAction(sender: AnyObject) {
-                        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()
-                        self.navigationController?.pushViewController(VC, animated: true)
+        let VC = StoryboardScene.Main.searchViewControllerScene.viewController()
+        self.navigationController?.pushViewController(VC, animated: true)
         print(self.arrChatList)
     }
     

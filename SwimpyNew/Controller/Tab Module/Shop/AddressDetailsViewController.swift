@@ -48,11 +48,11 @@ class AddressDetailsViewController: BaseViewController {
     func hitApiToGetAddress() {
         ApiManager().getDataOfURL(withApi: API.GetAddress(APIParameters.GetAddress().formatParameters()), failure: { (err) in
             print(err)
-            }, success: {[unowned self] (model) in
-                //fill the fields
-                self.defaultAddressData = model as? DefaultAddress
-                self.setUI()
-                
+        }, success: {[unowned self] (model) in
+            //fill the fields
+            self.defaultAddressData = model as? DefaultAddress
+            self.setUI()
+            
             }, method: Keys.Get.rawValue, loader: false)
         
     }
@@ -89,10 +89,22 @@ class AddressDetailsViewController: BaseViewController {
         if txtFullname.text?.trimmed().characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterYourFullName.string)
             indicator = false
-        }else if (/txtFullname.text).hasSpecialCharcters  {
-            UserFunctions.showAlert(message: L10n.enterYourValidName.string)
-            indicator = false
         }
+//        }else if (/txtFullname.text).hasSpecialCharcters  {
+//            UserFunctions.showAlert(message: L10n.enterYourValidName.string)
+//            indicator = false
+//        }
+            else if /txtFullname.text?.characters.count != 0 {
+                let regEx = "^([a-zA-Z]{1,}\\s?[a-zA-z]{1,}'?-?[a-zA-Z]{1,}\\s?([a-zA-Z]{1,})?)"
+                
+                let emailTest = NSPredicate(format:"SELF MATCHES %@", regEx)
+                var status = emailTest.evaluate(with: /txtFullname.text)
+                if status == false{
+                    UserFunctions.showAlert(message: L10n.enterYourValidName.string)
+                    indicator = false
+                }
+            }
+
         if /txtAddressLine1.text?.trimmed().characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterAddressLine1.string)
             indicator = false
@@ -109,9 +121,18 @@ class AddressDetailsViewController: BaseViewController {
             UserFunctions.showAlert(message: L10n.enterState.string)
             indicator = false
             
-        }else if /txtZipcode.text?.trimmed().characters.count == 0 {
+        }else if /txtZipcode.text?.trimmed().characters.count == 0  {
             UserFunctions.showAlert(message: L10n.enterZipcode.string)
             indicator = false
+        }
+        else if /txtZipcode.text?.trimmed().characters.count != 0 {
+            let zipRegex = "(?i)^[a-z0-9][a-z0-9\\- ]{0,10}[a-z0-9]$"
+            let status = NSPredicate(format: "SELF MATCHES %@", zipRegex).evaluate(with:/txtZipcode.text)
+            if status == false{
+                UserFunctions.showAlert(message: "Please enter valid zipcode.")
+                indicator = false
+            }
+
         }
         else if lblCountry.text  == L10n.selectCountry.string {
             UserFunctions.showAlert(message: L10n.pleaseSelectCountry.string)
@@ -127,35 +148,35 @@ class AddressDetailsViewController: BaseViewController {
     func apiToCalculateShipping() {
         ApiManager().getDataOfURL(withApi: API.CalculateShipping(APIParameters.CalculateShipping( details: GenerateOrder.changeDictToModelArray(arrData: arrCartData) as AnyObject?,  countryCode: code).formatParameters()), failure: { (err) in
             print(err)
-            }, success: {[unowned self] (model) in
-                guard let response = model as? OrderSummary else { return }
-                guard let arrOrder = response.arrOrder  else { return }
-                guard let arrNotAvailable = response.arrNotAvailable else { return }
-                
-                
-                print(arrOrder)
-                var totalAmt : Double = 0.0
-                var shippingCost : Double = 0.0
-                
-                for item in arrOrder {
-                    totalAmt = totalAmt +  (((/item.price).toDouble() ?? 0.0) * (item.quantity?.toDouble() ?? 1.0))
-                    shippingCost = shippingCost +
-                        (/item.shippingCost).toDouble()!
-                }
-                
-                let VC = StoryboardScene.Main.instantiateOrderDetailViewController()
-                if arrNotAvailable.count > 0 {
-                    VC.flagNotAvailable = true
-                }
-                if arrOrder.count > 0 {
-                    VC.arrOrder = arrOrder
-                    VC.defaultAddress = self.defaultAddress
-                    VC.totalAmt = totalAmt
-                    VC.shippingCost = shippingCost
-                    self.navigationController?.pushViewController(VC, animated: true)
-                }else {
-                    UserFunctions.showAlert(message: "Product cannot be delivered at your address")
-                }
+        }, success: {[unowned self] (model) in
+            guard let response = model as? OrderSummary else { return }
+            guard let arrOrder = response.arrOrder  else { return }
+            guard let arrNotAvailable = response.arrNotAvailable else { return }
+            
+            
+            print(arrOrder)
+            var totalAmt : Double = 0.0
+            var shippingCost : Double = 0.0
+            
+            for item in arrOrder {
+                totalAmt = totalAmt +  (((/item.price).toDouble() ?? 0.0) * (item.quantity?.toDouble() ?? 1.0))
+                shippingCost = shippingCost +
+                    (/item.shippingCost).toDouble()!
+            }
+            
+            let VC = StoryboardScene.Main.instantiateOrderDetailViewController()
+            if arrNotAvailable.count > 0 {
+                VC.flagNotAvailable = true
+            }
+            if arrOrder.count > 0 {
+                VC.arrOrder = arrOrder
+                VC.defaultAddress = self.defaultAddress
+                VC.totalAmt = totalAmt
+                VC.shippingCost = shippingCost
+                self.navigationController?.pushViewController(VC, animated: true)
+            }else {
+                UserFunctions.showAlert(message: "Product cannot be delivered at your address")
+            }
             }, method: Keys.Post.rawValue, loader: true)
         
         
@@ -194,14 +215,14 @@ class AddressDetailsViewController: BaseViewController {
             guard let apiObj = api else {return }
             ApiManager().getDataOfURL(withApi: apiObj, failure: { (err) in
                 print(err)
-                }, success: { [unowned self] (model) in
-                    
-                    
-                    self.defaultAddress = model as? DefaultAddress
-                    self.apiToCalculateShipping()
-                    // VC.shippingCost = shippingCost
-                    // self.navigationController?.pushViewController(VC, animated: true)
-                    // UserFunctions.showAlert(title : L10n.success.string ,message: L10n.addressEditedSuccessfully.string)
+            }, success: { [unowned self] (model) in
+                
+                
+                self.defaultAddress = model as? DefaultAddress
+                self.apiToCalculateShipping()
+                // VC.shippingCost = shippingCost
+                // self.navigationController?.pushViewController(VC, animated: true)
+                // UserFunctions.showAlert(title : L10n.success.string ,message: L10n.addressEditedSuccessfully.string)
                 }, method: "POST", loader: true)
             
         }

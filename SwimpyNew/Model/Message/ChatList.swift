@@ -12,6 +12,7 @@ import SwiftyJSON
 class ChatList: NSObject {
     
     var sellerId : String?
+    var isBlocked: Int?
     var createdAt : String?
     var storeName : String?
     var imgThumbail : String?
@@ -21,6 +22,7 @@ class ChatList: NSObject {
     init(arrResult : JSON) {
         super.init()
         sellerId = arrResult[Keys.ID.rawValue].stringValue
+        isBlocked = arrResult[Keys.isBlocked.rawValue].intValue
         createdAt = arrResult[Keys.createdAt.rawValue].stringValue
         storeName = arrResult[Keys.StoreName.rawValue].stringValue
         let ImgData = arrResult[Keys.ProfilePicURL.rawValue].dictionaryValue

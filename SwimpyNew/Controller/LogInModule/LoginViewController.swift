@@ -15,6 +15,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
     var backResponse:UserDetails?
     var status: Bool?
     var defaults = UserDefaults.standard
+    var arrCartData = [CartData]()
     
     //MARK: outlets
     @IBOutlet weak var viewForgotPassword: UIView!
@@ -72,6 +73,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             }, success: { (model) in
                 let response = model as? User ?? User()
                 ApiManager.hideLoader()
+                MMUserManager.shared.cartCount = response.cartLength
                 self.hitApiForUserDetails(/response.id, completionhandler: { (model) in
                     self.backResponse = model as? UserDetails ?? UserDetails()
                     self.status = self.backResponse?.isBlocked
@@ -200,7 +202,10 @@ extension LoginViewController {
                 print(err)
                 
             }, success: { (model) in
+                let model = model as? User ?? User()
+                MMUserManager.shared.cartCount = model.cartLength
                 print(model)
+                
                 self.defaults.set(false, forKey: "isLogin")
                 let VC = StoryboardScene.Main.instantiateTabBarController()
                 //                    VC.selectedIndex = 0
@@ -247,6 +252,7 @@ extension LoginViewController {
                 }, success: { (model) in
                     let VC = StoryboardScene.Main.instantiateTabBarController()
                     VC.selectedIndex = 0
+                    MMUserManager.shared.cartCount = ""
                     self.navigationController?.pushViewController(VC, animated: true)
                     
                 }, method: Keys.Post.rawValue, loader: true, image: btnProfilePic.image(for: .normal) != UIImage(asset: .icUpload) ? btnProfilePic.image(for: .normal) : nil )
@@ -290,6 +296,28 @@ extension LoginViewController {
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+    
+//    func hitApiToGetCartDetails() {
+//        
+//        ApiManager().getDataOfURL(withApi: API.GetCartDetail(APIParameters.GetCartDetail().formatParameters()), failure: { (err) in
+//            print(err)
+//            
+//        }, success: {[unowned self] (model) in
+//            self.arrCartData = (model as? [CartData]) ?? []
+//            if self.arrCartData.count > 0 {
+//                self.configureTableView()
+//                self.view.bringSubview(toFront: self.tableViewCart)
+//            }
+//            else {
+//                self.view.bringSubview(toFront: self.viewNoItems)
+//            }
+//            
+//            }, method: Keys.Post.rawValue, loader: true)
+//    }
+
 }
 
 extension LoginViewController : SendData {

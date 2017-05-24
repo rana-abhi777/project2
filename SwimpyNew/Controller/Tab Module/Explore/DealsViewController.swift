@@ -80,10 +80,12 @@ class DealsViewController: BaseViewController,IndicatorInfoProvider {
                 cell?.configureCell(model: self.arrProduct[indexpath.row],row : indexpath.row)
             }
             }, aRowSelectedListener: {[unowned self] (indexPath) in
+                if self.arrProduct.count > 0{
                 let productId = self.arrProduct[indexPath.row].id
                 let vc = StoryboardScene.Main.instantiateProductDetailViewController()
                 vc.productId = productId ?? StringNames.empty.rawValue
                 self.navigationController?.pushViewController(vc, animated: true)
+                }
             }, willDisplayCell: {(indexPath) in
         }, scrollViewListener: { (UIScrollView) in
         })

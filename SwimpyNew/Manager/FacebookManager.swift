@@ -32,6 +32,8 @@ func returnUserdata() {
                     ApiManager.hideLoader()
                     
                     }, success: { (model) in
+                        let response = model as? User ?? User()
+                        MMUserManager.shared.cartCount = response.cartLength
                         print(model)
                         ApiManager.hideLoader()
                         guard let vcLogin = vc else { return }

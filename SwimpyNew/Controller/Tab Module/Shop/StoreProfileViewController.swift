@@ -82,8 +82,8 @@ class StoreProfileViewController: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnActionSearch(_ sender: AnyObject) {
-        //        let VC = StoryboardScene.Main.instantiateSearchViewController()
-        //        self.navigationController?.pushViewController(VC, animated: true)
+                let VC = StoryboardScene.Main.instantiateSearchViewController()
+                self.navigationController?.pushViewController(VC, animated: true)
     }
     @IBAction func btnActionCart(_ sender: AnyObject) {
         let VC = StoryboardScene.Main.instantiateCartViewController()

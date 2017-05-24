@@ -63,7 +63,7 @@ class CartDataSource: NSObject,UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row < count-1 {
-            return 171
+            return UITableViewAutomaticDimension
         }else  {
             return 56
         }
