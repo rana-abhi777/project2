@@ -26,13 +26,12 @@ class OrderDetailTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    
     //MARK:-   functions
     func configureCell(model : OrderDetail) {
         guard let quantity = model.quantity else { return }
-        lblPriceAndQuantity.text = quantity  + " *" + " $" + /model.price
+        lblPriceAndQuantity.text = quantity  + " *" + " $" + "\(/model.price?.toInt())"
         let price = (quantity.toDouble() ?? 1.0)  * ((/model.price).toDouble() ?? 0.0)
-        lblTotalPrice.text = "$" +   "\(price)"
+        lblTotalPrice.text = "$" +   "\(price.toInt)"
         lblProductName?.text = /model.name
         guard let url = model.thumbnailImage   else {
             imgProduct?.backgroundColor = UIColor.gray

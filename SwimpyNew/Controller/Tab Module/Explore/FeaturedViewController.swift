@@ -74,7 +74,7 @@ class FeaturedViewController: BaseViewController,IndicatorInfoProvider {
         ApiManager.hideLoader()
     }
     func configureTableView() {
-        tableViewDataSource = TableViewCustomDatasource(items: arrFeaturedData, height: 400 , estimatedHeight: 400, tableView: tableViewFeaturedProducts, cellIdentifier: CellIdentifiers.FeaturedTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
+        tableViewDataSource = TableViewCustomDatasource(items: arrFeaturedData, height: 450 , estimatedHeight: 400, tableView: tableViewFeaturedProducts, cellIdentifier: CellIdentifiers.FeaturedTableViewCell.rawValue, configureCellBlock: {[unowned self] (cell, item, indexpath) in
             
             let cell = cell as? FeaturedTableViewCell
             cell?.delegate = self

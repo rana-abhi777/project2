@@ -52,9 +52,9 @@ class OrderSummaryDataSource: NSObject,UITableViewDelegate,UITableViewDataSource
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.PriceDetailTableViewCell.rawValue) as? PriceDetailTableViewCell else {
                 return UITableViewCell()
             }
-            cell.lblTotalPrice.text = "$ " + "\(/totalAmt )"
-            cell.lblShippingPrice.text = "$ " + "\(/shippingCost)"
-            cell.lblNetTotalAmount.text = "$ " + "\(/totalAmt + /shippingCost)"
+            cell.lblTotalPrice.text = "$ " + "\(/totalAmt?.toInt )"
+            cell.lblShippingPrice.text = "$ " + "\(/shippingCost?.toInt)"
+            cell.lblNetTotalAmount.text = "$ " + "\(/totalAmt?.toInt + /shippingCost?.toInt)"
             return cell
         }else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.AddressTableViewCell.rawValue) as? AddressTableViewCell else {

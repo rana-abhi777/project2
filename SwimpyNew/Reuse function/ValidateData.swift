@@ -18,6 +18,9 @@ class ValidateData: NSObject {
 
     
     func emailValidation(mailToCheck: String) -> Bool {
+        if mailToCheck == "" {
+            return false
+        }
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: mailToCheck)
     }

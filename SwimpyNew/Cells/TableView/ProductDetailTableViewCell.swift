@@ -82,7 +82,7 @@ class ProductDetailTableViewCell: BaseTableViewCell {
         lblStoreFollowers.text = (model.numberOfFollwers ?? L10n._0.string) + L10n._Followers.string
         lblProductName.text = /model.productName
         lblDescription.text = model.describe
-        lblPrice.text = "$" + "\(data?.total_price ?? 0.0)"
+        lblPrice.text = "$" + "\(Int(data?.total_price ?? 0.0) ?? 0)"
         lblNumberOfLikes.text = model.totalLikes ?? L10n._0.string
         lblNumberOfShare.text = "\(model.share ?? 0)"
         lblSelectedColor.text = (model.color?.count ?? 0) > 0 ?  model.color?[0] : ""

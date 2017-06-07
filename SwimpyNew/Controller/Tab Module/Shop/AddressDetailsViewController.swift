@@ -105,12 +105,8 @@ class AddressDetailsViewController: BaseViewController {
                 }
             }
 
-        if /txtAddressLine1.text?.trimmed().characters.count == 0 {
+        else if /txtAddressLine1.text?.trimmed().characters.count == 0 {
             UserFunctions.showAlert(message: L10n.enterAddressLine1.string)
-            indicator = false
-            
-        }else if /txtAddressLine2.text?.trimmed().characters.count == 0 {
-            UserFunctions.showAlert(message: L10n.enterAddressLine2.string)
             indicator = false
             
         }else if /txtCity.text?.trimmed().characters.count == 0 {
@@ -207,10 +203,10 @@ class AddressDetailsViewController: BaseViewController {
         if validateData() {
             var api : API?
             if flagEditApi {
-                api = API.EditAddress(APIParameters.EditAddress(addressId : defaultAddressData?.id , fullName: txtFullname.text, addressLine1: txtAddressLine1.text, addressLine2: txtAddressLine2.text, countryName: lblCountry.text, city: txtCity.text, state: txtState.text, zipcode: txtZipcode.text, phoneNo: txtMobileNumber.text,isDefault : "\(flagMarkAsDefault)", countryCode : code).formatParameters())
+                api = API.EditAddress(APIParameters.EditAddress(addressId : defaultAddressData?.id , fullName: txtFullname.text, addressLine1: txtAddressLine1.text, addressLine2: (txtAddressLine2.text?.isEmpty)! ? "0" : txtAddressLine2.text , countryName: lblCountry.text, city: txtCity.text, state: txtState.text, zipcode: txtZipcode.text, phoneNo: txtMobileNumber.text,isDefault : "\(flagMarkAsDefault)", countryCode : code).formatParameters())
             }
             else {
-                api = API.AddAddress(APIParameters.AddAddress(fullName: txtFullname.text, addressLine1: txtAddressLine1.text, addressLine2: txtAddressLine2.text, countryName: lblCountry.text, city: txtCity.text, state: txtState.text, zipcode: txtZipcode.text, phoneNo: txtMobileNumber.text,isDefault : "\(flagMarkAsDefault)", countryCode : code).formatParameters())
+                api = API.AddAddress(APIParameters.AddAddress(fullName: txtFullname.text, addressLine1: txtAddressLine1.text, addressLine2: (txtAddressLine2.text?.isEmpty)! ? "0" : txtAddressLine2.text, countryName: lblCountry.text, city: txtCity.text, state: txtState.text, zipcode: txtZipcode.text, phoneNo: txtMobileNumber.text,isDefault : "\(flagMarkAsDefault)", countryCode : code).formatParameters())
             }
             guard let apiObj = api else {return }
             ApiManager().getDataOfURL(withApi: apiObj, failure: { (err) in

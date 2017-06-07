@@ -160,11 +160,11 @@ class CategoryProductsViewController: UIViewController {
         VC.categoryId = categoryId
         VC.delegate = self
         VC.myDelegate = self
-//        VC.dataFilter = self.dataFilter
-//        VC.filterValue = self.filterValue
-//        VC.dataSort = self.dataSort
-//        VC.colorSelected = self.colorSelected
-//        VC.sortValue = self.sortValue
+        VC.dataFilter = self.dataFilter
+        VC.filterValue = self.filterValue
+        VC.dataSort = self.dataSort
+        VC.colorSelected = self.colorSelected
+        VC.sortValue = self.sortValue
         
         
         
@@ -241,6 +241,13 @@ extension CategoryProductsViewController: RefineFilterDelegate{
         self.dataSort = dataSort
         self.colorSelected = colorSelected
         self.sortValue = sortValue
+        print("Values : ")
+        print(dataFilter)
+        print(filterValue)
+        print(dataSort)
+        print(colorSelected)
+        print(sortValue)
+        
     }
 }
 

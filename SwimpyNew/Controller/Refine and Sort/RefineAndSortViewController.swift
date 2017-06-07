@@ -46,17 +46,21 @@ class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
     var categoryId : String?
     var minPrice : String?
     var maxPrice : String?
-    
     var colorSelected : [String] = []
     
     //MARK:- Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        if filterValue.count == 0 {
         filterValue = [String](repeating: "", count:self.dataFilter.count)
+        }
+        if sortValue.count == 0 {
         sortValue = [String](repeating: "", count:dataSort.count)
+        }
         for item in (arrSubCategory ?? []) {
             arrChoice.append(/item.name )
         }
+        print("RefineAndSortViewController")
         configureTableView()
     }
     
@@ -92,7 +96,6 @@ class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
                 sortType = "NEW"
             }
         }
-        print(sortType)
         configureTableView()
     }
     
@@ -103,7 +106,7 @@ class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
         self.value = value
         vc.value = value
         vc.arrChoice = arrChoice
-        vc.delegate = self
+        vc.delegate = self        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -133,10 +136,15 @@ class RefineAndSortViewController: BaseViewController, FilterData,SendValue {
                 
             }
         }else if value == 1 {
+            
+            if colorSelected.contains(str){
+                colorSelected.remove(at: colorSelected.index(of: str) ?? 0)
+            }
+            else{
             colorSelected.append(str)  //make it unique and send
             colorSelected = removeDuplicateString(values: colorSelected)
+            }
         }
-        
         filterValue[value] = str
         configureTableView()
     }

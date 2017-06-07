@@ -83,8 +83,6 @@ class SettingsViewController: UIViewController {
     }
     
     func logout() {
-        
-        
         ApiManager().getDataOfURL(withApi: API.Logout(APIParameters.Logout( ).formatParameters()), failure: { (err) in
             print(err)
             }, success: { (model) in

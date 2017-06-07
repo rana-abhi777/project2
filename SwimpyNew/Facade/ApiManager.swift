@@ -31,7 +31,6 @@ class ApiManager {
                 //print("Data : " , data)
                 let json = data["data"]
                 switch(withApi){
-                    
                 case .Signup(_) , .Login(_), .LoginViaFacebook(_), .LoginViaGoogle(_):
                     let user = User(arrResult: json)
                     singleUserArray = user

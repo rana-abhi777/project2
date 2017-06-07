@@ -154,10 +154,6 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate, GIDSignInDel
             UserFunctions.showAlert(message: L10n.enterYourFullName.string)
             indicator = false
         }
-//        else if (/txtFullname.text).hasSpecialCharcters  {
-//            UserFunctions.showAlert(message: L10n.enterYourValidName.string)
-//            indicator = false
-//        }
         else if /txtFullname.text?.characters.count != 0 {
             let regEx = "^([a-zA-Z]{1,}\\s?[a-zA-z]{1,}'?-?[a-zA-Z]{1,}\\s?([a-zA-Z]{1,})?)"
             
@@ -244,6 +240,24 @@ extension LoginViewController {
             UserFunctions.showAlert(title: "Oops!!", message: "Please add profile picture.", type: "info")
         }
         else{
+            if txtFullname.text?.isEmpty ?? true {
+                UserFunctions.showAlert(message:"Please enter your name.")
+            }
+            else if btnCountryName.titleLabel?.text == "Select Country" {
+                UserFunctions.showAlert(message: "Please enter country.")
+            }
+            else if txtSignupEmail.text?.isEmpty ?? true{
+                UserFunctions.showAlert(message: "Please enter your email.")
+            }
+            else if txtSignupPassword.text?.isEmpty ?? true {
+                UserFunctions.showAlert(message: "Please enter your password")
+            }
+            else if (/txtSignupPassword.text).characters.count < 6 {
+                UserFunctions.showAlert(message: L10n.passwordLengthShouldBeAtleast6Characters.string)
+            }
+            
+            else{
+            
             if validateSignup() {
                 
                 ApiManager().getDataOfURL(withApi: API.Signup(APIParameters.Signup(fullname: txtFullname.text, email: txtSignupEmail.text, password: txtSignupPassword.text, countryName : btnCountryName.titleLabel?.text).formatParameters()), failure: { (err) in
@@ -256,6 +270,7 @@ extension LoginViewController {
                     self.navigationController?.pushViewController(VC, animated: true)
                     
                 }, method: Keys.Post.rawValue, loader: true, image: btnProfilePic.image(for: .normal) != UIImage(asset: .icUpload) ? btnProfilePic.image(for: .normal) : nil )
+            }
             }
         }
     }
@@ -283,6 +298,7 @@ extension LoginViewController {
     }
     @IBAction func btnActionLoginWithGoogle(sender: AnyObject) {
         view.isUserInteractionEnabled = false
+        GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().signIn()
         
     }
@@ -297,26 +313,7 @@ extension LoginViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
-    
-    
-//    func hitApiToGetCartDetails() {
-//        
-//        ApiManager().getDataOfURL(withApi: API.GetCartDetail(APIParameters.GetCartDetail().formatParameters()), failure: { (err) in
-//            print(err)
-//            
-//        }, success: {[unowned self] (model) in
-//            self.arrCartData = (model as? [CartData]) ?? []
-//            if self.arrCartData.count > 0 {
-//                self.configureTableView()
-//                self.view.bringSubview(toFront: self.tableViewCart)
-//            }
-//            else {
-//                self.view.bringSubview(toFront: self.viewNoItems)
-//            }
-//            
-//            }, method: Keys.Post.rawValue, loader: true)
-//    }
+
 
 }
 
@@ -326,15 +323,3 @@ extension LoginViewController : SendData {
         btnCountryName.setTitle(name, for: .normal)
     }
 }
-//extension UIButton {
-//
-//    @IBInspectable
-//    open var exclusiveTouch : Bool {
-//        get {
-//            return self.isExclusiveTouch
-//        }
-//        set(value) {
-//            self.isExclusiveTouch = value
-//        }
-//    }
-//}

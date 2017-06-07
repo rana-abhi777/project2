@@ -39,7 +39,8 @@ class StoreProfileCollectionReusableView: UICollectionReusableView {
         //imgStoreCoverPic.sd_setImage(with: URL(string: /model.coverPicURLOriginal ))
         if /model.coverPicURLOriginal == "" {
             //lblStoreName.text = /model.storeName
-            imgStoreCoverPic.backgroundColor = .lightGray
+            //imgStoreCoverPic.backgroundColor = .lightGray
+            imgStoreCoverPic.image = #imageLiteral(resourceName: "ic_img")
             imgStoreCoverPic.alpha = 0.7
         }
         else{

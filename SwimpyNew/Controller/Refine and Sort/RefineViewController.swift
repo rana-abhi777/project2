@@ -23,6 +23,7 @@ class RefineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Hello")
         getData()
         configureTableView()
     }
@@ -53,8 +54,8 @@ class RefineViewController: UIViewController {
             cell.lblValue.isHidden = true
             cell.lblCategory.text = self.arrChoice[indexpath.row]
             cell.imgTick.isHidden = true
-            
             }, aRowSelectedListener: {[unowned self] (indexPath) in
+                
                 self.delegate?.sendFilterValue(str: self.arrChoice[indexPath.row], row : indexPath.row)
                 _ = self.navigationController?.popViewController(animated: true)
                 

@@ -29,10 +29,13 @@ class CountryPickerViewController: UIViewController {
     }
 
     @IBOutlet var lblTitle: UILabel!
+    
        override func viewDidLoad() {
         super.viewDidLoad()
         let dict = NSMutableArray(contentsOfFile: Bundle.main.path(forResource: "CallingCodes", ofType: "plist")!)!
         arrCountryData =  CountryData.changeDictToModelArray(jsoon1: dict)
+        arrCountryData = arrCountryData.sorted { $0.name?.localizedCaseInsensitiveCompare($1.name ?? "") == ComparisonResult.orderedAscending }
+        
         tableView.reloadData()
         initializeSearchBar()
     }
@@ -75,9 +78,6 @@ extension CountryPickerViewController : UITableViewDataSource , UITableViewDeleg
         }else{
             county = arrCountryData[indexPath.row]
         }
-        
-        
-        //self.delegate?.setCountryCode(name: arrCountryData[indexPath.row].name ?? "",code : arrCountryData[indexPath.row].code ?? "" )
         self.delegate?.setCountryCode(name: /county.name, code: /county.code)
         searchController.isActive = false
         let  _ = navigationController?.popViewController(animated: true)
